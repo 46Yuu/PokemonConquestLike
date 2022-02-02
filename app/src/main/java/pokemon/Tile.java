@@ -1,33 +1,27 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Random;
+package pokemon;
 
+import java.awt.*;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Tile extends JPanel{
-	private BufferedImage Img;
+
+	private Image image;
 	private Image imgR;
+
 	public Tile(int x, int y , int z){
 		setBounds(x, y, z,z);
-		File chemin = new File("../rock_texture.png");
-		try {
-			Img = ImageIO.read(chemin);
-		}
-		catch (IOException ex) {
-			System.out.println("File not found.");
-		}
-		setLayout(new BorderLayout());
-		imgR = Img.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH);
+		try{
+			image = ImageIO.read(getClass().getResource("./grass_texture.png"));
+			imgR = image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH);
+		}catch(IOException e){
+			System.out.println("File not found!");
+		}setLayout(new BorderLayout());
 		//JLabel picLabel = new JLabel(new ImageIcon(Img.getScaledInstance(this.getWidth(), this.getHeight(), Img.SCALE_SMOOTH)));
 		//this.add(picLabel);
-		Color couleur = Color.blue;
-		this.setBackground(couleur);
+		//Color couleur = Color.blue;
+		//this.setBackground(couleur);
 	}
 	
 	@Override
@@ -38,7 +32,7 @@ public class Tile extends JPanel{
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(Img.getWidth(this),Img.getHeight(this));
+		return new Dimension(image.getWidth(this),image.getHeight(this));
 	}
 	
 }
