@@ -1,3 +1,4 @@
+package pokemon.modele;
 
 public class Pokemon {
 
