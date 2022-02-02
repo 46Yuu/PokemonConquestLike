@@ -1,6 +1,7 @@
 package pokemon;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class Tile extends JPanel{
 	public Tile(int x, int y , int z){
 		setBounds(x, y, z,z);
 		try{
-			image = ImageIO.read(getClass().getResource("./grass_texture.png"));
+			image = ImageIO.read(new File("src/main/resources/grass_texture.png"));
 			imgR = image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH);
 		}catch(IOException e){
 			System.out.println("File not found!");
