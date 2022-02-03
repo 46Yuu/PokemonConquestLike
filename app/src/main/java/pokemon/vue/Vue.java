@@ -45,6 +45,13 @@ public class Vue extends JFrame{
 
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
+
+			panelTerrain.setLayout(new GridLayout(6,6));
+
+			for(int i=0; i<6*6; i++){
+				System.out.println(panelTerrain.getWidth());
+				panelTerrain.add(new Tile());
+			}
 			
 			setSize(dimensionEcran);
 		});
@@ -55,8 +62,7 @@ public class Vue extends JFrame{
 
 		private BufferedImage image;
 
-		public Tile(int x, int y , int z){
-			setBounds(x, y, z,z);
+		public Tile(){
 			try{
 				image = ImageIO.read(new File("src/main/resources/grass_texture.png"));
 			}catch(IOException e){
@@ -69,11 +75,6 @@ public class Vue extends JFrame{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(image, 0, 0, this);
-		}
-		
-		@Override
-		public Dimension getPreferredSize() {
-			return new Dimension(image.getWidth(this),image.getHeight(this));
 		}
 		
 	}
