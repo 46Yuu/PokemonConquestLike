@@ -1,10 +1,10 @@
 package pokemon.vue;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.SwingWorker;
+import javax.swing.plaf.DimensionUIResource;
 
 import java.awt.*;
 import java.io.File;
@@ -14,8 +14,6 @@ import java.awt.image.*;
 
 
 public class Vue extends JFrame{
-
-	private Tile[][] terrain;
 	private JPanel panelTerrain=new JPanel();
 	private JPanel panelInfos=new JPanel();
 	private JPanel panelJoueurs=new JPanel();
@@ -23,7 +21,7 @@ public class Vue extends JFrame{
 	JButton buttonCommencer=new JButton("Jouer");
 	
 	public Vue() {
-		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -47,7 +45,8 @@ public class Vue extends JFrame{
 
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
-			repaint();
+			
+			setSize(dimensionEcran);
 		});
 	}
 
@@ -94,6 +93,7 @@ public class Vue extends JFrame{
 			panelButton.setBounds(imageAcceuil.getWidth()/2-50,imageAcceuil.getHeight()/2,100,30);
 			panelButton.setLayout(null);
 			buttonCommencer.setBounds(0,0,100,30);
+			buttonCommencer.setBackground(Color.gray);
 			panelButton.add(buttonCommencer);
 			add(panelButton);	
 		}
