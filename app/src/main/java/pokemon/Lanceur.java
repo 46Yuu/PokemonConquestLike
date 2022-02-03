@@ -1,11 +1,14 @@
 package pokemon;
 
 import pokemon.vue.Vue;
+import java.awt.*;
 
 public class Lanceur {
     public static void main(String[] args) {
-		Vue test = new Vue();
-		test.pack();
-		test.setVisible (true);
+		EventQueue.invokeLater(()->{
+			Vue vue = new Vue();
+			vue.pack();
+			vue.setVisible (true);
+		});
 	}
 }

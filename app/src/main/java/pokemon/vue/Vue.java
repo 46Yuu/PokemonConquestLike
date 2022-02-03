@@ -31,15 +31,12 @@ public class Vue extends JFrame{
 		setContentPane(panelAccueil);
 		
 		buttonCommencer.addActionListener( event -> {
-			new nouvelInterface().execute();
-		});
-	}
-
-	public class nouvelInterface<T, V> extends SwingWorker<T,V>{
-		public T doInBackground(){
-			setContentPane(new JPanel());
-			getContentPane().repaint();
-			setLayout(new GridLayout(0,2));
+			JPanel contentPane=new JPanel();
+			setContentPane(contentPane);
+			
+			repaint();
+		
+			contentPane.setLayout(new GridLayout(0,2));
 			panelTerrain.setBackground(Color.black);
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
@@ -48,19 +45,17 @@ public class Vue extends JFrame{
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
 
-			add(panelInfos);
-			add(panelTerrain);	
-			return null;
-		}
-
+			contentPane.add(panelInfos);
+			contentPane.add(panelTerrain);	
+			repaint();
+		});
 	}
-	
+
 
 	public class Tile extends JPanel{
 
 		private BufferedImage image;
-		
-	
+
 		public Tile(int x, int y , int z){
 			setBounds(x, y, z,z);
 			try{
@@ -74,7 +69,7 @@ public class Vue extends JFrame{
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.drawImage(image, 0, 0, null);
+			g.drawImage(image, 0, 0, this);
 		}
 		
 		@Override
@@ -106,7 +101,7 @@ public class Vue extends JFrame{
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.drawImage(imageAcceuil, 0, 0, null);
+			g.drawImage(imageAcceuil, 0, 0, this);
 		}
 		
 		@Override
