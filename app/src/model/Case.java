@@ -1,7 +1,11 @@
 
 public class Case {
 
-	Pokemon Pokemon;
+	TypeTerrain type;
 	int x;
 	int y;
+
+	public Case(){
+
+	}
 }
