@@ -19,7 +19,22 @@ public class Vue extends JFrame{
 	private JPanel panelJoueurs=new JPanel();
 	private JPanel panelBoutons=new JPanel();
 	JButton buttonCommencer=new JButton("Jouer");
-	
+	enum Case{
+		Grass("Grass"),Rock("Rock");
+		private final String type;
+		private Case(String type){
+			this.type = type;
+		}
+	}
+	private Case[][] terrain = {
+		{Case.Rock, Case.Rock , Case.Rock,Case.Rock, Case.Rock , Case.Rock},
+		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
+		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
+		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
+		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
+		{Case.Rock, Case.Rock , Case.Rock,Case.Rock, Case.Rock , Case.Rock},
+	};
+
 	public Vue() {
 		Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
@@ -46,25 +61,37 @@ public class Vue extends JFrame{
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
-			panelTerrain.setLayout(new GridLayout(6,6));
+			panelTerrain.setLayout(new GridLayout(terrain.length,terrain[0].length));
 
-			for(int i=0; i<6*6; i++){
-				System.out.println(panelTerrain.getWidth());
-				panelTerrain.add(new Tile());
+			for(int i=0; i<terrain.length; i++){
+				for(int j=0;j<terrain[i].length;j++){
+					System.out.println(panelTerrain.getWidth());
+					Case caseTmp = terrain[i][j];
+					String path = "";
+					switch(caseTmp){
+						case Grass:
+							path="src/main/resources/grass_texture.png";
+							break;
+						case Rock:
+							path="src/main/resources/rock_texture.png";
+							break;
+					}
+					panelTerrain.add(new Tile(path,i,j));
+				}
 			}
 			
 			setSize(dimensionEcran);
 		});
 	}
 
-
-	public class Tile extends JPanel{
-
+	public static class Tile extends JPanel{
 		private BufferedImage image;
+		private int x;
+		private int y;
 
-		public Tile(){
+		public Tile(String path,int x, int y){
 			try{
-				image = ImageIO.read(new File("src/main/resources/grass_texture.png"));
+				image = ImageIO.read(new File(path));
 			}catch(IOException e){
 				System.out.println("File not found!");
 			}setLayout(new BorderLayout());
