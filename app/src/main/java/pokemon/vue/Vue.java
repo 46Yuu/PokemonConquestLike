@@ -1,10 +1,8 @@
 package pokemon.vue;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.plaf.DimensionUIResource;
 
 import java.awt.*;
 import java.io.File;
@@ -65,7 +63,6 @@ public class Vue extends JFrame{
 
 			for(int i=0; i<terrain.length; i++){
 				for(int j=0;j<terrain[i].length;j++){
-					System.out.println(panelTerrain.getWidth());
 					Case caseTmp = terrain[i][j];
 					String path = "";
 					switch(caseTmp){
