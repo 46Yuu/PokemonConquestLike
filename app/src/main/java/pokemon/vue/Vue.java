@@ -20,7 +20,7 @@ public class Vue extends JFrame{
 	private JPanel panelBoutons=new JPanel();
 	JButton buttonCommencer=new JButton("Jouer");
 	enum Case{
-		Grass("Grass"),Rock("Rock");
+		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
 		private final String type;
 		private Case(String type){
 			this.type = type;
@@ -29,10 +29,10 @@ public class Vue extends JFrame{
 	private Case[][] terrain = {
 		{Case.Rock, Case.Rock , Case.Rock,Case.Rock, Case.Rock , Case.Rock},
 		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Rock, Case.Rock , Case.Rock,Case.Rock, Case.Rock , Case.Rock},
+		{Case.Roof, Case.Roof , Case.Grass,Case.Grass, Case.Lava , Case.Lava},
+		{Case.Roof, Case.Water , Case.Grass,Case.Grass, Case.Lava , Case.Lava},
+		{Case.Roof, Case.Water , Case.Water,Case.Grass, Case.Grass , Case.Rock},
+		{Case.Roof, Case.Water , Case.Water,Case.Rock, Case.Rock , Case.Rock},
 	};
 
 	public Vue() {
@@ -74,6 +74,15 @@ public class Vue extends JFrame{
 							break;
 						case Rock:
 							path="src/main/resources/rock_texture.png";
+							break;
+						case Lava:
+							path="src/main/resources/lava_texture.png";
+							break;
+						case Water:
+							path="src/main/resources/water_texture.png";
+							break;
+						case Roof:
+							path="src/main/resources/roof_texture.png";
 							break;
 					}
 					panelTerrain.add(new Tile(path,i,j));
