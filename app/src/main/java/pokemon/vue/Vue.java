@@ -44,8 +44,7 @@ public class Vue extends JFrame{
 		buttonCommencer.addActionListener( event -> {
 			JPanel contentPane=new JPanel();
 			setContentPane(contentPane);
-			
-			repaint();
+
 		
 			contentPane.setLayout(new GridLayout(0,2));
 			panelTerrain.setBackground(Color.black);
@@ -86,28 +85,45 @@ public class Vue extends JFrame{
 				}
 			}
 			
-			setSize(dimensionEcran);
+			revalidate();
 		});
 	}
 
 	public static class Tile extends JPanel{
 		private BufferedImage image;
+		private BufferedImage imagePokemon;
 		private int x;
 		private int y;
+		private boolean pokemonPresent=false;
 
 		public Tile(String path,int x, int y){
 			try{
 				image = ImageIO.read(new File(path));
+				imagePokemon = ImageIO.read(new File("src/main/resources/evoli.png"));
 			}catch(IOException e){
 				System.out.println("File not found!");
 			}setLayout(new BorderLayout());
 			
 		}
+
+		public void setPokemonPresent(boolean val){
+			pokemonPresent=val;
+			repaint();
+		}
 		
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.drawImage(image, 0, 0, this);
+			int height=getSize().height;
+			int width=getSize().width;
+			g.drawImage(image, 0, 0,width,height, this);
+			if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
+				g.drawImage(imagePokemon, 0, 0,width,height, this);
+		}
+
+		@Override
+		public Dimension getPreferredSize() {
+			return new Dimension(image.getWidth(this),image.getHeight(this));
 		}
 		
 	}
