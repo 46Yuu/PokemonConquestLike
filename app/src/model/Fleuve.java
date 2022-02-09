@@ -1,4 +1,4 @@
-public class Fleuve extends TypeTerrain implements Mouvement {
+public class Fleuve extends Obstacle implements Mouvement {
     
     public void Deplacement(){
         

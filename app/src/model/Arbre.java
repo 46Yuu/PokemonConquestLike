@@ -1,3 +1,3 @@
-public class Arbre extends TypeTerrain{
+public class Arbre extends Obstacle{
     
 }
