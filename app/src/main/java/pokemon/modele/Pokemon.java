@@ -6,17 +6,20 @@ public class Pokemon implements Mouvement,Attaque {
 	private int Pdv;
 	private int Atk;
 	private String type;
-	boolean vivant;
 	private int lvl;
-	//Case Case;
+	private String cheminImage;
 
-	public Pokemon(int p,int a, String t) {
+	public Pokemon(int p,int a, String t, String chemin) {
 		this.setPdv(p);
 		this.setAtk(a);
 		this.setType(t);
-		this.vivant = true;
-		//this.Case = c;
+		cheminImage=chemin;
 	}
+
+    public String getCheminImage(){
+        return cheminImage;
+    }
+
 
 	public int getPdv() {
 		return Pdv;
@@ -40,13 +43,6 @@ public class Pokemon implements Mouvement,Attaque {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public boolean estVivant(){
-		if(this.Pdv<=0){
-			this.vivant = false;
-		}
-		return this.vivant;
 	}
 
 	@Override

@@ -3,8 +3,13 @@ package pokemon.vue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
+
+import pokemon.controleur.Controleur;
+import pokemon.modele.Terrain;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -16,6 +21,8 @@ public class Vue extends JFrame{
 	private JPanel panelInfos=new JPanel();
 	private JPanel panelJoueurs=new JPanel();
 	private JPanel panelBoutons=new JPanel();
+	private Controleur controleur;
+	public Terrain plateau;
 	JButton buttonCommencer=new JButton("Jouer");
 	enum Case{
 		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
@@ -33,8 +40,10 @@ public class Vue extends JFrame{
 		{Case.Roof, Case.Water , Case.Water,Case.Rock, Case.Rock , Case.Rock},
 	};
 
-	public Vue() {
-		Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
+	public Vue(Controleur c) {
+		controleur=c;
+		plateau=controleur.terrain;
+		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -58,7 +67,7 @@ public class Vue extends JFrame{
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
-			panelTerrain.setLayout(new GridLayout(terrain.length,terrain[0].length));
+			panelTerrain.setLayout(new GridLayout(terrain.length,terrain[0].length,1,1));
 
 			for(int i=0; i<terrain.length; i++){
 				for(int j=0;j<terrain[i].length;j++){
@@ -89,21 +98,77 @@ public class Vue extends JFrame{
 		});
 	}
 
-	public static class Tile extends JPanel{
+	public class Tile extends JPanel{
 		private BufferedImage image;
 		private BufferedImage imagePokemon;
 		private int x;
 		private int y;
-		private boolean pokemonPresent=false;
+		private boolean pokemonPresent;
 
 		public Tile(String path,int x, int y){
 			try{
 				image = ImageIO.read(new File(path));
-				imagePokemon = ImageIO.read(new File("src/main/resources/evoli.png"));
+				if(plateau.list.get(plateau.tab[x][y])!=null){
+					pokemonPresent=true;
+					imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
+				}
 			}catch(IOException e){
 				System.out.println("File not found!");
 			}setLayout(new BorderLayout());
 			
+			addMouseListener(new MouseDeplace());
+		}
+
+		private class MouseDeplace implements MouseInputListener{
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(pokemonPresent){
+					controleur.deplacerPokemon=true;
+					controleur.anciennePosI=x;
+					controleur.anciennePosY=y;
+				}
+				if(controleur.deplacerPokemon){
+					controleur.deplacerPokemon(x,y);
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
 		}
 
 		public void setPokemonPresent(boolean val){

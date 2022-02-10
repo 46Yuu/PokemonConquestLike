@@ -6,7 +6,8 @@ public class Case {
 	int x;
 	int y;
 
-	public Case(){
-
+	public Case(int i, int j){
+		x=i;
+		y=j;
 	}
 }
