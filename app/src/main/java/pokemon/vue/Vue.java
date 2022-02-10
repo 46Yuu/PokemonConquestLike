@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.imageio.ImageIO;
 import java.awt.image.*;
 
@@ -23,6 +25,7 @@ public class Vue extends JFrame{
 	private JPanel panelBoutons=new JPanel();
 	private Controleur controleur;
 	public Terrain plateau;
+	private LinkedList<Tile> listTile=new LinkedList<>();
 	JButton buttonCommencer=new JButton("Jouer");
 	enum Case{
 		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
@@ -90,12 +93,19 @@ public class Vue extends JFrame{
 							path="src/main/resources/roof_texture.png";
 							break;
 					}
-					panelTerrain.add(new Tile(path,i,j));
+					Tile tile=new Tile(path,i,j);
+					panelTerrain.add(tile);
+					listTile.add(tile);
 				}
 			}
-			
 			revalidate();
 		});
+
+	}
+
+	public void miseAjour(){
+		for(Tile t : listTile)
+			t.miseAJour();
 	}
 
 	public class Tile extends JPanel{
@@ -114,9 +124,27 @@ public class Vue extends JFrame{
 				}
 			}catch(IOException e){
 				System.out.println("File not found!");
-			}setLayout(new BorderLayout());
-			
+			}
+			this.x=x;
+			this.y=y;
+			setLayout(new BorderLayout());
 			addMouseListener(new MouseDeplace());
+		}
+
+		public void miseAJour(){
+			if(plateau.list.get(plateau.tab[x][y])!=null){
+				pokemonPresent=true;
+				try{
+					imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
+				}catch(Exception e){
+					System.out.println("File not found!");
+				}
+			}
+			else{
+				pokemonPresent=false;
+				imagePokemon=null;
+			}
+			repaint();
 		}
 
 		private class MouseDeplace implements MouseInputListener{
@@ -128,7 +156,7 @@ public class Vue extends JFrame{
 					controleur.anciennePosI=x;
 					controleur.anciennePosY=y;
 				}
-				if(controleur.deplacerPokemon){
+				else if(controleur.deplacerPokemon){
 					controleur.deplacerPokemon(x,y);
 				}
 			}
