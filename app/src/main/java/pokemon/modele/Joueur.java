@@ -8,5 +8,13 @@ public class Joueur {
     public Joueur() {
 
     }
+
+    /**
+     * Ajoute le pokemon k à la liste des Pokémons du joueur 
+     * @param 
+     */
+    public void ajouterPokemon(Pokemon k){
+
+    }
     
 }
