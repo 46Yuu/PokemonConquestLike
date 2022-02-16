@@ -151,7 +151,11 @@ public class Vue extends JFrame{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(pokemonPresent){
+				if(pokemonPresent && controleur.deplacerPokemon && controleur.anciennePosI==x && controleur.anciennePosY==y){
+				//le pokémon n'est pas déplacé
+					controleur.deplacerPokemon=false;
+				}
+				else if(pokemonPresent){
 					controleur.deplacerPokemon=true;
 					controleur.anciennePosI=x;
 					controleur.anciennePosY=y;
