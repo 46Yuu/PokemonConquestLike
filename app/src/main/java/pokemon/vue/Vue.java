@@ -2,6 +2,7 @@ package pokemon.vue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
@@ -66,6 +67,7 @@ public class Vue extends JFrame{
 			panelBoutons.setBackground(Color.GRAY);
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
+			panelJoueurs.add(new JLabel("Tour du joueur : " + controleur.joueurActuel.getNom() ));
 
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	

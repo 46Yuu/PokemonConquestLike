@@ -1,5 +1,6 @@
 package pokemon.controleur;
 
+import pokemon.modele.Joueur;
 import pokemon.modele.Pokemon;
 import pokemon.modele.Terrain;
 import pokemon.vue.Vue;
@@ -10,9 +11,11 @@ public class Controleur {
     public int anciennePosY;
     public Terrain terrain;
     public Vue vue;
+    public Joueur joueurActuel;
 
-    public Controleur(Terrain p){
+    public Controleur(Terrain p, Joueur jActuel){
         terrain=p;
+        joueurActuel=jActuel;
     }
     public void setVue(Vue vue){
         this.vue=vue;
@@ -25,5 +28,7 @@ public class Controleur {
         terrain.list.put(terrain.tab[x][y], p);
         deplacerPokemon=false;
         vue.miseAjour();
+    }
+    public void miseAJourInformations() {
     }
 }
