@@ -246,6 +246,11 @@ public class Vue extends JFrame{
 			select=true;
 			repaint();
 		}
+
+		public void deselect() {
+			select=false;
+			repaint();
+		}
 		
 	}
 

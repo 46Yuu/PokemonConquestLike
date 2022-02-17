@@ -31,6 +31,7 @@ public class Jeux {
     public Jeux(Joueur j1, Joueur j2){
         this.j1=j1;
         joueurActuel=j1;
+        nbPokemonsJoueur=j1.getNbPokemons();
         this.j2=j2;
     }
 
@@ -75,12 +76,18 @@ public class Jeux {
 
     /**
      * demande au joueur actuel de déplacer le pokémon actuel
-     * met à jour la position du pokémon actuel
-     * et celle du joueur actuel, si le joueur à déplacé tous ses pokémons
      */
     public void joueurTour(){
         controleur.miseAJourInformations();
         joueurActuel.deplacer(posPokemonActuel);
+        
+    }
+
+    /**
+     * met à jour la position du pokémon actuel
+     * et celle du joueur actuel, si le joueur à déplacé tous ses pokémons
+     */
+    public void incrementerInfoTour(){
         posPokemonActuel++;
         if(posPokemonActuel>=nbPokemonsJoueur){//le joueur à déplacé tous ses pokémons
             if(joueurActuel==j1)//on passe à j2

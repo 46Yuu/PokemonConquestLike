@@ -71,4 +71,8 @@ public class Joueur {
     public void setControleur(Controleur c) {
         this.controleur=c;
     }
+
+    public void setTerrainPourPokemon(Pokemon p,Case c) {
+        mapPokemonCase.put(p,c);
+    }
 }

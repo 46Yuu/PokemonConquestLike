@@ -28,9 +28,12 @@ public class Controleur {
 
     public void deplacerPokemon(int x, int y) {
         Pokemon p=terrain.list.get(terrain.tab[anciennePosI][anciennePosY]);
+        joueurActuel.setTerrainPourPokemon(p,terrain.tab[x][y]);
+        jeux.incrementerInfoTour();
         terrain.list.put(terrain.tab[anciennePosI][anciennePosY], null);
         terrain.list.put(terrain.tab[x][y], p);
         deplacerPokemon=false;
+        deselectionnerCase();
         vue.miseAjour();
     }
     public void miseAJourInformations() {
@@ -42,7 +45,13 @@ public class Controleur {
     }
 
     public void selectionnerCase(Case c) {
+        //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
         vue.listTile.get(6*c.getPosI()+c.getPosJ()).select();
+    }
+    public void deselectionnerCase() {
+        //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
+        vue.listTile.get(6*anciennePosI+anciennePosY).deselect();
+        jeux.joueurTour();
     }
     public void jouerTour() {
         jeux.joueurTour();
