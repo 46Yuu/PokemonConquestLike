@@ -24,6 +24,7 @@ public class Vue extends JFrame{
 	private JPanel panelInfos=new JPanel();
 	private JPanel panelJoueurs=new JPanel();
 	private JPanel panelBoutons=new JPanel();
+	private JLabel labelJoueur=new JLabel();
 	private Controleur controleur;
 	public Terrain plateau;
 	private LinkedList<Tile> listTile=new LinkedList<>();
@@ -67,7 +68,8 @@ public class Vue extends JFrame{
 			panelBoutons.setBackground(Color.GRAY);
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
-			panelJoueurs.add(new JLabel("Tour du joueur : " + controleur.joueurActuel.getNom() ));
+			labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
+			panelJoueurs.add(labelJoueur);
 
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
@@ -257,5 +259,9 @@ public class Vue extends JFrame{
 		public Dimension getPreferredSize() {
 			return new Dimension(imageAcceuil.getWidth(this),imageAcceuil.getHeight(this));
 		}
+	}
+
+	public void miseAJourInformations() {
+		labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
 	}
 }

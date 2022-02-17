@@ -30,5 +30,6 @@ public class Controleur {
         vue.miseAjour();
     }
     public void miseAJourInformations() {
+        vue.miseAJourInformations();
     }
 }
