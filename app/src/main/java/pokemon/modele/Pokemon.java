@@ -8,6 +8,7 @@ public class Pokemon implements Mouvement,Attaque {
 	private String type;
 	private int lvl;
 	private String cheminImage;
+	
 
 	public Pokemon(int p,int a, String t, String chemin) {
 		this.setPdv(p);

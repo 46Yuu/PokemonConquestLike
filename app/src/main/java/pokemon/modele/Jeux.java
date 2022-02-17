@@ -47,6 +47,7 @@ public class Jeux {
         joueurActuel=j;
         nbPokemonsJoueur=j.getNbPokemons();
         posPokemonActuel=0;
+        controleur.setJoueurActuel(j);
     }
 
     /**
@@ -102,6 +103,7 @@ public class Jeux {
                 i+=2;
             }
             list.put(tab[i+2][j+2], k);
+            j1.ajoutPokemonCase(k,tab[i+2][j+2]);
             j+=2;
         }   
         i=tab.length-3;
@@ -112,6 +114,7 @@ public class Jeux {
                 i-=2;
             }
             list.put(tab[i+2][j+2], k);
+            j2.ajoutPokemonCase(k,tab[i+2][j+2]);
             j+=2;
         }        
     }

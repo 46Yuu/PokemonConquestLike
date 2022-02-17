@@ -10,4 +10,11 @@ public class Case {
 		x=i;
 		y=j;
 	}
+
+	public int getPosI(){
+		return x;
+	}
+	public int getPosJ(){
+		return y;
+	}
 }

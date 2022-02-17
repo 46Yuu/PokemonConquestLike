@@ -1,6 +1,9 @@
 package pokemon.modele;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+
+import pokemon.controleur.Controleur;
 
 public class Joueur {
     String nom;
@@ -9,10 +12,17 @@ public class Joueur {
      * dans l'ordre qu'ils doivent être déplacés
      */
     LinkedList< Pokemon> listPokemons;
+    /**
+     * pour chaque pokemon du joueur, associe une case
+     */
+    HashMap<Pokemon,Case> mapPokemonCase;
+
+    Controleur controleur;
     
     public Joueur(String nom){
         this.nom=nom;
         listPokemons=new LinkedList<>();
+        mapPokemonCase=new HashMap<>();
     }
 
     /**
@@ -51,5 +61,14 @@ public class Joueur {
     }
 
     public void deplacer(int posPokemonActuel) {
+        controleur.selectionnerCase(mapPokemonCase.get(listPokemons.get(posPokemonActuel)));
+    }
+
+    public void ajoutPokemonCase(Pokemon k, Case c){
+        mapPokemonCase.put(k,c);
+    }
+
+    public void setControleur(Controleur c) {
+        this.controleur=c;
     }
 }

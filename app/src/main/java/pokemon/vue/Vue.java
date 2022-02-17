@@ -27,7 +27,7 @@ public class Vue extends JFrame{
 	private JLabel labelJoueur=new JLabel();
 	private Controleur controleur;
 	public Terrain plateau;
-	private LinkedList<Tile> listTile=new LinkedList<>();
+	public LinkedList<Tile> listTile=new LinkedList<>();
 	JButton buttonCommencer=new JButton("Jouer");
 	enum Case{
 		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
@@ -68,41 +68,48 @@ public class Vue extends JFrame{
 			panelBoutons.setBackground(Color.GRAY);
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
-			labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
 			panelJoueurs.add(labelJoueur);
 
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
 			panelTerrain.setLayout(new GridLayout(terrain.length,terrain[0].length,1,1));
-
+			int k=0;
 			for(int i=0; i<terrain.length; i++){
 				for(int j=0;j<terrain[i].length;j++){
 					Case caseTmp = terrain[i][j];
 					String path = "";
+					String pathSelect = "";
 					switch(caseTmp){
 						case Grass:
 							path="src/main/resources/grass_texture.png";
+							pathSelect="src/main/resources/grass_texture_select.png";
 							break;
 						case Rock:
 							path="src/main/resources/rock_texture.png";
+							pathSelect="src/main/resources/rock_texture_select.png";
 							break;
 						case Lava:
 							path="src/main/resources/lava_texture.png";
+							pathSelect="src/main/resources/lava_texture_select.png";
 							break;
 						case Water:
 							path="src/main/resources/water_texture.png";
+							pathSelect="src/main/resources/water_texture_select.png";
 							break;
 						case Roof:
 							path="src/main/resources/roof_texture.png";
+							pathSelect="src/main/resources/roof_texture_select.png";
 							break;
 					}
-					Tile tile=new Tile(path,i,j);
+					Tile tile=new Tile(path,pathSelect,i,j,k);
+					k++;
 					panelTerrain.add(tile);
 					listTile.add(tile);
 				}
 			}
 			revalidate();
+			controleur.jouerTour();
 		});
 
 	}
@@ -114,14 +121,19 @@ public class Vue extends JFrame{
 
 	public class Tile extends JPanel{
 		private BufferedImage image;
+		private BufferedImage imageSelect;
 		private BufferedImage imagePokemon;
 		private int x;
 		private int y;
+		private int posInList;
 		private boolean pokemonPresent;
+		private boolean select;
 
-		public Tile(String path,int x, int y){
+		public Tile(String path, String pathSelect,int x, int y, int posInList){
+			this.posInList=posInList;
 			try{
 				image = ImageIO.read(new File(path));
+				imageSelect=ImageIO.read(new File(pathSelect));
 				if(plateau.list.get(plateau.tab[x][y])!=null){
 					pokemonPresent=true;
 					imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
@@ -217,7 +229,10 @@ public class Vue extends JFrame{
 			super.paintComponent(g);
 			int height=getSize().height;
 			int width=getSize().width;
-			g.drawImage(image, 0, 0,width,height, this);
+			if(select)
+				g.drawImage(imageSelect, 0, 0,width,height, this);
+			else
+				g.drawImage(image, 0, 0,width,height, this);
 			if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
 				g.drawImage(imagePokemon, 0, 0,width,height, this);
 		}
@@ -225,6 +240,11 @@ public class Vue extends JFrame{
 		@Override
 		public Dimension getPreferredSize() {
 			return new Dimension(image.getWidth(this),image.getHeight(this));
+		}
+
+		public void select() {
+			select=true;
+			repaint();
 		}
 		
 	}

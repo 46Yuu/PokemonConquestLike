@@ -22,13 +22,14 @@ public class Lanceur {
 			joueur2.ajouterPokemon(new Pikachu(10, 10, "normal"));
 			Jeux jeux= new Jeux(joueur1, joueur2);
 			Terrain terrain=new Terrain(6,6,jeux);
-			Controleur c=new Controleur(terrain, joueur1);
+			Controleur c=new Controleur(terrain, joueur1,jeux);
 			jeux.setControleur(c);
+			joueur1.setControleur(c);
+			joueur2.setControleur(c);
 			Vue vue = new Vue(c);
 			c.setVue(vue);
 			vue.pack();
 			vue.setVisible (true);
-			jeux.joueurTour();
 		});
 	}
 }

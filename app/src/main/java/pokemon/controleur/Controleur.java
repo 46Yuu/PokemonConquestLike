@@ -1,5 +1,7 @@
 package pokemon.controleur;
 
+import pokemon.modele.Case;
+import pokemon.modele.Jeux;
 import pokemon.modele.Joueur;
 import pokemon.modele.Pokemon;
 import pokemon.modele.Terrain;
@@ -12,10 +14,12 @@ public class Controleur {
     public Terrain terrain;
     public Vue vue;
     public Joueur joueurActuel;
+    public Jeux jeux;
 
-    public Controleur(Terrain p, Joueur jActuel){
+    public Controleur(Terrain p, Joueur jActuel, Jeux jeux){
         terrain=p;
         joueurActuel=jActuel;
+        this.jeux=jeux;
     }
     public void setVue(Vue vue){
         this.vue=vue;
@@ -31,5 +35,16 @@ public class Controleur {
     }
     public void miseAJourInformations() {
         vue.miseAJourInformations();
+    }
+
+    public void setJoueurActuel(Joueur j){
+        joueurActuel=j;
+    }
+
+    public void selectionnerCase(Case c) {
+        vue.listTile.get(6*c.getPosI()+c.getPosJ()).select();
+    }
+    public void jouerTour() {
+        jeux.joueurTour();
     }
 }
