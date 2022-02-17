@@ -6,7 +6,15 @@ public class Case {
 	int x;
 	int y;
 
-	public Case(){
+	public Case(int i, int j){
+		x=i;
+		y=j;
+	}
 
+	public int getPosI(){
+		return x;
+	}
+	public int getPosJ(){
+		return y;
 	}
 }
