@@ -5,7 +5,8 @@ public class Case {
 	int x;
 	int y;
 
-	public Case(){
-
+	public Case(TypeTerrain t ){
+		this.type=t;
+		
 	}
 }

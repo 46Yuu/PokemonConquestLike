@@ -1,16 +1,16 @@
 import java.util.HashMap;
 
-public class Pokemon implements Mouvement,Attaque {
+public class Pokemon{
     
 	String nom;
 	private int Pdv;
 	private int Atk;
-	private String type;
+	private TypeTerrain type;
 	boolean vivant;
 	private int lvl;
 	//Case Case;
 
-	public Pokemon(int p,int a, String t) {
+	public Pokemon(int p,int a, TypeTerrain t) {
 		this.setPdv(p);
 		this.setAtk(a);
 		this.setType(t);
@@ -34,7 +34,7 @@ public class Pokemon implements Mouvement,Attaque {
 		Atk = atk;
 	}
 
-	public String getType() {
+	public TypeTerrain getType() {
 		return type;
 	}
 
@@ -48,5 +48,25 @@ public class Pokemon implements Mouvement,Attaque {
 		}
 		return this.vivant;
 	}
+	public void Deplacement (int x,int y){
+		if(Case[x][y].type == Normal || Case[x][y].type == this.type)
+		hashpokemon.replace( this, Case[x][y]);
+		
+          
+		}
 
-}
+		public boolean PeutSeDeplacer(Pokemon p, Plateau p1){
+			int [][]tab = new int[4][4];
+			for(int i=0;i<tab.length;i++){
+				for(int j=0;j<tab[i].length;i++){
+
+				}
+			}
+		}
+
+		public void Attak(Pokemon p){
+			p.Pdv = p.Pdv - this.Atk;
+		}
+	}
+
+

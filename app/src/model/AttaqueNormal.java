@@ -1,5 +1,7 @@
-public interface AttaqueNormal extends Attaque {
-    public void ViveAttaque();
-    public void Charge();
-    public void DoubleCharge();
+public class AttaqueNormal extends Attaque {
+    public void Attak(Pokemon p){
+        if(p.type==Roche){
+            p.Pdv=p.Pdv - this.Atk/2;
+    }
+    
 }
