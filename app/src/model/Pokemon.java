@@ -3,18 +3,23 @@ import java.util.HashMap;
 public class Pokemon{
     
 	String nom;
+	private int PdvdeBase;
 	private int Pdv;
 	private int Atk;
+	 String etat;
 	private TypeTerrain type;
 	boolean vivant;
 	private int lvl;
+	CapacitSpe spe;
 	//Case Case;
 
 	public Pokemon(int p,int a, TypeTerrain t) {
 		this.setPdv(p);
+		this.setPdvdeBase(p);
 		this.setAtk(a);
 		this.setType(t);
 		this.vivant = true;
+		this.etat ="";
 		//this.Case = c;
 	}
 

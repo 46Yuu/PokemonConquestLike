@@ -3,7 +3,7 @@ public class Potion extends Objets {
         this.nom="Potion";
     }
 
-    public Utiliser(Pokemon p){
-        p.Pdv=p.Pdv +10;
+    public void Utiliser(Pokemon p){
+        p.Pdv=p.Pdv +20;
     }
 }
