@@ -1,17 +1,20 @@
 package pokemon.modele;
 
-public class AttaqueFeu extends Attaque{
+public class AttaquePlante extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
-        if(b.getType()=="Plante"){
+        if(b.getType()=="Eau"){
+            b.setPdv(b.getPdv() - (p.getAtk()*2));
+        }
+        else if(b.getType()=="Roche"){
             b.setPdv(b.getPdv() - p.getAtk()*2);
         } 
-        else if(b.getType()=="Eau"){
+        else if(b.getType()=="Feu"){
             b.setPdv(b.getPdv() - p.getAtk()/2);
         } 
-        else if(b.getType()=="Roche"){
+        else if(b.getType()=="Plante"){
             b.setPdv(b.getPdv() - p.getAtk()/2);
-        }
-        else if(b.getType()=="Feu"){
+        } 
+        else if(b.getType()=="Vol"){
             b.setPdv(b.getPdv() - p.getAtk()/2);
         }
         else {
