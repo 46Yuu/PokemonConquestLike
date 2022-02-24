@@ -56,4 +56,7 @@ public class Controleur {
     public void jouerTour() {
         jeux.joueurTour();
     }
+    public void selectionnerCases(int x, int y) {
+        Pokemon p=terrain.list.get(terrain.tab[x][y]);
+    }
 }

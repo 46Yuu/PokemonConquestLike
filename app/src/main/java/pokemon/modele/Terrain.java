@@ -11,6 +11,7 @@ public class Terrain{
 	
 	public Terrain(int x, int y, Jeux jeux) {
 		this.jeux=jeux;
+		
 		tab=new Case[x][y];
 		for(int i=0; i<x; i++){
 			for(int j=0; j<y; j++){
