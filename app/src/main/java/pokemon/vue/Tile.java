@@ -3,7 +3,8 @@ package pokemon.vue;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 import pokemon.controleur.Controleur;
-import pokemon.modele.Terrain;
+import pokemon.modele.terrain.Terrain;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -30,9 +31,9 @@ public class Tile extends JPanel{
         try{
             image = ImageIO.read(new File(path));
             imageSelect=ImageIO.read(new File(pathSelect));
-            if(plateau.list.get(plateau.tab[x][y])!=null){
+            if(plateau.tab[x][y].getPokemon()!=null){
                 pokemonPresent=true;
-                imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
+                imagePokemon = ImageIO.read(new File((plateau.tab[x][y].getPokemon().getCheminImage())));
             }
         }catch(IOException e){
             System.out.println("File not found!");
@@ -44,10 +45,10 @@ public class Tile extends JPanel{
     }
 
     public void miseAJour(){
-        if(plateau.list.get(plateau.tab[x][y])!=null){
+        if(plateau.tab[x][y].getPokemon()!=null){
             pokemonPresent=true;
             try{
-                imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
+                imagePokemon = ImageIO.read(new File(plateau.tab[x][y].getPokemon().getCheminImage()));
             }catch(Exception e){
                 System.out.println("File not found!");
             }

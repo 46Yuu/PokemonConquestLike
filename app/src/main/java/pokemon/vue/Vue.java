@@ -5,7 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
-import pokemon.modele.Terrain;
+import pokemon.modele.terrain.Terrain;
+
 import java.awt.*;
 import java.util.LinkedList;
 

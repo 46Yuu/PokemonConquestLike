@@ -1,10 +1,10 @@
 package pokemon.controleur;
 
-import pokemon.modele.Case;
-import pokemon.modele.Jeux;
-import pokemon.modele.Joueur;
-import pokemon.modele.Pokemon;
-import pokemon.modele.Terrain;
+import pokemon.modele.jeux.Jeux;
+import pokemon.modele.jeux.Joueur;
+import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.terrain.Case;
+import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 
 public class Controleur {
@@ -27,11 +27,11 @@ public class Controleur {
 
 
     public void deplacerPokemon(int x, int y) {
-        Pokemon p=terrain.list.get(terrain.tab[anciennePosI][anciennePosY]);
+        Pokemon p=terrain.tab[anciennePosI][anciennePosY].getPokemon();
         joueurActuel.setTerrainPourPokemon(p,terrain.tab[x][y]);
         jeux.incrementerInfoTour();
-        terrain.list.put(terrain.tab[anciennePosI][anciennePosY], null);
-        terrain.list.put(terrain.tab[x][y], p);
+        terrain.tab[anciennePosI][anciennePosY].setPokemon(null);
+        terrain.tab[x][y].setPokemon(p);
         deplacerPokemon=false;
         deselectionnerCase();
         vue.miseAjour();

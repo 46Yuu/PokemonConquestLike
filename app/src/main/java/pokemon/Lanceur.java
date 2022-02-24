@@ -1,11 +1,11 @@
 package pokemon;
 
 import pokemon.controleur.Controleur;
-import pokemon.modele.Evoli;
-import pokemon.modele.Jeux;
-import pokemon.modele.Joueur;
-import pokemon.modele.Pikachu;
-import pokemon.modele.Terrain;
+import pokemon.modele.jeux.Jeux;
+import pokemon.modele.jeux.Joueur;
+import pokemon.modele.pokemon.Evoli;
+import pokemon.modele.pokemon.Pikachu;
+import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 import java.awt.*;
 
