@@ -1,6 +1,6 @@
 package pokemon.modele;
 
-public class Fleuve extends Obstacle implements Mouvement {
+public class Fleuve extends Obstacle {
     
     public void Deplacement(){
         

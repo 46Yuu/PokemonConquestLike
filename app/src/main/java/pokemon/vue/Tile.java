@@ -71,8 +71,6 @@ public class Tile extends JPanel{
                 controleur.deplacerPokemon=true;
                 controleur.anciennePosI=x;
                 controleur.anciennePosY=y;
-                //selectionner les cases accessibles
-                controleur.selectionnerCases(x,y);
             }
             else if(controleur.deplacerPokemon){
                 controleur.deplacerPokemon(x,y);
