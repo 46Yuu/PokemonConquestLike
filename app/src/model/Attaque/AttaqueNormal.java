@@ -5,3 +5,4 @@ public class AttaqueNormal extends Attaque {
     }
     
 }
+}

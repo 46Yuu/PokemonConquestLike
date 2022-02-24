@@ -1,10 +1,9 @@
-public class Lave {
+public class Lave extends Case {
     TypeTerrain type;
 
     public Lave(){
         this.type = Feu;
     }
-    public void Deplacement(){
         
-    }
+    
 }

@@ -3,6 +3,8 @@ import java.util.HashMap;
 public class Pokemon{
     
 	String nom;
+	private int Def;
+	private int Crit;
 	private int PdvdeBase;
 	private int Pdv;
 	private int Atk;
@@ -13,11 +15,14 @@ public class Pokemon{
 	CapacitSpe spe;
 	//Case Case;
 
-	public Pokemon(int p,int a, TypeTerrain t) {
+	public Pokemon(int p,int a, int d,int c,TypeTerrain t) {
 		this.setPdv(p);
 		this.setPdvdeBase(p);
 		this.setAtk(a);
 		this.setType(t);
+		this.setDef(d);
+		this.setCrit(c);
+
 		this.vivant = true;
 		this.etat ="";
 		//this.Case = c;
@@ -46,10 +51,25 @@ public class Pokemon{
 	public void setType(String type) {
 		this.type = type;
 	}
+	public TypeTerrain getDef() {
+		return Def;
+	}
+
+	public void setDef(int d) {
+		this.Def = d;
+	}
+	public TypeTerrain getCrit() {
+		return Crit;
+	}
+
+	public void setCrit(int c) {
+		this.Crit = c;
+	}
+
 
 	public boolean estVivant(){
 		if(this.Pdv<=0){
-			this.vivant = fale;
+			this.vivant = false;
 		}
 		return this.vivant;
 	}
