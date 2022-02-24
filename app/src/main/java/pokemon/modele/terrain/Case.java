@@ -4,12 +4,22 @@ import pokemon.modele.pokemon.Pokemon;
 
 public class Case {
 
-	TypeTerrain type;
+
+	public enum TypeCase{
+		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
+		private final String type;
+		private TypeCase(String type){
+			this.type = type;
+		}
+	}
+
+	TypeCase type;
 	Pokemon pokemon; //null s'il n'y a pas de pokemons sur la case 
 	int x;
 	int y;
 
-	public Case(int i, int j, Pokemon p){
+	public Case(int i, int j, Pokemon p, TypeCase type){
+		this.type=type;
 		x=i;
 		y=j;
 		pokemon=p;
@@ -28,5 +38,9 @@ public class Case {
 
 	public Pokemon getPokemon() {
 		return pokemon;
+	}
+
+	public TypeCase getType(){
+		return type;
 	}
 }

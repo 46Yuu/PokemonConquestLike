@@ -5,7 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
-import pokemon.modele.terrain.Terrain;
+import pokemon.modele.terrain.*;
+import pokemon.modele.terrain.Case.TypeCase;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -21,22 +22,7 @@ public class Vue extends JFrame{
 	public Terrain plateau;
 	public LinkedList<Tile> listTile=new LinkedList<>();
 	JButton buttonCommencer=new JButton("Jouer");
-	enum Case{
-		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
-		private final String type;
-		private Case(String type){
-			this.type = type;
-		}
-	}
-	private Case[][] terrain = {
-		{Case.Rock, Case.Rock , Case.Rock,Case.Rock, Case.Rock , Case.Rock},
-		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Roof, Case.Roof , Case.Grass,Case.Grass, Case.Lava , Case.Lava},
-		{Case.Roof, Case.Water , Case.Grass,Case.Grass, Case.Lava , Case.Lava},
-		{Case.Roof, Case.Water , Case.Water,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Roof, Case.Water , Case.Water,Case.Rock, Case.Rock , Case.Rock},
-	};
-
+	
 	public Vue(Controleur c) {
 		controleur=c;
 		plateau=controleur.terrain;
@@ -65,11 +51,11 @@ public class Vue extends JFrame{
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
-			panelTerrain.setLayout(new GridLayout(terrain.length,terrain[0].length,1,1));
+			panelTerrain.setLayout(new GridLayout(plateau.tab.length,plateau.tab[0].length,1,1));
 			int k=0;
-			for(int i=0; i<terrain.length; i++){
-				for(int j=0;j<terrain[i].length;j++){
-					Case caseTmp = terrain[i][j];
+			for(int i=0; i<plateau.tab.length; i++){
+				for(int j=0;j<plateau.tab[i].length;j++){
+					TypeCase caseTmp = plateau.tab[i][j].getType();
 					String path = "";
 					String pathSelect = "";
 					switch(caseTmp){
