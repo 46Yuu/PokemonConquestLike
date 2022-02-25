@@ -15,7 +15,6 @@ public class Pokemon implements Mouvement{
 	private int pdv;
 	private int atk;
 	private String type;
-	private int lvl;
 	private String cheminImage;
 	private Attaque attaque;
 	

@@ -1,7 +1,5 @@
 package pokemon.modele.jeux;
 
-import java.util.HashMap;
-
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
