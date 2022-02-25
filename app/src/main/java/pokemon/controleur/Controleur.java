@@ -18,6 +18,7 @@ public class Controleur {
     public Vue vue;
     public Joueur joueurActuel;
     public Jeux jeux;
+    private LinkedList<Pair> listCasesPossibles;
 
     public Controleur(Terrain p, Joueur jActuel, Jeux jeux){
         terrain=p;
@@ -35,8 +36,9 @@ public class Controleur {
         terrain.tab[anciennePosI][anciennePosY].setPokemon(null);
         terrain.tab[x][y].setPokemon(p);
         deplacerPokemon=false;
-        deselectionnerCase();
+        vue.deselectTiles(listCasesPossibles);
         vue.miseAjour();
+        jeux.joueurTour();
     }
     public void miseAJourInformations() {
         vue.miseAJourInformations();
@@ -59,8 +61,8 @@ public class Controleur {
         jeux.joueurTour();
     }
     public void selectionnerCasePossibles(int x, int y) {
-        LinkedList<Pair> list=terrain.BFS(x, y, 4, "water");
-        vue.selectTiles(list);
+        listCasesPossibles=terrain.BFS(x, y);
+        vue.selectTiles(listCasesPossibles);
     }
 
 

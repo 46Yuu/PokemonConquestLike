@@ -63,16 +63,17 @@ public class Tile extends JPanel{
         @Override
         public void mouseClicked(MouseEvent e) {
             if(pokemonPresent && controleur.deplacerPokemon && controleur.anciennePosI==x && controleur.anciennePosY==y){
-            //le pokémon n'est pas déplacé
+            //le est resté dans la même case 
                 controleur.deplacerPokemon=false;
             }
-            else if(pokemonPresent){
+            else if(pokemonPresent && select){
                 controleur.deplacerPokemon=true;
                 controleur.anciennePosI=x;
                 controleur.anciennePosY=y;
                 controleur.selectionnerCasePossibles(x,y);
             }
-            else if(controleur.deplacerPokemon){
+            //si on peut déplacer le pokémon et le tile est selectionné
+            else if(controleur.deplacerPokemon && select){
                 controleur.deplacerPokemon(x,y);
             }
         }

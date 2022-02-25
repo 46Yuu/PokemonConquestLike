@@ -15,13 +15,13 @@ public class Lanceur {
     public static void main(String[] args) {
 		EventQueue.invokeLater(()->{
 			Joueur joueur1=new Joueur("joueur 1");
-			joueur1.ajouterPokemon(new Evoli(10, 10, "normal"));
-			joueur1.ajouterPokemon(new Evoli(10, 10, "normal"));
+			joueur1.ajouterPokemon(new Evoli(10, 10, "Eau"));
+			joueur1.ajouterPokemon(new Evoli(10, 10, "Eau"));
 			Joueur joueur2=new Joueur("joueur 2");
-			joueur2.ajouterPokemon(new Pikachu(10, 10, "normal"));
-			joueur2.ajouterPokemon(new Pikachu(10, 10, "normal"));
+			joueur2.ajouterPokemon(new Pikachu(10, 10, "Electrique"));
+			joueur2.ajouterPokemon(new Pikachu(10, 10, "Electrique"));
 			Jeux jeux= new Jeux(joueur1, joueur2);
-			Terrain terrain=new Terrain(6,6,jeux);
+			Terrain terrain=new Terrain(7,7,jeux);
 			Controleur c=new Controleur(terrain, joueur1,jeux);
 			jeux.setControleur(c);
 			joueur1.setControleur(c);

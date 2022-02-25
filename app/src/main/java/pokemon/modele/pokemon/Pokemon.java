@@ -17,15 +17,20 @@ public class Pokemon implements Mouvement{
 	private String type;
 	private String cheminImage;
 	private Attaque attaque;
+	/**
+	 * le nombre de cases maximal qu'on peut déplacer le pokémon
+	 */
+	private int capaciteDeplacement;
 	
 
-	public Pokemon(String nom, int pdv,int atk, String type, String chemin) {
+	public Pokemon(String nom,int capaciteDeplacement, int pdv,int atk, String type, String chemin) {
 		this.nom = nom;
 		this.pdv = pdv;
 		this.setAtk(atk);
 		this.setType(type);
 		this.setAttaque(type);
 		cheminImage=chemin;
+		this.capaciteDeplacement=capaciteDeplacement;
 	}
 
 	public String getNom(){
@@ -97,6 +102,13 @@ public class Pokemon implements Mouvement{
 		else if (typeAtk == "Vol"){
 			this.attaque = new AttaqueVol();
 		}
+	}
+
+	public int getCapaciteDeplacement(){
+		return capaciteDeplacement;
+	}
+	public void setCapaciteDeplacement(int cap){
+		this.capaciteDeplacement=cap;
 	}
 
 	public void Attack(Pokemon p){
