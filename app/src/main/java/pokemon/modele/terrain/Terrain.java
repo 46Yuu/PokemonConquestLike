@@ -48,8 +48,8 @@ public class Terrain{
         if (vis[row][col])
             return false;
 
-		if(tab[row][col].getType()==TypeCase.Water)
-			return false;
+		//if(tab[row][col].getType()==TypeCase.Water)
+		//	return false;
     
         // Otherwise
         return true;
@@ -74,11 +74,11 @@ public class Terrain{
         q.add(new Pair(row, col));
         vis[row][col] = true;
     
-		int compt=0;
+		
 
         // Iterate while the queue
         // is not empty
-        while (!q.isEmpty() && compt<capaciteDeplacement)
+        while (!q.isEmpty() )
         {
             Pair cell = q.peek();
             int x = cell.first;
@@ -101,8 +101,16 @@ public class Terrain{
 					res.add(new Pair(adjx,adjy));
                 }
             }
-			compt++;
+			
         }
 		return res;
+    }
+
+    public String getPathImageTile(int x, int y) {
+        return tab[x][y].getPathImage();
+    }
+
+    public String getPathImageSelectTile(int x, int y) {
+        return tab[x][y].getPathImageSelect();
     }
 }

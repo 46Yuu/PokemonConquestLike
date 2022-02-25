@@ -59,9 +59,29 @@ public class Controleur {
         jeux.joueurTour();
     }
     public void selectionnerCasePossibles(int x, int y) {
-        LinkedList<Pair> list=terrain.BFS(x, y,4, "water");
-        vue.selectionnerTiles(list);
+        LinkedList<Pair> list=terrain.BFS(x, y, 4, "water");
+        vue.selectTiles(list);
+    }
 
+
+    /**
+     * renvoie le chemin de d'image de la Tile de coordonnées (x,y)
+     * @param x coordonnée x
+     * @param y coordonnée y
+     * @return chemin de l'image de la Tile
+     */
+    public String getCheminImageTile(int x, int y){
+        return terrain.getPathImageTile(x,y);
+    }
+
+    /**
+     * renvoie le chemin de l'image selection la Tile de coordonnées (x,y)
+     * @param x coordonnée x
+     * @param y coordonnée y
+     * @return chemin de l'image selection de la Tile
+     */
+    public String getPathImageSelectTile(int x, int y){
+        return terrain.getPathImageSelectTile(x, y);
     }
   
 }

@@ -6,11 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
 import pokemon.modele.terrain.*;
-import pokemon.modele.terrain.Case.TypeCase;
-
 import java.awt.*;
 import java.util.LinkedList;
-
 
 public class Vue extends JFrame{
 	private JPanel panelTerrain=new JPanel();
@@ -54,31 +51,8 @@ public class Vue extends JFrame{
 			panelTerrain.setLayout(new GridLayout(plateau.tab.length,plateau.tab[0].length,1,1));
 			for(int i=0; i<plateau.tab.length; i++){
 				for(int j=0;j<plateau.tab[i].length;j++){
-					TypeCase caseTmp = plateau.tab[i][j].getType();
-					String path = "";
-					String pathSelect = "";
-					switch(caseTmp){
-						case Grass:
-							path="src/main/resources/grass_texture.png";
-							pathSelect="src/main/resources/grass_texture_select.png";
-							break;
-						case Rock:
-							path="src/main/resources/rock_texture.png";
-							pathSelect="src/main/resources/rock_texture_select.png";
-							break;
-						case Lava:
-							path="src/main/resources/lava_texture.png";
-							pathSelect="src/main/resources/lava_texture_select.png";
-							break;
-						case Water:
-							path="src/main/resources/water_texture.png";
-							pathSelect="src/main/resources/water_texture_select.png";
-							break;
-						case Roof:
-							path="src/main/resources/roof_texture.png";
-							pathSelect="src/main/resources/roof_texture_select.png";
-							break;
-					}
+					String path = controleur.getCheminImageTile(i, j);
+					String pathSelect = controleur.getPathImageSelectTile(i, j);
 					Tile tile=new Tile(path,pathSelect,i,j,plateau,controleur);
 					panelTerrain.add(tile);
 					arrayTile[i][j]=tile;
@@ -102,9 +76,16 @@ public class Vue extends JFrame{
 		labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
 	} 
 
-	public void selectionnerTiles(LinkedList<Pair> listPaires){
+	public void selectTiles(LinkedList<Pair> listPaires){
 		for(Pair p : listPaires){
 			arrayTile[p.getFirst()][p.getSecond()].setSelect(true);
+			arrayTile[p.getFirst()][p.getSecond()].repaint();
+		}
+	}
+
+	public void deselectTiles(LinkedList<Pair> listPaires){
+		for(Pair p : listPaires){
+			arrayTile[p.getFirst()][p.getSecond()].setSelect(false);
 			arrayTile[p.getFirst()][p.getSecond()].repaint();
 		}
 	}

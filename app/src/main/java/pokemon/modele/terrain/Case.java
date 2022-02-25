@@ -13,16 +13,47 @@ public class Case {
 		}
 	}
 
-	TypeCase type;
-	Pokemon pokemon; //null s'il n'y a pas de pokemons sur la case 
-	int x;
-	int y;
+	private TypeCase typeCase;
+	private Pokemon pokemon; //null s'il n'y a pas de pokemons sur la case 
+	private int x;
+	private int y;
+	/**
+	 * le chemin de l'image du tile correspondant à la case 
+	 */
+	private String pathImage;
+	/**
+	 * le chemin de l'image de sellection du tile correspondant à la case 
+	 */
+	private String pathImageSelect;
 
 	public Case(int i, int j, Pokemon p, TypeCase type){
-		this.type=type;
+		typeCase=type;
 		x=i;
 		y=j;
 		pokemon=p;
+		
+		switch(typeCase){
+			case Grass:
+				pathImage="src/main/resources/grass_texture.png";
+				pathImageSelect="src/main/resources/grass_texture_select.png";
+				break;
+			case Rock:
+				pathImage="src/main/resources/rock_texture.png";
+				pathImageSelect="src/main/resources/rock_texture_select.png";
+				break;
+			case Lava:
+				pathImage="src/main/resources/lava_texture.png";
+				pathImageSelect="src/main/resources/lava_texture_select.png";
+				break;
+			case Water:
+				pathImage="src/main/resources/water_texture.png";
+				pathImageSelect="src/main/resources/water_texture_select.png";
+				break;
+			case Roof:
+				pathImage="src/main/resources/roof_texture.png";
+				pathImageSelect="src/main/resources/roof_texture_select.png";
+				break;
+		}
 	}
 
 	public int getPosI(){
@@ -41,6 +72,13 @@ public class Case {
 	}
 
 	public TypeCase getType(){
-		return type;
+		return typeCase;
+	}
+
+	public String getPathImage(){
+		return pathImage;
+	}
+	public String getPathImageSelect(){
+		return pathImageSelect;
 	}
 }
