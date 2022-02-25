@@ -30,16 +30,7 @@ public class Terrain{
 		}
 		jeux.poserPokemons(tab);
 	}
-	static class pair
-    {
-        int first, second;
-        
-        public pair(int first, int second) 
-        {
-            this.first = first;
-            this.second = second;
-        }   
-    }
+	
     
     // Direction vectors
     static int dRow[] = { -1, 0, 1, 0 };
@@ -47,7 +38,7 @@ public class Terrain{
     
     // Function to check if a cell
     // is be visited or not
-    private boolean isValid(boolean vis[][],int row, int col)
+    private boolean isValid(Boolean vis[][],int row, int col)
     {
         // If cell lies out of bounds
         if (row < 0 || col < 0 || row >= vis.length || col >= vis[0].length)
@@ -65,17 +56,22 @@ public class Terrain{
     }
     
     // Function to perform the BFS traversal
-    public LinkedList<pair> BFS(int grid[][], boolean vis[][],int row, int col, int capaciteDeplacement, String type)
+    public LinkedList<Pair> BFS(int row, int col, int capaciteDeplacement, String type)
     {
-
-		LinkedList<pair> res=new LinkedList<>();
+		Boolean vis[][]=new Boolean[tab.length][tab[0].length];
+		for(int i=0; i<vis.length; i++){
+			for(int j=0; j<vis[0].length; j++){
+				vis[i][j]=false;
+			}
+		}
+		LinkedList<Pair> res=new LinkedList<>();
 
         // Stores indices of the matrix cells
-        Queue<pair > q = new LinkedList<>();
+        Queue<Pair > q = new LinkedList<>();
     
         // Mark the starting cell as visited
         // and push it into the queue
-        q.add(new pair(row, col));
+        q.add(new Pair(row, col));
         vis[row][col] = true;
     
 		int compt=0;
@@ -84,11 +80,11 @@ public class Terrain{
         // is not empty
         while (!q.isEmpty() && compt<capaciteDeplacement)
         {
-            pair cell = q.peek();
+            Pair cell = q.peek();
             int x = cell.first;
             int y = cell.second;
     
-            System.out.print(grid[x][y] + " ");
+            System.out.print(tab[x][y] + " ");
     
             q.remove();
     
@@ -100,9 +96,9 @@ public class Terrain{
     
                 if (isValid(vis, adjx, adjy))
                 {
-                    q.add(new pair(adjx, adjy));
+                    q.add(new Pair(adjx, adjy));
                     vis[adjx][adjy] = true;
-					res.add(new pair(adjx,adjy));
+					res.add(new Pair(adjx,adjy));
                 }
             }
 			compt++;

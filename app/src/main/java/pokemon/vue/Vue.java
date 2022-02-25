@@ -20,16 +20,16 @@ public class Vue extends JFrame{
 	private JLabel labelJoueur=new JLabel();
 	private Controleur controleur;
 	public Terrain plateau;
-	public LinkedList<Tile> listTile=new LinkedList<>();
+	public Tile[][] arrayTile;
 	JButton buttonCommencer=new JButton("Jouer");
 	
 	public Vue(Controleur c) {
 		controleur=c;
 		plateau=controleur.terrain;
+		arrayTile=new Tile[plateau.tab.length][plateau.tab[0].length];
 		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 		Accueil panelAccueil=new Accueil(buttonCommencer);
 		setContentPane(panelAccueil);
 		
@@ -52,7 +52,6 @@ public class Vue extends JFrame{
 			contentPane.add(panelTerrain);	
 
 			panelTerrain.setLayout(new GridLayout(plateau.tab.length,plateau.tab[0].length,1,1));
-			int k=0;
 			for(int i=0; i<plateau.tab.length; i++){
 				for(int j=0;j<plateau.tab[i].length;j++){
 					TypeCase caseTmp = plateau.tab[i][j].getType();
@@ -80,10 +79,9 @@ public class Vue extends JFrame{
 							pathSelect="src/main/resources/roof_texture_select.png";
 							break;
 					}
-					Tile tile=new Tile(path,pathSelect,i,j,k,plateau,controleur);
-					k++;
+					Tile tile=new Tile(path,pathSelect,i,j,plateau,controleur);
 					panelTerrain.add(tile);
-					listTile.add(tile);
+					arrayTile[i][j]=tile;
 				}
 			}
 			revalidate();
@@ -93,11 +91,21 @@ public class Vue extends JFrame{
 	}
 
 	public void miseAjour(){
-		for(Tile t : listTile)
-			t.miseAJour();
+		for(int i=0; i<arrayTile.length; i++){
+			for(int j=0; j<arrayTile[0].length; j++){	
+				arrayTile[i][j].miseAJour();
+			}	
+		}
 	}
 
 	public void miseAJourInformations() {
 		labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
+	} 
+
+	public void selectionnerTiles(LinkedList<Pair> listPaires){
+		for(Pair p : listPaires){
+			arrayTile[p.getFirst()][p.getSecond()].setSelect(true);
+			arrayTile[p.getFirst()][p.getSecond()].repaint();
+		}
 	}
 }

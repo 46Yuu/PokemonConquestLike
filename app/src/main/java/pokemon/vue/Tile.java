@@ -18,14 +18,12 @@ public class Tile extends JPanel{
     private BufferedImage imagePokemon;
     private int x;
     private int y;
-    private int posInList;
     private boolean pokemonPresent;
     private boolean select;
     private Terrain plateau;
     private Controleur controleur;
 
-    public Tile(String path, String pathSelect,int x, int y, int posInList, Terrain plateau, Controleur controleur){
-        this.posInList=posInList;
+    public Tile(String path, String pathSelect,int x, int y, Terrain plateau, Controleur controleur){
         this.plateau=plateau;
         this.controleur=controleur;
         try{
@@ -72,6 +70,7 @@ public class Tile extends JPanel{
                 controleur.deplacerPokemon=true;
                 controleur.anciennePosI=x;
                 controleur.anciennePosY=y;
+                controleur.selectionnerCasePossibles(x,y);
             }
             else if(controleur.deplacerPokemon){
                 controleur.deplacerPokemon(x,y);
@@ -149,5 +148,8 @@ public class Tile extends JPanel{
         repaint();
     }
     
+    public void setSelect(boolean b){
+        select=b;
+    }
 }
 

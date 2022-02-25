@@ -1,9 +1,12 @@
 package pokemon.controleur;
 
+import java.util.LinkedList;
+
 import pokemon.modele.jeux.Jeux;
 import pokemon.modele.jeux.Joueur;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
+import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 
@@ -25,7 +28,6 @@ public class Controleur {
         this.vue=vue;
     }
 
-
     public void deplacerPokemon(int x, int y) {
         Pokemon p=terrain.tab[anciennePosI][anciennePosY].getPokemon();
         joueurActuel.setTerrainPourPokemon(p,terrain.tab[x][y]);
@@ -46,15 +48,20 @@ public class Controleur {
 
     public void selectionnerCase(Case c) {
         //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
-        vue.listTile.get(6*c.getPosI()+c.getPosJ()).select();
+        vue.arrayTile[c.getPosI()][c.getPosJ()].select();
     }
     public void deselectionnerCase() {
         //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
-        vue.listTile.get(6*anciennePosI+anciennePosY).deselect();
+        vue.arrayTile[anciennePosI][anciennePosY].deselect();
         jeux.joueurTour();
     }
     public void jouerTour() {
         jeux.joueurTour();
+    }
+    public void selectionnerCasePossibles(int x, int y) {
+        LinkedList<Pair> list=terrain.BFS(x, y,4, "water");
+        vue.selectionnerTiles(list);
+
     }
   
 }
