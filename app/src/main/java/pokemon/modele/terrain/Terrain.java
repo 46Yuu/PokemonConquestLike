@@ -10,13 +10,16 @@ import pokemon.modele.terrain.Case.TypeCase;
 public class Terrain{
 
 	private TypeCase[][] typeCase = {
-		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock},
-		{TypeCase.Rock, TypeCase.Grass , TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock},
-		{TypeCase.Roof, TypeCase.Roof , TypeCase.Grass,TypeCase.Grass, TypeCase.Lava , TypeCase.Lava,TypeCase.Rock},
-		{TypeCase.Roof, TypeCase.Water , TypeCase.Grass,TypeCase.Grass, TypeCase.Lava , TypeCase.Lava,TypeCase.Rock},
-		{TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock},
-		{TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock},
-        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Grass , TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Grass,TypeCase.Grass, TypeCase.Lava},
+		{TypeCase.Roof, TypeCase.Roof , TypeCase.Grass,TypeCase.Grass, TypeCase.Lava , TypeCase.Lava,TypeCase.Rock,TypeCase.Water,TypeCase.Grass, TypeCase.Grass},
+		{TypeCase.Roof, TypeCase.Water , TypeCase.Grass,TypeCase.Grass, TypeCase.Lava , TypeCase.Lava,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
+		{TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
+		{TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
+        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
+        {TypeCase.Rock, TypeCase.Grass , TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Grass,TypeCase.Grass, TypeCase.Lava},
+        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
+        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
     };
 
 	public Case [][] tab;
@@ -53,6 +56,55 @@ public class Terrain{
 		//vérifier si le pokémon a la capacité de déplacement néccessaire
         if(Math.abs(rowPokemon-row)+Math.abs(colPokemon-col)>capaciteDeplacement)   
             return false;
+        if(rowPokemon==row && colPokemon<col && Math.abs(colPokemon-col)<=capaciteDeplacement-2){
+            if(vis[row][col-1]==false){
+                for(int i=colPokemon+capaciteDeplacement-1;i< vis[0].length && i<=colPokemon+capaciteDeplacement; i++)
+                    vis[row][i]=true;
+            }
+                
+        }
+        if(rowPokemon==row && colPokemon<col && Math.abs(colPokemon-col)>capaciteDeplacement-2){
+            if(vis[row][col-1]==false){
+                return false;
+            }
+        }
+            
+        if(rowPokemon==row && colPokemon>col && Math.abs(colPokemon-col)<=capaciteDeplacement-2){
+            if(vis[row][col+1]==false){
+                for(int i=colPokemon-capaciteDeplacement+1;i>=0 && i>=colPokemon-capaciteDeplacement; i--)
+                    vis[row][i]=true;
+            }
+        }
+        if(rowPokemon==row && colPokemon>col && Math.abs(colPokemon-col)>capaciteDeplacement-2){
+            if(vis[row][col+1]==false){
+                return false;
+            }
+        }
+            
+        if(rowPokemon<row && colPokemon==col && Math.abs(rowPokemon-row)<=capaciteDeplacement-2){
+            if(vis[row-1][col]==false){
+                for(int i=rowPokemon+capaciteDeplacement-1;i< vis.length && i<=rowPokemon+capaciteDeplacement; i++)
+                    vis[i][col]=true;
+            }
+        }
+        if(rowPokemon<row && colPokemon==col && Math.abs(rowPokemon-row)>capaciteDeplacement-2){
+            if(vis[row-1][col]==false){
+                return false;
+            }
+        }
+            
+        if(rowPokemon>row && colPokemon==col && Math.abs(rowPokemon-row)<=capaciteDeplacement-2){
+            if(vis[row+1][col]==false){
+                for(int i=rowPokemon-capaciteDeplacement+1;i>=0 && i>=rowPokemon-capaciteDeplacement; i--)
+                    vis[i][col]=true;
+            }
+        }
+        if(rowPokemon>row && colPokemon==col && Math.abs(rowPokemon-row)>capaciteDeplacement-2){
+            if(vis[row+1][col]==false){
+                return false;
+            }
+        }
+            
 
         //vérifier si le pokémon peut se déplacer dans la case
         if(tab[row][col].getType()==TypeCase.Water){
@@ -110,20 +162,19 @@ public class Terrain{
             System.out.print(tab[x][y] + " ");
     
             q.remove();
-    
             // Go to the adjacent cells
             for(int i = 0; i < 4; i++)
             {
                 int adjx = x + dRow[i];
                 int adjy = y + dCol[i];
-    
+                
                 if (isValid(vis, row, col, adjx, adjy, capaciteDeplacement, typePokemon))
                 {
                     q.add(new Pair(adjx, adjy));
                     vis[adjx][adjy] = true;
 					res.add(new Pair(adjx,adjy));
                 }
-            }		
+            }
         }
 		return res;
     }

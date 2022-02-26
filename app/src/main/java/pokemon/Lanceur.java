@@ -21,7 +21,7 @@ public class Lanceur {
 			joueur2.ajouterPokemon(new Pikachu(10, 10, "Electrique"));
 			joueur2.ajouterPokemon(new Pikachu(10, 10, "Electrique"));
 			Jeux jeux= new Jeux(joueur1, joueur2);
-			Terrain terrain=new Terrain(7,7,jeux);
+			Terrain terrain=new Terrain(10,10,jeux);
 			Controleur c=new Controleur(terrain, joueur1,jeux);
 			jeux.setControleur(c);
 			joueur1.setControleur(c);

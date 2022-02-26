@@ -52,11 +52,7 @@ public class Controleur {
         //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
         vue.arrayTile[c.getPosI()][c.getPosJ()].select();
     }
-    public void deselectionnerCase() {
-        //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
-        vue.arrayTile[anciennePosI][anciennePosY].deselect();
-        jeux.joueurTour();
-    }
+    
     public void jouerTour() {
         jeux.joueurTour();
     }
