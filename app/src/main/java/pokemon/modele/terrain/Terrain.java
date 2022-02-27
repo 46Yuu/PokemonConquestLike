@@ -43,7 +43,7 @@ public class Terrain{
     
     // Function to check if a cell
     // is be visited or not
-    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col, int capaciteDeplacement, String TypePokemon)
+    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon)
     {
         // If cell lies out of bounds
         if (row < 0 || col < 0 || row >= vis.length || col >= vis[0].length)
@@ -54,57 +54,8 @@ public class Terrain{
             return false;
 
 		//vérifier si le pokémon a la capacité de déplacement néccessaire
-        if(Math.abs(rowPokemon-row)+Math.abs(colPokemon-col)>capaciteDeplacement)   
+        if(distance>capaciteDeplacement)
             return false;
-        if(rowPokemon==row && colPokemon<col && Math.abs(colPokemon-col)<=capaciteDeplacement-2){
-            if(vis[row][col-1]==false){
-                for(int i=colPokemon+capaciteDeplacement-1;i< vis[0].length && i<=colPokemon+capaciteDeplacement; i++)
-                    vis[row][i]=true;
-            }
-                
-        }
-        if(rowPokemon==row && colPokemon<col && Math.abs(colPokemon-col)>capaciteDeplacement-2){
-            if(vis[row][col-1]==false){
-                return false;
-            }
-        }
-            
-        if(rowPokemon==row && colPokemon>col && Math.abs(colPokemon-col)<=capaciteDeplacement-2){
-            if(vis[row][col+1]==false){
-                for(int i=colPokemon-capaciteDeplacement+1;i>=0 && i>=colPokemon-capaciteDeplacement; i--)
-                    vis[row][i]=true;
-            }
-        }
-        if(rowPokemon==row && colPokemon>col && Math.abs(colPokemon-col)>capaciteDeplacement-2){
-            if(vis[row][col+1]==false){
-                return false;
-            }
-        }
-            
-        if(rowPokemon<row && colPokemon==col && Math.abs(rowPokemon-row)<=capaciteDeplacement-2){
-            if(vis[row-1][col]==false){
-                for(int i=rowPokemon+capaciteDeplacement-1;i< vis.length && i<=rowPokemon+capaciteDeplacement; i++)
-                    vis[i][col]=true;
-            }
-        }
-        if(rowPokemon<row && colPokemon==col && Math.abs(rowPokemon-row)>capaciteDeplacement-2){
-            if(vis[row-1][col]==false){
-                return false;
-            }
-        }
-            
-        if(rowPokemon>row && colPokemon==col && Math.abs(rowPokemon-row)<=capaciteDeplacement-2){
-            if(vis[row+1][col]==false){
-                for(int i=rowPokemon-capaciteDeplacement+1;i>=0 && i>=rowPokemon-capaciteDeplacement; i--)
-                    vis[i][col]=true;
-            }
-        }
-        if(rowPokemon>row && colPokemon==col && Math.abs(rowPokemon-row)>capaciteDeplacement-2){
-            if(vis[row+1][col]==false){
-                return false;
-            }
-        }
-            
 
         //vérifier si le pokémon peut se déplacer dans la case
         if(tab[row][col].getType()==TypeCase.Water){
@@ -147,8 +98,8 @@ public class Terrain{
     
         // Mark the starting cell as visited
         // and push it into the queue
-        q.add(new Pair(row, col));
-        res.add(new Pair(row,col));
+        q.add(new Pair(row, col,0));
+        res.add(new Pair(row,col,0));
         vis[row][col] = true;
     
         // Iterate while the queue
@@ -156,9 +107,9 @@ public class Terrain{
         while (!q.isEmpty() )
         {
             Pair cell = q.peek();
-            int x = cell.first;
-            int y = cell.second;
-    
+            int x = cell.getFirst();
+            int y = cell.getSecond();
+            int distance  = cell.getDistance();
             System.out.print(tab[x][y] + " ");
     
             q.remove();
@@ -168,11 +119,11 @@ public class Terrain{
                 int adjx = x + dRow[i];
                 int adjy = y + dCol[i];
                 
-                if (isValid(vis, row, col, adjx, adjy, capaciteDeplacement, typePokemon))
+                if (isValid(vis, row, col, adjx, adjy,distance+1, capaciteDeplacement, typePokemon))
                 {
-                    q.add(new Pair(adjx, adjy));
+                    q.add(new Pair(adjx, adjy,distance+1));
                     vis[adjx][adjy] = true;
-					res.add(new Pair(adjx,adjy));
+					res.add(new Pair(adjx,adjy,distance+1));
                 }
             }
         }
