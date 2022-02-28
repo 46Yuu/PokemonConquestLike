@@ -1,59 +1,139 @@
 package pokemon.controleur;
 
-import pokemon.modele.Case;
-import pokemon.modele.Jeux;
-import pokemon.modele.Joueur;
-import pokemon.modele.Pokemon;
-import pokemon.modele.Terrain;
+import java.util.LinkedList;
+
+import pokemon.modele.jeux.Jeux;
+import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.terrain.Case;
+import pokemon.modele.terrain.Pair;
+import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 
 public class Controleur {
     public boolean deplacerPokemon;
-    public int anciennePosI;
-    public int anciennePosY;
     public Terrain terrain;
     public Vue vue;
-    public Joueur joueurActuel;
     public Jeux jeux;
+    /**
+     * dernières cases sélectionnées 
+     */
+    private LinkedList<Pair> listCasesPossibles;
 
-    public Controleur(Terrain p, Joueur jActuel, Jeux jeux){
+    public Controleur(Terrain p, Jeux jeux){
         terrain=p;
-        joueurActuel=jActuel;
         this.jeux=jeux;
     }
+
     public void setVue(Vue vue){
         this.vue=vue;
     }
 
-
-    public void deplacerPokemon(int x, int y) {
-        Pokemon p=terrain.list.get(terrain.tab[anciennePosI][anciennePosY]);
-        joueurActuel.setTerrainPourPokemon(p,terrain.tab[x][y]);
-        jeux.incrementerInfoTour();
-        terrain.list.put(terrain.tab[anciennePosI][anciennePosY], null);
-        terrain.list.put(terrain.tab[x][y], p);
-        deplacerPokemon=false;
-        deselectionnerCase();
-        vue.miseAjour();
-    }
-    public void miseAJourInformations() {
-        vue.miseAJourInformations();
+    /**
+     * pose les pokémons des deux joueur sur le terrain
+     * et sélectionne le premier pokémon à déplacer du joueur 1
+     */
+    public void commencer() {
+        vue.miseAJourInformations("Joueur 1");
+        jeux.poserPokemons();
+        jeux.selectPokemon();
     }
 
-    public void setJoueurActuel(Joueur j){
-        joueurActuel=j;
+    /**
+     * affiche le joueur 
+     * @param joueur
+     */
+    public void miseAJourInformations(String joueur) {
+        vue.miseAJourInformations(joueur);
     }
 
+    /**
+     * séléctionne dans vue la tile correspondante à la case c
+     */
     public void selectionnerCase(Case c) {
-        //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
-        vue.listTile.get(6*c.getPosI()+c.getPosJ()).select();
+        vue.arrayTile[c.getPosI()][c.getPosJ()].select();
     }
-    public void deselectionnerCase() {
-        //taille*i+j correspond à la position de la tile dans la liste des tile dans la vue, exemple : tab[0][3]->listTile.get(6*0+3)
-        vue.listTile.get(6*anciennePosI+anciennePosY).deselect();
-        jeux.joueurTour();
+    
+    /**
+     * sélectionne dans la vue toutes les cases possibles auquelles le pokémon
+     * se trouvant sur la tile x,y peut y aller 
+     * @param x coordonnée x de la tile
+     * @param y coordonnée y de la tile
+     */
+    public void selectionnerCasePossibles(int x, int y) {
+        listCasesPossibles=terrain.BFS(x, y);
+        vue.selectTiles(listCasesPossibles);
     }
-    public void jouerTour() {
-        jeux.joueurTour();
+
+    /**
+     * désélectionne les cases qu'on a sélectionnées pour le déplacement du pokémon
+     */
+    public void deselectionnerCasesPossibles(){
+        vue.deselectTiles(listCasesPossibles);
+    }
+
+    /**
+     * renvoie le chemin de d'image de la Tile de coordonnées (x,y)
+     * @param x coordonnée x
+     * @param y coordonnée y
+     * @return chemin de l'image de la Tile
+     */
+    public String getPathImageTile(int x, int y){
+        return terrain.getPathImageTile(x,y);
+    }
+
+    /**
+     * renvoie le chemin de l'image selection la Tile de coordonnées (x,y)
+     * @param x coordonnée x
+     * @param y coordonnée y
+     * @return chemin de l'image selection de la Tile
+     */
+    public String getPathImageSelectTile(int x, int y){
+        return terrain.getPathImageSelectTile(x, y);
+    }
+
+    /**
+     * renvoie la hauteur du plateau
+     * @return la hauteur du plateau
+     */
+    public int getWidth() {
+        return terrain.getWidth();
+    }
+
+    /**
+     * renvoie la largeur du plateau
+     * @return la largeur du plateau
+     */
+    public int getHeight() {
+        return terrain.getHeight();
+    }
+    
+    /**
+     * met le pokémon p dans la tile x,y de vue
+     * @param p le pokémon à placer
+     * @param x coordonnée x de la tile
+     * @param y coordonnée y de la tile 
+     */
+    public void placerPokemon(Pokemon p, int x, int y) {
+        vue.placerPokemon(x, y, p.getCheminImage());
+    }
+  
+    /**
+     * déplace le pokémon qui doit être dans la case x,y dans model
+     * @param x coordonnée x de la case d'arrivée 
+     * @param y coordonnée y de la case d'arrivée 
+     */
+    public void deplacerPokemon(int x, int y) {
+        jeux.deplacerPokemon(x,y);
+    }
+
+    /**
+     * déplace le pokémon se trouvant sur le tile de coordonnées tile1 vers le tile de 
+     * coordonnées tile2 dans vue 
+     * @param tile1 coordonnées de la tile de départ
+     * @param tile2 coordonnées de la tile d'arrivée
+     * @param pathImagePokemon le chemin d'accès à l'image du pokémon à déplacer
+     */
+    public void deplacerPokemonDansVue(Pair tile1, Pair tile2, String pathImagePokemon){
+        vue.deplacerPokemon(tile1, tile2, pathImagePokemon);
     }
 }

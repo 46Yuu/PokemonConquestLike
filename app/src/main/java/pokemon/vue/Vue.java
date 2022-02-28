@@ -4,20 +4,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
-
 import pokemon.controleur.Controleur;
-import pokemon.modele.Terrain;
-
+import pokemon.modele.terrain.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
-
-import javax.imageio.ImageIO;
-import java.awt.image.*;
-
 
 public class Vue extends JFrame{
 	private JPanel panelTerrain=new JPanel();
@@ -26,39 +16,21 @@ public class Vue extends JFrame{
 	private JPanel panelBoutons=new JPanel();
 	private JLabel labelJoueur=new JLabel();
 	private Controleur controleur;
-	public Terrain plateau;
-	public LinkedList<Tile> listTile=new LinkedList<>();
-	JButton buttonCommencer=new JButton("Jouer");
-	enum Case{
-		Grass("Grass"),Rock("Rock"),Lava("Lava"),Water("Water"),Roof("Roof");
-		private final String type;
-		private Case(String type){
-			this.type = type;
-		}
-	}
-	private Case[][] terrain = {
-		{Case.Rock, Case.Rock , Case.Rock,Case.Rock, Case.Rock , Case.Rock},
-		{Case.Rock, Case.Grass , Case.Grass,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Roof, Case.Roof , Case.Grass,Case.Grass, Case.Lava , Case.Lava},
-		{Case.Roof, Case.Water , Case.Grass,Case.Grass, Case.Lava , Case.Lava},
-		{Case.Roof, Case.Water , Case.Water,Case.Grass, Case.Grass , Case.Rock},
-		{Case.Roof, Case.Water , Case.Water,Case.Rock, Case.Rock , Case.Rock},
-	};
-
+	public Tile[][] arrayTile;
+	public JButton buttonCommencer=new JButton("Jouer");
+	
 	public Vue(Controleur c) {
 		controleur=c;
-		plateau=controleur.terrain;
+		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
 		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		Accueil panelAccueil=new Accueil();
+		Accueil panelAccueil=new Accueil(buttonCommencer);
 		setContentPane(panelAccueil);
 		
 		buttonCommencer.addActionListener( event -> {
 			JPanel contentPane=new JPanel();
 			setContentPane(contentPane);
-
 		
 			contentPane.setLayout(new GridLayout(0,2));
 			panelTerrain.setBackground(Color.black);
@@ -69,224 +41,98 @@ public class Vue extends JFrame{
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
 			panelJoueurs.add(labelJoueur);
-
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
-			panelTerrain.setLayout(new GridLayout(terrain.length,terrain[0].length,1,1));
-			int k=0;
-			for(int i=0; i<terrain.length; i++){
-				for(int j=0;j<terrain[i].length;j++){
-					Case caseTmp = terrain[i][j];
-					String path = "";
-					String pathSelect = "";
-					switch(caseTmp){
-						case Grass:
-							path="src/main/resources/grass_texture.png";
-							pathSelect="src/main/resources/grass_texture_select.png";
-							break;
-						case Rock:
-							path="src/main/resources/rock_texture.png";
-							pathSelect="src/main/resources/rock_texture_select.png";
-							break;
-						case Lava:
-							path="src/main/resources/lava_texture.png";
-							pathSelect="src/main/resources/lava_texture_select.png";
-							break;
-						case Water:
-							path="src/main/resources/water_texture.png";
-							pathSelect="src/main/resources/water_texture_select.png";
-							break;
-						case Roof:
-							path="src/main/resources/roof_texture.png";
-							pathSelect="src/main/resources/roof_texture_select.png";
-							break;
-					}
-					Tile tile=new Tile(path,pathSelect,i,j,k);
-					k++;
+			panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
+			for(int i=0; i<controleur.getHeight(); i++){
+				for(int j=0;j<controleur.getWidth();j++){
+					String path = controleur.getPathImageTile(i, j);
+					String pathSelect = controleur.getPathImageSelectTile(i, j);
+					Tile tile=new Tile(path,pathSelect,i,j,controleur);
 					panelTerrain.add(tile);
-					listTile.add(tile);
+					arrayTile[i][j]=tile;
 				}
 			}
 			revalidate();
-			controleur.jouerTour();
+			controleur.commencer();
 		});
 
 	}
 
-	public void miseAjour(){
-		for(Tile t : listTile)
-			t.miseAJour();
-	}
+	/**
+	 * affiche le joueur à qui c'est le tour sur le panel informations
+	 * @param joueur "joueur 1" ou "joueur 2"
+	 */
+	public void miseAJourInformations(String joueur) {
+		labelJoueur.setText("Tour du joueur : " + joueur );
+	} 
 
-	public class Tile extends JPanel{
-		private BufferedImage image;
-		private BufferedImage imageSelect;
-		private BufferedImage imagePokemon;
-		private int x;
-		private int y;
-		private int posInList;
-		private boolean pokemonPresent;
-		private boolean select;
-
-		public Tile(String path, String pathSelect,int x, int y, int posInList){
-			this.posInList=posInList;
-			try{
-				image = ImageIO.read(new File(path));
-				imageSelect=ImageIO.read(new File(pathSelect));
-				if(plateau.list.get(plateau.tab[x][y])!=null){
-					pokemonPresent=true;
-					imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
-				}
-			}catch(IOException e){
-				System.out.println("File not found!");
-			}
-			this.x=x;
-			this.y=y;
-			setLayout(new BorderLayout());
-			addMouseListener(new MouseDeplace());
-		}
-
-		public void miseAJour(){
-			if(plateau.list.get(plateau.tab[x][y])!=null){
-				pokemonPresent=true;
-				try{
-					imagePokemon = ImageIO.read(new File((plateau.list.get(plateau.tab[x][y]).getCheminImage())));
-				}catch(Exception e){
-					System.out.println("File not found!");
-				}
-			}
-			else{
-				pokemonPresent=false;
-				imagePokemon=null;
-			}
-			repaint();
-		}
-
-		private class MouseDeplace implements MouseInputListener{
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(pokemonPresent && controleur.deplacerPokemon && controleur.anciennePosI==x && controleur.anciennePosY==y){
-				//le pokémon n'est pas déplacé
-					controleur.deplacerPokemon=false;
-				}
-				else if(pokemonPresent){
-					controleur.deplacerPokemon=true;
-					controleur.anciennePosI=x;
-					controleur.anciennePosY=y;
-				}
-				else if(controleur.deplacerPokemon){
-					controleur.deplacerPokemon(x,y);
-				}
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-		}
-
-		public void setPokemonPresent(boolean val){
-			pokemonPresent=val;
-			repaint();
-		}
-		
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			int height=getSize().height;
-			int width=getSize().width;
-			if(select)
-				g.drawImage(imageSelect, 0, 0,width,height, this);
-			else
-				g.drawImage(image, 0, 0,width,height, this);
-			if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
-				g.drawImage(imagePokemon, 0, 0,width,height, this);
-		}
-
-		@Override
-		public Dimension getPreferredSize() {
-			return new Dimension(image.getWidth(this),image.getHeight(this));
-		}
-
-		public void select() {
-			select=true;
-			repaint();
-		}
-
-		public void deselect() {
-			select=false;
-			repaint();
-		}
-		
-	}
-
-	public class Accueil extends JPanel{
-		private BufferedImage imageAcceuil;
-
-		public Accueil(){
-			try{
-				imageAcceuil = ImageIO.read(new File("src/main/resources/banniere-conquest.png"));
-			}catch(IOException e){
-				System.out.println("File not found!");
-			}setLayout(new BorderLayout());
-			this.setPreferredSize(new Dimension(imageAcceuil.getWidth(),imageAcceuil.getHeight()));
-			setLayout(null);
-			JPanel panelButton=new JPanel();
-			panelButton.setBounds(imageAcceuil.getWidth()/2-50,imageAcceuil.getHeight()/2,100,30);
-			panelButton.setLayout(null);
-			buttonCommencer.setBounds(0,0,100,30);
-			buttonCommencer.setBackground(Color.gray);
-			panelButton.add(buttonCommencer);
-			add(panelButton);	
-		}
-
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawImage(imageAcceuil, 0, 0, this);
-		}
-		
-		@Override
-		public Dimension getPreferredSize() {
-			return new Dimension(imageAcceuil.getWidth(this),imageAcceuil.getHeight(this));
+	/**
+	 * sélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
+	 * @param listPaires liste des coordonnées des tiles à sélectionner
+	 */
+	public void selectTiles(LinkedList<Pair> listPaires){
+		for(Pair p : listPaires){
+			selectTile(p.getFirst(),p.getSecond());
 		}
 	}
 
-	public void miseAJourInformations() {
-		labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
+	/**
+	 * désélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
+	 * @param listPaires liste des coordonnées des tiles à désélectionner
+	 */
+	public void deselectTiles(LinkedList<Pair> listPaires){
+		for(Pair p : listPaires){
+			deselectTile(p.getFirst(),p.getSecond());
+		}
+	}
+
+	/**
+	 * sélectionne le tile de coordonnées (x,y)
+	 * @param x coordonnée x sur le plateau
+	 * @param y coordonnée y sur le plateau
+	 */
+	public void selectTile(int x, int y){
+		arrayTile[x][y].select();
+	}
+
+	/**
+	 * désélectionne le tile de coordonnées (x,y)
+	 * @param x coordonnée x sur le plateau
+	 * @param y coordonnée y sur le plateau
+	 */
+	public void deselectTile(int x, int y){
+		arrayTile[x][y].deselect();
+	}
+
+	/**
+	 * déplace le pokémon du tile qui a comme coordonnées tile1 vers le tile qui a comme coordonnées tile2
+	 * @param tile1 une pair contenant les coordonnées du tile où se trouve le Pokémon à déplacer
+	 * @param tile2 une pair contenant les coordonnées du tile où le Pokémon sera déplacé
+	 * @param cheminImagePokemon le chemin de l'image du Pokémon
+	 */
+	public void deplacerPokemon(Pair tile1, Pair tile2, String pathImagePokemon){
+		enleverPokemon(tile1.getFirst(),tile1.getSecond());
+		placerPokemon(tile2.getFirst(),tile2.getSecond(),pathImagePokemon);
+	}
+
+	/**
+	 * dessine le Pokémon sur le tile de coordonnées (x,y)
+	 * @param x coordonnée x du tile dans le plateau
+	 * @param y coordonnée y du tile dans le plateau
+	 * @param cheminImagePokemon chemin de l'image du Pokémon
+	 */
+	public void placerPokemon(int x, int y, String pathImagePokemon){
+		arrayTile[x][y].setPokemonPresent(true, pathImagePokemon);
+	}
+
+	/**
+	 * enlève le Pokémon du le tile de coordonnées (x,y)
+	 * @param x coordonnée x du tile dans le plateau
+	 * @param y coordonnée y du tile dans le plateau
+	 */
+	public void enleverPokemon(int x, int y){
+		arrayTile[x][y].setPokemonPresent(false, "");
 	}
 }
