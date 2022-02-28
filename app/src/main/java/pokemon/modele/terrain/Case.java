@@ -13,16 +13,29 @@ public class Case {
 		}
 	}
 
+	/**
+	 * le type de la case Grass, Rock, Lava, Water ou Roof
+	 */
 	private TypeCase typeCase;
-	private Pokemon pokemon; //null s'il n'y a pas de pokemons sur la case 
+	/**
+	 * pokémon se trouvant sur la case,
+	 * ou null s'il n'y en a pas
+	 */
+	private Pokemon pokemon;  
+	/**
+	 * coordonnée x sur le plateau
+	 */
 	private int x;
+	/**
+	 * coordonnée y sur le plateau
+	 */
 	private int y;
 	/**
-	 * le chemin de l'image du tile correspondant à la case 
+	 * le chemin d'accès à l'image du tile correspondant à la case 
 	 */
 	private String pathImage;
 	/**
-	 * le chemin de l'image de sellection du tile correspondant à la case 
+	 * le chemin d'accès à l'image de sélection du tile correspondant à la case 
 	 */
 	private String pathImageSelect;
 
@@ -32,6 +45,7 @@ public class Case {
 		y=j;
 		pokemon=p;
 		
+		//choisir les images normal et selection en focntion du type de la case 
 		switch(typeCase){
 			case Grass:
 				pathImage="src/main/resources/grass_texture.png";
@@ -56,28 +70,57 @@ public class Case {
 		}
 	}
 
+	/**
+	 * renvoie la coordonnée x de la case sur le plateau
+	 * @return coordonnée x de la case
+	 */
 	public int getPosI(){
 		return x;
 	}
+	/**
+	 * renvoie la coordonnée y de la case sur le plateau
+	 * @return coordonnée y de la case
+	 */
 	public int getPosJ(){
 		return y;
 	}
 
+	/**
+	 * met à jour la valeur pokemon
+	 * @param k un pokemon, ou null pour enlever le pokémon de la case 
+	 */
     public void setPokemon(Pokemon k) {
 		pokemon=k;
     }
 
+	/**
+	 * renvoie le pokémon se trouvant sur la case
+	 * @return le pokémon se trouvant sur la case 
+	 */
 	public Pokemon getPokemon() {
 		return pokemon;
 	}
 
+	/**
+	 * renvoie le type de la case 
+	 * @return le type de la case 
+	 */
 	public TypeCase getType(){
 		return typeCase;
 	}
 
+	/**
+	 * renvoie l'image de la tile correspondante à la case 
+	 * @return image de tile correspondante à la case 
+	 */
 	public String getPathImage(){
 		return pathImage;
 	}
+
+	/**
+	 * renvoie l'image de sélection de la tile correspondante à la case 
+	 * @return
+	 */
 	public String getPathImageSelect(){
 		return pathImageSelect;
 	}

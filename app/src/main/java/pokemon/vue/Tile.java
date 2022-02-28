@@ -38,13 +38,14 @@ public class Tile extends JPanel{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(select && pokemonPresent){
+            if(select && pokemonPresent && !controleur.deplacerPokemon){
                 controleur.deplacerPokemon=true;
                 controleur.selectionnerCasePossibles(x,y);
             }
             //si on peut déplacer le pokémon et le tile est selectionné
-            else if(select){
+            else if(select && controleur.deplacerPokemon){
                 controleur.deplacerPokemon(x,y);
+                controleur.deplacerPokemon=false;
             }
         }
 
@@ -91,9 +92,9 @@ public class Tile extends JPanel{
         super.paintComponent(g);
         int height=getSize().height;
         int width=getSize().width;
-        if(select)
+        if(select)//dessine image de selection du tile
             g.drawImage(imageSelect, 0, 0,width,height, this);
-        else
+        else//sinon dessine image normale du tile
             g.drawImage(image, 0, 0,width,height, this);
         if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
             g.drawImage(imagePokemon, 0, 0,width,height, this);

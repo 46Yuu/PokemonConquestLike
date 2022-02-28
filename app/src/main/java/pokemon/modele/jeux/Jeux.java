@@ -10,17 +10,36 @@ import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 
 public class Jeux {
- 
-    private HashMap<Pokemon,Case> pokemonCaseJoueur1=new HashMap<>();
-    private HashMap<Pokemon,Case> pokemonCaseJoueur2=new HashMap<>();
-    private LinkedList<Pokemon> pokemonsJoueur1;
-    private LinkedList<Pokemon> pokemonsJoueur2;
-    private int posPokemonInList=-1;
-    private Terrain terrain;
-    
-    private boolean joueur1=true;//si false, tour du joueur2
     private Controleur controleur;
-
+    private Terrain terrain;
+    /**
+     * associe à chaque pokémon du joueur 1 la case où il se trouve
+     */
+    private HashMap<Pokemon,Case> pokemonCaseJoueur1=new HashMap<>();
+    /**
+     * associe à chaque pokémon du joueur 2 la case où il se trouve
+     */
+    private HashMap<Pokemon,Case> pokemonCaseJoueur2=new HashMap<>();
+    /**
+     * liste des pokémons du joueur 1
+     */
+    private LinkedList<Pokemon> pokemonsJoueur1;
+    /**
+     * liste des pokémons du joueur 2
+     */
+    private LinkedList<Pokemon> pokemonsJoueur2;
+    /**
+     * position du pokémon qui doit être déplacé dans la liste
+     *  du joueur 1, si c'est le tour du joueur 1
+     *  du joueur 2, sinon
+     */
+    private int posPokemonInList=-1;
+    /**
+     * tour du joueur 1, si true
+     * tour du joueur 2, sinon
+     */
+    private boolean joueur1=true;
+    
     public Jeux(LinkedList<Pokemon> pokemonsJoueur1, LinkedList<Pokemon> pokemonsJoueur2, Terrain terrain){
         this.pokemonsJoueur1=pokemonsJoueur1;
         this.pokemonsJoueur2=pokemonsJoueur2;
@@ -44,7 +63,7 @@ public class Jeux {
             }
             pokemonCaseJoueur1.put(p, terrain.getCase(x,y));
             terrain.getCase(x,y).setPokemon(p);
-            controleur.poserPokemon(p,x,y);
+            controleur.placerPokemon(p,x,y);
             y+=4;
         }
 
@@ -57,54 +76,24 @@ public class Jeux {
             }
             pokemonCaseJoueur2.put(p, terrain.getCase(x,y));
             terrain.getCase(x,y).setPokemon(p);
-            controleur.poserPokemon(p,x,y);
+            controleur.placerPokemon(p,x,y);
             y+=4;
-        }
-        
-    }
-
-    
-    /**
-     *met à joueur la position du pokémon à déplacer  
-     *@param pos position du pokémon à déplacer
-     */ 
-    public void setPosPokemonActuel(int pos){
-        
+        }     
     }
 
     /**
-     * @return la position du pokémon qui doit être déplacé
+     * sélectionne le pokémon qui doit être déplacé
      */
-    public int getPosPokemonActuel(){
-        return 0;
-    }
-
-
-    /**
-     * demande au joueur actuel de déplacer le pokémon actuel
-     */
-    public void joueurTour(){
-        controleur.miseAJourInformations();
-        
-        
-    }
-
-    /**
-     * met à jour la position du pokémon actuel
-     * et celle du joueur actuel, si le joueur à déplacé tous ses pokémons
-     */
-    public void incrementerInfoTour(){
-        
-    }
-
     public void selectPokemon() {
         if(joueur1 && posPokemonInList==pokemonsJoueur1.size()-1){
             joueur1=false;
             posPokemonInList=-1;
+            controleur.miseAJourInformations("Joueur 2");
         }
         else if(!joueur1 && posPokemonInList==pokemonsJoueur2.size()-1){
             joueur1=true;
             posPokemonInList=-1;
+            controleur.miseAJourInformations("Joueur 1");
         }
         posPokemonInList++;
         if(joueur1){
@@ -115,29 +104,40 @@ public class Jeux {
         }
     }
 
+    /**
+     * déplace le pokémon qui doit être déplacé dans ma case x,y
+     * @param x coordonnée x de la case d'arrivée
+     * @param y coordonnée y de la case d'arrivée
+     */
     public void deplacerPokemon(int x, int y){
         controleur.deselectionnerCasesPossibles();
-        int xDepart,yDepart;
+        int xDepart,yDepart;//coordonnées du pokémon à déplacer 
         Pokemon p ;
         if(joueur1){
             xDepart=pokemonCaseJoueur1.get(pokemonsJoueur1.get(posPokemonInList)).getPosI();
             yDepart=pokemonCaseJoueur1.get(pokemonsJoueur1.get(posPokemonInList)).getPosJ();
             p= pokemonsJoueur1.get(posPokemonInList);
+            //on met à jour la case du pokémon dans la HashMap<Pokemon,Case>
             pokemonCaseJoueur1.put(p,terrain.getCase(x,y));
+            //on enlève le pokémon de la case de départ
             terrain.setPokemon(xDepart, yDepart, null);
+            //on ajoute le pokémon à la case d'arrivée 
             terrain.setPokemon(x, y, p);
         }
         else{
             xDepart=pokemonCaseJoueur2.get(pokemonsJoueur2.get(posPokemonInList)).getPosI();
             yDepart=pokemonCaseJoueur2.get(pokemonsJoueur2.get(posPokemonInList)).getPosJ();
             p = pokemonsJoueur2.get(posPokemonInList);
+            //on met à jour la case du pokémon dans la HashMap<Pokemon,Case>
             pokemonCaseJoueur2.put(p,terrain.getCase(x,y));
+            //on enlève le pokémon de la case de départ
             terrain.setPokemon(xDepart, yDepart, null);
+            //on ajoute le pokémon à la case d'arrivée 
             terrain.setPokemon(x, y, p);
         }
-        controleur.deplacerPokemonPourVue(new Pair(xDepart,yDepart,0), new Pair(x,y,0), p.getCheminImage());
+        //mettre à jour la vue
+        controleur.deplacerPokemonDansVue(new Pair(xDepart,yDepart,0), new Pair(x,y,0), p.getCheminImage());
+        //sélectionner le pokémon suivant à déplacer
         selectPokemon();    
-    }
-
-    
+    }    
 }

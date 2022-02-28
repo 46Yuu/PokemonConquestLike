@@ -31,7 +31,6 @@ public class Vue extends JFrame{
 		buttonCommencer.addActionListener( event -> {
 			JPanel contentPane=new JPanel();
 			setContentPane(contentPane);
-
 		
 			contentPane.setLayout(new GridLayout(0,2));
 			panelTerrain.setBackground(Color.black);
@@ -42,14 +41,13 @@ public class Vue extends JFrame{
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
 			panelJoueurs.add(labelJoueur);
-
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
 			panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
 			for(int i=0; i<controleur.getHeight(); i++){
 				for(int j=0;j<controleur.getWidth();j++){
-					String path = controleur.getCheminImageTile(i, j);
+					String path = controleur.getPathImageTile(i, j);
 					String pathSelect = controleur.getPathImageSelectTile(i, j);
 					Tile tile=new Tile(path,pathSelect,i,j,controleur);
 					panelTerrain.add(tile);
@@ -109,14 +107,14 @@ public class Vue extends JFrame{
 	}
 
 	/**
-	 * déplace le pokémon du tile qui a comme coordonnéesctile1 vers le tile qui a comme coordonnées tile2
+	 * déplace le pokémon du tile qui a comme coordonnées tile1 vers le tile qui a comme coordonnées tile2
 	 * @param tile1 une pair contenant les coordonnées du tile où se trouve le Pokémon à déplacer
 	 * @param tile2 une pair contenant les coordonnées du tile où le Pokémon sera déplacé
 	 * @param cheminImagePokemon le chemin de l'image du Pokémon
 	 */
 	public void deplacerPokemon(Pair tile1, Pair tile2, String pathImagePokemon){
-		arrayTile[tile1.getFirst()][tile1.getSecond()].setPokemonPresent(false,pathImagePokemon);
-		arrayTile[tile2.getFirst()][tile2.getSecond()].setPokemonPresent(true,pathImagePokemon);
+		enleverPokemon(tile1.getFirst(),tile1.getSecond());
+		placerPokemon(tile2.getFirst(),tile2.getSecond(),pathImagePokemon);
 	}
 
 	/**
@@ -125,7 +123,16 @@ public class Vue extends JFrame{
 	 * @param y coordonnée y du tile dans le plateau
 	 * @param cheminImagePokemon chemin de l'image du Pokémon
 	 */
-	public void poserPokemon(int x, int y, String pathImagePokemon){
+	public void placerPokemon(int x, int y, String pathImagePokemon){
 		arrayTile[x][y].setPokemonPresent(true, pathImagePokemon);
+	}
+
+	/**
+	 * enlève le Pokémon du le tile de coordonnées (x,y)
+	 * @param x coordonnée x du tile dans le plateau
+	 * @param y coordonnée y du tile dans le plateau
+	 */
+	public void enleverPokemon(int x, int y){
+		arrayTile[x][y].setPokemonPresent(false, "");
 	}
 }

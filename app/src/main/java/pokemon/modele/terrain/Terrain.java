@@ -105,7 +105,6 @@ public class Terrain{
             int x = cell.getFirst();
             int y = cell.getSecond();
             int distance  = cell.getDistance();
-            System.out.print(tab[x][y] + " ");
     
             q.remove();
             // Go to the adjacent cells
@@ -125,26 +124,58 @@ public class Terrain{
 		return res;
     }
 
+    /**
+     * renvoie le chemin d'accès à l'image du tile correspondant a la case x,y
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case
+     * @return le chemin d'accés à l'image du tile correspondant à la case x,y
+     */
     public String getPathImageTile(int x, int y) {
         return tab[x][y].getPathImage();
     }
 
+    /**
+     * renvoie le chemin d'accès à l'image de sélection du tile correspondant a la case x,y
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case
+     * @return le chemin d'accés à l'image de sélection du tile correspondant à la case x,y
+     */
     public String getPathImageSelectTile(int x, int y) {
         return tab[x][y].getPathImageSelect();
     }
 
+    /**
+     * renvoie la case x,y du plateau
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case 
+     * @return la case x,y
+     */
     public Case getCase(int x, int y){
         return tab[x][y];
     }
 
+    /**
+     * renvoie la hauteur du plateau
+     * @return la hauteur du plateau
+     */
     public int getHeight() {
         return tab.length;
     }
 
+    /**
+     * renvoie la largeur du plateau
+     * @return la largeur du plateau
+     */
     public int getWidth() {
         return tab[0].length;
     }
 
+    /**
+     * met le pokémon p sur la case x,y, ou enlève le pokémon présent si p=null
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case 
+     * @param p pokémon à mettre sur la case, ou null
+     */
     public void setPokemon(int x, int y, Pokemon p){
         tab[x][y].setPokemon(p);
     }
