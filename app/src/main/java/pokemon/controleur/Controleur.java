@@ -12,17 +12,15 @@ import pokemon.vue.Vue;
 
 public class Controleur {
     public boolean deplacerPokemon;
-    public int anciennePosI;
-    public int anciennePosY;
     public Terrain terrain;
     public Vue vue;
     public Joueur joueurActuel;
     public Jeux jeux;
     private LinkedList<Pair> listCasesPossibles;
 
-    public Controleur(Terrain p, Joueur jActuel, Jeux jeux){
+    public Controleur(Terrain p, Jeux jeux){
         terrain=p;
-        joueurActuel=jActuel;
+        
         this.jeux=jeux;
     }
     public void setVue(Vue vue){
@@ -30,18 +28,10 @@ public class Controleur {
     }
 
     public void deplacerPokemon(int x, int y) {
-        Pokemon p=terrain.tab[anciennePosI][anciennePosY].getPokemon();
-        joueurActuel.setTerrainPourPokemon(p,terrain.tab[x][y]);
-        jeux.incrementerInfoTour();
-        terrain.tab[anciennePosI][anciennePosY].setPokemon(null);
-        terrain.tab[x][y].setPokemon(p);
-        deplacerPokemon=false;
-        vue.deselectTiles(listCasesPossibles);
-        vue.miseAjour();
-        jeux.joueurTour();
+        jeux.deplacerPokemon(x,y);
     }
     public void miseAJourInformations() {
-        vue.miseAJourInformations();
+      
     }
 
     public void setJoueurActuel(Joueur j){
@@ -59,6 +49,9 @@ public class Controleur {
     public void selectionnerCasePossibles(int x, int y) {
         listCasesPossibles=terrain.BFS(x, y);
         vue.selectTiles(listCasesPossibles);
+    }
+    public void deselectionnerCasesPossibles(){
+        vue.deselectTiles(listCasesPossibles);
     }
 
 
@@ -81,5 +74,21 @@ public class Controleur {
     public String getPathImageSelectTile(int x, int y){
         return terrain.getPathImageSelectTile(x, y);
     }
+    public int getWidth() {
+        return terrain.getWidth();
+    }
+    public int getHeight() {
+        return terrain.getHeight();
+    }
+    public void poserPokemon(Pokemon p, int x, int y) {
+        vue.poserPokemon(x, y, p.getCheminImage());
+    }
+    public void commencer() {
+        jeux.poserPokemons();
+        jeux.selectPokemon();
+    }
   
+    public void deplacerPokemonPourVue(Pair tile1, Pair tile2, String pathImagePokemon){
+        vue.deplacerPokemon(tile1, tile2, pathImagePokemon);
+    }
 }

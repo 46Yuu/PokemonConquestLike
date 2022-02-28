@@ -2,8 +2,6 @@ package pokemon.modele.terrain;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
-import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case.TypeCase;
 
@@ -23,17 +21,14 @@ public class Terrain{
     };
 
 	public Case [][] tab;
-	private Jeux jeux;
 	
-	public Terrain(int x, int y, Jeux jeux) {
-		this.jeux=jeux;
+	public Terrain(int x, int y) {
 		tab=new Case[x][y];
 		for(int i=0; i<x; i++){
 			for(int j=0; j<y; j++){
 				tab[i][j]=new Case(i,j,null, typeCase[i][j]);
 			}
 		}
-		jeux.poserPokemons(tab);
 	}
 	
     
@@ -136,5 +131,21 @@ public class Terrain{
 
     public String getPathImageSelectTile(int x, int y) {
         return tab[x][y].getPathImageSelect();
+    }
+
+    public Case getCase(int x, int y){
+        return tab[x][y];
+    }
+
+    public int getHeight() {
+        return tab.length;
+    }
+
+    public int getWidth() {
+        return tab[0].length;
+    }
+
+    public void setPokemon(int x, int y, Pokemon p){
+        tab[x][y].setPokemon(p);
     }
 }

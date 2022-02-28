@@ -16,14 +16,12 @@ public class Vue extends JFrame{
 	private JPanel panelBoutons=new JPanel();
 	private JLabel labelJoueur=new JLabel();
 	private Controleur controleur;
-	public Terrain plateau;
 	public Tile[][] arrayTile;
-	JButton buttonCommencer=new JButton("Jouer");
+	public JButton buttonCommencer=new JButton("Jouer");
 	
 	public Vue(Controleur c) {
 		controleur=c;
-		plateau=controleur.terrain;
-		arrayTile=new Tile[plateau.tab.length][plateau.tab[0].length];
+		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
 		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -48,45 +46,86 @@ public class Vue extends JFrame{
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);	
 
-			panelTerrain.setLayout(new GridLayout(plateau.tab.length,plateau.tab[0].length,1,1));
-			for(int i=0; i<plateau.tab.length; i++){
-				for(int j=0;j<plateau.tab[i].length;j++){
+			panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
+			for(int i=0; i<controleur.getHeight(); i++){
+				for(int j=0;j<controleur.getWidth();j++){
 					String path = controleur.getCheminImageTile(i, j);
 					String pathSelect = controleur.getPathImageSelectTile(i, j);
-					Tile tile=new Tile(path,pathSelect,i,j,plateau,controleur);
+					Tile tile=new Tile(path,pathSelect,i,j,controleur);
 					panelTerrain.add(tile);
 					arrayTile[i][j]=tile;
 				}
 			}
 			revalidate();
-			controleur.jouerTour();
+			controleur.commencer();
 		});
 
 	}
 
-	public void miseAjour(){
-		for(int i=0; i<arrayTile.length; i++){
-			for(int j=0; j<arrayTile[0].length; j++){	
-				arrayTile[i][j].miseAJour();
-			}	
-		}
-	}
-
-	public void miseAJourInformations() {
-		labelJoueur.setText("Tour du joueur : " + controleur.joueurActuel.getNom() );
+	/**
+	 * affiche le joueur à qui c'est le tour sur le panel informations
+	 * @param joueur "joueur 1" ou "joueur 2"
+	 */
+	public void miseAJourInformations(String joueur) {
+		labelJoueur.setText("Tour du joueur : " + joueur );
 	} 
 
+	/**
+	 * sélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
+	 * @param listPaires liste des coordonnées des tiles à sélectionner
+	 */
 	public void selectTiles(LinkedList<Pair> listPaires){
 		for(Pair p : listPaires){
-			arrayTile[p.getFirst()][p.getSecond()].setSelect(true);
-			arrayTile[p.getFirst()][p.getSecond()].repaint();
+			selectTile(p.getFirst(),p.getSecond());
 		}
 	}
 
+	/**
+	 * désélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
+	 * @param listPaires liste des coordonnées des tiles à désélectionner
+	 */
 	public void deselectTiles(LinkedList<Pair> listPaires){
 		for(Pair p : listPaires){
-			arrayTile[p.getFirst()][p.getSecond()].setSelect(false);
-			arrayTile[p.getFirst()][p.getSecond()].repaint();
+			deselectTile(p.getFirst(),p.getSecond());
 		}
+	}
+
+	/**
+	 * sélectionne le tile de coordonnées (x,y)
+	 * @param x coordonnée x sur le plateau
+	 * @param y coordonnée y sur le plateau
+	 */
+	public void selectTile(int x, int y){
+		arrayTile[x][y].select();
+	}
+
+	/**
+	 * désélectionne le tile de coordonnées (x,y)
+	 * @param x coordonnée x sur le plateau
+	 * @param y coordonnée y sur le plateau
+	 */
+	public void deselectTile(int x, int y){
+		arrayTile[x][y].deselect();
+	}
+
+	/**
+	 * déplace le pokémon du tile qui a comme coordonnéesctile1 vers le tile qui a comme coordonnées tile2
+	 * @param tile1 une pair contenant les coordonnées du tile où se trouve le Pokémon à déplacer
+	 * @param tile2 une pair contenant les coordonnées du tile où le Pokémon sera déplacé
+	 * @param cheminImagePokemon le chemin de l'image du Pokémon
+	 */
+	public void deplacerPokemon(Pair tile1, Pair tile2, String pathImagePokemon){
+		arrayTile[tile1.getFirst()][tile1.getSecond()].setPokemonPresent(false,pathImagePokemon);
+		arrayTile[tile2.getFirst()][tile2.getSecond()].setPokemonPresent(true,pathImagePokemon);
+	}
+
+	/**
+	 * dessine le Pokémon sur le tile de coordonnées (x,y)
+	 * @param x coordonnée x du tile dans le plateau
+	 * @param y coordonnée y du tile dans le plateau
+	 * @param cheminImagePokemon chemin de l'image du Pokémon
+	 */
+	public void poserPokemon(int x, int y, String pathImagePokemon){
+		arrayTile[x][y].setPokemonPresent(true, pathImagePokemon);
 	}
 }

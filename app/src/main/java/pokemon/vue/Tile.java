@@ -3,8 +3,6 @@ package pokemon.vue;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 import pokemon.controleur.Controleur;
-import pokemon.modele.terrain.Terrain;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -20,19 +18,13 @@ public class Tile extends JPanel{
     private int y;
     private boolean pokemonPresent;
     private boolean select;
-    private Terrain plateau;
     private Controleur controleur;
 
-    public Tile(String path, String pathSelect,int x, int y, Terrain plateau, Controleur controleur){
-        this.plateau=plateau;
+    public Tile(String path, String pathSelect,int x, int y, Controleur controleur){
         this.controleur=controleur;
         try{
             image = ImageIO.read(new File(path));
             imageSelect=ImageIO.read(new File(pathSelect));
-            if(plateau.tab[x][y].getPokemon()!=null){
-                pokemonPresent=true;
-                imagePokemon = ImageIO.read(new File((plateau.tab[x][y].getPokemon().getCheminImage())));
-            }
         }catch(IOException e){
             System.out.println("File not found!");
         }
@@ -42,38 +34,16 @@ public class Tile extends JPanel{
         addMouseListener(new MouseDeplace());
     }
 
-    public void miseAJour(){
-        if(plateau.tab[x][y].getPokemon()!=null){
-            pokemonPresent=true;
-            try{
-                imagePokemon = ImageIO.read(new File(plateau.tab[x][y].getPokemon().getCheminImage()));
-            }catch(Exception e){
-                System.out.println("File not found!");
-            }
-        }
-        else{
-            pokemonPresent=false;
-            imagePokemon=null;
-        }
-        repaint();
-    }
-
     private class MouseDeplace implements MouseInputListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(pokemonPresent && controleur.deplacerPokemon && controleur.anciennePosI==x && controleur.anciennePosY==y){
-            //le est resté dans la même case 
-                controleur.deplacerPokemon=false;
-            }
-            else if(pokemonPresent && select){
+            if(select && pokemonPresent){
                 controleur.deplacerPokemon=true;
-                controleur.anciennePosI=x;
-                controleur.anciennePosY=y;
                 controleur.selectionnerCasePossibles(x,y);
             }
             //si on peut déplacer le pokémon et le tile est selectionné
-            else if(controleur.deplacerPokemon && select){
+            else if(select){
                 controleur.deplacerPokemon(x,y);
             }
         }
@@ -115,11 +85,6 @@ public class Tile extends JPanel{
         }
 
     }
-
-    public void setPokemonPresent(boolean val){
-        pokemonPresent=val;
-        repaint();
-    }
     
     @Override
     protected void paintComponent(Graphics g) {
@@ -139,18 +104,41 @@ public class Tile extends JPanel{
         return new Dimension(image.getWidth(this),image.getHeight(this));
     }
 
+    /**
+     * sélectionne le tile
+     */
     public void select() {
         select=true;
         repaint();
     }
 
+    /**
+     * désélectionne le tile
+     */
     public void deselect() {
         select=false;
         repaint();
     }
-    
-    public void setSelect(boolean b){
-        select=b;
+
+    /**
+     * dessine si b=true ou enleve si b=false, le pokémon sur le tile
+     * @param b true pour mettre le pokémon dans le tile, ou false pour enlever le pokémon
+     * @param pathImagePokemon chemin de l'image du pokémon si b==true, sinon chaine vide
+     */
+    public void setPokemonPresent(Boolean b, String pathImagePokemon){
+        pokemonPresent=b;
+        if(b){
+            try{
+                imagePokemon=ImageIO.read(new File(pathImagePokemon));
+            }catch(IOException e){
+                System.out.println("File not found!");
+            }
+        }
+        else{
+            imagePokemon=null;
+        }
+        repaint();
     }
+
 }
 
