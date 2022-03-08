@@ -5,6 +5,7 @@ public class Pokemon{
 	String nom;
 	private int Def;
 	private int Crit;
+	private int Vit;
 	private int PdvdeBase;
 	private int Pdv;
 	private int Atk;
@@ -15,13 +16,14 @@ public class Pokemon{
 	CapacitSpe spe;
 	//Case Case;
 
-	public Pokemon(int p,int a, int d,int c,TypeTerrain t) {
+	public Pokemon(int p,int a, int d,int c,int v,TypeTerrain t) {
 		this.setPdv(p);
 		this.setPdvdeBase(p);
 		this.setAtk(a);
 		this.setType(t);
 		this.setDef(d);
 		this.setCrit(c);
+		this.setVit(v);
 
 		this.vivant = true;
 		this.etat ="";
@@ -65,6 +67,14 @@ public class Pokemon{
 	public void setCrit(int c) {
 		this.Crit = c;
 	}
+	public TypeTerrain getVit() {
+		return Vit;
+	}
+
+	public void setCrit(int c) {
+		this.Vit = c;
+	}
+
 
 
 	public boolean estVivant(){
