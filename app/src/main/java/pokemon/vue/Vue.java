@@ -31,18 +31,19 @@ public class Vue extends JFrame{
 		buttonCommencer.addActionListener( event -> {
 			JPanel contentPane=new JPanel();
 			setContentPane(contentPane);
-		
+
 			contentPane.setLayout(new GridLayout(0,2));
 			panelTerrain.setBackground(Color.black);
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
 			panelJoueurs.setBackground(Color.red);
-			panelBoutons.setBackground(Color.GRAY);
+			PanelBoutons panelBoutons=new PanelBoutons();
+			
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
 			panelJoueurs.add(labelJoueur);
 			contentPane.add(panelInfos);
-			contentPane.add(panelTerrain);	
+			contentPane.add(panelTerrain);
 
 			panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
 			for(int i=0; i<controleur.getHeight(); i++){
@@ -66,7 +67,7 @@ public class Vue extends JFrame{
 	 */
 	public void miseAJourInformations(String joueur) {
 		labelJoueur.setText("Tour du joueur : " + joueur );
-	} 
+	}
 
 	/**
 	 * sélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
