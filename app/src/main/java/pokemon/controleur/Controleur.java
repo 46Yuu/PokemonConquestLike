@@ -60,7 +60,7 @@ public class Controleur {
      * @param y coordonnée y de la tile
      */
     public void selectionnerCasePossibles(int x, int y) {
-        listCasesPossibles=terrain.BFS(x, y);
+        listCasesPossibles=jeux.BFS(x, y);
         vue.selectTiles(listCasesPossibles);
     }
 
