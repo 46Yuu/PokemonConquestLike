@@ -152,7 +152,7 @@ public class Controleur {
         this.vue.showBoutons();
     }
 
-    public void attaque(){
-        Pokemon p = jeux.getPokemonActuel();
-    }
+    //public void attaque(String nom,){
+    //    Pokemon p = jeux.getPokemonActuel();
+    //}
 }
