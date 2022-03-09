@@ -151,4 +151,8 @@ public class Controleur {
     public void afficherBoutons(){
         this.vue.showBoutons();
     }
+
+    public void attaque(){
+        Pokemon p = jeux.getPokemonActuel();
+    }
 }

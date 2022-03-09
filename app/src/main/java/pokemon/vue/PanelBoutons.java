@@ -15,6 +15,7 @@ public class PanelBoutons extends JPanel{
 
   private JButton boutonAttaquer = new JButton("Attaquer");
   private JButton boutonFin = new JButton("Fin de tour");
+  private JButton boutonRetour = new JButton("Retour");
   private Map<String,JButton> listeBoutonsAttaques = new TreeMap<String,JButton>();
   
   public PanelBoutons(){
@@ -24,8 +25,20 @@ public class PanelBoutons extends JPanel{
 		add(boutonAttaquer);
     boutonFin.setBounds(100,0,100,30);
 		add(boutonFin);
+    boutonRetour.setBounds(200,0,100,30);
+    add(boutonRetour);
     boutonAttaquer.setVisible(false);
     boutonFin.setVisible(false);
+    boutonRetour.setVisible(false);
+
+    boutonRetour.addActionListener(event ->{
+			boutonFin.setVisible(true);
+			boutonAttaquer.setVisible(true);
+      boutonRetour.setVisible(false);
+      for(JButton b : listeBoutonsAttaques.values()){
+        b.setVisible(false);
+      }
+		});
   }
 
   public void addListeBouton(String nom){
@@ -52,5 +65,9 @@ public class PanelBoutons extends JPanel{
 
   public JButton getBoutonFin(){
     return this.boutonFin;
+  }
+  
+  public JButton getBoutonRetour(){
+    return this.boutonRetour;
   }
 }

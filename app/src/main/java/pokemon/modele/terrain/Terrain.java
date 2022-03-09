@@ -193,4 +193,8 @@ public class Terrain{
     public void setPokemon(int x, int y, Pokemon p){
         tab[x][y].setPokemon(p);
     }
+
+    public Pokemon getPokemon(int x, int y){
+        return tab[x][y].getPokemon();
+    }
 }
