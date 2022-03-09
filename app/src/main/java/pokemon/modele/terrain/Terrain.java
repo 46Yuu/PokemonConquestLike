@@ -1,5 +1,6 @@
 package pokemon.modele.terrain;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import pokemon.modele.pokemon.Pokemon;
@@ -38,7 +39,7 @@ public class Terrain{
     
     // Function to check if a cell
     // is be visited or not
-    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon)
+    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon, boolean pokemonAuJoueur1,HashMap<Pokemon,Case> pokemonCaseJoueur1, LinkedList<Pair> pairsASupprimer )
     {
         // If cell lies out of bounds
         if (row < 0 || col < 0 || row >= vis.length || col >= vis[0].length)
@@ -62,21 +63,32 @@ public class Terrain{
                 return false;
         } 
 
-        //vérifier si il y a un pokémon sur la case
-        if(tab[row][col].getPokemon()!=null)
+        //vérifier si il y a un pokémon ennemi sur la case
+        Pokemon pokemonSurLACase=tab[row][col].getPokemon();
+        //il y a un pokémon et il n'appartient pas au joueur courant
+        if(pokemonSurLACase!=null && pokemonCaseJoueur1.keySet().contains(pokemonSurLACase)!=pokemonAuJoueur1)
             return false;
+        //le pokémon appartient au joueur courant en renvoie true, on supprime par la suite cette case
+        //car un pokémon a le droit de passer sur un pokémon allié
+        if(pokemonSurLACase!=null){
+            pairsASupprimer.add(new Pair(row,col,0));
+            return true;
+        }
+
 
         // Otherwise
         return true;
     }
     
     // Function to perform the BFS traversal
-    public LinkedList<Pair> BFS(int row, int col)
+    public LinkedList<Pair> BFS(int row, int col, HashMap<Pokemon,Case> pokemonCaseJoueur1)
     {
         //avoir le type et capacité de déplacement du pokemon se trouvant sur la case row,col
         Pokemon p=tab[row][col].getPokemon();
         int capaciteDeplacement=p.getCapaciteDeplacement();
         String typePokemon=p.getType();
+        boolean pokemonAuJouer1=pokemonCaseJoueur1.keySet().contains(p);//true si le pokémon appartient au joueur 1, false s'il appartient au joueur 2
+        //savoir si le pokémon appartient au joueur 1 ou 2
         
         //création d'un tableau de boolean de la taille de tab avec valeur false pour toute les case
 		Boolean vis[][]=new Boolean[tab.length][tab[0].length];
@@ -97,10 +109,13 @@ public class Terrain{
         res.add(new Pair(row,col,0));
         vis[row][col] = true;
     
+
+        //list des case à supprimer à la fin(on les ajouter juste pour qu'un pokémon passe sur un pokémon allié)
+        LinkedList<Pair> pairsASupprimer=new LinkedList<>(); 
+
         // Iterate while the queue
         // is not empty
-        while (!q.isEmpty() )
-        {
+        while (!q.isEmpty() ){
             Pair cell = q.peek();
             int x = cell.getFirst();
             int y = cell.getSecond();
@@ -108,19 +123,18 @@ public class Terrain{
     
             q.remove();
             // Go to the adjacent cells
-            for(int i = 0; i < 4; i++)
-            {
+            for(int i = 0; i < 4; i++){
                 int adjx = x + dRow[i];
                 int adjy = y + dCol[i];
                 
-                if (isValid(vis, row, col, adjx, adjy,distance+1, capaciteDeplacement, typePokemon))
-                {
+                if (isValid(vis, row, col, adjx, adjy,distance+1, capaciteDeplacement, typePokemon,pokemonAuJouer1,pokemonCaseJoueur1,pairsASupprimer)){
                     q.add(new Pair(adjx, adjy,distance+1));
                     vis[adjx][adjy] = true;
 					res.add(new Pair(adjx,adjy,distance+1));
                 }
             }
         }
+        res.removeAll(pairsASupprimer);
 		return res;
     }
 

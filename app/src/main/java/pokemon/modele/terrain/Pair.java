@@ -19,4 +19,14 @@ public class Pair {
     public int getDistance(){
         return distance;
     }
+
+    @Override
+    public boolean equals(Object p){
+        if( ! (p instanceof Pair))
+            return false;
+        Pair pair=(Pair)p;
+        if( first==pair.getFirst() && second==pair.getSecond() )
+            return true;
+        return false;
+    }
 }

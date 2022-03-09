@@ -81,7 +81,7 @@ public class Pokemon implements Mouvement{
 		}
 	}
 
-	public Map getListeAttaque(){
+	public Map<String,Attaque> getListeAttaque(){
 		return this.listeAttaques;
 	}
 	

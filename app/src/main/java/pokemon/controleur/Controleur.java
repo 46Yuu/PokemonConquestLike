@@ -3,6 +3,7 @@ package pokemon.controleur;
 import java.util.LinkedList;
 import java.util.*;
 
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
@@ -61,7 +62,7 @@ public class Controleur {
      * @param y coordonnée y de la tile
      */
     public void selectionnerCasePossibles(int x, int y) {
-        listCasesPossibles=terrain.BFS(x, y);
+        listCasesPossibles=jeux.BFS(x, y);
         vue.selectTiles(listCasesPossibles);
     }
 
@@ -142,7 +143,7 @@ public class Controleur {
         return this.jeux;
     }
 
-    public Map getListeAttaquesPokemon(Pokemon p){
+    public Map<String,Attaque> getListeAttaquesPokemon(Pokemon p){
         return p.getListeAttaque();
     }
 

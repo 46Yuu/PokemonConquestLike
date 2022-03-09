@@ -139,5 +139,9 @@ public class Jeux {
         controleur.deplacerPokemonDansVue(new Pair(xDepart,yDepart,0), new Pair(x,y,0), p.getCheminImage());
         //sélectionner le pokémon suivant à déplacer  
         controleur.afficherBoutons();
+    }
+
+    public LinkedList<Pair> BFS(int x, int y) {
+        return terrain.BFS(x, y, pokemonCaseJoueur1);
     }    
 }
