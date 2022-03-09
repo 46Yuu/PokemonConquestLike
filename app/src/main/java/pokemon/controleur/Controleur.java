@@ -143,7 +143,8 @@ public class Controleur {
         return this.jeux;
     }
 
-    public Map<String,Attaque> getListeAttaquesPokemon(Pokemon p){
+    public Map<String,Attaque> getListeAttaquesPokemon(){
+        Pokemon p = jeux.getPokemonActuel();
         return p.getListeAttaque();
     }
 

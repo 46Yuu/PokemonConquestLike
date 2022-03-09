@@ -5,9 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.terrain.*;
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class Vue extends JFrame{
 	private JPanel panelTerrain=new JPanel();
@@ -61,6 +63,7 @@ public class Vue extends JFrame{
 		});
 
 		panelBoutons.getBoutonAttaque().addActionListener(event ->{
+			Map<String,Attaque> listAttaques=controleur.getListeAttaquesPokemon();
 			int y = 0;
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			panelBoutons.getBoutonFin().setVisible(false);

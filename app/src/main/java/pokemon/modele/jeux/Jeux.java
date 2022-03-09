@@ -143,5 +143,11 @@ public class Jeux {
 
     public LinkedList<Pair> BFS(int x, int y) {
         return terrain.BFS(x, y, pokemonCaseJoueur1);
+    }
+
+    public Pokemon getPokemonActuel() {
+        if(joueur1)
+            return pokemonsJoueur1.get(posPokemonInList);
+        return pokemonsJoueur2.get(posPokemonInList);
     }    
 }
