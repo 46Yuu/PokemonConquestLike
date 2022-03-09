@@ -1,6 +1,7 @@
 package pokemon.controleur;
 
 import java.util.LinkedList;
+import java.util.*;
 
 import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Pokemon;
@@ -135,5 +136,17 @@ public class Controleur {
      */
     public void deplacerPokemonDansVue(Pair tile1, Pair tile2, String pathImagePokemon){
         vue.deplacerPokemon(tile1, tile2, pathImagePokemon);
+    }
+
+    public Jeux getJeux(){
+        return this.jeux;
+    }
+
+    public Map getListeAttaquesPokemon(Pokemon p){
+        return p.getListeAttaque();
+    }
+
+    public void afficherBoutons(){
+        this.vue.showBoutons();
     }
 }

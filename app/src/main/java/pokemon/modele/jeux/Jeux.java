@@ -137,7 +137,7 @@ public class Jeux {
         }
         //mettre à jour la vue
         controleur.deplacerPokemonDansVue(new Pair(xDepart,yDepart,0), new Pair(x,y,0), p.getCheminImage());
-        //sélectionner le pokémon suivant à déplacer
-        selectPokemon();    
+        //sélectionner le pokémon suivant à déplacer  
+        controleur.afficherBoutons();
     }    
 }

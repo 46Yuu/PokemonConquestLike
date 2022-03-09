@@ -13,8 +13,9 @@ public class Vue extends JFrame{
 	private JPanel panelTerrain=new JPanel();
 	private JPanel panelInfos=new JPanel();
 	private JPanel panelJoueurs=new JPanel();
-	private JPanel panelBoutons=new JPanel();
+	//private JPanel panelBoutons=new JPanel();
 	private JLabel labelJoueur=new JLabel();
+	PanelBoutons panelBoutons=new PanelBoutons();
 	private Controleur controleur;
 	public Tile[][] arrayTile;
 	public JButton buttonCommencer=new JButton("Jouer");
@@ -37,7 +38,7 @@ public class Vue extends JFrame{
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
 			panelJoueurs.setBackground(Color.red);
-			PanelBoutons panelBoutons=new PanelBoutons();
+			
 			
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
@@ -59,6 +60,31 @@ public class Vue extends JFrame{
 			controleur.commencer();
 		});
 
+		panelBoutons.getBoutonAttaque().addActionListener(event ->{
+			int y = 0;
+			panelBoutons.getBoutonAttaque().setVisible(false);
+			panelBoutons.getBoutonFin().setVisible(false);
+			
+			panelBoutons.addListeBouton("Eclair");
+			JButton tmp = panelBoutons.getBoutonDeListe("Eclair");
+			panelBoutons.add(tmp);
+			panelBoutons.setBoundsBouton(tmp,0,y);
+			y=y+30;
+			panelBoutons.addListeBouton("Vive-Attaque");
+			JButton tmp2 = panelBoutons.getBoutonDeListe("Vive-Attaque");
+			panelBoutons.add(tmp2);
+			panelBoutons.setBoundsBouton(tmp2,0,y);
+			y=y+30;
+
+			
+
+		});
+		
+		panelBoutons.getBoutonFin().addActionListener(event ->{
+			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonAttaque().setVisible(false);
+			controleur.getJeux().selectPokemon();
+		});
 	}
 
 	/**
@@ -135,5 +161,10 @@ public class Vue extends JFrame{
 	 */
 	public void enleverPokemon(int x, int y){
 		arrayTile[x][y].setPokemonPresent(false, "");
+	}
+
+	public void showBoutons(){
+		this.panelBoutons.getBoutonFin().setVisible(true);
+		this.panelBoutons.getBoutonAttaque().setVisible(true);
 	}
 }

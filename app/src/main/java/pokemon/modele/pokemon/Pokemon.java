@@ -7,6 +7,7 @@ import java.util.*;
 public class Pokemon implements Mouvement{
     
 	String nom;
+	private int crit;
 	private int pdv;
 	private int atk;
 	private String type;
@@ -80,6 +81,10 @@ public class Pokemon implements Mouvement{
 		}
 	}
 
+	public Map getListeAttaque(){
+		return this.listeAttaques;
+	}
+	
 	public void addAttaqueListe(String nom,String type){
 		if (type == "Eau"){
 			this.listeAttaques.put(nom, new AttaqueEau());
