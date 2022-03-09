@@ -18,6 +18,7 @@ public class Vue extends JFrame{
 	private Controleur controleur;
 	public Tile[][] arrayTile;
 	public JButton buttonCommencer=new JButton("Jouer");
+	private JButton boutonAttaquer = new JButton("Attaquer");
 	
 	public Vue(Controleur c) {
 		controleur=c;
@@ -36,13 +37,16 @@ public class Vue extends JFrame{
 			panelTerrain.setBackground(Color.black);
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
+			panelBoutons.setLayout(new FlowLayout());
 			panelJoueurs.setBackground(Color.red);
 			panelBoutons.setBackground(Color.GRAY);
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
 			panelJoueurs.add(labelJoueur);
 			contentPane.add(panelInfos);
-			contentPane.add(panelTerrain);	
+			contentPane.add(panelTerrain);
+
+			boutonAttaquer.add(panelBoutons);
 
 			panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
 			for(int i=0; i<controleur.getHeight(); i++){
