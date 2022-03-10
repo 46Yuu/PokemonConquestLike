@@ -5,9 +5,11 @@ import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Evoli;
 import pokemon.modele.pokemon.Pikachu;
 import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 
@@ -15,12 +17,12 @@ import java.util.LinkedList;
 public class Lanceur {
     public static void main(String[] args) {
 		EventQueue.invokeLater(()->{
-			LinkedList<Pokemon> pokemonsJ1=new LinkedList<>();
-			LinkedList<Pokemon> pokemonsJ2=new LinkedList<>();
-			pokemonsJ1.add(new Evoli(10, 10, "Eau"));
-			pokemonsJ1.add(new Evoli(10, 10, "Eau"));
-			pokemonsJ2.add(new Pikachu(10, 10, "Electrique"));
-			pokemonsJ2.add(new Pikachu(10, 10, "Electrique"));
+			HashMap<Pokemon,Case> pokemonsJ1=new HashMap<>();
+			HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
+			pokemonsJ1.put(new Evoli(10, 10, "Eau"),null);
+			pokemonsJ1.put(new Evoli(10, 10, "Eau"),null);
+			pokemonsJ2.put(new Pikachu(10, 10, "Electrique"),null);
+			pokemonsJ2.put(new Pikachu(10, 10, "Electrique"),null);
 			Terrain terrain=new Terrain(10,8);
 			Jeux jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);
 			Controleur c=new Controleur(terrain,jeux);

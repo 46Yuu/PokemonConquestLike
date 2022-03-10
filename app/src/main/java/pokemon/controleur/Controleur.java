@@ -19,7 +19,7 @@ public class Controleur {
     /**
      * dernières cases sélectionnées 
      */
-    private LinkedList<Pair> listCasesPossibles;
+    private HashSet<Pair> listCasesPossibles;
 
     public Controleur(Terrain p, Jeux jeux){
         terrain=p;
@@ -155,4 +155,15 @@ public class Controleur {
     //public void attaque(String nom,){
     //    Pokemon p = jeux.getPokemonActuel();
     //}
+
+    public void selectTiles(HashSet<Pair> tiles){
+        vue.selectTiles(tiles);
+    }
+    public void deselectTiles(HashSet<Pair> tiles){
+        vue.deselectTiles(tiles);
+    }
+
+    public void deselectionnerAutresCases(int x, int y) {
+        jeux.deselectionnerAutresCases(x,y);
+    }
 }

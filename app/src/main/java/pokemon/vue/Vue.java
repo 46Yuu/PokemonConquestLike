@@ -8,6 +8,7 @@ import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.terrain.*;
 import java.awt.*;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -107,7 +108,7 @@ public class Vue extends JFrame{
 	 * sélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
 	 * @param listPaires liste des coordonnées des tiles à sélectionner
 	 */
-	public void selectTiles(LinkedList<Pair> listPaires){
+	public void selectTiles(HashSet<Pair> listPaires){
 		for(Pair p : listPaires){
 			selectTile(p.getFirst(),p.getSecond());
 		}
@@ -117,7 +118,7 @@ public class Vue extends JFrame{
 	 * désélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
 	 * @param listPaires liste des coordonnées des tiles à désélectionner
 	 */
-	public void deselectTiles(LinkedList<Pair> listPaires){
+	public void deselectTiles(HashSet<Pair> listPaires){
 		for(Pair p : listPaires){
 			deselectTile(p.getFirst(),p.getSecond());
 		}

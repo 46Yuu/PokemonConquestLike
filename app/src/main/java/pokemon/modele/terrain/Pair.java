@@ -1,5 +1,7 @@
 package pokemon.modele.terrain;
 
+import java.util.Objects;
+
 public class Pair {
     private int first, second;
     private int distance;
@@ -28,5 +30,10 @@ public class Pair {
         if( first==pair.getFirst() && second==pair.getSecond() )
             return true;
         return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(first,second);
     }
 }

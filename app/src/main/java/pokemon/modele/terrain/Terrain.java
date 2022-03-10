@@ -1,6 +1,7 @@
 package pokemon.modele.terrain;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import pokemon.modele.pokemon.Pokemon;
@@ -39,7 +40,7 @@ public class Terrain{
     
     // Function to check if a cell
     // is be visited or not
-    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon, boolean pokemonAuJoueur1,HashMap<Pokemon,Case> pokemonCaseJoueur1, LinkedList<Pair> pairsASupprimer )
+    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon, boolean pokemonAuJoueur1,HashMap<Pokemon,Case> pokemonCaseJoueur1, HashSet<Pair> pairsASupprimer )
     {
         // If cell lies out of bounds
         if (row < 0 || col < 0 || row >= vis.length || col >= vis[0].length)
@@ -74,14 +75,12 @@ public class Terrain{
             pairsASupprimer.add(new Pair(row,col,0));
             return true;
         }
-
-
         // Otherwise
         return true;
     }
     
     // Function to perform the BFS traversal
-    public LinkedList<Pair> BFS(int row, int col, HashMap<Pokemon,Case> pokemonCaseJoueur1)
+    public HashSet<Pair> BFS(int row, int col, HashMap<Pokemon,Case> pokemonCaseJoueur1)
     {
         //avoir le type et capacité de déplacement du pokemon se trouvant sur la case row,col
         Pokemon p=tab[row][col].getPokemon();
@@ -98,7 +97,7 @@ public class Terrain{
 			}
 		}
 
-		LinkedList<Pair> res=new LinkedList<>();
+		HashSet<Pair> res=new HashSet<>();
 
         // Stores indices of the matrix cells
         Queue<Pair > q = new LinkedList<>();
@@ -111,7 +110,7 @@ public class Terrain{
     
 
         //list des case à supprimer à la fin(on les ajouter juste pour qu'un pokémon passe sur un pokémon allié)
-        LinkedList<Pair> pairsASupprimer=new LinkedList<>(); 
+        HashSet<Pair> pairsASupprimer=new HashSet<>(); 
 
         // Iterate while the queue
         // is not empty
@@ -135,7 +134,7 @@ public class Terrain{
             }
         }
         res.removeAll(pairsASupprimer);
-		return res;
+        return res;
     }
 
     /**
