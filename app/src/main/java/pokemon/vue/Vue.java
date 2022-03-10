@@ -5,19 +5,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.terrain.*;
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Map;
 
 public class Vue extends JFrame{
 	private JPanel panelTerrain=new JPanel();
 	private JPanel panelInfos=new JPanel();
 	private JPanel panelJoueurs=new JPanel();
-	private JPanel panelBoutons=new JPanel();
+	//private JPanel panelBoutons=new JPanel();
 	private JLabel labelJoueur=new JLabel();
+	PanelBoutons panelBoutons=new PanelBoutons();
 	private Controleur controleur;
 	public Tile[][] arrayTile;
-	public JButton buttonCommencer=new JButton("Jouer");
+	private JButton buttonCommencer=new JButton("Jouer");
 	
 	public Vue(Controleur c) {
 		controleur=c;
@@ -37,7 +40,7 @@ public class Vue extends JFrame{
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
 			panelJoueurs.setBackground(Color.red);
-			PanelBoutons panelBoutons=new PanelBoutons();
+			
 			
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
@@ -59,6 +62,37 @@ public class Vue extends JFrame{
 			controleur.commencer();
 		});
 
+		panelBoutons.getBoutonAttaque().addActionListener(event ->{
+			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
+			int y = 0;
+			panelBoutons.getBoutonAttaque().setVisible(false);
+			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonRetour().setVisible(true);
+			for(String nom : listeAttaques.keySet()){
+				panelBoutons.addListeBouton(nom);
+				JButton tmp = panelBoutons.getBoutonDeListe(nom);
+				addActionListenerBouton(nom,tmp);
+				panelBoutons.add(tmp);
+				panelBoutons.setBoundsBouton(tmp,0,y);
+				y=y+30;
+				tmp.setVisible(true);
+			}
+
+		});
+		
+		panelBoutons.getBoutonFin().addActionListener(event ->{
+			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonAttaque().setVisible(false);
+			controleur.getJeux().selectPokemon();
+		});
+
+	}
+
+	public void addActionListenerBouton(String nom,JButton b){
+		b.addActionListener(event ->{
+			//fonction de choix du pokemon a attaquer.
+			panelBoutons.getBoutonRetour().setVisible(false);
+		});
 	}
 
 	/**
@@ -73,7 +107,7 @@ public class Vue extends JFrame{
 	 * sélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
 	 * @param listPaires liste des coordonnées des tiles à sélectionner
 	 */
-	public void selectTiles(LinkedList<Pair> listPaires){
+	public void selectTiles(HashSet<Pair> listPaires){
 		for(Pair p : listPaires){
 			selectTile(p.getFirst(),p.getSecond());
 		}
@@ -83,7 +117,7 @@ public class Vue extends JFrame{
 	 * désélectionne tous les tiles dont les coordonnées se trouvent dans la liste listPaires
 	 * @param listPaires liste des coordonnées des tiles à désélectionner
 	 */
-	public void deselectTiles(LinkedList<Pair> listPaires){
+	public void deselectTiles(HashSet<Pair> listPaires){
 		for(Pair p : listPaires){
 			deselectTile(p.getFirst(),p.getSecond());
 		}
@@ -135,5 +169,10 @@ public class Vue extends JFrame{
 	 */
 	public void enleverPokemon(int x, int y){
 		arrayTile[x][y].setPokemonPresent(false, "");
+	}
+
+	public void showBoutons(){
+		this.panelBoutons.getBoutonFin().setVisible(true);
+		this.panelBoutons.getBoutonAttaque().setVisible(true);
 	}
 }

@@ -1,7 +1,7 @@
 package pokemon.controleur;
+import java.util.*;
 
-import java.util.LinkedList;
-
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
@@ -17,7 +17,7 @@ public class Controleur {
     /**
      * dernières cases sélectionnées 
      */
-    private LinkedList<Pair> listCasesPossibles;
+    private HashSet<Pair> listCasesPossibles;
 
     public Controleur(Terrain p, Jeux jeux){
         terrain=p;
@@ -44,13 +44,6 @@ public class Controleur {
      */
     public void miseAJourInformations(String joueur) {
         vue.miseAJourInformations(joueur);
-    }
-
-    /**
-     * séléctionne dans vue la tile correspondante à la case c
-     */
-    public void selectionnerCase(Case c) {
-        vue.arrayTile[c.getPosI()][c.getPosJ()].select();
     }
     
     /**
@@ -135,5 +128,33 @@ public class Controleur {
      */
     public void deplacerPokemonDansVue(Pair tile1, Pair tile2, String pathImagePokemon){
         vue.deplacerPokemon(tile1, tile2, pathImagePokemon);
+    }
+
+    public Jeux getJeux(){
+        return this.jeux;
+    }
+
+    public Map<String,Attaque> getListeAttaquesPokemon(){
+        Pokemon p = jeux.getPokemonActuel();
+        return p.getListeAttaque();
+    }
+
+    public void afficherBoutons(){
+        this.vue.showBoutons();
+    }
+
+    //public void attaque(String nom,){
+    //    Pokemon p = jeux.getPokemonActuel();
+    //}
+
+    public void selectTiles(HashSet<Pair> tiles){
+        vue.selectTiles(tiles);
+    }
+    public void deselectTiles(HashSet<Pair> tiles){
+        vue.deselectTiles(tiles);
+    }
+
+    public void deselectionnerAutresCases(int x, int y) {
+        jeux.deselectionnerAutresCases(x,y);
     }
 }

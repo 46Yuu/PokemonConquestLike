@@ -1,22 +1,18 @@
 package pokemon.modele.pokemon;
 
-import pokemon.modele.attaque.Attaque;
-import pokemon.modele.attaque.AttaqueEau;
-import pokemon.modele.attaque.AttaqueElectrique;
-import pokemon.modele.attaque.AttaqueFeu;
-import pokemon.modele.attaque.AttaqueNormal;
-import pokemon.modele.attaque.AttaquePlante;
-import pokemon.modele.attaque.AttaqueVol;
+import pokemon.modele.attaque.*;
 import pokemon.modele.mouvement.Mouvement;
+import java.util.*;
 
 public class Pokemon implements Mouvement{
     
 	String nom;
+	private int crit;
 	private int pdv;
 	private int atk;
 	private String type;
 	private String cheminImage;
-	private Attaque attaque;
+	Map<String,Attaque> listeAttaques = new TreeMap<String,Attaque>();
 	/**
 	 * le nombre de cases maximal qu'on peut déplacer le pokémon
 	 */
@@ -28,7 +24,6 @@ public class Pokemon implements Mouvement{
 		this.pdv = pdv;
 		this.setAtk(atk);
 		this.setType(type);
-		this.setAttaque(type);
 		cheminImage=chemin;
 		this.capaciteDeplacement=capaciteDeplacement;
 	}
@@ -81,26 +76,36 @@ public class Pokemon implements Mouvement{
 		else if (type  == "Vol"){
 			this.type = type;
 		}
+		else if (type  == "Combat"){
+			this.type = type;
+		}
 	}
 
-	public void setAttaque(String typeAtk){
-		if (typeAtk == "Eau"){
-			this.attaque = new AttaqueEau();
+	public Map<String,Attaque> getListeAttaque(){
+		return this.listeAttaques;
+	}
+	
+	public void addAttaqueListe(String nom,String type){
+		if (type == "Eau"){
+			this.listeAttaques.put(nom, new AttaqueEau());
 		}
-		else if (typeAtk == "Electrique"){
-			this.attaque = new AttaqueElectrique();
+		else if (type == "Electrique"){
+			this.listeAttaques.put(nom, new AttaqueElectrique());
 		}
-		else if (typeAtk == "Feu"){
-			this.attaque = new AttaqueFeu();
+		else if (type == "Feu"){
+			this.listeAttaques.put(nom, new AttaqueFeu());
 		}
-		else if (typeAtk == "Normal"){
-			this.attaque = new AttaqueNormal();
+		else if (type == "Normal"){
+			this.listeAttaques.put(nom, new AttaqueNormal());
 		}
-		else if (typeAtk == "Plante"){
-			this.attaque = new AttaquePlante();
+		else if (type == "Plante"){
+			this.listeAttaques.put(nom, new AttaquePlante());
 		}
-		else if (typeAtk == "Vol"){
-			this.attaque = new AttaqueVol();
+		else if (type == "Vol"){
+			this.listeAttaques.put(nom, new AttaqueVol());
+		}
+		else if (type == "Combat"){
+			this.listeAttaques.put(nom, new AttaqueCombat());
 		}
 	}
 
@@ -111,8 +116,15 @@ public class Pokemon implements Mouvement{
 		this.capaciteDeplacement=cap;
 	}
 
-	public void Attack(Pokemon p){
-		this.attaque.Attack(this,p);
+
+	public void Attack(Pokemon p, String nomAttack){
+		if(listeAttaques.containsKey(nomAttack)){
+			Attaque tmp = listeAttaques.get(nomAttack);
+			tmp.Attack(this,p);
+		}
+		else {
+			System.out.println("Ce pokemon ne connait pas cette attaque.");
+		}
 		if(p.getPdv()<=0){
             System.out.println(p.getNom() + " est KO !");
         }
@@ -123,5 +135,4 @@ public class Pokemon implements Mouvement{
 		// TODO Auto-generated method stub
 		
 	}
-
 }
