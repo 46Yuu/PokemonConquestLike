@@ -10,9 +10,6 @@ import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.LinkedList;
-
-
 
 public class Lanceur {
     public static void main(String[] args) {

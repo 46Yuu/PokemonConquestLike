@@ -9,7 +9,6 @@ import pokemon.modele.attaque.Attaque;
 import pokemon.modele.terrain.*;
 import java.awt.*;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class Vue extends JFrame{
@@ -21,7 +20,7 @@ public class Vue extends JFrame{
 	PanelBoutons panelBoutons=new PanelBoutons();
 	private Controleur controleur;
 	public Tile[][] arrayTile;
-	public JButton buttonCommencer=new JButton("Jouer");
+	private JButton buttonCommencer=new JButton("Jouer");
 	
 	public Vue(Controleur c) {
 		controleur=c;

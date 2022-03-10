@@ -2,7 +2,6 @@ package pokemon.modele.jeux;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.Pokemon;
@@ -76,7 +75,8 @@ public class Jeux {
     }
 
     /**
-     * sélectionne le pokémon qui doit être déplacé
+     * sélectionne les pokémons qui peuvent être déplacer
+     *  pour joueur 1 si c'est le tour de joueur1, pour joueur2 sinon
      */
     public void selectPokemon() {
         casesASelectionner.clear();
@@ -139,17 +139,34 @@ public class Jeux {
         controleur.afficherBoutons();
     }
 
+    /**
+     * retourne un ensemble de paires qui désignent les coordonnées des cases
+     * accessibles au pokémon se trouvant sur la case de coordonnées x,y
+     * @param x position x du pokémon à déplacer 
+     * @param y position y du pokémon à déplacer
+     * @return ensemble de paires qui désignent les coordonnées des cases
+     * accessibles au pokémon se trouvant sur la case de coordonnées x,y
+     */
     public HashSet<Pair> BFS(int x, int y) {
         return terrain.BFS(x, y, pokemonCaseJoueur1);
     }
 
+    /**
+     * retourne le pokémon que le joueur déplace 
+     * @return le pokémon que le joueur déplace
+     */
     public Pokemon getPokemonActuel() {
         return pokemonActuel;
     }
 
+    /**
+     * déselectionne les cases des pokémons qui peuvent êtres déplacés  
+     * et met à jour pokemonActuel
+     * @param x position x de la case du pokémon choisi
+     * @param y position y de la case du pokémon choisi
+     */
     public void deselectionnerAutresCases(int x, int y) {
         pokemonActuel=terrain.getCase(x,y).getPokemon();
-        //casesASelectionner.remove(new Pair(x,y,0));
         controleur.deselectTiles(casesASelectionner);
     }    
 }

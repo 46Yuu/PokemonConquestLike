@@ -3,13 +3,7 @@ package pokemon.vue;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-
-import javax.imageio.ImageIO;
-import java.awt.image.*;
-
 
 public class PanelBoutons extends JPanel{
 

@@ -1,6 +1,4 @@
 package pokemon.controleur;
-
-import java.util.LinkedList;
 import java.util.*;
 
 import pokemon.modele.attaque.Attaque;
@@ -46,13 +44,6 @@ public class Controleur {
      */
     public void miseAJourInformations(String joueur) {
         vue.miseAJourInformations(joueur);
-    }
-
-    /**
-     * séléctionne dans vue la tile correspondante à la case c
-     */
-    public void selectionnerCase(Case c) {
-        vue.arrayTile[c.getPosI()][c.getPosJ()].select();
     }
     
     /**
