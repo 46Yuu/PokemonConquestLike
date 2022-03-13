@@ -38,6 +38,10 @@ public class Case {
 	 * le chemin d'accès à l'image de sélection du tile correspondant à la case 
 	 */
 	private String pathImageSelect;
+	/**
+	 * le chemin d'accès à l'image attaque du tile correspondant à la case 
+	 */
+	private String pathImageAttaque;
 
 	public Case(int i, int j, Pokemon p, TypeCase type){
 		typeCase=type;
@@ -45,27 +49,32 @@ public class Case {
 		y=j;
 		pokemon=p;
 		
-		//choisir les images normal et selection en focntion du type de la case 
+		//choisir les images normal, selection et attaque en focntion du type de la case 
 		switch(typeCase){
 			case Grass:
 				pathImage="src/main/resources/grass_texture.png";
 				pathImageSelect="src/main/resources/grass_texture_select.png";
+				pathImageAttaque="src/main/resources/grass_texture_red.png";
 				break;
 			case Rock:
 				pathImage="src/main/resources/rock_texture.png";
 				pathImageSelect="src/main/resources/rock_texture_select.png";
+				pathImageAttaque="src/main/resources/rock_texture_red.png";
 				break;
 			case Lava:
 				pathImage="src/main/resources/lava_texture.png";
 				pathImageSelect="src/main/resources/lava_texture_select.png";
+				pathImageAttaque="src/main/resources/lava_texture_red.png";
 				break;
 			case Water:
 				pathImage="src/main/resources/water_texture.png";
 				pathImageSelect="src/main/resources/water_texture_select.png";
+				pathImageAttaque="src/main/resources/water_texture_red.png";
 				break;
 			case Roof:
 				pathImage="src/main/resources/roof_texture.png";
 				pathImageSelect="src/main/resources/roof_texture_select.png";
+				pathImageAttaque="src/main/resources/roof_texture_red.png";
 				break;
 		}
 	}
@@ -110,18 +119,26 @@ public class Case {
 	}
 
 	/**
-	 * renvoie l'image de la tile correspondante à la case 
-	 * @return image de tile correspondante à la case 
+	 * renvoie le chemin d'accès à l'image de la tile correspondante à la case 
+	 * @return le chemin d'accès à l'image de la tile correspondante à la case 
 	 */
 	public String getPathImage(){
 		return pathImage;
 	}
 
 	/**
-	 * renvoie l'image de sélection de la tile correspondante à la case 
-	 * @return
+	 * renvoie le chemin d'accès à l'image de sélection de la tile correspondante à la case 
+	 * @return le chemin d'accès à l'image de sélection de la tile correspondante à la case
 	 */
 	public String getPathImageSelect(){
 		return pathImageSelect;
 	}
+
+	/**
+	 * renvoie le chemin d'accès à l'image attaque de la tile correspondante à la case 
+	 * @return le chemin d'accès à l'image attaque de la tile correspondante à la case
+	 */
+    public String getPathImageAttaque() {
+        return pathImageAttaque;
+    }
 }

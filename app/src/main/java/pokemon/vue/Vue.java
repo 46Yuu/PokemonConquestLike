@@ -53,7 +53,8 @@ public class Vue extends JFrame{
 				for(int j=0;j<controleur.getWidth();j++){
 					String path = controleur.getPathImageTile(i, j);
 					String pathSelect = controleur.getPathImageSelectTile(i, j);
-					Tile tile=new Tile(path,pathSelect,i,j,controleur);
+					String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
+					Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur);
 					panelTerrain.add(tile);
 					arrayTile[i][j]=tile;
 				}
@@ -71,6 +72,9 @@ public class Vue extends JFrame{
 			for(String nom : listeAttaques.keySet()){
 				panelBoutons.addListeBouton(nom);
 				JButton tmp = panelBoutons.getBoutonDeListe(nom);
+				tmp.addActionListener(e ->{
+					controleur.colorerCasesAAttaquer(nom);
+				});
 				addActionListenerBouton(nom,tmp);
 				panelBoutons.add(tmp);
 				panelBoutons.setBoundsBouton(tmp,0,y);
@@ -81,6 +85,10 @@ public class Vue extends JFrame{
 		});
 		
 		panelBoutons.getBoutonFin().addActionListener(event ->{
+			int x=controleur.getCoordonneesPokemonActuel().getFirst();
+			int y=controleur.getCoordonneesPokemonActuel().getSecond();
+			deselectTile(x, y);
+			controleur.deplacerPokemon=false;
 			panelBoutons.getBoutonFin().setVisible(false);
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			controleur.getJeux().selectPokemon();
@@ -141,6 +149,21 @@ public class Vue extends JFrame{
 		arrayTile[x][y].deselect();
 	}
 
+	public void colorerCasesAAttaquer(HashSet<Pair> casesAAttaquer){
+		for(Pair p : casesAAttaquer)
+			coloreCaseAAttaquer(p.getFirst(), p.getSecond());
+	}
+	public void decolorerCasesAAttaquer(HashSet<Pair> casesAAttaquer){
+		for(Pair p : casesAAttaquer)
+			decolorerCaseAAttaquer(p.getFirst(), p.getSecond());
+	}
+	public void coloreCaseAAttaquer(int x, int y){
+		arrayTile[x][y].colorerCaseAAttaquer();
+	}
+	public void decolorerCaseAAttaquer(int x, int y){
+		arrayTile[x][y].decolorerCaseAAttaquer();
+	}
+
 	/**
 	 * déplace le pokémon du tile qui a comme coordonnées tile1 vers le tile qui a comme coordonnées tile2
 	 * @param tile1 une pair contenant les coordonnées du tile où se trouve le Pokémon à déplacer
@@ -175,4 +198,6 @@ public class Vue extends JFrame{
 		this.panelBoutons.getBoutonFin().setVisible(true);
 		this.panelBoutons.getBoutonAttaque().setVisible(true);
 	}
+
+	
 }

@@ -11,20 +11,50 @@ import javax.imageio.ImageIO;
 import java.awt.image.*;
 
 public class Tile extends JPanel{
+    /**
+     * image de la case
+     */
     private BufferedImage image;
+    /**
+     * image de sélection de la case
+     */
     private BufferedImage imageSelect;
+    /**
+     * image du pokémon se trouvant sur la case
+     */
     private BufferedImage imagePokemon;
+    /**
+     * image de la case quand on peut attaquer le pokémon se trouvant dessus 
+     */
+    private BufferedImage imageAttaque;
+    /**
+     * coordonnée x de la case sur le terrain
+     */
     private int x;
+    /**
+     * coordonnée y de la case sur le terrain
+     */
     private int y;
+    /**
+     * on dessine le pokémon se trouvant sur la case si true
+     */
     private boolean pokemonPresent;
+    /**
+     * on sélectionne la case si true
+     */
     private boolean select;
+    /**
+     * on peut attaquer le pokémon se trouvant sur la case si true
+     */
+    private boolean peutAttaquer;
     private Controleur controleur;
 
-    public Tile(String path, String pathSelect,int x, int y, Controleur controleur){
+    public Tile(String path, String pathSelect, String pathAttaque,int x, int y, Controleur controleur){
         this.controleur=controleur;
         try{
             image = ImageIO.read(new File(path));
             imageSelect=ImageIO.read(new File(pathSelect));
+            imageAttaque=ImageIO.read(new File(pathAttaque));
         }catch(IOException e){
             System.out.println("File not found!");
         }
@@ -35,7 +65,6 @@ public class Tile extends JPanel{
     }
 
     private class MouseDeplace implements MouseInputListener{
-
         @Override
         public void mouseClicked(MouseEvent e) {
             if(select && pokemonPresent && !controleur.deplacerPokemon){
@@ -46,7 +75,7 @@ public class Tile extends JPanel{
             //si on peut déplacer le pokémon et le tile est selectionné
             else if(select && controleur.deplacerPokemon){
                 controleur.deplacerPokemon(x,y);
-                controleur.deplacerPokemon=false;
+                select();
             }
         }
 
@@ -95,6 +124,8 @@ public class Tile extends JPanel{
         int width=getSize().width;
         if(select)//dessine image de selection du tile
             g.drawImage(imageSelect, 0, 0,width,height, this);
+        else if(peutAttaquer)//dessine image attaque du tile
+            g.drawImage(imageAttaque, 0, 0, width, height, this);
         else//sinon dessine image normale du tile
             g.drawImage(image, 0, 0,width,height, this);
         if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
@@ -119,6 +150,22 @@ public class Tile extends JPanel{
      */
     public void deselect() {
         select=false;
+        repaint();
+    }
+
+    /**
+     * dessine l'image de l'attaque sur le tile
+     */
+    public void colorerCaseAAttaquer() {
+        peutAttaquer=true;
+        repaint();
+    }
+
+    /**
+     * enlève l'image de l'attaque sur le tile
+     */
+    public void decolorerCaseAAttaquer() {
+        peutAttaquer=false;
         repaint();
     }
 
