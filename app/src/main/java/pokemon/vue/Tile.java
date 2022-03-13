@@ -3,6 +3,8 @@ package pokemon.vue;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 import pokemon.controleur.Controleur;
+import pokemon.modele.attaque.Attaque;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -76,6 +78,10 @@ public class Tile extends JPanel{
             else if(select && controleur.deplacerPokemon){
                 controleur.deplacerPokemon(x,y);
                 select();
+            }
+            else if(peutAttaquer){
+                controleur.attaquer(x,y);
+                controleur.deplacerPokemon=false;
             }
         }
 

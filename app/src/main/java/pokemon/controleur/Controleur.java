@@ -162,6 +162,9 @@ public class Controleur {
     public void deselectTiles(HashSet<Pair> tiles){
         vue.deselectTiles(tiles);
     }
+    public void deselectTile(Pair coordonnees) {
+        vue.deselectTile(coordonnees.getFirst(), coordonnees.getSecond());
+    }
 
     public void deselectionnerAutresCases(int x, int y) {
         jeux.deselectionnerAutresCases(x,y);
@@ -172,9 +175,15 @@ public class Controleur {
         vue.colorerCasesAAttaquer(casesAAttaquer);
     }
 
+    public void decolorerCasesAAttaquer(HashSet<Pair> listCasesAAttaquer) {
+        vue.decolorerCasesAAttaquer(listCasesAAttaquer);
+    }
+
     public Pair getCoordonneesPokemonActuel(){
         return jeux.getCoordonneesPokemonActuel();
     }
 
-    
+    public void attaquer(int x, int y) {
+        jeux.attaquer(x,y);
+    }    
 }

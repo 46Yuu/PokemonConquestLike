@@ -33,6 +33,11 @@ public class Jeux {
     private Pokemon pokemonActuel;
 
     HashSet<Pair> casesASelectionner=new HashSet<>();
+    /**
+     * l'attaque que le joueur a choisie pour attaquer avec le pokémon actuel
+     */
+    private Attaque attaqueChoisie;
+    private HashSet<Pair> listCasesAAttaquer;
     
     public Jeux(HashMap<Pokemon,Case> pokemonsJoueur1, HashMap<Pokemon,Case> pokemonsJoueur2, Terrain terrain){
         this.pokemonCaseJoueur1=pokemonsJoueur1;
@@ -178,16 +183,26 @@ public class Jeux {
             y=pokemonCaseJoueur1.get(pokemonActuel).getPosJ();
         }  
         else{
-            x=pokemonCaseJoueur1.get(pokemonActuel).getPosI();
-            y=pokemonCaseJoueur1.get(pokemonActuel).getPosJ();
+            x=pokemonCaseJoueur2.get(pokemonActuel).getPosI();
+            y=pokemonCaseJoueur2.get(pokemonActuel).getPosJ();
         } 
-        return terrain.casesAAttaquer(x,y, pokemonActuel.getListeAttaque().get(attaque),joueur1,pokemonCaseJoueur1);
-        
+        attaqueChoisie=pokemonActuel.getListeAttaque().get(attaque);
+        listCasesAAttaquer=terrain.casesAAttaquer(x,y, pokemonActuel.getListeAttaque().get(attaque),joueur1,pokemonCaseJoueur1);
+        return listCasesAAttaquer;
     }
 
     public Pair getCoordonneesPokemonActuel() {
         if(joueur1)
             return new Pair(pokemonCaseJoueur1.get(pokemonActuel).getPosI(),pokemonCaseJoueur1.get(pokemonActuel).getPosJ(),0);
         return new Pair(pokemonCaseJoueur2.get(pokemonActuel).getPosI(),pokemonCaseJoueur2.get(pokemonActuel).getPosJ(),0);
+    }
+
+    public void attaquer(int x, int y) {
+        System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
+        attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
+        System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
+        controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
+        controleur.deselectTile(getCoordonneesPokemonActuel());
+        selectPokemon();
     }
 }
