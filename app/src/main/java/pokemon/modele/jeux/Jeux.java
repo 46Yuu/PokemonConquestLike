@@ -207,4 +207,13 @@ public class Jeux {
         controleur.deselectTile(getCoordonneesPokemonActuel());
         selectPokemon();
     }
+
+    public HashMap<Pokemon, Case> getPokemonCaseJoueur1() {
+        return pokemonCaseJoueur1;
+    }
+
+    public HashMap<Pokemon, Case> getPokemonCaseJoueur2() {
+        return pokemonCaseJoueur2;
+    }
+
 }
