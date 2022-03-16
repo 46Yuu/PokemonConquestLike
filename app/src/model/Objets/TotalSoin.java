@@ -3,7 +3,8 @@ public class TotalSoin extends Objets {
         this.nom="TotalSoin";
     }
 
-    public void Utiliser(Pokemon p){
-        p.etat = "";
+    public void Utiliser(Pokemon p1,Pokemon p2){
+        p1.etat == "";
+        p2.etat == "";
     }
 }

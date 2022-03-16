@@ -4,7 +4,8 @@ public class LunetteDeSniper extends Objets{
     }
 
     public void Utiliser(Pokemon p){
-       
+        int x = p.getCrit();
+       p.setCrit(50);
         }
    
 }

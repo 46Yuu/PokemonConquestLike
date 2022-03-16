@@ -5,6 +5,9 @@ public class ForceInterieur extends CapacitSpe{
     }
     public void Apprendre(Pokemon p){
           p.spe = this;
-          p.Crit = Crit +10;
+          p.setCrit(p.getCrit() +10);
+    }
+    public void Utiliser(Pokemon p1,Pokemon p2,Pokemon adv1,Pokemon adv2){
+
     }
 }
