@@ -1,17 +1,17 @@
 import java.lang.Math;   
 
 public abstract class Attaque {
+    int coup;
     int degats;
-
     public void Attak(Pokemon p ){
-        int b = (int)(Math.random()*(50-p.Crit)+1); 
+        int b = (int)(Math.random()*(50-p.getCrit())+1); 
         if(b == 50 ){
-      degats =  p.getDef - this.getAtk*2;
+      coup =  p.getDef() - this.getAtk()*2;
        }else{
-            degats =  p.getDef - this.getAtk;
+            coup =  p.getDef() - this.getAtk();
        }
-            if(degats < 0){
-                p.setPdv (p.getPdv + degats);
+            if(coup < 0){
+                p.setPdv(p.getPdv() + coup);
           
 
         }
