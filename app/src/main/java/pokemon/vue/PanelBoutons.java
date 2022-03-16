@@ -49,6 +49,11 @@ public class PanelBoutons extends JPanel{
       return null;
     }
   }
+
+  public Map<String,JButton> getListeBoutonAttaque(){
+    return this.listeBoutonsAttaques;
+  }
+
   public void setBoundsBouton(JButton b, int x, int y){
     b.setBounds(x,y,100,30);
   }

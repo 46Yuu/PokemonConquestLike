@@ -81,7 +81,6 @@ public class Vue extends JFrame{
 				y=y+30;
 				tmp.setVisible(true);
 			}
-
 		});
 		
 		panelBoutons.getBoutonFin().addActionListener(event ->{
@@ -99,7 +98,12 @@ public class Vue extends JFrame{
 	public void addActionListenerBouton(String nom,JButton b){
 		b.addActionListener(event ->{
 			//fonction de choix du pokemon a attaquer.
-			panelBoutons.getBoutonRetour().setVisible(false);
+			for(String key : panelBoutons.getListeBoutonAttaque().keySet()){
+				panelBoutons.getBoutonDeListe(key).setVisible(false);
+			}
+			//panelBoutons.getBoutonRetour().setVisible(false);
+			controleur.colorerCasesAAttaquer(nom);
+			
 		});
 	}
 

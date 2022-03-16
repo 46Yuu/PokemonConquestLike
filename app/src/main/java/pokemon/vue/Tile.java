@@ -82,6 +82,7 @@ public class Tile extends JPanel{
             else if(peutAttaquer){
                 controleur.attaquer(x,y);
                 controleur.deplacerPokemon=false;
+                controleur.vue.panelBoutons.getBoutonRetour().setVisible(false);
             }
         }
 
