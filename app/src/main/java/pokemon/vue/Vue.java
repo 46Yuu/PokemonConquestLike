@@ -90,7 +90,7 @@ public class Vue extends JFrame{
 			int x=controleur.getCoordonneesPokemonActuel().getFirst();
 			int y=controleur.getCoordonneesPokemonActuel().getSecond();
 			deselectTile(x, y);
-			controleur.deplacerPokemon=false;
+			enleverFleche(x, y);
 			panelBoutons.getBoutonFin().setVisible(false);
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			controleur.getJeux().selectPokemon();
@@ -119,6 +119,10 @@ public class Vue extends JFrame{
 			tmp.setBounds(0,yj2,300,15);
 			yj2+=15;
 		}
+	}
+
+	private void enleverFleche(int x, int y) {
+		arrayTile[x][y].enleverFleche();
 	}
 
 	public void addActionListenerBouton(String nom,JButton b){

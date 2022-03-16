@@ -206,7 +206,6 @@ public class Jeux {
         System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
-        selectPokemon();
     }
 
     public Map<Pokemon, Case> getPokemonCaseJoueur1() {

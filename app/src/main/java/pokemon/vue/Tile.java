@@ -30,6 +30,10 @@ public class Tile extends JPanel{
      */
     private BufferedImage imageAttaque;
     /**
+     * image de la flèche qui indique le pokémon qui attaque
+     */
+    private BufferedImage imageFleche;
+    /**
      * coordonnée x de la case sur le terrain
      */
     private int x;
@@ -49,6 +53,11 @@ public class Tile extends JPanel{
      * on peut attaquer le pokémon se trouvant sur la case si true
      */
     private boolean peutAttaquer;
+    /**
+     * on dessine la flèche si true
+     */
+    private boolean fleche=false;
+
     private Controleur controleur;
 
     public Tile(String path, String pathSelect, String pathAttaque,int x, int y, Controleur controleur){
@@ -57,6 +66,7 @@ public class Tile extends JPanel{
             image = ImageIO.read(new File(path));
             imageSelect=ImageIO.read(new File(pathSelect));
             imageAttaque=ImageIO.read(new File(pathAttaque));
+            imageFleche=ImageIO.read(new File("src/main/resources/fleche_actuel.png"));
         }catch(IOException e){
             System.out.println("File not found!");
         }
@@ -77,12 +87,13 @@ public class Tile extends JPanel{
             //si on peut déplacer le pokémon et le tile est selectionné
             else if(select && controleur.deplacerPokemon){
                 controleur.deplacerPokemon(x,y);
-                select();
+                controleur.deplacerPokemon=false;
+                fleche=true;
             }
             else if(peutAttaquer){
-                controleur.attaquer(x,y);
-                controleur.deplacerPokemon=false;
+                controleur.attaquer(x,y); 
                 controleur.vue.panelBoutons.getBoutonRetour().setVisible(false);
+                controleur.vue.panelBoutons.getBoutonFin().setVisible(true);
             }
         }
 
@@ -134,9 +145,12 @@ public class Tile extends JPanel{
         else if(peutAttaquer)//dessine image attaque du tile
             g.drawImage(imageAttaque, 0, 0, width, height, this);
         else//sinon dessine image normale du tile
-            g.drawImage(image, 0, 0,width,height, this);
+            g.drawImage(image, 0, 0, width, height, this);
         if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
-            g.drawImage(imagePokemon, 0, 0,width,height, this);
+            g.drawImage(imagePokemon, 0, 0, width, height, this);
+        if(fleche){//si c'est au tour du pokémon d'attaquer
+            g.drawImage(imageFleche, 0, 0, width, height, this);
+        }
     }
 
     @Override
@@ -193,6 +207,11 @@ public class Tile extends JPanel{
         else{
             imagePokemon=null;
         }
+        repaint();
+    }
+
+    public void enleverFleche() {
+        fleche=false;
         repaint();
     }
 
