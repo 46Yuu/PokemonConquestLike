@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.Attaque;
+import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.*;
 import java.awt.*;
 import java.util.HashSet;
@@ -40,11 +41,13 @@ public class Vue extends JFrame{
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
 			panelJoueurs.setBackground(Color.red);
+			panelJoueurs.setLayout(null);
 			
 			
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
 			panelJoueurs.add(labelJoueur);
+			labelJoueur.setBounds(0,0,300,15);
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);
 
@@ -86,6 +89,29 @@ public class Vue extends JFrame{
 			controleur.getJeux().selectPokemon();
 		});
 
+		Map<Pokemon,Case> pokemonsJ1 = controleur.jeux.getPokemonCaseJoueur1();
+		int yj1=45;
+		JLabel j1=new JLabel("Pokemons de Joueur 1:");
+		j1.setBounds(0,30,300,15);
+		panelJoueurs.add(j1);
+		for(Pokemon p: pokemonsJ1.keySet()){
+			JLabel tmp=new JLabel(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+"| Atk: "+p.getAtk());
+			panelJoueurs.add(tmp);
+			tmp.setBounds(0,yj1,300,15);
+			yj1+=15;
+		}
+
+		Map<Pokemon,Case> pokemonsJ2 = controleur.jeux.getPokemonCaseJoueur2();
+		int yj2=115;
+		JLabel j2=new JLabel("Pokemons du Jouer 2:");
+		j2.setBounds(0,100,300,15);
+		panelJoueurs.add(j2);
+		for(Pokemon p: pokemonsJ2.keySet()){
+			JLabel tmp=new JLabel(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
+			panelJoueurs.add(tmp);
+			tmp.setBounds(0,yj2,300,15);
+			yj2+=15;
+		}
 	}
 
 	public void addActionListenerBouton(String nom,JButton b){

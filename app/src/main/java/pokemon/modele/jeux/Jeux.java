@@ -10,6 +10,7 @@ import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 
 public class Jeux {
+
     private Controleur controleur;
     private Terrain terrain;
     /**
@@ -20,6 +21,7 @@ public class Jeux {
      * associe à chaque pokémon du joueur 2 la case où il se trouve
      */
     private HashMap<Pokemon,Case> pokemonCaseJoueur2=new HashMap<>();
+
     /**
      * liste des pokémons du joueur 1
      */
@@ -168,5 +170,13 @@ public class Jeux {
     public void deselectionnerAutresCases(int x, int y) {
         pokemonActuel=terrain.getCase(x,y).getPokemon();
         controleur.deselectTiles(casesASelectionner);
-    }    
+    }
+
+    public HashMap<Pokemon, Case> getPokemonCaseJoueur1() {
+        return pokemonCaseJoueur1;
+    }
+
+    public HashMap<Pokemon, Case> getPokemonCaseJoueur2() {
+        return pokemonCaseJoueur2;
+    }
 }
