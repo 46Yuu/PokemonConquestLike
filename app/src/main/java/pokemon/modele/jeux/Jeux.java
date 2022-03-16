@@ -11,6 +11,7 @@ import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 
 public class Jeux {
+
     private Controleur controleur;
     private Terrain terrain;
     /**
@@ -21,6 +22,7 @@ public class Jeux {
      * associe à chaque pokémon du joueur 2 la case où il se trouve
      */
     private HashMap<Pokemon,Case> pokemonCaseJoueur2=new HashMap<>();
+
     /**
      * liste des pokémons du joueur 1
      */
