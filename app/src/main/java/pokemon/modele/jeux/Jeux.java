@@ -2,6 +2,7 @@ package pokemon.modele.jeux;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.Attaque;
@@ -206,5 +207,13 @@ public class Jeux {
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
         selectPokemon();
+    }
+
+    public Map<Pokemon, Case> getPokemonCaseJoueur1() {
+        return pokemonCaseJoueur1;
+    }
+
+    public Map<Pokemon, Case> getPokemonCaseJoueur2() {
+        return pokemonCaseJoueur2;
     }
 }
