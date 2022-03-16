@@ -110,7 +110,7 @@ public class Vue extends JFrame{
 
 		Map<Pokemon,Case> pokemonsJ2 = controleur.jeux.getPokemonCaseJoueur2();
 		int yj2=115;
-		JLabel j2=new JLabel("Pokemons du Jouer 2:");
+		JLabel j2=new JLabel("Pokemons du Joueur 2:");
 		j2.setBounds(0,100,300,15);
 		panelJoueurs.add(j2);
 		for(Pokemon p: pokemonsJ2.keySet()){
