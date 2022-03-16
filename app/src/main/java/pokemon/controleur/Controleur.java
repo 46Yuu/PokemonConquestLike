@@ -4,7 +4,6 @@ import java.util.*;
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Pokemon;
-import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
@@ -85,6 +84,16 @@ public class Controleur {
     }
 
     /**
+     * renvoie le chemin de l'image attaque de la Tile de coordonnées (x,y)
+     * @param x coordonnée x
+     * @param y coordonnée y
+     * @return chemin de l'image attaque de la Tile
+     */
+    public String getPathImageAttaqueTile(int x, int y) {
+        return terrain.getPathImageAttaqueTile(x,y);
+    }
+
+    /**
      * renvoie la hauteur du plateau
      * @return la hauteur du plateau
      */
@@ -153,8 +162,28 @@ public class Controleur {
     public void deselectTiles(HashSet<Pair> tiles){
         vue.deselectTiles(tiles);
     }
+    public void deselectTile(Pair coordonnees) {
+        vue.deselectTile(coordonnees.getFirst(), coordonnees.getSecond());
+    }
 
     public void deselectionnerAutresCases(int x, int y) {
         jeux.deselectionnerAutresCases(x,y);
     }
+
+    public void colorerCasesAAttaquer(String attaque){
+        HashSet<Pair> casesAAttaquer=jeux.casesAAttaquer(attaque);
+        vue.colorerCasesAAttaquer(casesAAttaquer);
+    }
+
+    public void decolorerCasesAAttaquer(HashSet<Pair> listCasesAAttaquer) {
+        vue.decolorerCasesAAttaquer(listCasesAAttaquer);
+    }
+
+    public Pair getCoordonneesPokemonActuel(){
+        return jeux.getCoordonneesPokemonActuel();
+    }
+
+    public void attaquer(int x, int y) {
+        jeux.attaquer(x,y);
+    }    
 }

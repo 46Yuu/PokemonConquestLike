@@ -2,14 +2,17 @@ package pokemon.modele.jeux;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import pokemon.controleur.Controleur;
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 
 public class Jeux {
+
     private Controleur controleur;
     private Terrain terrain;
     /**
@@ -20,6 +23,7 @@ public class Jeux {
      * associe à chaque pokémon du joueur 2 la case où il se trouve
      */
     private HashMap<Pokemon,Case> pokemonCaseJoueur2=new HashMap<>();
+
     /**
      * liste des pokémons du joueur 1
      */
@@ -32,6 +36,11 @@ public class Jeux {
     private Pokemon pokemonActuel;
 
     HashSet<Pair> casesASelectionner=new HashSet<>();
+    /**
+     * l'attaque que le joueur a choisie pour attaquer avec le pokémon actuel
+     */
+    private Attaque attaqueChoisie;
+    private HashSet<Pair> listCasesAAttaquer;
     
     public Jeux(HashMap<Pokemon,Case> pokemonsJoueur1, HashMap<Pokemon,Case> pokemonsJoueur2, Terrain terrain){
         this.pokemonCaseJoueur1=pokemonsJoueur1;
@@ -107,7 +116,7 @@ public class Jeux {
     }
 
     /**
-     * déplace le pokémon qui doit être déplacé dans ma case x,y
+     * déplace le pokémon qui doit être déplacé dans la case x,y
      * @param x coordonnée x de la case d'arrivée
      * @param y coordonnée y de la case d'arrivée
      */
@@ -168,5 +177,42 @@ public class Jeux {
     public void deselectionnerAutresCases(int x, int y) {
         pokemonActuel=terrain.getCase(x,y).getPokemon();
         controleur.deselectTiles(casesASelectionner);
-    }    
+    }  
+    
+    public HashSet<Pair> casesAAttaquer(String attaque){
+        int x=0,y=0;
+        if(joueur1){
+            x=pokemonCaseJoueur1.get(pokemonActuel).getPosI();
+            y=pokemonCaseJoueur1.get(pokemonActuel).getPosJ();
+        }  
+        else{
+            x=pokemonCaseJoueur2.get(pokemonActuel).getPosI();
+            y=pokemonCaseJoueur2.get(pokemonActuel).getPosJ();
+        } 
+        attaqueChoisie=pokemonActuel.getListeAttaque().get(attaque);
+        listCasesAAttaquer=terrain.casesAAttaquer(x,y, pokemonActuel.getListeAttaque().get(attaque),joueur1,pokemonCaseJoueur1);
+        return listCasesAAttaquer;
+    }
+
+    public Pair getCoordonneesPokemonActuel() {
+        if(joueur1)
+            return new Pair(pokemonCaseJoueur1.get(pokemonActuel).getPosI(),pokemonCaseJoueur1.get(pokemonActuel).getPosJ(),0);
+        return new Pair(pokemonCaseJoueur2.get(pokemonActuel).getPosI(),pokemonCaseJoueur2.get(pokemonActuel).getPosJ(),0);
+    }
+
+    public void attaquer(int x, int y) {
+        System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
+        attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
+        System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
+        controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
+        controleur.deselectTile(getCoordonneesPokemonActuel());
+    }
+
+    public Map<Pokemon, Case> getPokemonCaseJoueur1() {
+        return pokemonCaseJoueur1;
+    }
+
+    public Map<Pokemon, Case> getPokemonCaseJoueur2() {
+        return pokemonCaseJoueur2;
+    }
 }
