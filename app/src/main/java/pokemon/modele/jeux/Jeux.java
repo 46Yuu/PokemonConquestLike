@@ -204,6 +204,7 @@ public class Jeux {
         System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
         System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
+        controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y));
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
     }
@@ -215,4 +216,13 @@ public class Jeux {
     public Map<Pokemon, Case> getPokemonCaseJoueur2() {
         return pokemonCaseJoueur2;
     }
+
+    public HashMap<Pokemon, Case> getPokemonCaseJoueur1() {
+        return pokemonCaseJoueur1;
+    }
+
+    public HashMap<Pokemon, Case> getPokemonCaseJoueur2() {
+        return pokemonCaseJoueur2;
+    }
+
 }

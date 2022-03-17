@@ -9,6 +9,7 @@ import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public class Vue extends JFrame{
 	private Controleur controleur;
 	public Tile[][] arrayTile;
 	private JButton buttonCommencer=new JButton("Jouer");
+	private HashMap<Pokemon,JLabel> jLabels=new HashMap<>();
+	
 	
 	public Vue(Controleur c) {
 		controleur=c;
@@ -104,6 +107,7 @@ public class Vue extends JFrame{
 		for(Pokemon p: pokemonsJ1.keySet()){
 			JLabel tmp=new JLabel(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+"| Atk: "+p.getAtk());
 			panelJoueurs.add(tmp);
+			jLabels.put(p,tmp); 
 			tmp.setBounds(0,yj1,300,15);
 			yj1+=15;
 		}
@@ -116,6 +120,7 @@ public class Vue extends JFrame{
 		for(Pokemon p: pokemonsJ2.keySet()){
 			JLabel tmp=new JLabel(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
 			panelJoueurs.add(tmp);
+			jLabels.put(p,tmp); 
 			tmp.setBounds(0,yj2,300,15);
 			yj2+=15;
 		}
@@ -143,6 +148,15 @@ public class Vue extends JFrame{
 	 */
 	public void miseAJourInformations(String joueur) {
 		labelJoueur.setText("Tour du joueur : " + joueur );
+	}
+
+	/**
+	 * mets à jour l'affichage des stats du pokemon p dans le panelJoueur 
+	 * @param p Pokemon
+	 */
+	public void miseAJourInfosPokemons(Pokemon p){
+		JLabel label=jLabels.get(p);
+		label.setText(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
 	}
 
 	/**
