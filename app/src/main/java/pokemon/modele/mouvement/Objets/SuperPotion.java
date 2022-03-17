@@ -4,6 +4,9 @@ public class SuperPotion extends Objets {
     }
 
     public void Utiliser(Pokemon p){
-        p.Pdv=p.Pdv +50;
+        p.setPdv(p.getPdv() +50);
+        if(p.getPdv() > p.getPdvdeBase()){
+            p.setPdv(p.getPdvdeBase());
     }
+}
 }

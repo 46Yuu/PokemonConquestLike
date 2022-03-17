@@ -4,7 +4,7 @@ public class MaxPotion extends Objets{
         }
     
         public void Utiliser(Pokemon p){
-            p.Pdv=p.PdvdeBase;
+            p.setPdv(p.getPdvdeBase());
         }
     }
     

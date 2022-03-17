@@ -4,7 +4,7 @@ public class PreuveDuHero extends Objets{
     }
 
     public void Utiliser(Pokemon p){
-      p.Atk = Atk*2;
+      p.setAtk(p.getAtk()*2);
         }
    
 }

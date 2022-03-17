@@ -4,6 +4,9 @@ public class Potion extends Objets {
     }
 
     public void Utiliser(Pokemon p){
-        p.Pdv=p.Pdv +20;
+        p.setPdv(p.getPdv() +20);
+        if(p.getPdv() > p.getPdvdeBase()){
+            p.setPdv(p.getPdvdeBase());
+        }
     }
 }

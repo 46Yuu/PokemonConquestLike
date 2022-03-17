@@ -1,7 +1,7 @@
-public class AbsorbEau extends CapacitSpe{
+public class AbsorbVolt extends CapacitSpe{
 
-    public AbsorbEau(){
-        this.nom = "AbsorbEau";
+    public AbsorbVolt(){
+        this.nom = "AbsorbVolt";
     }
     public void Apprendre(Pokemon p){
           p.spe = this;
@@ -9,5 +9,4 @@ public class AbsorbEau extends CapacitSpe{
     public void Utiliser(Pokemon p1,Pokemon p2,Pokemon adv1,Pokemon adv2){
 
     }
-
 }

@@ -15,13 +15,14 @@ public class Pokemon{
 	CapacitSpe spe;
 	//Case Case;
 
-	public Pokemon(int p,int a, int d,int c,TypeTerrain t) {
+	public Pokemon(int p,int a, int d,int c,int v,TypeTerrain t) {
 		this.setPdv(p);
 		this.setPdvdeBase(p);
 		this.setAtk(a);
 		this.setType(t);
 		this.setDef(d);
 		this.setCrit(c);
+	
 
 		this.vivant = true;
 		this.etat ="";
@@ -35,7 +36,13 @@ public class Pokemon{
 	public void setPdv(int pdv) {
 		Pdv = pdv;
 	}
+	public int getPdvdeBase() {
+		return PdvdeBase;
+	}
 
+	public void setPdvdeBase(int pdv) {
+		PdvdeBase = pdv;
+	}
 	public int getAtk() {
 		return Atk;
 	}
