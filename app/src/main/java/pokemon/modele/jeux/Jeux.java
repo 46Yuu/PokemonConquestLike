@@ -217,12 +217,4 @@ public class Jeux {
         return pokemonCaseJoueur2;
     }
 
-    public HashMap<Pokemon, Case> getPokemonCaseJoueur1() {
-        return pokemonCaseJoueur1;
-    }
-
-    public HashMap<Pokemon, Case> getPokemonCaseJoueur2() {
-        return pokemonCaseJoueur2;
-    }
-
 }
