@@ -44,6 +44,10 @@ public class Controleur {
     public void miseAJourInformations(String joueur) {
         vue.miseAJourInformations(joueur);
     }
+
+    public void miseAJourInfosPokemons(Pokemon p){
+        vue.miseAJourInfosPokemons(p);
+    }
     
     /**
      * sélectionne dans la vue toutes les cases possibles auquelles le pokémon

@@ -203,6 +203,7 @@ public class Jeux {
         System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
         System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
+        controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y));
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
         selectPokemon();
