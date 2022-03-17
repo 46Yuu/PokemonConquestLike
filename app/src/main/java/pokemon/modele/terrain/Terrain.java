@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case.TypeCase;
 
@@ -158,6 +160,16 @@ public class Terrain{
     }
 
     /**
+     * renvoie le chemin d'accès à l'image attaque du tile correspondant a la case x,y
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case
+     * @return le chemin d'accés à l'image attque du tile correspondant à la case x,y
+     */
+    public String getPathImageAttaqueTile(int x, int y) {
+        return tab[x][y].getPathImageAttaque();
+    }
+
+    /**
      * renvoie la case x,y du plateau
      * @param x coordonnée x de la case
      * @param y coordonnée y de la case 
@@ -193,7 +205,65 @@ public class Terrain{
         tab[x][y].setPokemon(p);
     }
 
+    /**
+     * renvoie le pokémon qui se trouve sur la case x,y, null si aucun pokémon ne s'y trouve
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case
+     * @return le pokémon qui se trouve sur la case x,y, null si aucun pokémon ne s'y trouve
+     */
     public Pokemon getPokemon(int x, int y){
         return tab[x][y].getPokemon();
     }
+
+    /**
+     * renvoie un ensemble de toutes les coordonnées des cases ou se trouvent
+     * les pokémons que le pokémon actuel peut attaquer
+     * @param x coordonnée x de la case du pokémon actuel
+     * @param y coordonnée y de la case du pokémon actuel
+     * @param attaque type d'attaque que le pokémon actuel a choisi pour attaquer
+     * @param joueur1 le joueur à qui c'est le tour
+     * @param pokemonCaseJoueur1 hashmap pokemon,case du joueur1
+     * @return un ensemble de toutes les coordonnées des cases ou se trouvent
+     * les pokémons que le pokémon actuel peut attaquer
+     */
+    public HashSet<Pair> casesAAttaquer(int x,int y, Attaque attaque, boolean joueur1, HashMap<Pokemon, Case> pokemonCaseJoueur1) {
+        HashSet<Pair> res=new HashSet<>();
+        for(int i=1; i<=attaque.getDistanceMaxAttaque(); i++){
+            if(x-i>=0 && getPokemon(x-i,y)!=null && appartientAuJoueur(getPokemon(x-i,y),!joueur1,pokemonCaseJoueur1))
+                res.add(new Pair(x-i,y,0));
+            if(x+i<getHeight() && getPokemon(x+i,y)!=null && appartientAuJoueur(getPokemon(x+i,y),!joueur1,pokemonCaseJoueur1))
+                res.add(new Pair(x+i,y,0));
+            if(y+i<getWidth() && getPokemon(x,y+i)!=null && appartientAuJoueur(getPokemon(x,y+i),!joueur1,pokemonCaseJoueur1))
+                res.add(new Pair(x,y+i,0));
+            if(y-i>=0 && getPokemon(x,y-i)!=null && appartientAuJoueur(getPokemon(x,y-i),!joueur1,pokemonCaseJoueur1))
+                res.add(new Pair(x,y-i,0));
+        }
+        return res;
+    }
+
+    /**
+     * renvoie true si le pokémon pokemon appartient au 
+     *  joueur1 si joueur1=true
+     *  joueur2 si joueur1=false
+     *  false sinon
+     * @param pokemon un pokémon
+     * @param joueur1 true pour joueur1, et false pour joueur 2
+     * @param pokemonCaseJoueur1 hashmap pokemon,case du joueur1
+     * @return  renvoie true si le pokémon pokemon appartient au 
+     *  joueur1 si joueur1=true
+     *  joueur2 si joueur1=false
+     *  false sinon 
+     */
+    private boolean appartientAuJoueur(Pokemon pokemon, boolean joueur1, HashMap<Pokemon, Case> pokemonCaseJoueur1) {
+        //si joueur1 et pokemon est dans la liste de joueur1
+        if(joueur1 && pokemonCaseJoueur1.keySet().contains(pokemon))
+            return true;
+        //si joueur2 et pokemon est dans la liste du joueur2
+        else if(!joueur1 && !pokemonCaseJoueur1.keySet().contains(pokemon))
+            return true;
+        //sinon le pokemon n'est pas au joueur
+        return false;
+    }
+
+    
 }
