@@ -252,5 +252,8 @@ public class Jeux {
             }
         }
     }
+    public HashSet<Pair> getListCasesAAttaquer() {
+        return listCasesAAttaquer;
+    }
 
 }

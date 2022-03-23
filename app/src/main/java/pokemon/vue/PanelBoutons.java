@@ -2,6 +2,7 @@ package pokemon.vue;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import pokemon.controleur.Controleur;
 import java.awt.*;
 import java.util.*;
 
@@ -11,8 +12,10 @@ public class PanelBoutons extends JPanel{
   private JButton boutonFin = new JButton("Fin de tour");
   private JButton boutonRetour = new JButton("Retour");
   private Map<String,JButton> listeBoutonsAttaques = new TreeMap<String,JButton>();
+  private Controleur controleur;
   
-  public PanelBoutons(){
+  public PanelBoutons(Controleur controleur){
+    this.controleur=controleur;
     setLayout(null);
     setBackground(Color.GRAY);
     boutonAttaquer.setBounds(0,0,100,30);
@@ -32,6 +35,7 @@ public class PanelBoutons extends JPanel{
       for(JButton b : listeBoutonsAttaques.values()){
         b.setVisible(false);
       }
+      controleur.decolorerCasesAAttaquer();
 		});
   }
 

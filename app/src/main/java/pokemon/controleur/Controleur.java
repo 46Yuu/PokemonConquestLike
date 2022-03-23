@@ -181,6 +181,11 @@ public class Controleur {
 
     public void decolorerCasesAAttaquer(HashSet<Pair> listCasesAAttaquer) {
         vue.decolorerCasesAAttaquer(listCasesAAttaquer);
+        listCasesAAttaquer.clear();
+    }
+
+    public void decolorerCasesAAttaquer(){
+        vue.decolorerCasesAAttaquer(jeux.getListCasesAAttaquer());
     }
 
     public Pair getCoordonneesPokemonActuel(){
