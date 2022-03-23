@@ -194,5 +194,9 @@ public class Controleur {
 
     public void attaquer(int x, int y) {
         jeux.attaquer(x,y);
+    }
+
+    public void partieFinie(String joueurGagnant){
+        vue.afficherFinPartie(joueurGagnant);
     }    
 }

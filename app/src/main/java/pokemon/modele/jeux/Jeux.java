@@ -201,9 +201,7 @@ public class Jeux {
     }
 
     public void attaquer(int x, int y) {
-        System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
-        System.out.println("pokemon actuel: "+pokemonActuel.getPdv()+", pokemon attaqué: "+terrain.getPokemon(x, y).getPdv());
         controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y));
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
@@ -243,12 +241,12 @@ public class Jeux {
     public void finDePartie(){
         if(joueur1){
             if(pokemonCaseJoueur2.size() ==0){
-                //code de fin
+                controleur.partieFinie("joueur1");
             }
         }
         else{
             if(pokemonCaseJoueur1.size() ==0){
-                //code de fin
+                controleur.partieFinie("joueur2");
             }
         }
     }

@@ -157,7 +157,10 @@ public class Vue extends JFrame{
 	 */
 	public void miseAJourInfosPokemons(Pokemon p){
 		JLabel label=jLabels.get(p);
-		label.setText(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
+		if (p.getPdv()>0)//le pokémon est en vie
+			label.setText(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
+		else//le pokémon est mort
+			label.setText(p.getNom()+" ("+p.getType()+") "+"| Pdv: éliminé | Atk: "+p.getAtk());
 	}
 
 	/**
@@ -248,5 +251,19 @@ public class Vue extends JFrame{
 		this.panelBoutons.getBoutonAttaque().setVisible(true);
 	}
 
+	/**
+	 * affiche le jouuer gagnant à la place du panel des boutons
+	 * @param JoueurGagnat joueur 1 ou joueur 2
+	 */
+	public void afficherFinPartie(String joueurGagnant){
+		panelBoutons.removeAll();
+		JLabel label=new JLabel();
+        int height=panelBoutons.getSize().height;
+        int width=panelBoutons.getSize().width;
+        panelBoutons.add(label);
+        label.setText(joueurGagnant+" a gagné la partie");
+        label.setBounds(0, height/2, width, 20);
+        panelBoutons.setBackground(Color.white);
+	}
 	
 }
