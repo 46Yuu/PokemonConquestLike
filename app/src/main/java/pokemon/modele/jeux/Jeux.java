@@ -217,4 +217,8 @@ public class Jeux {
         return pokemonCaseJoueur2;
     }
 
+    public HashSet<Pair> getListCasesAAttaquer() {
+        return listCasesAAttaquer;
+    }
+
 }

@@ -19,7 +19,7 @@ public class Vue extends JFrame{
 	private JPanel panelJoueurs=new JPanel();
 	//private JPanel panelBoutons=new JPanel();
 	private JLabel labelJoueur=new JLabel();
-	PanelBoutons panelBoutons=new PanelBoutons();
+	PanelBoutons panelBoutons;
 	private Controleur controleur;
 	public Tile[][] arrayTile;
 	private JButton buttonCommencer=new JButton("Jouer");
@@ -28,6 +28,7 @@ public class Vue extends JFrame{
 	
 	public Vue(Controleur c) {
 		controleur=c;
+		panelBoutons=new PanelBoutons(controleur);
 		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
 		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
