@@ -43,7 +43,7 @@ public class Vue extends JFrame{
 			panelTerrain.setBackground(Color.black);
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
-			panelJoueurs.setBackground(Color.red);
+			panelJoueurs.setBackground(Color.DARK_GRAY);
 			panelJoueurs.setLayout(null);
 			
 			
@@ -51,6 +51,7 @@ public class Vue extends JFrame{
 			panelInfos.add(panelBoutons);
 			panelJoueurs.add(labelJoueur);
 			labelJoueur.setBounds(0,0,300,15);
+			labelJoueur.setForeground(Color.white);
 			contentPane.add(panelInfos);
 			contentPane.add(panelTerrain);
 
@@ -102,10 +103,11 @@ public class Vue extends JFrame{
 		Map<Pokemon,Case> pokemonsJ1 = controleur.jeux.getPokemonCaseJoueur1();
 		int yj1=45;
 		JLabel j1=new JLabel("Pokemons de Joueur 1:");
+		j1.setForeground(Color.WHITE);
 		j1.setBounds(25,30,300,15);
 		panelJoueurs.add(j1);
 		for(Pokemon p: pokemonsJ1.keySet()){
-			StatsPokemon tmp=new StatsPokemon(50,yj1,p.getNom(),p.getType(),p.getPdv(),p.getAtk());
+			StatsPokemon tmp=new StatsPokemon(25,yj1,p.getNom(),p.getType(),p.getPdv(),p.getAtk());
 			panelJoueurs.add(tmp);
 			StatsPokemons.put(p,tmp);
 			/*
@@ -121,6 +123,7 @@ public class Vue extends JFrame{
 		int yj2=45;
 		JLabel j2=new JLabel("Pokemons du Joueur 2:");
 		j2.setBounds(275,30,300,15);
+		j2.setForeground(Color.WHITE);
 		panelJoueurs.add(j2);
 		for(Pokemon p: pokemonsJ2.keySet()){
 			StatsPokemon tmp=new StatsPokemon(275,yj2,p.getNom(),p.getType(),p.getPdv(),p.getAtk());
