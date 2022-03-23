@@ -98,7 +98,7 @@ public class Vue extends JFrame{
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			controleur.getJeux().selectPokemon();
 		});
-
+		
 		Map<Pokemon,Case> pokemonsJ1 = controleur.jeux.getPokemonCaseJoueur1();
 		int yj1=45;
 		JLabel j1=new JLabel("Pokemons de Joueur 1:");

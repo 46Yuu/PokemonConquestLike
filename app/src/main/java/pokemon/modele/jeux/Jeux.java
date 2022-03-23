@@ -207,6 +207,10 @@ public class Jeux {
         controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y));
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
+        if(pokemonKo(x, y)){
+            enleverKo(x,y);
+            finDePartie();
+        }
     }
 
     public Map<Pokemon, Case> getPokemonCaseJoueur1() {
@@ -215,6 +219,38 @@ public class Jeux {
 
     public Map<Pokemon, Case> getPokemonCaseJoueur2() {
         return pokemonCaseJoueur2;
+    }
+
+    public void enleverKo(int x,int y){ 
+        Case caseDepart;
+        if(joueur1){
+            caseDepart=pokemonCaseJoueur2.get(terrain.getPokemon(x, y));
+            pokemonCaseJoueur2.remove(terrain.getPokemon(x, y)); 
+            caseDepart.setPokemon(null);
+        }
+        else {
+            caseDepart=pokemonCaseJoueur1.get(terrain.getPokemon(x, y));
+            pokemonCaseJoueur1.remove(terrain.getPokemon(x, y)); 
+            caseDepart.setPokemon(null);
+        }
+        controleur.vue.enleverPokemon(x, y);
+    }
+
+    public boolean pokemonKo(int x,int y){
+        return terrain.getPokemon(x, y).getPdv()<=0;
+    }
+
+    public void finDePartie(){
+        if(joueur1){
+            if(pokemonCaseJoueur2.size() ==0){
+                //code de fin
+            }
+        }
+        else{
+            if(pokemonCaseJoueur1.size() ==0){
+                //code de fin
+            }
+        }
     }
 
 }
