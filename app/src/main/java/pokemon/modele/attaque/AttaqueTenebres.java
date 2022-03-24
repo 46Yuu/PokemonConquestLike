@@ -2,12 +2,12 @@ package pokemon.modele.attaque;
 
 import pokemon.modele.pokemon.Pokemon;
 
-public class AttaqueVol extends Attaque{
+public class AttaqueTenebres extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
-        if(b.getType()=="Combat" || b.getType()=="Insecte" || b.getType()=="Plante"){
+        if(b.getType()=="Psy" || b.getType()=="Spectre"){
             b.setPdv(b.getPdv() - p.getAtk()*2);
         }
-        else if(b.getType()=="Acier" || b.getType()=="Electrique" || b.getType()=="Roche"){
+        else if(b.getType()=="Combat" || b.getType()=="Fee" || b.getType()=="Tenebres"){
             b.setPdv(b.getPdv() - p.getAtk()/2);
         }
         else {
