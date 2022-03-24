@@ -3,7 +3,6 @@ package pokemon.vue;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 import pokemon.controleur.Controleur;
-import pokemon.modele.attaque.Attaque;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

@@ -129,13 +129,6 @@ public class Vue extends JFrame{
 			StatsPokemon tmp=new StatsPokemon(275,yj2,p.getNom(),p.getType(),p.getPdv(),p.getAtk());
 			panelJoueurs.add(tmp);
 			StatsPokemons.put(p,tmp);
-			/*
-			JLabel tmp=new JLabel(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
-			panelJoueurs.add(tmp);
-			jLabels.put(p,tmp); 
-			tmp.setBounds(0,yj2,300,15);
-			yj2+=15;
-			*/
 			yj2+=70;
 		}
 	}
@@ -171,11 +164,6 @@ public class Vue extends JFrame{
 	public void miseAJourInfosPokemons(Pokemon p){
 		StatsPokemon tmp=StatsPokemons.get(p);
 		tmp.setPdv(p.getPdv());
-		
-		/*
-		JLabel label=jLabels.get(p);
-		label.setText(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+" | Atk: "+p.getAtk());
-		*/
 	}
 
 	/**
