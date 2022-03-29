@@ -139,14 +139,26 @@ public class Vue extends JFrame{
 	}
 
 	public void addActionListenerBouton(String nom,JButton b){
-		b.addActionListener(event ->{
-			//fonction de choix du pokemon a attaquer.
-			for(String key : panelBoutons.getListeBoutonAttaque().keySet()){
-				panelBoutons.getBoutonDeListe(key).setVisible(false);
+		b.addMouseListener(new java.awt.event.MouseAdapter() {
+			boolean clicked = false;
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				controleur.colorerCasesAAttaquer(nom);
 			}
-			//panelBoutons.getBoutonRetour().setVisible(false);
-			controleur.colorerCasesAAttaquer(nom);
-			
+		
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				if(!clicked){
+					controleur.decolorerCasesAAttaquer();
+				}
+			}
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				//fonction de choix du pokemon a attaquer.
+				for(String key : panelBoutons.getListeBoutonAttaque().keySet()){
+					panelBoutons.getBoutonDeListe(key).setVisible(false);
+				}
+				clicked = true;
+				//panelBoutons.getBoutonRetour().setVisible(false);
+				controleur.colorerCasesAAttaquer(nom);
+			}
 		});
 	}
 
