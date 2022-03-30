@@ -40,7 +40,7 @@ public class Jeux {
      * l'attaque que le joueur a choisie pour attaquer avec le pokémon actuel
      */
     private Attaque attaqueChoisie;
-    private HashSet<Pair> listCasesAAttaquer;
+    private HashSet<Pair> listCasesAAttaquer=new HashSet<>();
     
     public Jeux(HashMap<Pokemon,Case> pokemonsJoueur1, HashMap<Pokemon,Case> pokemonsJoueur2, Terrain terrain){
         this.pokemonCaseJoueur1=pokemonsJoueur1;

@@ -18,11 +18,8 @@ public class PanelBoutons extends JPanel{
     this.controleur=controleur;
     setLayout(null);
     setBackground(Color.GRAY);
-    boutonAttaquer.setBounds(0,0,100,30);
 		add(boutonAttaquer);
-    boutonFin.setBounds(100,0,100,30);
 		add(boutonFin);
-    boutonRetour.setBounds(200,0,100,30);
     add(boutonRetour);
     boutonAttaquer.setVisible(false);
     boutonFin.setVisible(false);
@@ -46,20 +43,13 @@ public class PanelBoutons extends JPanel{
   }
   public JButton getBoutonDeListe(String nom){
     if(listeBoutonsAttaques.containsKey(nom)){
-			JButton tmp = listeBoutonsAttaques.get(nom);
-			return tmp;
+			return listeBoutonsAttaques.get(nom);
 		}
-    else {
-      return null;
-    }
+    return null;
   }
 
   public Map<String,JButton> getListeBoutonAttaque(){
     return this.listeBoutonsAttaques;
-  }
-
-  public void setBoundsBouton(JButton b, int x, int y){
-    b.setBounds(x,y,100,30);
   }
 
   public JButton getBoutonAttaque(){
@@ -72,5 +62,25 @@ public class PanelBoutons extends JPanel{
   
   public JButton getBoutonRetour(){
     return this.boutonRetour;
+  }
+
+  @Override
+  public void repaint() {
+    super.repaint();
+    int width=getSize().width;
+    int height=getSize().height;
+    if(boutonAttaquer!=null)
+      boutonAttaquer.setBounds(0,0,width/4,height/7);
+    if(boutonFin!=null)
+      boutonFin.setBounds(width/4+2,0,width/4,height/7);
+    if(boutonRetour!=null)
+      boutonRetour.setBounds(2*(width/4)+2,0,width/4,height/7);
+    int i=0;
+    if(listeBoutonsAttaques!=null){
+      for(String s : listeBoutonsAttaques.keySet()){
+        listeBoutonsAttaques.get(s).setBounds(0, i*(height/6), width/4, height/6);
+        i++;
+      }
+    }
   }
 }

@@ -73,10 +73,10 @@ public class Vue extends JFrame{
 
 		panelBoutons.getBoutonAttaque().addActionListener(event ->{
 			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
-			int y = 0;
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			panelBoutons.getBoutonFin().setVisible(false);
 			panelBoutons.getBoutonRetour().setVisible(true);
+			panelBoutons.getListeBoutonAttaque().clear();
 			for(String nom : listeAttaques.keySet()){
 				panelBoutons.addListeBouton(nom);
 				JButton tmp = panelBoutons.getBoutonDeListe(nom);
@@ -85,10 +85,9 @@ public class Vue extends JFrame{
 				});
 				addActionListenerBouton(nom,tmp);
 				panelBoutons.add(tmp);
-				panelBoutons.setBoundsBouton(tmp,0,y);
-				y=y+30;
 				tmp.setVisible(true);
 			}
+			panelBoutons.repaint();
 		});
 		
 		panelBoutons.getBoutonFin().addActionListener(event ->{
