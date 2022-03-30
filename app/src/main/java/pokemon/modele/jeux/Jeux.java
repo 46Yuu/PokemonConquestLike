@@ -202,7 +202,7 @@ public class Jeux {
 
     public void attaquer(int x, int y) {
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
-        controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y));
+        controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y),joueur1);
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.deselectTile(getCoordonneesPokemonActuel());
         if(pokemonKo(x, y)){

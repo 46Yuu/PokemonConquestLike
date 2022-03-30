@@ -9,28 +9,23 @@ import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.*;
 import java.awt.*;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 public class Vue extends JFrame{
 	private JPanel panelTerrain=new JPanel();
 	private JPanel panelInfos=new JPanel();
-	private JPanel panelJoueurs=new JPanel();
-	//private JPanel panelBoutons=new JPanel();
+	private PanelJoueurs panelJoueurs;
 	private JLabel labelJoueur=new JLabel();
 	PanelBoutons panelBoutons;
 	private Controleur controleur;
 	public Tile[][] arrayTile;
 	private JButton buttonCommencer=new JButton("Jouer");
-	private HashMap<Pokemon,StatsPokemon> StatsPokemons=new HashMap<>();
-	
 	
 	public Vue(Controleur c) {
 		controleur=c;
 		panelBoutons=new PanelBoutons(controleur);
 		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
-		//Dimension dimensionEcran=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setTitle("Pokemon");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Accueil panelAccueil=new Accueil(buttonCommencer);
@@ -44,9 +39,9 @@ public class Vue extends JFrame{
 			panelTerrain.setBackground(Color.black);
 			panelInfos.setBackground(Color.green);
 			panelInfos.setLayout(new GridLayout(2,0));
+			panelJoueurs=new PanelJoueurs(controleur);
 			panelJoueurs.setBackground(Color.DARK_GRAY);
 			panelJoueurs.setLayout(null);
-			
 			
 			panelInfos.add(panelJoueurs);
 			panelInfos.add(panelBoutons);
@@ -100,37 +95,6 @@ public class Vue extends JFrame{
 			controleur.getJeux().selectPokemon();
 		});
 		
-		Map<Pokemon,Case> pokemonsJ1 = controleur.jeux.getPokemonCaseJoueur1();
-		int yj1=45;
-		JLabel j1=new JLabel("Pokemons de Joueur 1:");
-		j1.setForeground(Color.WHITE);
-		j1.setBounds(25,30,300,15);
-		panelJoueurs.add(j1);
-		for(Pokemon p: pokemonsJ1.keySet()){
-			StatsPokemon tmp=new StatsPokemon(25,yj1,p.getNom(),p.getType(),p.getPdv(),p.getAtk());
-			panelJoueurs.add(tmp);
-			StatsPokemons.put(p,tmp);
-			/*
-			JLabel tmp=new JLabel(p.getNom()+" ("+p.getType()+") "+"| Pdv: "+p.getPdv()+"| Atk: "+p.getAtk());
-			panelJoueurs.add(tmp);
-			jLabels.put(p,tmp); 
-			tmp.setBounds(0,yj1,300,15);
-			*/
-			yj1+=70;
-		}
-
-		Map<Pokemon,Case> pokemonsJ2 = controleur.jeux.getPokemonCaseJoueur2();
-		int yj2=45;
-		JLabel j2=new JLabel("Pokemons du Joueur 2:");
-		j2.setBounds(275,30,300,15);
-		j2.setForeground(Color.WHITE);
-		panelJoueurs.add(j2);
-		for(Pokemon p: pokemonsJ2.keySet()){
-			StatsPokemon tmp=new StatsPokemon(275,yj2,p.getNom(),p.getType(),p.getPdv(),p.getAtk());
-			panelJoueurs.add(tmp);
-			StatsPokemons.put(p,tmp);
-			yj2+=70;
-		}
 	}
 
 	private void enleverFleche(int x, int y) {
@@ -161,8 +125,8 @@ public class Vue extends JFrame{
 	 * mets à jour l'affichage des stats du pokemon p dans le panelJoueur 
 	 * @param p Pokemon
 	 */
-	public void miseAJourInfosPokemons(Pokemon p){
-		StatsPokemon tmp=StatsPokemons.get(p);
+	public void miseAJourInfosPokemons(Pokemon p, boolean joueur1){
+		StatsPokemon tmp=panelJoueurs.getStatsPokemons(joueur1).get(p);
 		tmp.setPdv(p.getPdv());
 	}
 

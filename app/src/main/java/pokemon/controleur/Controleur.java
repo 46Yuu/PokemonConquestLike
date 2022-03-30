@@ -45,8 +45,8 @@ public class Controleur {
         vue.miseAJourInformations(joueur);
     }
 
-    public void miseAJourInfosPokemons(Pokemon p){
-        vue.miseAJourInfosPokemons(p);
+    public void miseAJourInfosPokemons(Pokemon p, boolean joueur1){
+        vue.miseAJourInfosPokemons(p, joueur1);
     }
     
     /**
