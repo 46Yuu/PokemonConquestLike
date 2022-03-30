@@ -4,6 +4,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
 
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.*;
+
 public class StatsPokemon extends JPanel{
 
   private String type;
@@ -14,6 +20,8 @@ public class StatsPokemon extends JPanel{
   private final int LARGEUR_BDV_TOTAL=80;
   private int largeurBDV;
   private JLabel labelPdv;
+  private JLabel cible;
+  
 
   public StatsPokemon(int x,int y,String nom,String t,int p,int a){
     nomPokemon=nom;
@@ -23,6 +31,7 @@ public class StatsPokemon extends JPanel{
     atk=a;
     largeurBDV=LARGEUR_BDV_TOTAL;
     
+
 
     setLayout(null);
     setBackground(Color.GRAY);
@@ -59,6 +68,12 @@ public class StatsPokemon extends JPanel{
     add(labelAtk);
     labelAtk.setBounds(5,30,50,15);
     labelAtk.setForeground(Color.WHITE);
+
+    cible=new JLabel("CIBLE");
+    add(cible);
+    cible.setBounds(135,35,50,10);
+    cible.setForeground(Color.RED);
+    cible.setVisible(false);
   }
 
   private String nomPokemon;
@@ -84,4 +99,7 @@ public class StatsPokemon extends JPanel{
     }
   }
 
+  public void cibleVisible(boolean b){
+    this.cible.setVisible(b);
+  }
 }

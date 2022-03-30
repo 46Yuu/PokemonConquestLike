@@ -282,4 +282,15 @@ public class Vue extends JFrame{
         panelBoutons.setBackground(Color.white);
 	}
 	
+	public void cibleVisible(Pokemon p){
+		if(StatsPokemons.containsKey(p)){
+			StatsPokemons.get(p).cibleVisible(true);;
+		}
+	}
+
+	public void cibleInvisible(Pokemon p){
+		if(StatsPokemons.containsKey(p)){
+			StatsPokemons.get(p).cibleVisible(false);;
+		}
+	}
 }
