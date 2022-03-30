@@ -4,13 +4,10 @@ import pokemon.modele.pokemon.Pokemon;
 
 public class AttaqueEau extends Attaque {
     public void Attack(Pokemon p,Pokemon b){
-        if(b.getType()=="Feu"){
+        if(b.getType()=="Feu" || b.getType()=="Roche" || b.getType()=="Sol"){
             b.setPdv(b.getPdv() - p.getAtk()*2);
         }
-        else if(b.getType()=="Eau"){
-            b.setPdv(b.getPdv() - p.getAtk()/2);
-        }
-        else if(b.getType()=="Plante"){
+        else if(b.getType()=="Dragon" || b.getType()=="Eau" || b.getType()=="Plante"){
             b.setPdv(b.getPdv() - p.getAtk()/2);
         }
         else {

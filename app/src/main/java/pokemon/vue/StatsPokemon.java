@@ -10,6 +10,7 @@ public class StatsPokemon extends JPanel{
   private int pdv;
   private final int pdvTotal;
   private int atk;
+  private JPanel backgroundBarreDevie;
   private JPanel barreDeVie;
   private double largeurPdvInitiale;
   private double largeurBDV;
@@ -29,6 +30,9 @@ public class StatsPokemon extends JPanel{
     setLayout(null);
     setBackground(Color.GRAY);
 
+    backgroundBarreDevie=new JPanel();
+    backgroundBarreDevie.setBackground(Color.BLACK);
+    add(backgroundBarreDevie);
     barreDeVie=new JPanel();
     barreDeVie.setBounds(80,5,(int)largeurBDV,5);
     barreDeVie.setBackground(Color.GREEN);
@@ -75,6 +79,7 @@ public class StatsPokemon extends JPanel{
     else
       labelPdv.setText("éliminé");
     barreDeVie.setBounds(getSize().width/2,(2*((getSize().height/4)))/4,(int)largeurBDV,5);
+    backgroundBarreDevie.setBounds((int)(getSize().getWidth()/2+largeurBDV),(2*((getSize().height/4)))/4,(int)(largeurPdvInitiale-largeurBDV),5);
     if(largeurBDV<=0){
       barreDeVie.setSize((int)largeurPdvInitiale,5);
       barreDeVie.setBackground(Color.black);
