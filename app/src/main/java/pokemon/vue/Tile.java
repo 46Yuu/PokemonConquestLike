@@ -99,13 +99,17 @@ public class Tile extends JPanel{
         @Override
         public void mouseEntered(MouseEvent e) {
             // TODO Auto-generated method stub
-            
+            if(pokemonPresent){
+                controleur.vue.cibleVisible(controleur.getPokeDansCase(x, y));
+            }
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
             // TODO Auto-generated method stub
-            
+            if(pokemonPresent){
+                controleur.vue.cibleInvisible(controleur.getPokeDansCase(x, y));
+            }
         }
 
         @Override

@@ -199,4 +199,7 @@ public class Controleur {
     public void partieFinie(String joueurGagnant){
         vue.afficherFinPartie(joueurGagnant);
     }    
+    public Pokemon getPokeDansCase(int x,int y){
+        return terrain.getPokemon(x, y);
+    }
 }

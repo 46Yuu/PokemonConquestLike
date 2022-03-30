@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
 
+
 public class StatsPokemon extends JPanel{
 
   private String type;
@@ -19,6 +20,8 @@ public class StatsPokemon extends JPanel{
   private JLabel labelHP;
   private JLabel labelType;
   private JLabel labelAtk;
+  private JLabel cible;
+  
 
   public StatsPokemon(String nom,String t,int p,int a){
     nomPokemon=nom;
@@ -26,6 +29,7 @@ public class StatsPokemon extends JPanel{
     pdvTotal=p;
     pdv=p;
     atk=a;
+
 
     setLayout(null);
     setBackground(Color.GRAY);
@@ -64,6 +68,12 @@ public class StatsPokemon extends JPanel{
     add(labelAtk);
     labelAtk.setBounds(5,30,50,15);
     labelAtk.setForeground(Color.WHITE);
+
+    cible=new JLabel("CIBLE");
+    add(cible);
+    cible.setBounds(135,35,50,10);
+    cible.setForeground(Color.RED);
+    cible.setVisible(false);
   }
 
   private String nomPokemon;
@@ -117,7 +127,15 @@ public class StatsPokemon extends JPanel{
     if(labelType!=null)
       labelType.setBounds(0,(int)((height/4)+2*((height/4)/4)),(int)width/2,(int)height/4);
     if(labelAtk!=null)
-      labelAtk.setBounds(0,(int)(2*(height/4)+3*((height/4)/4)),(int)width,(int)height/4);
+      labelAtk.setBounds(0,(int)(2*(height/4)+3*((height/4)/4)),(int)(2*width)/3,(int)height/4);
+    if(cible!=null)
+      cible.setBounds((int)width/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
   }
 
+  public void cibleVisible(boolean b){
+    cible.setVisible(b);
+    double width=getSize().getWidth();
+    double height=getSize().getHeight();
+    cible.setBounds((int)width/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
+  }
 }
