@@ -105,7 +105,9 @@ public class StatsPokemon extends JPanel{
     largeurBDV=(largeurBDV*((width/2)-5))/largeurPdvInitiale;
     largeurPdvInitiale=(width/2)-5;
     if(barreDeVie!=null)
-      barreDeVie.setBounds((int)width/2,(int)(2*((height/4)))/4,(int)largeurBDV,5);
+      barreDeVie.setBounds((int)width/2,(int)(2*((height/4))/4),(int)largeurBDV,5);
+    if(backgroundBarreDevie!=null)
+      backgroundBarreDevie.setBounds((int)(width/2+largeurBDV),(int)((2*(height/4))/4),(int)(largeurPdvInitiale-largeurBDV),5);
     if(labelNomPokemon!=null)
       labelNomPokemon.setBounds(0,(int)(height/4)/4,(int)(4*(width/2))/5,(int)height/4);
     if(labelHP!=null)
