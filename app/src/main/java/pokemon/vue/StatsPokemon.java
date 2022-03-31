@@ -129,13 +129,13 @@ public class StatsPokemon extends JPanel{
     if(labelAtk!=null)
       labelAtk.setBounds(0,(int)(2*(height/4)+3*((height/4)/4)),(int)(2*width)/3,(int)height/4);
     if(cible!=null)
-      cible.setBounds((int)width/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
+      cible.setBounds((int)(2*width)/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
   }
 
   public void cibleVisible(boolean b){
     cible.setVisible(b);
     double width=getSize().getWidth();
     double height=getSize().getHeight();
-    cible.setBounds((int)width/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
+    cible.setBounds((int)(2*width)/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
   }
 }

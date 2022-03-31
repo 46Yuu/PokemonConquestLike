@@ -202,4 +202,8 @@ public class Controleur {
     public Pokemon getPokeDansCase(int x,int y){
         return terrain.getPokemon(x, y);
     }
+
+    public boolean getJoueurActuel(){
+        return jeux.getJoueurActuel();
+    }
 }

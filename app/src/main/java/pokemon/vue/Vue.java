@@ -246,14 +246,14 @@ public class Vue extends JFrame{
 	}
 	
 	public void cibleVisible(Pokemon p){
-		if(StatsPokemons.containsKey(p)){
-			StatsPokemons.get(p).cibleVisible(true);;
+		if(panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).containsKey(p)){
+			panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).get(p).cibleVisible(true);;
 		}
 	}
 
 	public void cibleInvisible(Pokemon p){
-		if(StatsPokemons.containsKey(p)){
-			StatsPokemons.get(p).cibleVisible(false);;
+		if(panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).containsKey(p)){
+			panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).get(p).cibleVisible(false);;
 		}
 	}
 }

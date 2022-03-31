@@ -254,4 +254,8 @@ public class Jeux {
         return listCasesAAttaquer;
     }
 
+    public boolean getJoueurActuel() {
+        return joueur1;
+    }
+
 }
