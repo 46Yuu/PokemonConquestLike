@@ -91,8 +91,8 @@ public class Tile extends JPanel{
             }
             else if(peutAttaquer){
                 controleur.attaquer(x,y); 
-                controleur.vue.panelBoutons.getBoutonRetour().setVisible(false);
-                controleur.vue.panelBoutons.getBoutonFin().setVisible(true);
+                controleur.vue.getPanelBoutons().getBoutonRetour().setVisible(false);
+                controleur.vue.getPanelBoutons().getBoutonFin().setVisible(true);
             }
         }
 
