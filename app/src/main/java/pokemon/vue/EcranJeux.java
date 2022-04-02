@@ -20,10 +20,11 @@ public class EcranJeux extends JPanel{
 	PanelBoutons panelBoutons;
 	private Controleur controleur;
 	public Tile[][] arrayTile;
+	private JButton buttonRecommencer;
     
-    public EcranJeux(Controleur c){       
+    public EcranJeux(Controleur c, JButton buttonRecommencer){       
         controleur=c; 
-        panelBoutons=new PanelBoutons(controleur);
+        panelBoutons=new PanelBoutons(controleur, buttonRecommencer);
 		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
 		setLayout(new GridLayout(0,2));
 		panelTerrain.setBackground(Color.black);
@@ -81,7 +82,9 @@ public class EcranJeux extends JPanel{
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			controleur.getJeux().selectPokemon();
 		});
-    }
+		
+		this.buttonRecommencer=buttonRecommencer;
+	}
 
 
     private void enleverFleche(int x, int y) {
@@ -228,20 +231,25 @@ public class EcranJeux extends JPanel{
         int width=panelBoutons.getSize().width;
         panelBoutons.add(label);
         label.setText(joueurGagnant+" a gagné la partie");
-        label.setBounds(0, height/2, width, 20);
+        label.setBounds(0, 0, width, 20);
+		panelBoutons.add(buttonRecommencer);
+		buttonRecommencer.setBounds(width/3,height/3,width/3,height/3);
         panelBoutons.setBackground(Color.white);
 	}
 	
 	public void cibleVisible(Pokemon p){
-		if(panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).containsKey(p)){
-			panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).get(p).cibleVisible(true);;
-		}
+		if(panelJoueurs.getStatsPokemons(true).containsKey(p))
+			panelJoueurs.getStatsPokemons(true).get(p).cibleVisible(true);
+		else if(panelJoueurs.getStatsPokemons(false).containsKey(p))
+			panelJoueurs.getStatsPokemons(false).get(p).cibleVisible(true);
+
 	}
 
 	public void cibleInvisible(Pokemon p){
-		if(panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).containsKey(p)){
-			panelJoueurs.getStatsPokemons(controleur.getJoueurActuel()).get(p).cibleVisible(false);;
-		}
+		if(panelJoueurs.getStatsPokemons(true).containsKey(p))
+			panelJoueurs.getStatsPokemons(true).get(p).cibleVisible(false);
+		else if(panelJoueurs.getStatsPokemons(false).containsKey(p))
+			panelJoueurs.getStatsPokemons(false).get(p).cibleVisible(false);
 	}
 
 

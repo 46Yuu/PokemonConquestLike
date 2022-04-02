@@ -83,11 +83,13 @@ public class StatsPokemon extends JPanel{
 
   public void setPdv(int newPdv) {
     pdv=newPdv;
-    largeurBDV=(largeurPdvInitiale*pdv)/pdvTotal;
     if(pdv>0)
       labelPdv.setText(pdv+"/"+pdvTotal);
-    else
+    else{
       labelPdv.setText("éliminé");
+      pdv=0;//pour ne pas avoir de valeurs négatives
+    }
+    largeurBDV=(largeurPdvInitiale*pdv)/pdvTotal;
     barreDeVie.setBounds(getSize().width/2,(2*((getSize().height/4)))/4,(int)largeurBDV,5);
     backgroundBarreDevie.setBounds((int)(getSize().getWidth()/2+largeurBDV),(2*((getSize().height/4)))/4,(int)(largeurPdvInitiale-largeurBDV),5);
     if(largeurBDV<=0){

@@ -11,10 +11,11 @@ public class PanelBoutons extends JPanel{
   private JButton boutonAttaquer = new JButton("Attaquer");
   private JButton boutonFin = new JButton("Fin de tour");
   private JButton boutonRetour = new JButton("Retour");
+  private JButton buttonRecommencer;
   private Map<String,JButton> listeBoutonsAttaques = new TreeMap<String,JButton>();
   private Controleur controleur;
   
-  public PanelBoutons(Controleur controleur){
+  public PanelBoutons(Controleur controleur, JButton buttonRecommencer){
     this.controleur=controleur;
     setLayout(null);
     setBackground(Color.GRAY);
@@ -24,6 +25,7 @@ public class PanelBoutons extends JPanel{
     boutonAttaquer.setVisible(false);
     boutonFin.setVisible(false);
     boutonRetour.setVisible(false);
+    this.buttonRecommencer=buttonRecommencer;
 
     boutonRetour.addActionListener(event ->{
 			boutonFin.setVisible(true);
@@ -82,5 +84,7 @@ public class PanelBoutons extends JPanel{
         i++;
       }
     }
+    if(buttonRecommencer!=null)
+      buttonRecommencer.setBounds(width/3,height/3,width/3,height/3);
   }
 }

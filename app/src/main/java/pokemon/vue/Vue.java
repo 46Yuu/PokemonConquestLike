@@ -4,14 +4,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import pokemon.controleur.Controleur;
-import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.jeux.Jeux;
+import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.*;
+
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Vue extends JFrame{
 	
 	private Controleur controleur;
 	private JButton buttonCommencer=new JButton("Jouer");
+	private JButton buttonRecommencer=new JButton("Recommencer");
 	private EcranJeux ecranJeux;
 	public Vue(Controleur c) {
 		controleur=c;
@@ -22,11 +26,32 @@ public class Vue extends JFrame{
 		setContentPane(panelAccueil);
 		
 		buttonCommencer.addActionListener( event -> {
-			ecranJeux=new EcranJeux(controleur);
+			ecranJeux=new EcranJeux(controleur, buttonRecommencer);
 			setContentPane(ecranJeux);
 			revalidate();
 			controleur.commencer();
 		});	
+		addActionListenerButtonRecommencer();	
+	}
+
+	public void addActionListenerButtonRecommencer(){
+		buttonRecommencer.addActionListener( event-> {
+			HashMap<Pokemon,Case> pokemonsJ1=new HashMap<>();
+			HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
+			pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+			pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+			pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
+			pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
+			Terrain terrain=new Terrain(10,8);
+			Jeux jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);
+			Controleur controleur=new Controleur(terrain,jeux);
+			jeux.setControleur(controleur);
+			controleur.setVue(this);
+			ecranJeux=new EcranJeux(controleur, buttonRecommencer);
+			setContentPane(ecranJeux);
+			revalidate();
+			controleur.commencer();
+		});
 	}
 
     public void afficherFinPartie(String joueurGagnant) {
