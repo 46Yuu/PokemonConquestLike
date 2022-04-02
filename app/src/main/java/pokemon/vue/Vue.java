@@ -12,7 +12,7 @@ public class Vue extends JFrame{
 	
 	private Controleur controleur;
 	private JButton buttonCommencer=new JButton("Jouer");
-	private Jeux ecranJeux;
+	private EcranJeux ecranJeux;
 	public Vue(Controleur c) {
 		controleur=c;
 		
@@ -22,7 +22,7 @@ public class Vue extends JFrame{
 		setContentPane(panelAccueil);
 		
 		buttonCommencer.addActionListener( event -> {
-			ecranJeux=new Jeux(controleur);
+			ecranJeux=new EcranJeux(controleur);
 			setContentPane(ecranJeux);
 			revalidate();
 			controleur.commencer();

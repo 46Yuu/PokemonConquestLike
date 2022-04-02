@@ -12,7 +12,7 @@ import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Pair;
 
-public class Jeux extends JPanel{
+public class EcranJeux extends JPanel{
     private JPanel panelTerrain=new JPanel();
 	private JPanel panelInfos=new JPanel();
 	private PanelJoueurs panelJoueurs;
@@ -21,7 +21,7 @@ public class Jeux extends JPanel{
 	private Controleur controleur;
 	public Tile[][] arrayTile;
     
-    public Jeux(Controleur c){       
+    public EcranJeux(Controleur c){       
         controleur=c; 
         panelBoutons=new PanelBoutons(controleur);
 		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
