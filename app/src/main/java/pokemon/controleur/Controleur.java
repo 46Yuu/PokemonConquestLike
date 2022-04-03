@@ -3,7 +3,10 @@ import java.util.*;
 
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.jeux.Jeux;
+import pokemon.modele.pokemon.Evoli;
+import pokemon.modele.pokemon.Pikachu;
 import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
@@ -18,9 +21,17 @@ public class Controleur {
      */
     private HashSet<Pair> listCasesPossibles;
 
-    public Controleur(Terrain p, Jeux jeux){
-        terrain=p;
-        this.jeux=jeux;
+    public Controleur(Vue vue){
+        this.vue=vue;
+        HashMap<Pokemon,Case> pokemonsJ1=new HashMap<>();
+        HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
+		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+		pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
+		pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
+		terrain=new Terrain(10,8);
+		jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);
+		jeux.setControleur(this);
     }
 
     public void setVue(Vue vue){
@@ -57,14 +68,14 @@ public class Controleur {
      */
     public void selectionnerCasePossibles(int x, int y) {
         listCasesPossibles=jeux.BFS(x, y);
-        vue.selectTiles(listCasesPossibles);
+        vue.selectTiles(listCasesPossibles,jeux.getJoueurActuel());
     }
 
     /**
      * désélectionne les cases qu'on a sélectionnées pour le déplacement du pokémon
      */
     public void deselectionnerCasesPossibles(){
-        vue.deselectTiles(listCasesPossibles);
+        vue.deselectTiles(listCasesPossibles, jeux.getJoueurActuel());
     }
 
     /**
@@ -152,19 +163,19 @@ public class Controleur {
         return p.getListeAttaque();
     }
 
-    public void afficherBoutons(){
-        this.vue.showBoutons();
+    public void afficherBoutons(boolean joueur1){
+        vue.showBoutons(joueur1);
     }
 
     //public void attaque(String nom,){
     //    Pokemon p = jeux.getPokemonActuel();
     //}
 
-    public void selectTiles(HashSet<Pair> tiles){
-        vue.selectTiles(tiles);
+    public void selectTiles(HashSet<Pair> tiles, boolean joueur1){
+        vue.selectTiles(tiles, joueur1);
     }
-    public void deselectTiles(HashSet<Pair> tiles){
-        vue.deselectTiles(tiles);
+    public void deselectTiles(HashSet<Pair> tiles, boolean joueur1){
+        vue.deselectTiles(tiles, joueur1);
     }
     public void deselectTile(Pair coordonnees) {
         vue.deselectTile(coordonnees.getFirst(), coordonnees.getSecond());
@@ -205,5 +216,29 @@ public class Controleur {
 
     public boolean getJoueurActuel(){
         return jeux.getJoueurActuel();
+    }
+
+    public void waitThreadJ1() {
+        vue.waitThreadJ1();
+    }
+
+    public void waitThreadJ2() {
+        vue.waitThreadJ2();
+    }
+
+    public void cibleVisible(int x, int y) {
+        vue.cibleVisible(getPokeDansCase(x, y), jeux.getJoueurActuel());
+    }
+
+    public void cibleInvisible(int x, int y) {
+        vue.cibleInvisible(getPokeDansCase(x, y), jeux.getJoueurActuel());
+    }
+
+    public void setVisibleBoutonRetour(boolean b) {
+        vue.setVisibleBoutonRetour(b, jeux.getJoueurActuel());
+    }
+
+    public void setVisibleBoutonFin(boolean b) {
+        vue.setVisibleBoutonFin(b, jeux.getJoueurActuel());
     }
 }

@@ -92,11 +92,13 @@ public class Jeux {
         if(joueur1 && pokemonsDeplaces.size()==pokemonCaseJoueur1.keySet().size()){
             pokemonsDeplaces.clear();
             joueur1=false;
+            //controleur.waitThreadJ1();
             controleur.miseAJourInformations("Joueur 2");
         }
         else if(!joueur1 && pokemonsDeplaces.size()==pokemonCaseJoueur2.keySet().size()){
             pokemonsDeplaces.clear();
             joueur1=true;
+            //controleur.waitThreadJ2();
             controleur.miseAJourInformations("Joueur 1");
         }
         
@@ -112,7 +114,7 @@ public class Jeux {
                 casesASelectionner.add(new Pair(pokemonCaseJoueur2.get(p).getPosI(),pokemonCaseJoueur2.get(p).getPosJ(),0)); 
             }
         }
-        controleur.selectTiles(casesASelectionner);
+        controleur.selectTiles(casesASelectionner, joueur1);
     }
 
     /**
@@ -145,7 +147,7 @@ public class Jeux {
         //mettre à jour la vue
         controleur.deplacerPokemonDansVue(new Pair(caseDepart.getPosI(),caseDepart.getPosJ(),0), new Pair(x,y,0), pokemonActuel.getCheminImage());
         //sélectionner le pokémon suivant à déplacer  
-        controleur.afficherBoutons();
+        controleur.afficherBoutons(joueur1);
     }
 
     /**
@@ -176,7 +178,7 @@ public class Jeux {
      */
     public void deselectionnerAutresCases(int x, int y) {
         pokemonActuel=terrain.getCase(x,y).getPokemon();
-        controleur.deselectTiles(casesASelectionner);
+        controleur.deselectTiles(casesASelectionner, joueur1);
     }  
     
     public HashSet<Pair> casesAAttaquer(String attaque){

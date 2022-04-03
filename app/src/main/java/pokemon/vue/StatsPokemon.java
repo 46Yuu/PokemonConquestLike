@@ -86,7 +86,7 @@ public class StatsPokemon extends JPanel{
     if(pdv>0)
       labelPdv.setText(pdv+"/"+pdvTotal);
     else{
-      labelPdv.setText("éliminé");
+      labelPdv.setText("KO");
       pdv=0;//pour ne pas avoir de valeurs négatives
     }
     largeurBDV=(largeurPdvInitiale*pdv)/pdvTotal;

@@ -91,24 +91,22 @@ public class Tile extends JPanel{
             }
             else if(peutAttaquer){
                 controleur.attaquer(x,y); 
-                controleur.vue.getPanelBoutons().getBoutonRetour().setVisible(false);
-                controleur.vue.getPanelBoutons().getBoutonFin().setVisible(true);
+                controleur.setVisibleBoutonRetour(false);
+                controleur.setVisibleBoutonFin(true);
             }
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            // TODO Auto-generated method stub
             if(pokemonPresent){
-                controleur.vue.cibleVisible(controleur.getPokeDansCase(x, y));
+                controleur.cibleVisible(x, y);
             }
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            // TODO Auto-generated method stub
             if(pokemonPresent){
-                controleur.vue.cibleInvisible(controleur.getPokeDansCase(x, y));
+                controleur.cibleInvisible(x, y);
             }
         }
 

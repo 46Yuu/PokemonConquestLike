@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -12,7 +13,7 @@ import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Pair;
 
-public class EcranJeux extends JPanel{
+public class EcranJeux extends JFrame{
     private JPanel panelTerrain=new JPanel();
 	private JPanel panelInfos=new JPanel();
 	private PanelJoueurs panelJoueurs;
@@ -22,7 +23,9 @@ public class EcranJeux extends JPanel{
 	public Tile[][] arrayTile;
 	private JButton buttonRecommencer;
     
-    public EcranJeux(Controleur c, JButton buttonRecommencer){       
+    public EcranJeux(Controleur c, JButton buttonRecommencer, String joueur){    
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle(joueur);   
         controleur=c; 
         panelBoutons=new PanelBoutons(controleur, buttonRecommencer);
 		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
@@ -86,6 +89,67 @@ public class EcranJeux extends JPanel{
 		this.buttonRecommencer=buttonRecommencer;
 	}
 
+	public void initialiser(Controleur c) {
+		controleur=c;
+		panelInfos.removeAll();
+		panelTerrain.removeAll();
+		panelJoueurs.removeAll();
+		panelBoutons.removeAll();
+        panelBoutons=new PanelBoutons(controleur, buttonRecommencer);
+		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
+		
+		panelJoueurs=new PanelJoueurs(controleur);
+		panelJoueurs.setBackground(Color.DARK_GRAY);
+		panelJoueurs.setLayout(null);
+			
+		panelInfos.add(panelJoueurs);
+		panelInfos.add(panelBoutons);
+		panelJoueurs.add(labelJoueur);
+		labelJoueur.setBounds(0,0,300,15);
+		labelJoueur.setForeground(Color.white);
+
+		panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
+		for(int i=0; i<controleur.getHeight(); i++){
+			for(int j=0;j<controleur.getWidth();j++){
+				String path = controleur.getPathImageTile(i, j);
+				String pathSelect = controleur.getPathImageSelectTile(i, j);
+				String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
+				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur);
+				panelTerrain.add(tile);
+				arrayTile[i][j]=tile;
+			}
+		}
+
+        panelBoutons.getBoutonAttaque().addActionListener(event ->{
+			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
+			panelBoutons.getBoutonAttaque().setVisible(false);
+			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonRetour().setVisible(true);
+			panelBoutons.getListeBoutonAttaque().clear();
+			for(String nom : listeAttaques.keySet()){
+				panelBoutons.addListeBouton(nom);
+				JButton tmp = panelBoutons.getBoutonDeListe(nom);
+				tmp.addActionListener(e ->{
+					controleur.colorerCasesAAttaquer(nom);
+				});
+				addActionListenerBouton(nom,tmp);
+				panelBoutons.add(tmp);
+				tmp.setVisible(true);
+			}
+			panelBoutons.repaint();
+		});
+		
+		panelBoutons.getBoutonFin().addActionListener(event ->{
+			int x=controleur.getCoordonneesPokemonActuel().getFirst();
+			int y=controleur.getCoordonneesPokemonActuel().getSecond();
+			deselectTile(x, y);
+			enleverFleche(x, y);
+			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonAttaque().setVisible(false);
+			controleur.getJeux().selectPokemon();
+		});
+		revalidate();
+	}
 
     private void enleverFleche(int x, int y) {
 		arrayTile[x][y].enleverFleche();
@@ -256,4 +320,7 @@ public class EcranJeux extends JPanel{
     public PanelBoutons getPanelBoutons() {
         return panelBoutons;
     }
+
+
+	
 }
