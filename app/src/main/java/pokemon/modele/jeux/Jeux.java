@@ -243,12 +243,12 @@ public class Jeux {
     public void finDePartie(){
         if(joueur1){
             if(pokemonCaseJoueur2.size() ==0){
-                controleur.partieFinie("joueur1");
+                controleur.partieFinie(true);
             }
         }
         else{
             if(pokemonCaseJoueur1.size() ==0){
-                controleur.partieFinie("joueur2");
+                controleur.partieFinie(false);
             }
         }
     }

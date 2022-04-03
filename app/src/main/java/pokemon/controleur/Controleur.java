@@ -207,7 +207,7 @@ public class Controleur {
         jeux.attaquer(x,y);
     }
 
-    public void partieFinie(String joueurGagnant){
+    public void partieFinie(boolean joueurGagnant){
         vue.afficherFinPartie(joueurGagnant);
     }    
     public Pokemon getPokeDansCase(int x,int y){

@@ -15,7 +15,7 @@ public class PanelJoueurs extends JPanel{
 
     private HashMap<Pokemon,StatsPokemon> statsPokemonsJ1=new HashMap<>();
 	private HashMap<Pokemon,StatsPokemon> statsPokemonsJ2=new HashMap<>();
-	private JLabel j1=new JLabel("Pokemons de Joueur 1:");
+	private JLabel j1=new JLabel("Pokemons du Joueur 1:");
 	private JLabel j2=new JLabel("Pokemons du Joueur 2:");
 
     public PanelJoueurs(Controleur controleur) {

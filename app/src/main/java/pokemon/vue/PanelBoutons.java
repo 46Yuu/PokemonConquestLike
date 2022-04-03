@@ -4,16 +4,18 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class PanelBoutons extends JPanel{
 
   private JButton boutonAttaquer = new JButton("Attaquer");
-  private JButton boutonFin = new JButton("Fin de tour");
+  private JButton boutonFin = new JButton("Wait");
   private JButton boutonRetour = new JButton("Retour");
   private JButton buttonRecommencer;
   private Map<String,JButton> listeBoutonsAttaques = new TreeMap<String,JButton>();
   private Controleur controleur;
+  private PanelFinPartie panelFinPartie;
   
   public PanelBoutons(Controleur controleur, JButton buttonRecommencer){
     this.controleur=controleur;
@@ -85,6 +87,14 @@ public class PanelBoutons extends JPanel{
       }
     }
     if(buttonRecommencer!=null)
-      buttonRecommencer.setBounds(width/3,height/3,width/3,height/3);
+      buttonRecommencer.setBounds(0,5*height/6,width,height/6);
+    if(panelFinPartie!=null)
+      panelFinPartie.setBounds(0,0, width, 5*height/6);
   }
+
+  public void afficherFinPartie(BufferedImage imageFinPartie){
+    panelFinPartie=new PanelFinPartie(imageFinPartie);
+    add(panelFinPartie);
+  }
+
 }

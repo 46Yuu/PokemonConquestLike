@@ -1,8 +1,11 @@
 package pokemon.vue;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +26,7 @@ public class EcranJeux extends JFrame{
 	public Tile[][] arrayTile;
 	private JButton buttonRecommencer;
     
-    public EcranJeux(Controleur c, JButton buttonRecommencer, String joueur){    
+    public EcranJeux(Controleur c, JButton buttonRecommencer, String joueur){ 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle(joueur);   
         controleur=c; 
@@ -288,16 +291,20 @@ public class EcranJeux extends JFrame{
 	 * affiche le jouuer gagnant à la place du panel des boutons
 	 * @param JoueurGagnat joueur 1 ou joueur 2
 	 */
-	public void afficherFinPartie(String joueurGagnant){
+	public void afficherFinPartie(boolean joueurGagnant){
 		panelBoutons.removeAll();
-		JLabel label=new JLabel();
         int height=panelBoutons.getSize().height;
         int width=panelBoutons.getSize().width;
-        panelBoutons.add(label);
-        label.setText(joueurGagnant+" a gagné la partie");
-        label.setBounds(0, 0, width, 20);
+        try{
+			if(joueurGagnant==true)
+				panelBoutons.afficherFinPartie(ImageIO.read(new File("src/main/resources/winner.png")));
+			else
+				panelBoutons.afficherFinPartie(ImageIO.read(new File("src/main/resources/loser.png")));
+		}catch(IOException e){
+			System.out.println("impossible d'ouvrir l'image de fin de partie");
+		}
 		panelBoutons.add(buttonRecommencer);
-		buttonRecommencer.setBounds(width/3,height/3,width/3,height/3);
+		buttonRecommencer.setBounds(0,height/6,width,height/6);
         panelBoutons.setBackground(Color.white);
 	}
 	

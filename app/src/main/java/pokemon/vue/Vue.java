@@ -62,9 +62,9 @@ public class Vue extends JFrame{
 		});
 	}
 
-    public void afficherFinPartie(String joueurGagnant) {
+    public void afficherFinPartie(boolean joueurGagnant) {
 		ecranJeuxJ1.afficherFinPartie(joueurGagnant);
-		ecranJeuxJ2.afficherFinPartie(joueurGagnant);
+		ecranJeuxJ2.afficherFinPartie(!joueurGagnant);
     }
 
     public void decolorerCasesAAttaquer(HashSet<Pair> listCasesAAttaquer) {
