@@ -27,6 +27,12 @@ public class Controleur {
         HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
 		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
 		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+        pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+        pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+        pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
 		pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
 		pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
 		terrain=new Terrain(10,8);
