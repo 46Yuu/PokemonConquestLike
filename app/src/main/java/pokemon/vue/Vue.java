@@ -4,11 +4,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import pokemon.controleur.Controleur;
-import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.*;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Vue extends JFrame{

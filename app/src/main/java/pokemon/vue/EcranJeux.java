@@ -27,6 +27,18 @@ public class EcranJeux extends JFrame{
 	private JButton buttonRecommencer;
     
     public EcranJeux(Controleur c, JButton buttonRecommencer, String joueur){ 
+		//avoir la dimension de l'écran   
+		Rectangle bounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+		int height = bounds.height;
+		int width  = bounds.width;
+		setPreferredSize(new Dimension(width/2,6*height/7));
+		setSize(new Dimension(width/2,6*height/7));
+		//placer les JFrames sur l'écran
+		if(joueur=="Joueur 1")
+			setLocation(0,0);
+		else
+			setLocation((int)(width/2+bounds.getX()), 0);
+
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle(joueur);   
         controleur=c; 
@@ -39,7 +51,6 @@ public class EcranJeux extends JFrame{
 		panelJoueurs=new PanelJoueurs(controleur);
 		panelJoueurs.setBackground(Color.DARK_GRAY);
 		panelJoueurs.setLayout(null);
-			
 		panelInfos.add(panelJoueurs);
 		panelInfos.add(panelBoutons);
 		panelJoueurs.add(labelJoueur);
@@ -47,7 +58,6 @@ public class EcranJeux extends JFrame{
 		labelJoueur.setForeground(Color.white);
 		add(panelInfos);
 		add(panelTerrain);
-
 		panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
 		for(int i=0; i<controleur.getHeight(); i++){
 			for(int j=0;j<controleur.getWidth();j++){
