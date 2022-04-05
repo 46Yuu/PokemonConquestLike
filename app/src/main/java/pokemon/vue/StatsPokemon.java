@@ -38,26 +38,26 @@ public class StatsPokemon extends JPanel{
     backgroundBarreDevie.setBackground(Color.BLACK);
     add(backgroundBarreDevie);
     barreDeVie=new JPanel();
-    barreDeVie.setBounds(80,5,(int)largeurBDV,5);
+    barreDeVie.setBounds(90,4,(int)largeurBDV,5);
     barreDeVie.setBackground(Color.GREEN);
     add(barreDeVie);
 
     labelNomPokemon=new JLabel(nomPokemon);
     add(labelNomPokemon);
-    labelNomPokemon.setBounds(5,2,50,10);
+    labelNomPokemon.setBounds(5,2,60,15);
 
     labelHP=new JLabel("HP");
     add(labelHP);
-    labelHP.setBounds(60,2,50,10);
+    labelHP.setBounds(65,2,25,15);
 
     labelPdv=new JLabel(pdv+"/"+pdvTotal);
     add(labelPdv);
-    labelPdv.setBounds(130,12,50,10);
+    labelPdv.setBounds(95,20,80,15);
     labelPdv.setForeground(Color.WHITE);
 
     labelType=new JLabel(type);
     add(labelType);
-    labelType.setBounds(5,15,90,15);
+    labelType.setBounds(5,20,90,15);
     if(type.equals("Eau")){
       labelType.setForeground(Color.BLUE);
     }else if(type.equals("Electrique")){
@@ -66,12 +66,12 @@ public class StatsPokemon extends JPanel{
 
     labelAtk=new JLabel("ATK: "+atk);
     add(labelAtk);
-    labelAtk.setBounds(5,30,50,15);
+    labelAtk.setBounds(5,38,50,15);
     labelAtk.setForeground(Color.WHITE);
 
     cible=new JLabel("CIBLE");
     add(cible);
-    cible.setBounds(135,35,50,10);
+    cible.setBounds(135,38,40,15);
     cible.setForeground(Color.RED);
     cible.setVisible(false);
   }
@@ -104,34 +104,17 @@ public class StatsPokemon extends JPanel{
 
 
   public void initialiserLargeurPdv(){
-    largeurBDV=(getSize().width/2)-5;
+    largeurBDV=85;
     largeurPdvInitiale=largeurBDV;
   }
 
   @Override
   public void repaint(){
-    double width=getSize().getWidth();
-    double height=getSize().getHeight();
-    if(largeurPdvInitiale==0)
-      largeurPdvInitiale=(width/2)-5;
-    largeurBDV=(largeurBDV*((width/2)-5))/largeurPdvInitiale;
-    largeurPdvInitiale=(width/2)-5;
+    largeurBDV=(largeurBDV*85)/largeurPdvInitiale;
     if(barreDeVie!=null)
-      barreDeVie.setBounds((int)width/2,(int)(2*((height/4))/4),(int)largeurBDV,5);
+      barreDeVie.setBounds(90,5,(int)largeurBDV,5);
     if(backgroundBarreDevie!=null)
-      backgroundBarreDevie.setBounds((int)(width/2+largeurBDV),(int)((2*(height/4))/4),(int)(largeurPdvInitiale-largeurBDV),5);
-    if(labelNomPokemon!=null)
-      labelNomPokemon.setBounds(0,(int)(height/4)/4,(int)(4*(width/2))/5,(int)height/4);
-    if(labelHP!=null)
-      labelHP.setBounds((int)(4*(width/2))/5,(int)(height/4)/4,(int)(width/2)/5,(int)height/4);
-    if(labelPdv!=null)
-      labelPdv.setBounds((int)width/2,(int)(height/4+2*((height/4)/4)),(int)width/2,(int)height/4);
-    if(labelType!=null)
-      labelType.setBounds(0,(int)((height/4)+2*((height/4)/4)),(int)width/2,(int)height/4);
-    if(labelAtk!=null)
-      labelAtk.setBounds(0,(int)(2*(height/4)+3*((height/4)/4)),(int)(2*width)/3,(int)height/4);
-    if(cible!=null)
-      cible.setBounds((int)(2*width)/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
+      backgroundBarreDevie.setBounds(90,5,(int)(largeurPdvInitiale-largeurBDV),5);
   }
 
   public void cibleVisible(boolean b){
