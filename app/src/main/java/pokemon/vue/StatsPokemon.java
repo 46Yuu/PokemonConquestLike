@@ -3,7 +3,10 @@ package pokemon.vue;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
-
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class StatsPokemon extends JPanel{
 
@@ -20,10 +23,20 @@ public class StatsPokemon extends JPanel{
   private JLabel labelHP;
   private JLabel labelType;
   private JLabel labelAtk;
-  private JLabel cible;
-  
+  private boolean cible;
+  private boolean cibleEnnemi;
+  private BufferedImage cadreRouge;
+  private BufferedImage cadreVert;
+
 
   public StatsPokemon(String nom,String t,int p,int a){
+    try{
+			cadreRouge=ImageIO.read(new File("src/main/resources/selection_stat_rouge.png"));
+			cadreVert=ImageIO.read(new File("src/main/resources/selection_stat_vert.png"));
+		}catch(IOException e){
+			System.out.println("erreur lecture photo cadre");
+		}
+
     nomPokemon=nom;
     type=t;
     pdvTotal=p;
@@ -68,12 +81,6 @@ public class StatsPokemon extends JPanel{
     add(labelAtk);
     labelAtk.setBounds(5,38,50,15);
     labelAtk.setForeground(Color.WHITE);
-
-    cible=new JLabel("CIBLE");
-    add(cible);
-    cible.setBounds(135,38,40,15);
-    cible.setForeground(Color.RED);
-    cible.setVisible(false);
   }
 
   private String nomPokemon;
@@ -108,19 +115,27 @@ public class StatsPokemon extends JPanel{
     largeurPdvInitiale=largeurBDV;
   }
 
-  @Override
-  public void repaint(){
-    largeurBDV=(largeurBDV*85)/largeurPdvInitiale;
-    if(barreDeVie!=null)
-      barreDeVie.setBounds(90,5,(int)largeurBDV,5);
-    if(backgroundBarreDevie!=null)
-      backgroundBarreDevie.setBounds(90,5,(int)(largeurPdvInitiale-largeurBDV),5);
+  public void cibleVisible(boolean afficherOuPas, boolean pokAllieOuEnnemi){
+    if(pokAllieOuEnnemi)
+      cible=afficherOuPas; 
+    else
+      cibleEnnemi=afficherOuPas;
+    repaint();
   }
 
-  public void cibleVisible(boolean b){
-    cible.setVisible(b);
-    double width=getSize().getWidth();
-    double height=getSize().getHeight();
-    cible.setBounds((int)(2*width)/3,(int)(2*(height/4)+3*((height/4)/4)),(int)width/3,(int)height/4);
+  @Override
+  protected void paintComponent(Graphics g) {
+      int height=getSize().height;
+      int width=getSize().width;
+      largeurBDV=(largeurBDV*85)/largeurPdvInitiale;
+      if(barreDeVie!=null)
+        barreDeVie.setBounds(90,5,(int)largeurBDV,5);
+      if(backgroundBarreDevie!=null)
+        backgroundBarreDevie.setBounds(90,5,(int)(largeurPdvInitiale-largeurBDV),5);
+      super.paintComponent(g);
+      if(cible)
+        g.drawImage(cadreVert, 0, 0, width, height, this);
+      else if(cibleEnnemi)
+        g.drawImage(cadreRouge, 0, 0, width, height, this);
   }
 }

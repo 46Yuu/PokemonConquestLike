@@ -233,11 +233,13 @@ public class Controleur {
     }
 
     public void cibleVisible(int x, int y) {
-        vue.cibleVisible(getPokeDansCase(x, y), jeux.getJoueurActuel());
+        Pokemon p=getPokeDansCase(x, y);
+        vue.cibleVisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));
     }
 
     public void cibleInvisible(int x, int y) {
-        vue.cibleInvisible(getPokeDansCase(x, y), jeux.getJoueurActuel());
+        Pokemon p=getPokeDansCase(x, y);
+        vue.cibleInvisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));
     }
 
     public void setVisibleBoutonRetour(boolean b) {

@@ -3,12 +3,12 @@ package pokemon.vue;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.lang.model.util.ElementScanner6;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.Dimension;
+
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.Pokemon;
@@ -23,6 +23,7 @@ public class PanelJoueurs extends JPanel{
 	private JScrollPane jScrollPane;
 	private JPanel panel;
 	private JPanel panelJ1,panelJ2;
+
 
     public PanelJoueurs(Controleur controleur) {
 		panel=new JPanel();
@@ -86,15 +87,15 @@ public class PanelJoueurs extends JPanel{
 			if(width>380)
 				panel.setPreferredSize(new Dimension(width,max));
 			else
-				panel.setPreferredSize(new Dimension(380,max));
+				panel.setPreferredSize(new Dimension(410,max));
 
 			if(width>380){
-				panelJ1.setBounds((width-380)/2,0,190,max);
-				panelJ2.setBounds(190+(width-380)/2,0,190,max);
+				panelJ1.setBounds((width-410)/2,0,190,max);
+				panelJ2.setBounds(220+(width-410)/2,0,190,max);
 			}
 			else{
 				panelJ1.setBounds(0,0,190,max);
-				panelJ2.setBounds(190,0,190,max);
+				panelJ2.setBounds(220,0,190,max);
 			}
 		}
 		
