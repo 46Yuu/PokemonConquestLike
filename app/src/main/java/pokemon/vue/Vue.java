@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import pokemon.controleur.Controleur;
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.*;
 
@@ -171,4 +172,11 @@ public class Vue extends JFrame{
 	public void setVisibleBoutonFin(boolean b, boolean joueur1) {
 		getPanelBoutons(joueur1).getBoutonFin().setVisible(b);
 	}
+
+	public void enleverAttaqueInfos(String attaque,boolean joueur1) {
+		if(joueur1)
+			ecranJeuxJ1.enleverAttaqueInfos(attaque);
+		else
+			ecranJeuxJ2.enleverAttaqueInfos(attaque);
+    }
 }

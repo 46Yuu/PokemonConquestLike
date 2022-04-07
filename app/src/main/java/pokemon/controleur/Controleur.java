@@ -249,4 +249,9 @@ public class Controleur {
     public void setVisibleBoutonFin(boolean b) {
         vue.setVisibleBoutonFin(b, jeux.getJoueurActuel());
     }
+
+    public void enleverAttaqueInfos(String attaque, boolean joueur1){
+        vue.enleverAttaqueInfos(attaque,joueur1);
+    }
 }
+

@@ -40,6 +40,7 @@ public class Jeux {
      * l'attaque que le joueur a choisie pour attaquer avec le pokémon actuel
      */
     private Attaque attaqueChoisie;
+    private String nomAttaque;
     private HashSet<Pair> listCasesAAttaquer=new HashSet<>();
     
     public Jeux(HashMap<Pokemon,Case> pokemonsJoueur1, HashMap<Pokemon,Case> pokemonsJoueur2, Terrain terrain){
@@ -191,6 +192,7 @@ public class Jeux {
             x=pokemonCaseJoueur2.get(pokemonActuel).getPosI();
             y=pokemonCaseJoueur2.get(pokemonActuel).getPosJ();
         } 
+        nomAttaque = attaque;
         attaqueChoisie=pokemonActuel.getListeAttaque().get(attaque);
         listCasesAAttaquer=terrain.casesAAttaquer(x,y, pokemonActuel.getListeAttaque().get(attaque),joueur1,pokemonCaseJoueur1);
         return listCasesAAttaquer;
@@ -206,6 +208,7 @@ public class Jeux {
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
         controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y),joueur1);
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
+        controleur.enleverAttaqueInfos(nomAttaque,joueur1);
         controleur.deselectTile(getCoordonneesPokemonActuel());
         if(pokemonKo(x, y)){
             enleverKo(x,y);

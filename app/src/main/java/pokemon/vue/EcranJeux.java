@@ -85,6 +85,9 @@ public class EcranJeux extends JFrame{
 				addActionListenerBouton(nom,tmp);
 				panelBoutons.add(tmp);
 				tmp.setVisible(true);
+				panelBoutons.addAttaqueInfos(nom,listeAttaques.get(nom));
+				JPanel tmp2 = panelBoutons.getAttaqueInfos(nom);
+				panelBoutons.add(tmp2);
 			}
 			panelBoutons.repaint();
 		});
@@ -173,11 +176,13 @@ public class EcranJeux extends JFrame{
 			boolean clicked = false;
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				controleur.colorerCasesAAttaquer(nom);
+				panelBoutons.getAttaqueInfos(nom).setVisible(true);
 			}
 		
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				if(!clicked){
 					controleur.decolorerCasesAAttaquer();
+					panelBoutons.getAttaqueInfos(nom).setVisible(false);
 				}
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -338,6 +343,8 @@ public class EcranJeux extends JFrame{
         return panelBoutons;
     }
 
-
+	public void enleverAttaqueInfos(String attaque) {
+		panelBoutons.enleverAttaqueInfos(attaque);
+	}
 	
 }
