@@ -22,6 +22,7 @@ public class Pokemon implements Mouvement{
 	public Pokemon(String nom,int capaciteDeplacement, int pdv,int atk, String type, String chemin) {
 		this.nom = nom;
 		this.pdv = pdv;
+		this.crit = 10;
 		this.setAtk(atk);
 		this.setType(type);
 		cheminImage=chemin;
@@ -57,6 +58,10 @@ public class Pokemon implements Mouvement{
 		return this.type;
 	}
 
+	public int getCrit(){
+		return this.crit;
+	}
+	
 	public void setType(String type) {
 		if (type == "Eau"){
 			this.type = type;
