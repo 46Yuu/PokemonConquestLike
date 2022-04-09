@@ -22,21 +22,13 @@ public class StatsPokemon extends JPanel{
   private JLabel labelNomPokemon;
   private JLabel labelType;
   private JLabel labelAtk;
-<<<<<<< HEAD
-
-=======
->>>>>>> infosAttaque
   private boolean cible;
   private boolean cibleEnnemi;
   private BufferedImage cadreRouge;
   private BufferedImage cadreVert;
-<<<<<<< HEAD
   private int largeur=PanelJoueurs.largeurStats;
 
   
-=======
-
->>>>>>> infosAttaque
 
   public StatsPokemon(String nom,String t,int p,int a){
     try{
@@ -69,7 +61,6 @@ public class StatsPokemon extends JPanel{
     backgroundBarreDevie.setBackground(Color.BLACK);
     add(backgroundBarreDevie);
     barreDeVie=new JPanel();
-<<<<<<< HEAD
     largeurBDV=(largeur)/2-5;
     largeurPdvInitiale=largeurBDV;
     barreDeVie.setBounds(largeur/2,5,(int)largeurBDV,5);
@@ -79,45 +70,17 @@ public class StatsPokemon extends JPanel{
     labelPdv=new JLabel(pdv+"/"+pdvTotal);
     add(labelPdv);
     labelPdv.setBounds(largeur/2,20,(largeur)/2-5,15);
-=======
-    barreDeVie.setBounds(90,4,(int)largeurBDV,5);
-    barreDeVie.setBackground(Color.GREEN);
-    add(barreDeVie);
-
-    labelNomPokemon=new JLabel(nomPokemon);
-    add(labelNomPokemon);
-    labelNomPokemon.setBounds(5,2,60,15);
-
-    labelHP=new JLabel("HP");
-    add(labelHP);
-    labelHP.setBounds(65,2,25,15);
-
-    labelPdv=new JLabel(pdv+"/"+pdvTotal);
-    add(labelPdv);
-    labelPdv.setBounds(95,20,80,15);
->>>>>>> infosAttaque
     labelPdv.setForeground(Color.WHITE);
 
     labelType=new JLabel(type);
     add(labelType);
-<<<<<<< HEAD
     labelType.setBounds(5,38,(largeur-10)/2,15);
-=======
-    labelType.setBounds(5,20,90,15);
->>>>>>> infosAttaque
     if(type.equals("Eau")){
       labelType.setForeground(Color.BLUE);
     }else if(type.equals("Electrique")){
       labelType.setForeground(Color.YELLOW);
     }
 
-<<<<<<< HEAD
-=======
-    labelAtk=new JLabel("ATK: "+atk);
-    add(labelAtk);
-    labelAtk.setBounds(5,38,50,15);
-    labelAtk.setForeground(Color.WHITE);
->>>>>>> infosAttaque
   }
 
   private String nomPokemon;
@@ -147,7 +110,6 @@ public class StatsPokemon extends JPanel{
   }
 
 
-<<<<<<< HEAD
   @Override
   protected void paintComponent(Graphics g) {
       int height=getSize().height;
@@ -171,35 +133,6 @@ public class StatsPokemon extends JPanel{
     else
       cibleEnnemi=afficherOuPas;
     repaint();
-=======
-  public void initialiserLargeurPdv(){
-    largeurBDV=85;
-    largeurPdvInitiale=largeurBDV;
-  }
-
-  public void cibleVisible(boolean afficherOuPas, boolean pokAllieOuEnnemi){
-    if(pokAllieOuEnnemi)
-      cible=afficherOuPas; 
-    else
-      cibleEnnemi=afficherOuPas;
-    repaint();
-  }
-
-  @Override
-  protected void paintComponent(Graphics g) {
-      int height=getSize().height;
-      int width=getSize().width;
-      largeurBDV=(largeurBDV*85)/largeurPdvInitiale;
-      if(barreDeVie!=null)
-        barreDeVie.setBounds(90,5,(int)largeurBDV,5);
-      if(backgroundBarreDevie!=null)
-        backgroundBarreDevie.setBounds(90,5,(int)(largeurPdvInitiale-largeurBDV),5);
-      super.paintComponent(g);
-      if(cible)
-        g.drawImage(cadreVert, 0, 0, width, height, this);
-      else if(cibleEnnemi)
-        g.drawImage(cadreRouge, 0, 0, width, height, this);
->>>>>>> infosAttaque
   }
 
 }
