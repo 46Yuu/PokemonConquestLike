@@ -221,7 +221,8 @@ public class Jeux {
         return pokemonCaseJoueur2;
     }
 
-    public void enleverKo(int x,int y){ 
+    public void enleverKo(int x,int y){
+        controleur.cibleInvisible(x, y);
         Case caseDepart;
         if(joueur1){
             caseDepart=pokemonCaseJoueur2.get(terrain.getPokemon(x, y));

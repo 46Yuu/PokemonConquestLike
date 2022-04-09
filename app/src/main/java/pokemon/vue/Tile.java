@@ -59,8 +59,17 @@ public class Tile extends JPanel{
 
     private Controleur controleur;
 
-    public Tile(String path, String pathSelect, String pathAttaque,int x, int y, Controleur controleur){
+    /**
+     * le tile se trouve dans l'ecran du joueur 1 ou joueur 2
+     */
+    private boolean joueur;
+
+    public Tile(String path, String pathSelect, String pathAttaque,int x, int y, Controleur controleur, String joueur){
         this.controleur=controleur;
+        if(joueur=="Joueur 1")
+            this.joueur=true;
+        else
+            this.joueur=false;
         try{
             image = ImageIO.read(new File(path));
             imageSelect=ImageIO.read(new File(pathSelect));
@@ -78,34 +87,36 @@ public class Tile extends JPanel{
     private class MouseDeplace implements MouseInputListener{
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(select && pokemonPresent && !controleur.deplacerPokemon){
-                controleur.deplacerPokemon=true;
-                controleur.deselectionnerAutresCases(x,y);
-                controleur.selectionnerCasePossibles(x,y);
-            }
-            //si on peut déplacer le pokémon et le tile est selectionné
-            else if(select && controleur.deplacerPokemon){
-                controleur.deplacerPokemon(x,y);
-                controleur.deplacerPokemon=false;
-                fleche=true;
-            }
-            else if(peutAttaquer){
-                controleur.attaquer(x,y); 
-                controleur.setVisibleBoutonRetour(false);
-                controleur.setVisibleBoutonFin(true);
+            if(controleur.getJoueurActuel()==joueur){
+                if(select && pokemonPresent && !controleur.deplacerPokemon){
+                    controleur.deplacerPokemon=true;
+                    controleur.deselectionnerAutresCases(x,y);
+                    controleur.selectionnerCasePossibles(x,y);
+                }
+                //si on peut déplacer le pokémon et le tile est selectionné
+                else if(select && controleur.deplacerPokemon){
+                    controleur.deplacerPokemon(x,y);
+                    controleur.deplacerPokemon=false;
+                    fleche=true;
+                }
+                else if(peutAttaquer){
+                    controleur.attaquer(x,y); 
+                    controleur.setVisibleBoutonRetour(false);
+                    controleur.setVisibleBoutonFin(true);
+                }
             }
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            if(pokemonPresent){
+            if(pokemonPresent && controleur.getJoueurActuel()==joueur){
                 controleur.cibleVisible(x, y);
             }
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            if(pokemonPresent){
+            if(pokemonPresent && controleur.getJoueurActuel()==joueur){
                 controleur.cibleInvisible(x, y);
             }
         }

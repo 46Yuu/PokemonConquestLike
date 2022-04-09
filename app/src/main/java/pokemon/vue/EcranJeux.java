@@ -25,6 +25,7 @@ public class EcranJeux extends JFrame{
 	private Controleur controleur;
 	public Tile[][] arrayTile;
 	private JButton buttonRecommencer;
+	private String joueur;
     
     public EcranJeux(Controleur c, JButton buttonRecommencer, String joueur){ 
 		//avoir la dimension de l'écran   
@@ -38,6 +39,8 @@ public class EcranJeux extends JFrame{
 			setLocation(0,0);
 		else
 			setLocation((int)(width/2+bounds.getX()), 0);
+
+		this.joueur=joueur;
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle(joueur);   
@@ -64,7 +67,7 @@ public class EcranJeux extends JFrame{
 				String path = controleur.getPathImageTile(i, j);
 				String pathSelect = controleur.getPathImageSelectTile(i, j);
 				String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
-				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur);
+				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur, joueur);
 				panelTerrain.add(tile);
 				arrayTile[i][j]=tile;
 			}
@@ -127,7 +130,7 @@ public class EcranJeux extends JFrame{
 				String path = controleur.getPathImageTile(i, j);
 				String pathSelect = controleur.getPathImageSelectTile(i, j);
 				String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
-				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur);
+				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur, joueur);
 				panelTerrain.add(tile);
 				arrayTile[i][j]=tile;
 			}
