@@ -240,7 +240,6 @@ public class Controleur {
     public void cibleInvisible(int x, int y) {
         Pokemon p=getPokeDansCase(x, y);
         vue.cibleInvisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));
-
     }
 
     public void setVisibleBoutonRetour(boolean b) {
@@ -250,4 +249,9 @@ public class Controleur {
     public void setVisibleBoutonFin(boolean b) {
         vue.setVisibleBoutonFin(b, jeux.getJoueurActuel());
     }
+
+    public void enleverAttaqueInfos(String attaque, boolean joueur1){
+        vue.enleverAttaqueInfos(attaque,joueur1);
+    }
 }
+

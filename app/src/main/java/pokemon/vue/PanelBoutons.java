@@ -1,8 +1,11 @@
 package pokemon.vue;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pokemon.controleur.Controleur;
+import pokemon.modele.attaque.*;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
@@ -14,6 +17,7 @@ public class PanelBoutons extends JPanel{
   private JButton boutonRetour = new JButton("Retour");
   private JButton buttonRecommencer;
   private Map<String,JButton> listeBoutonsAttaques = new TreeMap<String,JButton>();
+  private Map<String,JPanel> listeInfosAttaques = new TreeMap<String,JPanel>();
   private Controleur controleur;
   private PanelFinPartie panelFinPartie;
   
@@ -38,19 +42,79 @@ public class PanelBoutons extends JPanel{
       }
       controleur.decolorerCasesAAttaquer();
 		});
+
   }
 
   public void addListeBouton(String nom){
     if (!this.listeBoutonsAttaques.containsKey(nom)){
       this.listeBoutonsAttaques.put(nom,new JButton(nom));
     }
+    
   }
+
+  public void addAttaqueInfos(String nom,Attaque atk){
+    if (!this.listeInfosAttaques.containsKey(nom)){
+      JPanel infosAttaque =new JPanel();
+      infosAttaque.setBackground(Color.DARK_GRAY);
+      infosAttaque.setBounds(0,300,200,80);
+      add(infosAttaque);
+      infosAttaque.setLayout(null);
+      infosAttaque.setVisible(false);
+
+      JLabel labelNomAttaque=new JLabel(nom);
+      infosAttaque.add(labelNomAttaque);
+      labelNomAttaque.setBounds(5,5,100,15);
+      labelNomAttaque.setForeground(Color.WHITE);
+
+      addLabelType(atk,infosAttaque);
+
+
+      this.listeInfosAttaques.put(nom,infosAttaque);
+    }
+  }
+
+  public void addLabelType(Attaque atk,JPanel infosAttaque){
+    if(atk instanceof AttaqueElectrique){
+      JLabel labelType=new JLabel("Type : Electrique");
+      infosAttaque.add(labelType);
+      labelType.setBounds(5,30,200,15);
+      labelType.setForeground(Color.WHITE);
+    }
+
+    if(atk instanceof AttaqueCombat){
+      JLabel labelType=new JLabel("Type : Combat");
+      infosAttaque.add(labelType);
+      labelType.setBounds(5,30,200,15);
+      labelType.setForeground(Color.WHITE);
+    }
+
+    if(atk instanceof AttaqueNormal){
+      JLabel labelType=new JLabel("Type : Normal");
+      infosAttaque.add(labelType);
+      labelType.setBounds(5,30,200,15);
+      labelType.setForeground(Color.WHITE);
+    }
+
+    JLabel range=new JLabel("Range : "+atk.getDistanceMaxAttaque());
+      infosAttaque.add(range);
+      range.setBounds(5,55,200,15);
+      range.setForeground(Color.WHITE);
+  }
+
   public JButton getBoutonDeListe(String nom){
     if(listeBoutonsAttaques.containsKey(nom)){
 			return listeBoutonsAttaques.get(nom);
 		}
     return null;
   }
+
+  public JPanel getAttaqueInfos(String nom){
+    if(listeInfosAttaques.containsKey(nom)){
+			return listeInfosAttaques.get(nom);
+		}
+    return null;
+  }
+
 
   public Map<String,JButton> getListeBoutonAttaque(){
     return this.listeBoutonsAttaques;
@@ -97,4 +161,8 @@ public class PanelBoutons extends JPanel{
     add(panelFinPartie);
   }
 
+  public void enleverAttaqueInfos(String a) {
+		listeInfosAttaques.get(a).setVisible(false);
+	}
+  
 }
