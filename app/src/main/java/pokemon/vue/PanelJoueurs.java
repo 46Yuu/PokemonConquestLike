@@ -93,6 +93,7 @@ public class PanelJoueurs extends JPanel{
 		if(jScrollPaneJ1!=null && jScrollPaneJ2!=null){
 			jScrollPaneJ1.setBounds(0,20,width/2,height-20);
 			jScrollPaneJ2.setBounds(width/2,20,width/2,height-20);
+			revalidate();
 		}
 		if(j1!=null && j2!=null){
 			j1.setBounds(0,0,largeurStats,15);
