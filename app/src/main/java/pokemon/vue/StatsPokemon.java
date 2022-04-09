@@ -60,7 +60,6 @@ public class StatsPokemon extends JPanel{
     labelAtk.setBounds(5,20,(largeur)/2-5,15);
     labelAtk.setForeground(Color.WHITE);
 
-
     backgroundBarreDevie=new JPanel();
     backgroundBarreDevie.setBackground(Color.BLACK);
     add(backgroundBarreDevie);
