@@ -127,6 +127,8 @@ public class PanelJoueurs extends JPanel{
 				s.setBounds(0, i*(55+10)+25, largeurStats, 55);
 				i++;
 			}
+			panelJ1.repaint();
+			panelJ2.repaint();
 		}
 
     }
