@@ -223,7 +223,7 @@ public class Controleur {
     public boolean getJoueurActuel(){
         return jeux.getJoueurActuel();
     }
-
+/*
     public void waitThreadJ1() {
         vue.waitThreadJ1();
     }
@@ -231,7 +231,7 @@ public class Controleur {
     public void waitThreadJ2() {
         vue.waitThreadJ2();
     }
-
+*/
     public void cibleVisible(int x, int y) {
         Pokemon p=getPokeDansCase(x, y);
         vue.cibleVisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));

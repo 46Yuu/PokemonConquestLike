@@ -147,7 +147,7 @@ public class Vue extends JFrame{
 		else
 			ecranJeuxJ2.cibleInvisible(pokeDansCase, joueur1==pokAJoueur1);
     }
-
+	/*
 	public void waitThreadJ1(){
 		try{
 			ecranJeuxJ1.wait();
@@ -165,6 +165,7 @@ public class Vue extends JFrame{
 			System.out.println("probleme thread");
 		}
 	}
+	*/
 
 	public void setVisibleBoutonRetour(boolean b, boolean joueur1) {
 		getPanelBoutons(joueur1).getBoutonRetour().setVisible(b);

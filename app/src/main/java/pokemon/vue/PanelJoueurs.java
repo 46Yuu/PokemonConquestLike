@@ -12,6 +12,8 @@ import pokemon.modele.terrain.Case;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.*;
+
 
 public class PanelJoueurs extends JPanel{
 
@@ -84,7 +86,8 @@ public class PanelJoueurs extends JPanel{
     }
 
     @Override
-    public void repaint(){
+    protected void paintComponent(Graphics g){
+		super.paintComponent(g);
         int height=getSize().height;
         int width=getSize().width;
 		if(jScrollPaneJ1!=null && jScrollPaneJ2!=null){
@@ -127,8 +130,6 @@ public class PanelJoueurs extends JPanel{
 				s.setBounds(0, i*(55+10)+25, largeurStats, 55);
 				i++;
 			}
-			panelJ1.repaint();
-			panelJ2.repaint();
 		}
 
     }

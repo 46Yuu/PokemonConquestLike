@@ -21,7 +21,6 @@ public class StatsPokemon extends JPanel{
   private double largeurBDV;
   private JLabel labelPdv;
   private JLabel labelNomPokemon;
-  private JLabel labelHP;
   private JLabel labelType;
   private JLabel labelAtk;
 
