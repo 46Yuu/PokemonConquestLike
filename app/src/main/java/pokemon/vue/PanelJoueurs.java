@@ -6,13 +6,10 @@ import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -42,7 +39,6 @@ public class PanelJoueurs extends JPanel{
 		panelJ1.add(j1);
 		for(Pokemon p: pokemonsJ1.keySet()){
 			StatsPokemon tmp=new StatsPokemon(p.getNom(),p.getType(),p.getPdv(),p.getAtk());
-			tmp.initialiserLargeurPdv();
 			panelJ1.add(tmp);
 			statsPokemonsJ1.put(p,tmp);
 		}
@@ -52,11 +48,24 @@ public class PanelJoueurs extends JPanel{
 	    panelJ2.add(j2);
 		for(Pokemon p: pokemonsJ2.keySet()){
 			StatsPokemon tmp=new StatsPokemon(p.getNom(),p.getType(),p.getPdv(),p.getAtk());
-			tmp.initialiserLargeurPdv();
 			panelJ2.add(tmp);
 			statsPokemonsJ2.put(p,tmp);
 		}
     }
+
+	public void cibleVisible(Pokemon p, boolean b, boolean pokAllieOuEnnemi) {
+		if(getStatsPokemons(true).containsKey(p)){
+			getStatsPokemons(true).get(p).cibleVisible(b, pokAllieOuEnnemi);
+			StatsPokemon s=getStatsPokemons(true).get(p);
+			jScrollPaneJ1.getVerticalScrollBar().setValue((getSize().height*s.getBounds().y)/panelJ1.getSize().height);
+		}
+		else if(getStatsPokemons(false).containsKey(p)){
+			getStatsPokemons(false).get(p).cibleVisible(b, pokAllieOuEnnemi);
+			StatsPokemon s=getStatsPokemons(false).get(p);
+			jScrollPaneJ2.getVerticalScrollBar().setValue((getSize().height*s.getBounds().y)/panelJ2.getSize().height);
+		}
+	}
+
 
     public Map<Pokemon, StatsPokemon> getStatsPokemons(boolean joueur1) {
 		if(!joueur1)

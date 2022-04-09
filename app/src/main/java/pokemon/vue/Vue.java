@@ -132,18 +132,18 @@ public class Vue extends JFrame{
 		return ecranJeuxJ2.getPanelBoutons();
 	}
 
-	public void cibleVisible(Pokemon pokeDansCase, boolean joueur1) {
+	public void cibleVisible(Pokemon pokeDansCase, boolean joueur1, boolean pokAJoueur1) {
 		if(joueur1)
-			ecranJeuxJ1.cibleVisible(pokeDansCase);
+			ecranJeuxJ1.cibleVisible(pokeDansCase, joueur1==pokAJoueur1);
 		else
-			ecranJeuxJ2.cibleVisible(pokeDansCase);
+		ecranJeuxJ2.cibleVisible(pokeDansCase, joueur1==pokAJoueur1);
 	}
 
-    public void cibleInvisible(Pokemon pokeDansCase, boolean joueur1) {
+    public void cibleInvisible(Pokemon pokeDansCase, boolean joueur1, boolean pokAJoueur1) {
 		if(joueur1)
-			ecranJeuxJ1.cibleInvisible(pokeDansCase);
+			ecranJeuxJ1.cibleInvisible(pokeDansCase, joueur1==pokAJoueur1);
 		else
-			ecranJeuxJ2.cibleInvisible(pokeDansCase);
+			ecranJeuxJ2.cibleInvisible(pokeDansCase, joueur1==pokAJoueur1);
     }
 
 	public void waitThreadJ1(){

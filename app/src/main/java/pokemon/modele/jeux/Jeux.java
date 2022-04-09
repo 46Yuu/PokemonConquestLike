@@ -260,4 +260,8 @@ public class Jeux {
         return joueur1;
     }
 
+    public boolean appartienAJoueur1(Pokemon p) {
+        return pokemonCaseJoueur1.keySet().contains(p);
+    }
+
 }

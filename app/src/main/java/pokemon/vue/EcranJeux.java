@@ -318,19 +318,13 @@ public class EcranJeux extends JFrame{
         panelBoutons.setBackground(Color.white);
 	}
 	
-	public void cibleVisible(Pokemon p){
-		if(panelJoueurs.getStatsPokemons(true).containsKey(p))
-			panelJoueurs.getStatsPokemons(true).get(p).cibleVisible(true);
-		else if(panelJoueurs.getStatsPokemons(false).containsKey(p))
-			panelJoueurs.getStatsPokemons(false).get(p).cibleVisible(true);
+	public void cibleVisible(Pokemon p, boolean pokAllieOuEnnemi){
+		panelJoueurs.cibleVisible(p,true,pokAllieOuEnnemi);
 
 	}
 
-	public void cibleInvisible(Pokemon p){
-		if(panelJoueurs.getStatsPokemons(true).containsKey(p))
-			panelJoueurs.getStatsPokemons(true).get(p).cibleVisible(false);
-		else if(panelJoueurs.getStatsPokemons(false).containsKey(p))
-			panelJoueurs.getStatsPokemons(false).get(p).cibleVisible(false);
+	public void cibleInvisible(Pokemon p, boolean pokAllieOuEnnemi){
+		panelJoueurs.cibleVisible(p,false,pokAllieOuEnnemi);
 	}
 
 
