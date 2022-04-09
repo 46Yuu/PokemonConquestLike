@@ -29,6 +29,7 @@ public class StatsPokemon extends JPanel{
   private boolean cibleEnnemi;
   private BufferedImage cadreRouge;
   private BufferedImage cadreVert;
+  private int largeur=PanelJoueurs.largeurStats;
 
   
 
@@ -40,51 +41,50 @@ public class StatsPokemon extends JPanel{
 			System.out.println("erreur lecture photo cadre");
 		}
 
-
     nomPokemon=nom;
     type=t;
     pdvTotal=p;
     pdv=p;
     atk=a;
 
-
     setLayout(null);
     setBackground(Color.GRAY);
+
+
+    labelNomPokemon=new JLabel(nomPokemon);
+    add(labelNomPokemon);
+    labelNomPokemon.setBounds(5,2,(largeur/2)-5,15);
+
+    labelAtk=new JLabel("ATK: "+atk);
+    add(labelAtk);
+    labelAtk.setBounds(5,20,(largeur)/2-5,15);
+    labelAtk.setForeground(Color.WHITE);
+
 
     backgroundBarreDevie=new JPanel();
     backgroundBarreDevie.setBackground(Color.BLACK);
     add(backgroundBarreDevie);
     barreDeVie=new JPanel();
-    barreDeVie.setBounds(80,5,(int)largeurBDV,5);
+    largeurBDV=(largeur)/2-5;
+    largeurPdvInitiale=largeurBDV;
+    barreDeVie.setBounds(largeur/2,5,(int)largeurBDV,5);
     barreDeVie.setBackground(Color.GREEN);
     add(barreDeVie);
 
-    labelNomPokemon=new JLabel(nomPokemon);
-    add(labelNomPokemon);
-    labelNomPokemon.setBounds(5,2,50,10);
-
-    labelHP=new JLabel("HP");
-    add(labelHP);
-    labelHP.setBounds(60,2,50,10);
-
     labelPdv=new JLabel(pdv+"/"+pdvTotal);
     add(labelPdv);
-    labelPdv.setBounds(130,12,50,10);
+    labelPdv.setBounds(largeur/2,20,(largeur)/2-5,15);
     labelPdv.setForeground(Color.WHITE);
 
     labelType=new JLabel(type);
     add(labelType);
-    labelType.setBounds(5,15,90,15);
+    labelType.setBounds(5,38,(largeur-10)/2,15);
     if(type.equals("Eau")){
       labelType.setForeground(Color.BLUE);
     }else if(type.equals("Electrique")){
       labelType.setForeground(Color.YELLOW);
     }
 
-    labelAtk=new JLabel("ATK: "+atk);
-    add(labelAtk);
-    labelAtk.setBounds(5,30,50,15);
-    labelAtk.setForeground(Color.WHITE);
   }
 
   private String nomPokemon;
@@ -101,8 +101,8 @@ public class StatsPokemon extends JPanel{
       pdv=0;//pour ne pas avoir de valeurs négatives
     }
     largeurBDV=(largeurPdvInitiale*pdv)/pdvTotal;
-    barreDeVie.setBounds(getSize().width/2,(2*((getSize().height/4)))/4,(int)largeurBDV,5);
-    backgroundBarreDevie.setBounds((int)(getSize().getWidth()/2+largeurBDV),(2*((getSize().height/4)))/4,(int)(largeurPdvInitiale-largeurBDV),5);
+    barreDeVie.setBounds(largeur/2,5,(int)largeurBDV,5);
+    backgroundBarreDevie.setBounds(largeur/2+(int)largeurBDV,5,(int)(largeurPdvInitiale-largeurBDV),5);
     if(largeurBDV<=0){
       barreDeVie.setSize((int)largeurPdvInitiale,5);
       barreDeVie.setBackground(Color.black);
@@ -114,20 +114,15 @@ public class StatsPokemon extends JPanel{
   }
 
 
-  public void initialiserLargeurPdv(){
-    largeurBDV=(getSize().width/2)-5;
-    largeurPdvInitiale=largeurBDV;
-  }
-
   @Override
   protected void paintComponent(Graphics g) {
       int height=getSize().height;
       int width=getSize().width;
-      largeurBDV=(largeurBDV*85)/largeurPdvInitiale;
+      largeurBDV=(largeurBDV*((largeur/2)-5))/largeurPdvInitiale;
       if(barreDeVie!=null)
-        barreDeVie.setBounds(90,5,(int)largeurBDV,5);
+        barreDeVie.setBounds(largeur/2,5,(int)largeurBDV,5);
       if(backgroundBarreDevie!=null)
-        backgroundBarreDevie.setBounds(90,5,(int)(largeurPdvInitiale-largeurBDV),5);
+        backgroundBarreDevie.setBounds(largeur/2+(int)largeurBDV,5,(int)(largeurPdvInitiale-largeurBDV),5);
       super.paintComponent(g);
       if(cible)
         g.drawImage(cadreVert, 0, 0, width, height, this);
