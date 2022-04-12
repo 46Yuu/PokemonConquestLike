@@ -81,7 +81,27 @@ public class Pokemon implements Mouvement{
 		else if (type  == "Vol"){
 			this.type = type;
 		}
+		else if (type  == "Poison"){
+			this.type = type;
+		}
 		else if (type  == "Combat"){
+			this.type = type;
+		}
+		else if (type  == "Psy"){
+			this.type = type;
+		}
+		else if (type  == "Tenebres"){
+			this.type = type;
+		}
+		else if (type  == "Insecte"){
+			this.type = type;
+		}
+		else if (type  == "Dragon"){
+			this.type = type;
+		}
+		else if (type  == "Roche"){
+			this.type = type;
+		}else if (type  == "Glace"){
 			this.type = type;
 		}
 	}
@@ -111,6 +131,27 @@ public class Pokemon implements Mouvement{
 		}
 		else if (type == "Combat"){
 			this.listeAttaques.put(nom, new AttaqueCombat());
+		}
+		else if (type == "Psy"){
+			this.listeAttaques.put(nom, new AttaquePsy());
+		}
+		else if (type == "Tenebres"){
+			this.listeAttaques.put(nom, new AttaqueTenebres());
+		}
+		else if (type == "Insecte"){
+			this.listeAttaques.put(nom, new AttaqueInsecte());
+		}
+		else if (type == "Dragon"){
+			this.listeAttaques.put(nom, new AttaqueDragon());
+		}
+		else if (type == "Roche"){
+			this.listeAttaques.put(nom, new AttaqueRoche());
+		}
+		else if (type == "Glace"){
+			this.listeAttaques.put(nom, new AttaqueGlace());
+		}
+		else if (type == "Poison"){
+			this.listeAttaques.put(nom, new AttaquePoison());
 		}
 	}
 
