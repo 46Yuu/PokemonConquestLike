@@ -6,6 +6,7 @@ import pokemon.modele.jeux.Jeux;
 import pokemon.modele.pokemon.Evoli;
 import pokemon.modele.pokemon.Pikachu;
 import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.pokemon.Salameche;
 import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
@@ -25,7 +26,8 @@ public class Controleur {
         this.vue=vue;
         HashMap<Pokemon,Case> pokemonsJ1=new HashMap<>();
         HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
-		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
+
+		pokemonsJ1.put(new Salameche(10, 2, "Feu"),null);
 		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
         pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
 		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
