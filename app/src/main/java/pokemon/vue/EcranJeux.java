@@ -26,6 +26,8 @@ public class EcranJeux extends JFrame{
 	public Tile[][] arrayTile;
 	private JButton buttonRecommencer;
 	private String joueur;
+	private int xPrec;
+    private int yPrec;
     
     public EcranJeux(Controleur c, JButton buttonRecommencer, String joueur){ 
 		//avoir la dimension de l'écran   
@@ -77,6 +79,7 @@ public class EcranJeux extends JFrame{
 			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonAnnulerD().setVisible(false);
 			panelBoutons.getBoutonRetour().setVisible(true);
 			panelBoutons.getListeBoutonAttaque().clear();
 			for(String nom : listeAttaques.keySet()){
@@ -102,9 +105,17 @@ public class EcranJeux extends JFrame{
 			enleverFleche(x, y);
 			panelBoutons.getBoutonFin().setVisible(false);
 			panelBoutons.getBoutonAttaque().setVisible(false);
+			panelBoutons.getBoutonAnnulerD().setVisible(false);
 			controleur.getJeux().selectPokemon();
 		});
 		
+		panelBoutons.getBoutonAnnulerD().addActionListener(event ->{
+			int x=controleur.getCoordonneesPokemonActuel().getFirst();
+			int y=controleur.getCoordonneesPokemonActuel().getSecond();
+			deselectTile(x, y);
+			enleverFleche(x, y);
+		});
+
 		this.buttonRecommencer=buttonRecommencer;
 	}
 
@@ -143,6 +154,7 @@ public class EcranJeux extends JFrame{
 			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
 			panelBoutons.getBoutonAttaque().setVisible(false);
 			panelBoutons.getBoutonFin().setVisible(false);
+			panelBoutons.getBoutonAnnulerD().setVisible(false);
 			panelBoutons.getBoutonRetour().setVisible(true);
 			panelBoutons.getListeBoutonAttaque().clear();
 			for(String nom : listeAttaques.keySet()){
@@ -303,6 +315,7 @@ public class EcranJeux extends JFrame{
 	public void showBoutons(){
 		this.panelBoutons.getBoutonFin().setVisible(true);
 		this.panelBoutons.getBoutonAttaque().setVisible(true);
+		this.panelBoutons.getBoutonAnnulerD().setVisible(true);
 	}
 
 	/**
@@ -344,5 +357,20 @@ public class EcranJeux extends JFrame{
 	public void enleverAttaqueInfos(String attaque) {
 		panelBoutons.enleverAttaqueInfos(attaque);
 	}
-	
+
+	public void setXPrec(int x){
+		this.xPrec=x;
+	}
+
+	public void setYPrec(int y){
+		this.yPrec=y;
+	}
+
+	public int getXPrec(){
+		return this.xPrec;
+	}
+
+	public int getYPrec(){
+		return this.yPrec;
+	}
 }

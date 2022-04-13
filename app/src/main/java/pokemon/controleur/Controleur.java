@@ -3,9 +3,21 @@ import java.util.*;
 
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.jeux.Jeux;
+import pokemon.modele.pokemon.Abo;
+import pokemon.modele.pokemon.Abra;
+import pokemon.modele.pokemon.Absol;
+import pokemon.modele.pokemon.Bulbizarre;
+import pokemon.modele.pokemon.Carapuce;
+import pokemon.modele.pokemon.Chenipan;
 import pokemon.modele.pokemon.Evoli;
+import pokemon.modele.pokemon.Minidraco;
+import pokemon.modele.pokemon.Nodulithe;
+import pokemon.modele.pokemon.Oniglali;
 import pokemon.modele.pokemon.Pikachu;
 import pokemon.modele.pokemon.Pokemon;
+import pokemon.modele.pokemon.Riolu;
+import pokemon.modele.pokemon.Salameche;
+import pokemon.modele.pokemon.Smogo;
 import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
@@ -25,16 +37,36 @@ public class Controleur {
         this.vue=vue;
         HashMap<Pokemon,Case> pokemonsJ1=new HashMap<>();
         HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
-		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-        pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-        pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-        pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-		pokemonsJ1.put(new Evoli(10, 2, "Eau"),null);
-		pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
-		pokemonsJ2.put(new Pikachu(10, 2, "Electrique"),null);
+
+        LinkedList<Pokemon> listePokemons=new LinkedList<>();
+
+        listePokemons.add(new Salameche(10, 2, "Feu"));
+        listePokemons.add(new Evoli(10, 2, "Normal"));
+        listePokemons.add(new Abo(10, 2, "Poison"));
+        listePokemons.add(new Abra(10, 2, "Psy"));
+        listePokemons.add(new Absol(10, 2, "Tenebres"));
+        listePokemons.add(new Bulbizarre(10, 2, "Plante"));
+        listePokemons.add(new Carapuce(10, 2, "Eau"));
+        listePokemons.add(new Chenipan(10, 2, "Insecte"));
+        listePokemons.add(new Minidraco(10, 2, "Dragon"));
+        listePokemons.add(new Nodulithe(10, 2, "Roche"));
+        listePokemons.add(new Oniglali(10, 2, "Glace"));
+        listePokemons.add(new Riolu(10, 2, "Combat"));
+        listePokemons.add(new Smogo(10, 2, "Poison"));
+        listePokemons.add(new Pikachu(10, 2, "Electrique"));
+        
+        Random rand=new Random();
+		pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ1.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+		pokemonsJ2.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        pokemonsJ2.put(listePokemons.get(rand.nextInt(listePokemons.size())),null);
+        
 		terrain=new Terrain(10,8);
 		jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);
 		jeux.setControleur(this);
@@ -263,5 +295,17 @@ public class Controleur {
     public void enleverPokemon(int x, int y) {
         vue.enleverPokemon(x, y);
     }
+    public void annulerD(){
+        jeux.annulerDeplacement(vue.getXPrec(jeux.getJoueurActuel()),vue.getYPrec(jeux.getJoueurActuel()));
+    }
+
+    public void setXPrec(int x){
+        vue.setXPrec(x,jeux.getJoueurActuel());
+    }
+
+    public void setYPrec(int y){
+        vue.setYPrec(y,jeux.getJoueurActuel());
+    }
+
 }
 

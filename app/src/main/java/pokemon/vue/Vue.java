@@ -182,4 +182,32 @@ public class Vue extends JFrame{
 		else
 			ecranJeuxJ2.enleverAttaqueInfos(attaque);
     }
+
+	public int getXPrec(boolean joueur1){
+		if(joueur1)
+			return ecranJeuxJ1.getXPrec();
+		else
+			return ecranJeuxJ2.getXPrec();
+	}
+
+	public int getYPrec(boolean joueur1){
+		if(joueur1)
+			return ecranJeuxJ1.getYPrec();
+		else
+			return ecranJeuxJ2.getYPrec();
+	}
+
+	public void setXPrec(int x,boolean joueur1){
+		if(joueur1)
+			ecranJeuxJ1.setXPrec(x);
+		else
+			ecranJeuxJ2.setXPrec(x);
+	}
+
+	public void setYPrec(int y,boolean joueur1){
+		if(joueur1)
+			ecranJeuxJ1.setYPrec(y);
+		else
+			ecranJeuxJ2.setYPrec(y);
+	}
 }

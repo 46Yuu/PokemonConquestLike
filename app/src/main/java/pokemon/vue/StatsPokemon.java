@@ -2,6 +2,8 @@ package pokemon.vue;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.plaf.ColorUIResource;
+
 import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
@@ -107,9 +109,39 @@ public class StatsPokemon extends JPanel{
     add(labelType);
     labelType.setBounds(5,38,(largeur-10)/2,15);
     if(type.equals("Eau")){
-      labelType.setForeground(Color.BLUE);
+      labelType.setForeground(new ColorUIResource(99, 144, 240));
     }else if(type.equals("Electrique")){
-      labelType.setForeground(Color.YELLOW);
+      labelType.setForeground(new ColorUIResource(247, 208, 44));
+    }else if(type.equals("Feu")){
+      labelType.setForeground(new ColorUIResource(238, 129, 48));
+    }else if(type.equals("Poison")){
+      labelType.setForeground(new ColorUIResource(163, 62, 161));
+    }else if(type.equals("Psy")){
+      labelType.setForeground(new ColorUIResource(249, 85, 135));
+    }else if(type.equals("Tenebres")){
+      labelType.setForeground(new ColorUIResource(112, 87, 70));
+    }else if(type.equals("Plante")){
+      labelType.setForeground(new ColorUIResource(122, 199, 76));
+    }else if(type.equals("Insecte")){
+      labelType.setForeground(new ColorUIResource(166, 185, 26));
+    }else if(type.equals("Dragon")){
+      labelType.setForeground(new ColorUIResource(111, 53, 252));
+    }else if(type.equals("Glace")){
+      labelType.setForeground(new ColorUIResource(150, 217, 214));
+    }else if(type.equals("Normal")){
+      labelType.setForeground(new ColorUIResource(168, 167, 122));
+    }else if(type.equals("Combat")){
+      labelType.setForeground(new ColorUIResource(194, 46, 40));
+    }else if(type.equals("Spectre")){
+      labelType.setForeground(new ColorUIResource(115, 87, 151));
+    }else if(type.equals("Acier")){
+      labelType.setForeground(new ColorUIResource(183, 183, 206));
+    }else if(type.equals("Fee")){
+      labelType.setForeground(new ColorUIResource(214, 133, 173));
+    }else if(type.equals("Vol")){
+      labelType.setForeground(new ColorUIResource(169, 143, 243));
+    }else if(type.equals("Sol")){
+      labelType.setForeground(new ColorUIResource(226, 191, 101));
     }
 
   }
