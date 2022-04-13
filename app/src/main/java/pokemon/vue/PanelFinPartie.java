@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.awt.*;
 
 public class PanelFinPartie extends JPanel{
+    /**
+     * l'image à afficher quand la partie est terminée
+     */
     private BufferedImage imageFinPartie;
     
     public PanelFinPartie(BufferedImage imageFinPartie){

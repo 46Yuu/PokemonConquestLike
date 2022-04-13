@@ -12,10 +12,10 @@ import pokemon.modele.terrain.Terrain;
 import pokemon.vue.Vue;
 
 public class Controleur {
-    public boolean deplacerPokemon;
-    public Terrain terrain;
-    public Vue vue;
-    public Jeux jeux;
+    private boolean deplacerPokemon;
+    private Terrain terrain;
+    private Vue vue;
+    private Jeux jeux;
     /**
      * dernières cases sélectionnées 
      */
@@ -55,12 +55,13 @@ public class Controleur {
     }
 
     /**
-     * affiche le joueur 
-     * @param joueur
+     * met à jour le joueur actuel dans vue
+     * @param joueur le joueur actuel
      */
     public void miseAJourInformations(String joueur) {
         vue.miseAJourInformations(joueur);
     }
+
 
     public void miseAJourInfosPokemons(Pokemon p, boolean joueur1){
         vue.miseAJourInfosPokemons(p, joueur1);
@@ -173,10 +174,6 @@ public class Controleur {
         vue.showBoutons(joueur1);
     }
 
-    //public void attaque(String nom,){
-    //    Pokemon p = jeux.getPokemonActuel();
-    //}
-
     public void selectTiles(HashSet<Pair> tiles, boolean joueur1){
         vue.selectTiles(tiles, joueur1);
     }
@@ -223,15 +220,7 @@ public class Controleur {
     public boolean getJoueurActuel(){
         return jeux.getJoueurActuel();
     }
-/*
-    public void waitThreadJ1() {
-        vue.waitThreadJ1();
-    }
 
-    public void waitThreadJ2() {
-        vue.waitThreadJ2();
-    }
-*/
     public void cibleVisible(int x, int y) {
         Pokemon p=getPokeDansCase(x, y);
         vue.cibleVisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));
@@ -252,6 +241,27 @@ public class Controleur {
 
     public void enleverAttaqueInfos(String attaque, boolean joueur1){
         vue.enleverAttaqueInfos(attaque,joueur1);
+    }
+
+    public Map<Pokemon, Case> getPokemonCaseJoueur1() {
+        return jeux.getPokemonCaseJoueur1();
+    }
+
+    public Map<Pokemon, Case> getPokemonCaseJoueur2() {
+        return jeux.getPokemonCaseJoueur2();
+    }
+
+
+    public boolean getDeplacerPokemon() {
+        return deplacerPokemon;
+    }
+
+    public void setDeplacerPokemon(boolean b) {
+        deplacerPokemon=b;
+    }
+
+    public void enleverPokemon(int x, int y) {
+        vue.enleverPokemon(x, y);
     }
 }
 

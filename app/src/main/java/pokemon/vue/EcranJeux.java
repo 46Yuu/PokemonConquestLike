@@ -306,8 +306,9 @@ public class EcranJeux extends JFrame{
 	}
 
 	/**
-	 * affiche le jouuer gagnant à la place du panel des boutons
-	 * @param JoueurGagnat joueur 1 ou joueur 2
+	 * affiche winner sur le panelBoutons de la fenêtre du joueur gagnat ainsi que le bouton recommencer;
+	 * et loser sur le panelBoutons de la fenêtre du joueur perdant ainsi que le bouton recommencer
+	 * @param joueurGagnant le joueur gagnant, true pour joueur 1 ; false pour joueur 2
 	 */
 	public void afficherFinPartie(boolean joueurGagnant){
 		panelBoutons.removeAll();
@@ -322,7 +323,7 @@ public class EcranJeux extends JFrame{
 			System.out.println("impossible d'ouvrir l'image de fin de partie");
 		}
 		panelBoutons.add(buttonRecommencer);
-		buttonRecommencer.setBounds(0,height/6,width,height/6);
+		buttonRecommencer.setBounds(0,5*height/6,width,height/6);
         panelBoutons.setBackground(Color.white);
 	}
 	

@@ -237,7 +237,7 @@ public class Jeux {
             pokemonCaseJoueur1.remove(terrain.getPokemon(x, y)); 
             caseDepart.setPokemon(null);
         }
-        controleur.vue.enleverPokemon(x, y);
+        controleur.enleverPokemon(x, y);
     }
 
     public boolean pokemonKo(int x,int y){

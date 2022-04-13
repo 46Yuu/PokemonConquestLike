@@ -87,17 +87,17 @@ public class Tile extends JPanel{
     private class MouseDeplace implements MouseInputListener{
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(controleur.getJoueurActuel()==joueur){
-                if(select && pokemonPresent && !controleur.deplacerPokemon){
-                    controleur.deplacerPokemon=true;
+            if(controleur.getJoueurActuel()==joueur){//si c'est la fenêtre du joueur auquel c'est le tour
+                if(select && pokemonPresent && !controleur.getDeplacerPokemon()){
+                    controleur.setDeplacerPokemon(true);
                     controleur.deselectionnerAutresCases(x,y);
                     controleur.selectionnerCasePossibles(x,y);
                 }
                 //si on peut déplacer le pokémon et le tile est selectionné
-                else if(select && controleur.deplacerPokemon){
+                else if(select && controleur.getDeplacerPokemon()){
                     controleur.deplacerPokemon(x,y);
-                    controleur.deplacerPokemon=false;
-                    fleche=true;
+                    controleur.setDeplacerPokemon(false);
+                    fleche=true;//on dessine la flèche sur le pokémon qui attaque
                 }
                 else if(peutAttaquer){
                     controleur.attaquer(x,y); 
@@ -109,14 +109,14 @@ public class Tile extends JPanel{
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            if(pokemonPresent && controleur.getJoueurActuel()==joueur){
+            if(pokemonPresent && controleur.getJoueurActuel()==joueur){//si c'est la fenêtre du joueur auquel c'est le tour
                 controleur.cibleVisible(x, y);
             }
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            if(pokemonPresent && controleur.getJoueurActuel()==joueur){
+            if(pokemonPresent && controleur.getJoueurActuel()==joueur){//si c'est la fenêtre du joueur auquel c'est le tour
                 controleur.cibleInvisible(x, y);
             }
         }
@@ -222,6 +222,9 @@ public class Tile extends JPanel{
         repaint();
     }
 
+    /**
+     * enlève la flèche dessiné sur le pokémon
+     */
     public void enleverFleche() {
         fleche=false;
         repaint();
