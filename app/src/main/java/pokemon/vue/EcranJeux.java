@@ -119,6 +119,10 @@ public class EcranJeux extends JFrame{
 		this.buttonRecommencer=buttonRecommencer;
 	}
 
+	/**
+	 * réinitialise le plateau de jeux
+	 * @param c le nouveau controleur
+	 */
 	public void initialiser(Controleur c) {
 		controleur=c;
 		panelInfos.removeAll();
@@ -182,6 +186,11 @@ public class EcranJeux extends JFrame{
 		revalidate();
 	}
 
+	/**
+	 * enlève la flèche su le tile de coordonnées x,y
+	 * @param x coordonnée x du tile
+	 * @param y coordonnée y du tile
+	 */
     private void enleverFleche(int x, int y) {
 		arrayTile[x][y].enleverFleche();
 	}
@@ -267,17 +276,38 @@ public class EcranJeux extends JFrame{
 		arrayTile[x][y].deselect();
 	}
 
+	/**
+	 * colore la liste des cases en rouges 
+	 * @param casesAAttaquer liste des coordonnées des cases qui peuvent être attaquées
+	 */
 	public void colorerCasesAAttaquer(HashSet<Pair> casesAAttaquer){
 		for(Pair p : casesAAttaquer)
 			coloreCaseAAttaquer(p.getFirst(), p.getSecond());
 	}
+
+	/**
+	 * décolore la liste des cases 
+	 * @param casesAAttaquer liste des coordonnées des cases qui peuvent être attaquées
+	 */
 	public void decolorerCasesAAttaquer(HashSet<Pair> casesAAttaquer){
 		for(Pair p : casesAAttaquer)
 			decolorerCaseAAttaquer(p.getFirst(), p.getSecond());
 	}
+
+	/**
+	 * colore la case de coordonnées x,y en rouge
+	 * @param x coordonnée x de la case à colorer
+	 * @param y coordonnée y de la case à colorer
+	 */
 	public void coloreCaseAAttaquer(int x, int y){
 		arrayTile[x][y].colorerCaseAAttaquer();
 	}
+
+	/**
+	 * décolore la case de coordonnées x,y 
+	 * @param x coordonnée x de la case à décolorer
+	 * @param y coordonnée y de la case à décolorer
+	 */
 	public void decolorerCaseAAttaquer(int x, int y){
 		arrayTile[x][y].decolorerCaseAAttaquer();
 	}
@@ -312,12 +342,6 @@ public class EcranJeux extends JFrame{
 		arrayTile[x][y].setPokemonPresent(false, "");
 	}
 
-	public void showBoutons(){
-		this.panelBoutons.getBoutonFin().setVisible(true);
-		this.panelBoutons.getBoutonAttaque().setVisible(true);
-		this.panelBoutons.getBoutonAnnulerD().setVisible(true);
-	}
-
 	/**
 	 * affiche winner sur le panelBoutons de la fenêtre du joueur gagnat ainsi que le bouton recommencer;
 	 * et loser sur le panelBoutons de la fenêtre du joueur perdant ainsi que le bouton recommencer
@@ -340,19 +364,38 @@ public class EcranJeux extends JFrame{
         panelBoutons.setBackground(Color.white);
 	}
 	
+	/**
+	 * selectionne le panel des stats du pokémon p, en vert si pokAllieOuEnnemi=true, en rouge sinon
+	 * @param p le pokémon
+	 * @param pokAllieOuEnnemi true si le pokémon appartient au joueur de cette fenêtre, false sinon
+	 */
 	public void cibleVisible(Pokemon p, boolean pokAllieOuEnnemi){
 		panelJoueurs.cibleVisible(p,true,pokAllieOuEnnemi);
 
 	}
 
+	/**
+	 * déselectionne le panel des stats du pokémon p
+	 * @param p le pokémon
+	 * @param pokAllieOuEnnemi true si le pokémon appartient au joueur de cette fenêtre, false sinon
+	 */
 	public void cibleInvisible(Pokemon p, boolean pokAllieOuEnnemi){
 		panelJoueurs.cibleVisible(p,false,pokAllieOuEnnemi);
 	}
 
-
+	/**
+	 * renvoie le panel des boutons
+	 * @return le panel des boutons
+	 */
     public PanelBoutons getPanelBoutons() {
         return panelBoutons;
     }
+
+	public void showBoutons(){
+		this.panelBoutons.getBoutonFin().setVisible(true);
+		this.panelBoutons.getBoutonAttaque().setVisible(true);
+		this.panelBoutons.getBoutonAnnulerD().setVisible(true);
+	}
 
 	public void enleverAttaqueInfos(String attaque) {
 		panelBoutons.enleverAttaqueInfos(attaque);
