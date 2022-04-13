@@ -101,8 +101,16 @@ public class StatsPokemon extends JPanel{
       labelType.setForeground(new ColorUIResource(168, 167, 122));
     }else if(type.equals("Combat")){
       labelType.setForeground(new ColorUIResource(194, 46, 40));
-    }else if(type.equals("Roche")){
-      labelType.setForeground(new ColorUIResource(182, 161, 54));
+    }else if(type.equals("Spectre")){
+      labelType.setForeground(new ColorUIResource(115, 87, 151));
+    }else if(type.equals("Acier")){
+      labelType.setForeground(new ColorUIResource(183, 183, 206));
+    }else if(type.equals("Fee")){
+      labelType.setForeground(new ColorUIResource(214, 133, 173));
+    }else if(type.equals("Vol")){
+      labelType.setForeground(new ColorUIResource(169, 143, 243));
+    }else if(type.equals("Sol")){
+      labelType.setForeground(new ColorUIResource(226, 191, 101));
     }
 
   }

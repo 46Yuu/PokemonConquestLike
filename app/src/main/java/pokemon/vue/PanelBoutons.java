@@ -112,7 +112,7 @@ public class PanelBoutons extends JPanel{
       JLabel labelType=new JLabel("Type : Acier");
       infosAttaque.add(labelType);
       labelType.setBounds(5,30,200,15);
-      labelType.setForeground(Color.WHITE);
+      labelType.setForeground(new ColorUIResource(183, 183, 206));
     }
 
     if(atk instanceof AttaqueDragon){
@@ -133,7 +133,7 @@ public class PanelBoutons extends JPanel{
       JLabel labelType=new JLabel("Type : Fee");
       infosAttaque.add(labelType);
       labelType.setBounds(5,30,200,15);
-      labelType.setForeground(Color.WHITE);
+      labelType.setForeground(new ColorUIResource(214, 133, 173));
     }
 
     if(atk instanceof AttaqueFeu){
@@ -189,14 +189,14 @@ public class PanelBoutons extends JPanel{
       JLabel labelType=new JLabel("Type : Sol");
       infosAttaque.add(labelType);
       labelType.setBounds(5,30,200,15);
-      labelType.setForeground(Color.WHITE);
+      labelType.setForeground(new ColorUIResource(226, 191, 101));
     }
 
     if(atk instanceof AttaqueSpectre){
       JLabel labelType=new JLabel("Type : Spectre");
       infosAttaque.add(labelType);
       labelType.setBounds(5,30,200,15);
-      labelType.setForeground(Color.WHITE);
+      labelType.setForeground(new ColorUIResource(115, 87, 151));
     }
 
     if(atk instanceof AttaqueTenebres){
@@ -210,7 +210,7 @@ public class PanelBoutons extends JPanel{
       JLabel labelType=new JLabel("Type : Vol");
       infosAttaque.add(labelType);
       labelType.setBounds(5,30,200,15);
-      labelType.setForeground(Color.WHITE);
+      labelType.setForeground(new ColorUIResource(169, 143, 243));
     }
 
     JLabel range=new JLabel("Range : "+atk.getDistanceMaxAttaque());
