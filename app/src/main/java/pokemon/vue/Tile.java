@@ -92,6 +92,8 @@ public class Tile extends JPanel{
                     controleur.deplacerPokemon=true;
                     controleur.deselectionnerAutresCases(x,y);
                     controleur.selectionnerCasePossibles(x,y);
+                    controleur.setXPrec(x);
+                    controleur.setYPrec(y);
                 }
                 //si on peut déplacer le pokémon et le tile est selectionné
                 else if(select && controleur.deplacerPokemon){
@@ -226,6 +228,5 @@ public class Tile extends JPanel{
         fleche=false;
         repaint();
     }
-
 }
 

@@ -285,5 +285,18 @@ public class Controleur {
     public void enleverAttaqueInfos(String attaque, boolean joueur1){
         vue.enleverAttaqueInfos(attaque,joueur1);
     }
+
+    public void annulerD(){
+        jeux.annulerDeplacement(vue.getXPrec(jeux.getJoueurActuel()),vue.getYPrec(jeux.getJoueurActuel()));
+    }
+
+    public void setXPrec(int x){
+        vue.setXPrec(x,jeux.getJoueurActuel());
+    }
+
+    public void setYPrec(int y){
+        vue.setYPrec(y,jeux.getJoueurActuel());
+    }
+
 }
 

@@ -268,4 +268,31 @@ public class Jeux {
         return pokemonCaseJoueur1.keySet().contains(p);
     }
 
+    public void annulerDeplacement(int x, int y){
+        Case caseDepart;
+        if(joueur1){
+            //on enlève le pokémon de la case de départ
+            caseDepart=pokemonCaseJoueur1.get(pokemonActuel);
+            caseDepart.setPokemon(null);
+            //on met à jour la case du pokémon dans la HashMap<Pokemon,Case>
+            pokemonCaseJoueur1.put(pokemonActuel,terrain.getCase(x,y));
+            //on ajoute le pokémon à la case d'arrivée 
+            terrain.setPokemon(x, y, pokemonActuel);
+        }
+        else{
+            //on enlève le pokémon de la case de départ
+            caseDepart=pokemonCaseJoueur2.get(pokemonActuel);
+            caseDepart.setPokemon(null);
+            //on met à jour la case du pokémon dans la HashMap<Pokemon,Case>
+            pokemonCaseJoueur2.put(pokemonActuel,terrain.getCase(x,y)); 
+             //on ajoute le pokémon à la case d'arrivée 
+             terrain.setPokemon(x, y, pokemonActuel);     
+        }
+        pokemonsDeplaces.remove(pokemonActuel);
+        //mettre à jour la vue
+        controleur.deplacerPokemonDansVue(new Pair(caseDepart.getPosI(),caseDepart.getPosJ(),0), new Pair(x,y,0), pokemonActuel.getCheminImage());
+        //sélectionner le pokémon suivant à déplacer  
+        selectPokemon();
+    }
+
 }

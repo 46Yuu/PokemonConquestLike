@@ -15,6 +15,7 @@ public class PanelBoutons extends JPanel{
   private JButton boutonAttaquer = new JButton("Attaquer");
   private JButton boutonFin = new JButton("Wait");
   private JButton boutonRetour = new JButton("Retour");
+  private JButton boutonAnnulerD = new JButton("Annuler");
   private JButton buttonRecommencer;
   private Map<String,JButton> listeBoutonsAttaques = new TreeMap<String,JButton>();
   private Map<String,JPanel> listeInfosAttaques = new TreeMap<String,JPanel>();
@@ -28,19 +29,29 @@ public class PanelBoutons extends JPanel{
 		add(boutonAttaquer);
 		add(boutonFin);
     add(boutonRetour);
+    add(boutonAnnulerD);
     boutonAttaquer.setVisible(false);
     boutonFin.setVisible(false);
     boutonRetour.setVisible(false);
+    boutonAnnulerD.setVisible(false);
     this.buttonRecommencer=buttonRecommencer;
 
     boutonRetour.addActionListener(event ->{
 			boutonFin.setVisible(true);
 			boutonAttaquer.setVisible(true);
+      boutonAnnulerD.setVisible(true);
       boutonRetour.setVisible(false);
       for(JButton b : listeBoutonsAttaques.values()){
         b.setVisible(false);
       }
       controleur.decolorerCasesAAttaquer();
+		});
+
+    boutonAnnulerD.addActionListener(event ->{
+			boutonFin.setVisible(false);
+			boutonAttaquer.setVisible(false);
+      boutonAnnulerD.setVisible(false);
+      controleur.annulerD();
 		});
 
   }
@@ -132,6 +143,10 @@ public class PanelBoutons extends JPanel{
     return this.boutonRetour;
   }
 
+  public JButton getBoutonAnnulerD(){
+    return this.boutonAnnulerD;
+  }
+
   @Override
   public void repaint() {
     super.repaint();
@@ -143,6 +158,8 @@ public class PanelBoutons extends JPanel{
       boutonFin.setBounds(width/4+2,0,width/4,height/7);
     if(boutonRetour!=null)
       boutonRetour.setBounds(2*(width/4)+2,0,width/4,height/7);
+    if(boutonAnnulerD!=null)
+      boutonAnnulerD.setBounds(0,height/7,width/4,height/7);
     int i=0;
     if(listeBoutonsAttaques!=null){
       for(String s : listeBoutonsAttaques.keySet()){
