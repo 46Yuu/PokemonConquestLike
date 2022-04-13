@@ -148,8 +148,8 @@ public class PanelBoutons extends JPanel{
   }
 
   @Override
-  public void repaint() {
-    super.repaint();
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
     int width=getSize().width;
     int height=getSize().height;
     if(boutonAttaquer!=null)
