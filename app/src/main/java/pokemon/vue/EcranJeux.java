@@ -170,6 +170,9 @@ public class EcranJeux extends JFrame{
 				addActionListenerBouton(nom,tmp);
 				panelBoutons.add(tmp);
 				tmp.setVisible(true);
+				panelBoutons.addAttaqueInfos(nom,listeAttaques.get(nom));
+				JPanel tmp2 = panelBoutons.getAttaqueInfos(nom);
+				panelBoutons.add(tmp2);
 			}
 			panelBoutons.repaint();
 		});
@@ -232,6 +235,7 @@ public class EcranJeux extends JFrame{
 	/**
 	 * mets à jour l'affichage des stats du pokemon p dans le panelJoueur 
 	 * @param p Pokemon
+	 * @param joueur1 true si le pokémon appartient à joueur 2, false sinon
 	 */
 	public void miseAJourInfosPokemons(Pokemon p, boolean joueur1){
 		StatsPokemon tmp=panelJoueurs.getStatsPokemons(joueur1).get(p);

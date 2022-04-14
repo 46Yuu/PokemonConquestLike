@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import pokemon.controleur.Controleur;
-import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.*;
 
@@ -63,16 +62,30 @@ public class Vue extends JFrame{
 		});
 	}
 
+	/**
+	 * affiche winner sur le panelBoutons de la fenêtre du joueur gagnant, et 
+	 * loser sur le panelBoutons de la fenêtre dujoueur perdant, ainsi que le 
+	 * bouton recommencer
+	 * @param joueurGagnant true si le joueur gagnat est joueur 1, false sinon
+	 */
     public void afficherFinPartie(boolean joueurGagnant) {
 		ecranJeuxJ1.afficherFinPartie(joueurGagnant);
 		ecranJeuxJ2.afficherFinPartie(!joueurGagnant);
     }
 
+	/**
+	 * décolore les cases qui peuvent être attaquées sur les fenêtres des deux joueurs
+	 * @param listCasesAAttaquer liste des coordonnées des case qui peuvent être attaquées
+	 */
     public void decolorerCasesAAttaquer(HashSet<Pair> listCasesAAttaquer) {
 		ecranJeuxJ1.decolorerCasesAAttaquer(listCasesAAttaquer);
 		ecranJeuxJ2.decolorerCasesAAttaquer(listCasesAAttaquer);
 	}
 
+	/**
+	 * colore en rouge les cases qui peuvent être attaquées sur les fenêtres des deux joueurs 
+	 * @param casesAAttaquer liste des coordonnées des cases qui peuvent être attaquées
+	 */
     public void colorerCasesAAttaquer(HashSet<Pair> casesAAttaquer) {
 		ecranJeuxJ1.colorerCasesAAttaquer(casesAAttaquer);
 		ecranJeuxJ2.colorerCasesAAttaquer(casesAAttaquer);
@@ -83,13 +96,25 @@ public class Vue extends JFrame{
 		ecranJeuxJ2.deselectTile(first,second);
     }
 
-    public void deselectTiles(HashSet<Pair> tiles, boolean jouuer1) {
-		if(jouuer1)
+	/**
+	 * déselectionne les tile sur la list tiles, sur la fenêtre de joueur 1 si joueur1=true;
+	 * sur la fenêtre de joueur 2 sinon
+	 * @param tiles liste des coordonnées des tiles à déselectionner
+	 * @param joueur1 true si c'est sur la fêtre de joueur 1, false pour la fenêtre de joueur 2
+	 */
+    public void deselectTiles(HashSet<Pair> tiles, boolean joueur1) {
+		if(joueur1)
 			ecranJeuxJ1.deselectTiles(tiles);
 		else
 			ecranJeuxJ2.deselectTiles(tiles);
     }
 
+	/**
+	 * selectionne les tile sur la list tiles, sur la fenêtre de joueur 1 si joueur1=true;
+	 * sur la fenêtre de joueur 2 sinon
+	 * @param tiles liste des coordonnées des tiles à selectionner
+	 * @param joueur1 true si c'est sur la fêtre de joueur 1, false pour la fenêtre de joueur 2
+	 */
     public void selectTiles(HashSet<Pair> tiles, boolean joueur1) {
 		if(joueur1)
 			ecranJeuxJ1.selectTiles(tiles);
@@ -104,26 +129,52 @@ public class Vue extends JFrame{
 			ecranJeuxJ2.showBoutons();
     }
 
+	/**
+	 * déplace le pokémon du tile qui a comme coordonnées tile1 vers le tile qui a comme coordonnées tile2
+	 * @param tile1 une pair contenant les coordonnées du tile où se trouve le Pokémon à déplacer
+	 * @param tile2 une pair contenant les coordonnées du tile où le Pokémon sera déplacé
+	 * @param pathImagePokemon le chemin de l'image du Pokémon
+	 */
     public void deplacerPokemon(Pair tile1, Pair tile2, String pathImagePokemon) {
 		ecranJeuxJ1.deplacerPokemon(tile1, tile2, pathImagePokemon);
 		ecranJeuxJ2.deplacerPokemon(tile1, tile2, pathImagePokemon);
     }
 
+	/**
+	 * dessine le Pokémon sur le tile de coordonnées (x,y)
+	 * @param x coordonnée x du tile dans le plateau
+	 * @param y coordonnée y du tile dans le plateau
+	 * @param cheminImagePokemon chemin de l'image du Pokémon
+	 */
     public void placerPokemon(int x, int y, String cheminImage) {
 		ecranJeuxJ1.placerPokemon(x, y, cheminImage);
 		ecranJeuxJ2.placerPokemon(x, y, cheminImage);
     }
 
+	/**
+	 * mets à jour l'affichage des stats du pokemon p dans le panelJoueur 
+	 * @param p Pokemon
+	 * @param joueur1 true si le pokémon appartient à joueur 2, false sinon
+	 */
     public void miseAJourInfosPokemons(Pokemon p, boolean joueur1) {
 		ecranJeuxJ1.miseAJourInfosPokemons(p, joueur1);
 		ecranJeuxJ2.miseAJourInfosPokemons(p, joueur1);
     }
 
+	/**
+	 * affiche le joueur à qui c'est le tour sur le panel informations
+	 * @param joueur "joueur 1" ou "joueur 2"
+	 */
     public void miseAJourInformations(String string) {
 		ecranJeuxJ1.miseAJourInformations(string);
 		ecranJeuxJ2.miseAJourInformations(string);
     }
 
+	/**
+	 * enlève le Pokémon du le tile de coordonnées (x,y)
+	 * @param x coordonnée x du tile dans le plateau
+	 * @param y coordonnée y du tile dans le plateau
+	 */
     public void enleverPokemon(int x, int y) {
 		ecranJeuxJ1.enleverPokemon(x, y);
 		ecranJeuxJ2.enleverPokemon(x, y);
@@ -135,6 +186,14 @@ public class Vue extends JFrame{
 		return ecranJeuxJ2.getPanelBoutons();
 	}
 
+	/**
+	 * selectionne le panel des stats du pokémon p, en vert si pokJoueur1=joueur1, en rouge sinon
+	 * @param pokeDansCase le pokémon
+	 * @param joueur1 true pour selectionner les stats sur la fenêtre du joueur1;
+	 * 					false pour la fenêtre du joueur 2
+	 * @param pokAJoueur1 true si le pokémon appartient à joueur 1, false s'il appartient
+	 * 			à joueur 2
+	 */
 	public void cibleVisible(Pokemon pokeDansCase, boolean joueur1, boolean pokAJoueur1) {
 		if(joueur1)
 			ecranJeuxJ1.cibleVisible(pokeDansCase, joueur1==pokAJoueur1);
@@ -142,6 +201,14 @@ public class Vue extends JFrame{
 			ecranJeuxJ2.cibleVisible(pokeDansCase, joueur1==pokAJoueur1);
 	}
 
+	/**
+	 * déselectionne le panel des stats du pokémon p
+	 * @param pokeDansCase le pokémon
+	 * @param joueur1 true pour déselectionner les stats sur la fenêtre du joueur1;
+	 * 					false pour la fenêtre du joueur 2
+	 * @param pokAJoueur1 true si le pokémon appartient à joueur 1, false s'il appartient
+	 * 			à joueur 2
+	 */
     public void cibleInvisible(Pokemon pokeDansCase, boolean joueur1, boolean pokAJoueur1) {
 		if(joueur1)
 			ecranJeuxJ1.cibleInvisible(pokeDansCase, joueur1==pokAJoueur1);

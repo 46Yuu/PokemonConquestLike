@@ -198,12 +198,24 @@ public class Jeux {
         return listCasesAAttaquer;
     }
 
+    /**
+     * renvoie les coordonnées de la case où se trouve le pokémon actuel
+     * @return les coordonnées de la case où se trouve le pokémon actuel
+     */
     public Pair getCoordonneesPokemonActuel() {
         if(joueur1)
             return new Pair(pokemonCaseJoueur1.get(pokemonActuel).getPosI(),pokemonCaseJoueur1.get(pokemonActuel).getPosJ(),0);
         return new Pair(pokemonCaseJoueur2.get(pokemonActuel).getPosI(),pokemonCaseJoueur2.get(pokemonActuel).getPosJ(),0);
     }
 
+    /**
+     * le pokémon actuel attque le pokémon qui se trouve sur la case (x,y)
+     * met à jour les informations du pokémon attaqué dans vue
+     * déselectionne le tile où se trouve le pokémon actuel
+     * enlève le pokémon s'il est KO après être attaqué et vérifie si la partie est terminée 
+     * @param x coordonnée x du pokémon attaqué
+     * @param y coordonnée y du pokémon attaqué
+     */
     public void attaquer(int x, int y) {
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
         controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y),joueur1);
@@ -216,14 +228,28 @@ public class Jeux {
         }
     }
 
+    /**
+     * renvoie la map qui associe à chaque pokémon du joueur 1, la case où il se trouve
+     * @return la map qui associe à chaque pokémon du joueur 1, la case où il se trouve
+     */
     public Map<Pokemon, Case> getPokemonCaseJoueur1() {
         return pokemonCaseJoueur1;
     }
 
+    /**
+     * renvoie la map qui associe à chaque pokémon du joueur 2, la case où il se trouve
+     * @return la map qui associe à chaque pokémon du joueur 2, la case où il se trouve
+     */
     public Map<Pokemon, Case> getPokemonCaseJoueur2() {
         return pokemonCaseJoueur2;
     }
 
+    /**
+     * enlève le pokémon de la case de coordonnées (x,y) et de la liste des 
+     * pokémons du joueur auquel le pokémon appartient et dans le tile correspondant
+     * @param x coordonnée x de la case
+     * @param y coordonnée y de la case
+     */
     public void enleverKo(int x,int y){
         controleur.cibleInvisible(x, y);
         Case caseDepart;
@@ -240,10 +266,21 @@ public class Jeux {
         controleur.enleverPokemon(x, y);
     }
 
+    /**
+     * vérifie si le pokémon qui se trouve dans la case de coordonnées (x,y) est KO
+     * @param x coordonnée x de la case
+     * @param y cpordonnée y de la case
+     * @return true si le pokémon qui se trouve sur la case (x,y) est Ko; false sinon
+     */
     public boolean pokemonKo(int x,int y){
         return terrain.getPokemon(x, y).getPdv()<=0;
     }
 
+    /**
+     * si l'un des joueurs n'a plus de pokémons, affiche winner sur la fenêtre du joueur
+     * qui a encore des pokémons, et loser sur la fenêtre du joueur perdant, ainsi que le 
+     * bouton recommencer
+     */
     public void finDePartie(){
         if(joueur1){
             if(pokemonCaseJoueur2.size() ==0){
@@ -256,18 +293,37 @@ public class Jeux {
             }
         }
     }
+
+    /**
+     * renvoie la liste de coordonnées des cases qui peuvent être attaquées
+     * @return la liste de coordonnées des cases qui peuvent être attaquées
+     */
     public HashSet<Pair> getListCasesAAttaquer() {
         return listCasesAAttaquer;
     }
 
+    /**
+     * renvoie le joueur actuel
+     * @return joueur actuel, true pour joueur 1; false pour joueur 2
+     */
     public boolean getJoueurActuel() {
         return joueur1;
     }
 
+    /**
+     * renvoie true si le pokémon p appartient à joueur 1; false s'il appartient à joueur 2
+     * @param p pokémon
+     * @return true si le pokémon p appartient à joueur 1; false s'il appartient à joueur 2
+     */
     public boolean appartienAJoueur1(Pokemon p) {
         return pokemonCaseJoueur1.keySet().contains(p);
     }
 
+    /**
+     * annule le déplacement du pokémon p
+     * @param x coordonnée x de la case où le pokémon a été avant son déplacement
+     * @param y coordonnée y de la case où le pokémon a été avant son déplacement
+     */
     public void annulerDeplacement(int x, int y){
         Case caseDepart;
         if(joueur1){
