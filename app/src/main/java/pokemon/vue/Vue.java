@@ -1,8 +1,10 @@
 package pokemon.vue;
 
+import javax.sound.sampled.FloatControl;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import pokemon.audio.Audio;
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.*;
@@ -27,6 +29,14 @@ public class Vue extends JFrame{
 		setContentPane(panelAccueil);
 		
 		buttonCommencer.addActionListener( event -> {
+			try{
+				Audio audioPlayer =new Audio("src/main/resources/Pokemon Bleu Rouge Jaune Musique  - Combat Vs Dresseur Pokemon.wav",10f,true);
+				audioPlayer.play();
+			} 
+			catch (Exception ex){
+				System.out.println("Error with playing sound.");
+				ex.printStackTrace();
+			}
 			threadJ1=new Thread(){
 				public void run(){
 					ecranJeuxJ1=new EcranJeux(controleur, buttonRecommencerJ1, "Joueur 1");

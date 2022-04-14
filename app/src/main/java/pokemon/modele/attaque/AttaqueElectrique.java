@@ -1,6 +1,7 @@
 package pokemon.modele.attaque;
 
 import pokemon.modele.pokemon.Pokemon;
+import pokemon.audio.Audio;
 
 public class AttaqueElectrique extends Attaque {
     public void Attack(Pokemon p,Pokemon b){
@@ -8,23 +9,29 @@ public class AttaqueElectrique extends Attaque {
         if(tmp < p.getCrit()){
             if(b.getType()=="Eau" || b.getType()=="Vol"){
                 b.setPdv(b.getPdv() - p.getAtk()*4);
+                supEff();
+                crit();
             }
             else if(b.getType()=="Dragon" || b.getType()=="Electrique" || b.getType()=="Plante"){
                 b.setPdv(b.getPdv() - p.getAtk());
+                pasEff();
             }
             else if(b.getType()=="Sol"){
                 b.setPdv(b.getPdv() - 0);
             }
             else {
                 b.setPdv(b.getPdv() - p.getAtk()*2);
+                crit();
             }
         }
         else {
             if(b.getType()=="Eau" || b.getType()=="Vol"){
                 b.setPdv(b.getPdv() - p.getAtk()*2);
+                supEff();
             }
             else if(b.getType()=="Dragon" || b.getType()=="Electrique" || b.getType()=="Plante"){
                 b.setPdv(b.getPdv() - p.getAtk()/2);
+                pasEff();
             }
             else if(b.getType()=="Sol"){
                 b.setPdv(b.getPdv() - 0);

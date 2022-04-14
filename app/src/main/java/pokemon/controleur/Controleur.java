@@ -86,7 +86,7 @@ public class Controleur {
         nbAlea=rand.nextInt(listePokemons.size());
         pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
-        
+
 		terrain=new Terrain(10,8);
 		jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);
 		jeux.setControleur(this);
