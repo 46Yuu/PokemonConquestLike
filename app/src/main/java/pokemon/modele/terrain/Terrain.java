@@ -24,13 +24,52 @@ public class Terrain{
         {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
     };
 
+    private TypeCase[][] terrainVolcan = {
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
+		{TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+		{TypeCase.Lava, TypeCase.Lava , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Lava, TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Lava , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
+        {TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Lava,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
+        {TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+    };
+
+    private TypeCase[][] terrainMontagne = {
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+		{TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Water, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Water, TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+        {TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Water,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+        {TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+    };
+
+    private TypeCase[][] terrainVillage = {
+		{TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass , TypeCase.Roof, TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+        {TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock, TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+        {TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass , TypeCase.Grass, TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock, TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass,TypeCase.Water,TypeCase.Rock},
+    };
+
 	public Case [][] tab;
 	
 	public Terrain(int x, int y) {
 		tab=new Case[x][y];
 		for(int i=0; i<x; i++){
 			for(int j=0; j<y; j++){
-				tab[i][j]=new Case(i,j,null, typeCase[i][j]);
+				tab[i][j]=new Case(i,j,null, terrainVillage[i][j]);
 			}
 		}
 	}
