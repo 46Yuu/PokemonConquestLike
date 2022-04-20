@@ -1,18 +1,18 @@
-package pokemon.modele.attaque;
+package pokemon.modele.attaque.Attaquetypes;
 
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
-import pokemon.audio.Audio;
 
-public class AttaqueVol extends Attaque{
+public class AttaquePlante extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp < p.getCrit()){
-            if(b.getType()=="Combat" || b.getType()=="Insecte" || b.getType()=="Plante"){
+            if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
                 b.setPdv(b.getPdv() - p.getAtk()*4);
                 supEff();
                 crit();
             }
-            else if(b.getType()=="Acier" || b.getType()=="Electrique" || b.getType()=="Roche"){
+            else if(b.getType()=="Acier" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Insecte" || b.getType()=="Plante" || b.getType()=="Poison" || b.getType()=="Vol" ){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
                 crit();
@@ -23,11 +23,11 @@ public class AttaqueVol extends Attaque{
             }
         }
         else {
-            if(b.getType()=="Combat" || b.getType()=="Insecte" || b.getType()=="Plante"){
+            if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
                 b.setPdv(b.getPdv() - p.getAtk()*2);
                 supEff();
             }
-            else if(b.getType()=="Acier" || b.getType()=="Electrique" || b.getType()=="Roche"){
+            else if(b.getType()=="Acier" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Insecte" || b.getType()=="Plante" || b.getType()=="Poison" || b.getType()=="Vol" ){
                 b.setPdv(b.getPdv() - p.getAtk()/2);
                 pasEff();
             }

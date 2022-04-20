@@ -228,6 +228,13 @@ public class Jeux {
         }
     }
 
+    public void testEffet(){
+        if(pokemonActuel.getEffet()!=null){
+            pokemonActuel.testEffet();
+            controleur.miseAJourInfosPokemons(pokemonActuel, joueur1);
+        }
+    }
+
     /**
      * renvoie la map qui associe à chaque pokémon du joueur 1, la case où il se trouve
      * @return la map qui associe à chaque pokémon du joueur 1, la case où il se trouve
@@ -350,5 +357,4 @@ public class Jeux {
         //sélectionner le pokémon suivant à déplacer  
         selectPokemon();
     }
-
 }

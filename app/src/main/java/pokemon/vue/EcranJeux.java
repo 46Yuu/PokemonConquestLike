@@ -99,14 +99,7 @@ public class EcranJeux extends JFrame{
 		});
 		
 		panelBoutons.getBoutonFin().addActionListener(event ->{
-			int x=controleur.getCoordonneesPokemonActuel().getFirst();
-			int y=controleur.getCoordonneesPokemonActuel().getSecond();
-			deselectTile(x, y);
-			enleverFleche(x, y);
-			panelBoutons.getBoutonFin().setVisible(false);
-			panelBoutons.getBoutonAttaque().setVisible(false);
-			panelBoutons.getBoutonAnnulerD().setVisible(false);
-			controleur.getJeux().selectPokemon();
+			finTour();
 		});
 		
 		panelBoutons.getBoutonAnnulerD().addActionListener(event ->{
@@ -180,6 +173,7 @@ public class EcranJeux extends JFrame{
 		panelBoutons.getBoutonFin().addActionListener(event ->{
 			int x=controleur.getCoordonneesPokemonActuel().getFirst();
 			int y=controleur.getCoordonneesPokemonActuel().getSecond();
+			//controleur.testEffet(x,y);
 			deselectTile(x, y);
 			enleverFleche(x, y);
 			panelBoutons.getBoutonFin().setVisible(false);
@@ -240,6 +234,9 @@ public class EcranJeux extends JFrame{
 	public void miseAJourInfosPokemons(Pokemon p, boolean joueur1){
 		StatsPokemon tmp=panelJoueurs.getStatsPokemons(joueur1).get(p);
 		tmp.setPdv(p.getPdv());
+		if(p.getEffet()!=null){
+			tmp.setEffet(p.getEffet());
+		}
 	}
 
 	/**
@@ -419,5 +416,18 @@ public class EcranJeux extends JFrame{
 
 	public int getYPrec(){
 		return this.yPrec;
+	}
+
+	public void finTour(){
+		int x=controleur.getCoordonneesPokemonActuel().getFirst();
+		int y=controleur.getCoordonneesPokemonActuel().getSecond();
+		//controleur.testEffet(x,y);
+		deselectTile(x, y);
+		enleverFleche(x, y);
+		panelBoutons.getBoutonFin().setVisible(false);
+		panelBoutons.getBoutonAttaque().setVisible(false);
+		panelBoutons.getBoutonAnnulerD().setVisible(false);
+		panelBoutons.getBoutonRetour().setVisible(false);
+		controleur.getJeux().selectPokemon();
 	}
 }

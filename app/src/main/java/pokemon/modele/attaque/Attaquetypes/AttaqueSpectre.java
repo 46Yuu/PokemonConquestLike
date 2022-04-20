@@ -1,21 +1,24 @@
-package pokemon.modele.attaque;
+package pokemon.modele.attaque.Attaquetypes;
 
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
-import pokemon.audio.Audio;
 
-public class AttaquePlante extends Attaque{
+public class AttaqueSpectre extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp < p.getCrit()){
-            if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
+            if(b.getType()=="Psy" || b.getType()=="Spectre"){
                 b.setPdv(b.getPdv() - p.getAtk()*4);
                 supEff();
                 crit();
             }
-            else if(b.getType()=="Acier" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Insecte" || b.getType()=="Plante" || b.getType()=="Poison" || b.getType()=="Vol" ){
+            else if(b.getType()=="Tenebres"){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
                 crit();
+            }
+            else if(b.getType()=="Normal"){
+                b.setPdv(b.getPdv() - 0);
             }
             else {
                 b.setPdv(b.getPdv() - p.getAtk()*2);
@@ -23,13 +26,16 @@ public class AttaquePlante extends Attaque{
             }
         }
         else {
-            if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
+            if(b.getType()=="Psy" || b.getType()=="Spectre"){
                 b.setPdv(b.getPdv() - p.getAtk()*2);
                 supEff();
             }
-            else if(b.getType()=="Acier" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Insecte" || b.getType()=="Plante" || b.getType()=="Poison" || b.getType()=="Vol" ){
+            else if(b.getType()=="Tenebres"){
                 b.setPdv(b.getPdv() - p.getAtk()/2);
                 pasEff();
+            }
+            else if(b.getType()=="Normal"){
+                b.setPdv(b.getPdv() - 0);
             }
             else {
                 b.setPdv(b.getPdv() - p.getAtk());

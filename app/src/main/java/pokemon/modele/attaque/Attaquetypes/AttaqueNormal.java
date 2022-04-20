@@ -1,7 +1,7 @@
-package pokemon.modele.attaque;
+package pokemon.modele.attaque.Attaquetypes;
 
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
-import pokemon.audio.Audio;
 
 public class AttaqueNormal extends Attaque {
     public void Attack(Pokemon p,Pokemon b){  

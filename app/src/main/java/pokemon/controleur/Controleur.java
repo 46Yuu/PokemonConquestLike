@@ -327,5 +327,13 @@ public class Controleur {
         vue.setYPrec(y,jeux.getJoueurActuel());
     }
 
+    public void testEffet(int x, int y){
+        jeux.testEffet();
+        //miseAJourInfosPokemons(terrain.getPokemon(x, y),jeux.getJoueurActuel());
+    }
+
+    public void finTour(){
+        vue.finTour(jeux.getJoueurActuel());
+    }
 }
 

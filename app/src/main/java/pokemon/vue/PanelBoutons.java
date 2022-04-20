@@ -7,6 +7,7 @@ import javax.swing.plaf.ColorUIResource;
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.*;
+import pokemon.modele.attaque.Attaquetypes.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

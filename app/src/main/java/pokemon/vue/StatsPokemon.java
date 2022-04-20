@@ -34,6 +34,7 @@ public class StatsPokemon extends JPanel{
   private JLabel labelAtk;
   private String nomPokemon;
   private JLabel labelNomPokemon;
+  private JLabel labelEffet;
   /**
    * dessiner un cadre vert sur le panel si cible=true,
    * ne pas dessiner sinon
@@ -80,6 +81,11 @@ public class StatsPokemon extends JPanel{
     labelNomPokemon=new JLabel(nomPokemon);
     add(labelNomPokemon);
     labelNomPokemon.setBounds(5,2,(largeur/2)-5,15);
+
+    //ajouter et positionner le label de l'etat(effet/status) du pokémon
+    labelEffet=new JLabel("");
+    add(labelEffet);
+    labelEffet.setBounds((largeur-30),38,(largeur-10)/2,15);
 
     //ajouter et positionner le label Atk
     labelAtk=new JLabel("ATK: "+atk);
@@ -181,6 +187,12 @@ public class StatsPokemon extends JPanel{
     }
   }
 
+  public void setEffet(String effet){
+    labelEffet.setText(effet);
+    if(effet == "Brule"){
+      labelEffet.setForeground(new ColorUIResource(238, 129, 48));
+    }
+  }
 
   @Override
   protected void paintComponent(Graphics g) {

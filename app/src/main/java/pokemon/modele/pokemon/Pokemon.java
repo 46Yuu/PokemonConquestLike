@@ -1,6 +1,8 @@
 package pokemon.modele.pokemon;
 
 import pokemon.modele.attaque.*;
+import pokemon.modele.attaque.Attaquetypes.*;
+import pokemon.modele.attaque.ListeAttaques.flammeche;
 import pokemon.modele.mouvement.Mouvement;
 import java.util.*;
 
@@ -12,6 +14,7 @@ public class Pokemon implements Mouvement{
 	private int atk;
 	private String type;
 	private String cheminImage;
+	private String effet=null;
 	Map<String,Attaque> listeAttaques = new TreeMap<String,Attaque>();
 	/**
 	 * le nombre de cases maximal qu'on peut déplacer le pokémon
@@ -61,7 +64,25 @@ public class Pokemon implements Mouvement{
 	public int getCrit(){
 		return this.crit;
 	}
+
+	public void setEffet(String effet){
+		this.effet=effet;
+	}
+
+	public void removeEffet(){
+		this.effet=null;
+	}
+
+	public String getEffet(){
+		return this.effet;
+	}
 	
+	public void testEffet(){
+		if(this.effet=="Brule"){
+			this.setPdv(pdv-1);
+		}
+	}
+
 	public void setType(String type) {
 		if (type == "Eau"){
 			this.type = type;
@@ -111,7 +132,10 @@ public class Pokemon implements Mouvement{
 	}
 	
 	public void addAttaqueListe(String nom,String type){
-		if (type == "Eau"){
+		if(nom == "Flammeche"){
+			this.listeAttaques.put(nom, new flammeche());
+		}
+		else if (type == "Eau"){
 			this.listeAttaques.put(nom, new AttaqueEau());
 		}
 		else if (type == "Electrique"){

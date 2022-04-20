@@ -103,8 +103,9 @@ public class Tile extends JPanel{
                 }
                 else if(peutAttaquer){
                     controleur.attaquer(x,y); 
-                    controleur.setVisibleBoutonRetour(false);
-                    controleur.setVisibleBoutonFin(true);
+                    controleur.finTour();
+                    //controleur.setVisibleBoutonRetour(false);
+                    //controleur.setVisibleBoutonFin(true);
                 }
             }
         }

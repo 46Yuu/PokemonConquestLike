@@ -1,22 +1,23 @@
-package pokemon.modele.attaque;
+package pokemon.modele.attaque.Attaquetypes;
 
+import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
-import pokemon.audio.Audio;
 
-public class AttaqueDragon extends Attaque {
+public class AttaqueCombat extends Attaque {
     public void Attack(Pokemon p,Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp < p.getCrit()){
-            if(b.getType()=="Dragon"){
+            if(b.getType()=="Acier" || b.getType()=="Glace" || b.getType()=="Normal" || b.getType()=="Roche" || b.getType()=="Tenebres"){
                 b.setPdv(b.getPdv() - p.getAtk()*4);
                 supEff();
                 crit();
             }
-            else if(b.getType()=="Acier"){
+            else if(b.getType()=="Fee" || b.getType()=="Insecte" || b.getType()=="Poison" || b.getType()=="Psy" || b.getType()=="Vol"){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
+                crit();
             }
-            else if(b.getType()=="Fee"){
+            else if(b.getType()=="Spectre"){
                 b.setPdv(b.getPdv() - 0);
             }
             else {
@@ -25,15 +26,15 @@ public class AttaqueDragon extends Attaque {
             }
         }
         else {
-            if(b.getType()=="Dragon"){
+            if(b.getType()=="Acier" || b.getType()=="Glace" || b.getType()=="Normal" || b.getType()=="Roche" || b.getType()=="Tenebres"){
                 b.setPdv(b.getPdv() - p.getAtk()*2);
                 supEff();
             }
-            else if(b.getType()=="Acier"){
+            else if(b.getType()=="Fee" || b.getType()=="Insecte" || b.getType()=="Poison" || b.getType()=="Psy" || b.getType()=="Vol"){
                 b.setPdv(b.getPdv() - p.getAtk()/2);
                 pasEff();
             }
-            else if(b.getType()=="Fee"){
+            else if(b.getType()=="Spectre"){
                 b.setPdv(b.getPdv() - 0);
             }
             else {

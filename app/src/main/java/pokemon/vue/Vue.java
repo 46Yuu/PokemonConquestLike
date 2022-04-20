@@ -287,4 +287,11 @@ public class Vue extends JFrame{
 		else
 			ecranJeuxJ2.setYPrec(y);
 	}
+
+	public void finTour(boolean joueur1){
+		if(joueur1)
+			ecranJeuxJ1.finTour();
+		else
+			ecranJeuxJ2.finTour();
+	}
 }
