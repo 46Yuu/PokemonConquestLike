@@ -69,16 +69,10 @@ public class Controleur {
         pokemonsJ1.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
-        pokemonsJ1.put(listePokemons.get(nbAlea),null);
+        pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
-        pokemonsJ1.put(listePokemons.get(nbAlea),null);
-        listePokemons.remove(nbAlea);
-        nbAlea=rand.nextInt(listePokemons.size());
-        pokemonsJ1.put(listePokemons.get(nbAlea),null);
-        listePokemons.remove(nbAlea);
-        nbAlea=rand.nextInt(listePokemons.size());
-        pokemonsJ1.put(listePokemons.get(nbAlea),null);
+        pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
 		pokemonsJ2.put(listePokemons.get(nbAlea),null);
@@ -327,13 +321,17 @@ public class Controleur {
         vue.setYPrec(y,jeux.getJoueurActuel());
     }
 
-    public void testEffet(int x, int y){
+    public void testEffet(){
         jeux.testEffet();
         //miseAJourInfosPokemons(terrain.getPokemon(x, y),jeux.getJoueurActuel());
     }
 
     public void finTour(){
         vue.finTour(jeux.getJoueurActuel());
+    }
+
+    public void hit(){
+        vue.hit();
     }
 }
 

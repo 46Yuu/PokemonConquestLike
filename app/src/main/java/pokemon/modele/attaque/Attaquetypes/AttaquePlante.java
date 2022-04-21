@@ -7,20 +7,20 @@ public class AttaquePlante extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp < p.getCrit()){
-            if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
-                b.setPdv(b.getPdv() - p.getAtk()*4);
-                supEff();
-                crit();
-            }
-            else if(b.getType()=="Acier" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Insecte" || b.getType()=="Plante" || b.getType()=="Poison" || b.getType()=="Vol" ){
+            if(b.getType()=="Acier" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Insecte" || b.getType()=="Plante" || b.getType()=="Poison" || b.getType()=="Vol" ){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
-                crit();
             }
-            else {
-                b.setPdv(b.getPdv() - p.getAtk()*2);
+            else{
+                if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
+                    b.setPdv(b.getPdv() - p.getAtk()*4);
+                    supEff();
+                }
+                else {
+                    b.setPdv(b.getPdv() - p.getAtk()*2);
+                }
                 crit();
-            }
+            }     
         }
         else {
             if(b.getType()=="Eau" || b.getType()=="Roche" || b.getType()=="Sol"){
@@ -35,5 +35,10 @@ public class AttaquePlante extends Attaque{
                 b.setPdv(b.getPdv() - p.getAtk());
             }
         }
+    }
+        
+    @Override
+    public String getType() {
+        return "Plante";
     }
 }

@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pokemon.audio.Audio;
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
@@ -417,11 +418,22 @@ public class EcranJeux extends JFrame{
 	public int getYPrec(){
 		return this.yPrec;
 	}
+	public void hit(){
+		try{
+            Audio audioPlayer =new Audio("src/main/resources/IMHIT.wav",5f,false);
+            audioPlayer.play();
+        } 
+        catch (Exception ex){
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+        }
+	}
+
 
 	public void finTour(){
 		int x=controleur.getCoordonneesPokemonActuel().getFirst();
 		int y=controleur.getCoordonneesPokemonActuel().getSecond();
-		//controleur.testEffet(x,y);
+		controleur.testEffet();
 		deselectTile(x, y);
 		enleverFleche(x, y);
 		panelBoutons.getBoutonFin().setVisible(false);

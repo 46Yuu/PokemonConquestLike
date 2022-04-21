@@ -7,20 +7,20 @@ public class AttaqueTenebres extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp < p.getCrit()){
-            if(b.getType()=="Psy" || b.getType()=="Spectre"){
-                b.setPdv(b.getPdv() - p.getAtk()*4);
-                supEff();
-                crit();
-            }
-            else if(b.getType()=="Combat" || b.getType()=="Fee" || b.getType()=="Tenebres"){
+            if(b.getType()=="Combat" || b.getType()=="Fee" || b.getType()=="Tenebres"){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
-                crit();
             }
-            else {
-                b.setPdv(b.getPdv() - p.getAtk()*2);
+            else{
+                if(b.getType()=="Psy" || b.getType()=="Spectre"){
+                    b.setPdv(b.getPdv() - p.getAtk()*4);
+                    supEff();
+                }
+                else {
+                    b.setPdv(b.getPdv() - p.getAtk()*2);
+                }
                 crit();
-            }
+            } 
         }
         else {
             if(b.getType()=="Psy" || b.getType()=="Spectre"){
@@ -35,5 +35,10 @@ public class AttaqueTenebres extends Attaque{
                 b.setPdv(b.getPdv() - p.getAtk());
             }
         }
+    }
+        
+    @Override
+    public String getType() {
+        return "Tenebres";
     }
 }

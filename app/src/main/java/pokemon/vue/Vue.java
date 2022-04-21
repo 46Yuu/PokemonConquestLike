@@ -30,7 +30,7 @@ public class Vue extends JFrame{
 		
 		buttonCommencer.addActionListener( event -> {
 			try{
-				Audio audioPlayer =new Audio("src/main/resources/Pokemon Bleu Rouge Jaune Musique  - Combat Vs Dresseur Pokemon.wav",10f,true);
+				Audio audioPlayer =new Audio("src/main/resources/Pokemon Bleu Rouge Jaune Musique  - Combat Vs Dresseur Pokemon.wav",20f,true);
 				audioPlayer.play();
 			} 
 			catch (Exception ex){
@@ -293,5 +293,9 @@ public class Vue extends JFrame{
 			ecranJeuxJ1.finTour();
 		else
 			ecranJeuxJ2.finTour();
+	}
+
+	public void hit(){
+		ecranJeuxJ1.hit();
 	}
 }

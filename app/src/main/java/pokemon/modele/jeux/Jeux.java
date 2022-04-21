@@ -231,7 +231,10 @@ public class Jeux {
     public void testEffet(){
         if(pokemonActuel.getEffet()!=null){
             pokemonActuel.testEffet();
-            controleur.miseAJourInfosPokemons(pokemonActuel, joueur1);
+            if(pokemonActuel.getEffet()=="Brule"){
+                controleur.miseAJourInfosPokemons(pokemonActuel, !joueur1);
+                controleur.hit();
+            }
         }
     }
 

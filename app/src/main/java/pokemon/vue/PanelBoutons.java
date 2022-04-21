@@ -88,132 +88,117 @@ public class PanelBoutons extends JPanel{
   }
 
   public void addLabelType(Attaque atk,JPanel infosAttaque){
-    if(atk instanceof AttaqueElectrique){
-      JLabel labelType=new JLabel("Type : Electrique");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(247, 208, 44));
+    JLabel labelType=new JLabel();
+    switch(atk.getType()){
+      case "Electrique":
+        labelType.setText("Type : Electrique");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(247, 208, 44));
+        break;
+      case "Combat":
+        labelType.setText("Type : Combat");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(194, 46, 40));
+        break;
+      case "Normal":
+        labelType.setText("Type : Normal");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(168, 167, 122));
+        break;
+      case "Acier":
+        labelType.setText("Type : Acier");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(183, 183, 206));
+        break;
+      case "Dragon":
+        labelType.setText("Type : Dragon");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(111, 53, 252));
+        break;
+      case "Eau":
+        labelType.setText("Type : Eau");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(99, 144, 240));
+        break;
+      case "Fee":
+        labelType.setText("Type : Fee");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(214, 133, 173));
+        break;
+      case "Feu":
+        labelType.setText("Type : Feu");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(238, 129, 48));
+        break;
+      case "Glace":
+        labelType.setText("Type : Glace");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(150, 217, 214));
+        break;
+      case "Insecte":
+        labelType.setText("Type : Insecte");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(166, 185, 26));
+        break;
+      case "Plante":
+        labelType.setText("Type : Plante");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(122, 199, 76));
+        break;
+      case "Poison":
+        labelType.setText("Type : Poison");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(163, 62, 161));
+        break;
+      case "Psy":
+        labelType.setText("Type : Psy");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(249, 85, 135));
+        break;
+      case "Roche":
+        labelType.setText("Type : Roche");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(182, 161, 54));
+        break;
+      case "Sol":
+        labelType.setText("Type : Sol");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(226, 191, 101));
+        break;
+      case "Spectre":
+        labelType.setText("Type : Spectre");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(115, 87, 151));
+        break;
+      case "Tenebres":
+        labelType.setText("Type : Tenebres");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(112, 87, 70));
+        break;
+      case "Vol":
+        labelType.setText("Type : Vol");
+        infosAttaque.add(labelType);
+        labelType.setBounds(5,30,200,15);
+        labelType.setForeground(new ColorUIResource(169, 143, 243));
+        break;
     }
-
-    if(atk instanceof AttaqueCombat){
-      JLabel labelType=new JLabel("Type : Combat");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(194, 46, 40));
-    }
-
-    if(atk instanceof AttaqueNormal){
-      JLabel labelType=new JLabel("Type : Normal");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(168, 167, 122));
-    }
-
-    if(atk instanceof AttaqueAcier){
-      JLabel labelType=new JLabel("Type : Acier");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(183, 183, 206));
-    }
-
-    if(atk instanceof AttaqueDragon){
-      JLabel labelType=new JLabel("Type : Dragon");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(111, 53, 252));
-    }
-
-    if(atk instanceof AttaqueEau){
-      JLabel labelType=new JLabel("Type : Eau");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(99, 144, 240));
-    }
-
-    if(atk instanceof AttaqueFee){
-      JLabel labelType=new JLabel("Type : Fee");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(214, 133, 173));
-    }
-
-    if(atk instanceof AttaqueFeu){
-      JLabel labelType=new JLabel("Type : Feu");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(238, 129, 48));
-    }
-
-    if(atk instanceof AttaqueGlace){
-      JLabel labelType=new JLabel("Type : Glace");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(150, 217, 214));
-    }
-
-    if(atk instanceof AttaqueInsecte){
-      JLabel labelType=new JLabel("Type : Insecte");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(166, 185, 26));
-    }
-
-    if(atk instanceof AttaquePlante){
-      JLabel labelType=new JLabel("Type : Plante");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(122, 199, 76));
-    }
-
-    if(atk instanceof AttaquePoison){
-      JLabel labelType=new JLabel("Type : Poison");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(163, 62, 161));
-    }
-
-    if(atk instanceof AttaquePsy){
-      JLabel labelType=new JLabel("Type : Psy");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(249, 85, 135));
-    }
-
-    if(atk instanceof AttaqueRoche){
-      JLabel labelType=new JLabel("Type : Roche");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(182, 161, 54));
-    }
-
-    if(atk instanceof AttaqueSol){
-      JLabel labelType=new JLabel("Type : Sol");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(226, 191, 101));
-    }
-
-    if(atk instanceof AttaqueSpectre){
-      JLabel labelType=new JLabel("Type : Spectre");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(115, 87, 151));
-    }
-
-    if(atk instanceof AttaqueTenebres){
-      JLabel labelType=new JLabel("Type : Tenebres");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(112, 87, 70));
-    }
-
-    if(atk instanceof AttaqueVol){
-      JLabel labelType=new JLabel("Type : Vol");
-      infosAttaque.add(labelType);
-      labelType.setBounds(5,30,200,15);
-      labelType.setForeground(new ColorUIResource(169, 143, 243));
-    }
-
     JLabel range=new JLabel("Range : "+atk.getDistanceMaxAttaque());
       infosAttaque.add(range);
       range.setBounds(5,55,200,15);

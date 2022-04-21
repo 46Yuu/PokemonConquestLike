@@ -46,4 +46,6 @@ public abstract class Attaque {
             ex.printStackTrace();
         }
     }
+
+    public abstract String getType();
 }

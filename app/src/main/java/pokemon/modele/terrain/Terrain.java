@@ -67,11 +67,30 @@ public class Terrain{
 	
 	public Terrain(int x, int y) {
 		tab=new Case[x][y];
-		for(int i=0; i<x; i++){
-			for(int j=0; j<y; j++){
-				tab[i][j]=new Case(i,j,null, terrainVillage[i][j]);
-			}
-		}
+        int tmp = (int)(Math.random()*3)+1;
+        switch(tmp){
+            case 1://volcan
+                for(int i=0; i<x; i++){
+                    for(int j=0; j<y; j++){
+                        tab[i][j]=new Case(i,j,null, terrainVolcan[i][j]);
+                    }
+                }
+                break;
+            case 2://montage
+                for(int i=0; i<x; i++){
+                    for(int j=0; j<y; j++){
+                        tab[i][j]=new Case(i,j,null, terrainMontagne[i][j]);
+                    }
+                }
+                break;
+            case 3://village
+                for(int i=0; i<x; i++){
+                    for(int j=0; j<y; j++){
+                        tab[i][j]=new Case(i,j,null, terrainVillage[i][j]);
+                    }
+                }
+                break;
+        }
 	}
 	
     
