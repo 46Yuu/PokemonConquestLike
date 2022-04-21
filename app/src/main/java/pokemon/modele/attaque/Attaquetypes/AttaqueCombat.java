@@ -5,8 +5,20 @@ import pokemon.modele.pokemon.Pokemon;
 
 public class AttaqueCombat extends Attaque {
     public void Attack(Pokemon p,Pokemon b){
+        if(p.getEffet()=="Paralyse"){
+            int tmp = (int)(Math.random()*100)+1;
+            if(tmp>=25){
+                attackBis(p,b);
+            } 
+        }
+        else{
+            attackBis(p, b);
+        }
+    }
+
+    public void attackBis(Pokemon p, Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
-        if(tmp < p.getCrit()){
+        if(tmp <= p.getCrit()){
             if(b.getType()=="Spectre"){
                 b.setPdv(b.getPdv() - 0);
             }

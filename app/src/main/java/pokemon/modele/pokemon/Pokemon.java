@@ -2,6 +2,7 @@ package pokemon.modele.pokemon;
 
 import pokemon.modele.attaque.*;
 import pokemon.modele.attaque.Attaquetypes.*;
+import pokemon.modele.attaque.ListeAttaques.eclair;
 import pokemon.modele.attaque.ListeAttaques.flammeche;
 import pokemon.modele.mouvement.Mouvement;
 import java.util.*;
@@ -134,6 +135,9 @@ public class Pokemon implements Mouvement{
 	public void addAttaqueListe(String nom,String type){
 		if(nom == "Flammeche"){
 			this.listeAttaques.put(nom, new flammeche());
+		}
+		else if (nom == "Eclair"){
+			this.listeAttaques.put(nom, new eclair());
 		}
 		else if (type == "Eau"){
 			this.listeAttaques.put(nom, new AttaqueEau());

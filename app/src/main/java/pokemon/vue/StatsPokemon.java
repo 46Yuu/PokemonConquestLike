@@ -188,9 +188,15 @@ public class StatsPokemon extends JPanel{
   }
 
   public void setEffet(String effet){
-    labelEffet.setText(effet);
-    if(effet == "Brule"){
-      labelEffet.setForeground(new ColorUIResource(238, 129, 48));
+    switch(effet){
+      case "Brule":
+        labelEffet.setText("BRN");
+        labelEffet.setForeground(new ColorUIResource(238, 129, 48));
+        break;
+      case "Paralyse":
+        labelEffet.setText("PAR");
+        labelEffet.setForeground(new ColorUIResource(247, 208, 44));
+        break;
     }
   }
 

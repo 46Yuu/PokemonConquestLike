@@ -5,8 +5,20 @@ import pokemon.modele.pokemon.Pokemon;
 
 public class AttaqueFeu extends Attaque{
     public void Attack(Pokemon p,Pokemon b){
+        if(p.getEffet()=="Paralyse"){
+            int tmp = (int)(Math.random()*100)+1;
+            if(tmp>=25){
+                attackBis(p,b);
+            } 
+        }
+        else{
+            attackBis(p, b);
+        }
+    }
+        
+    public void attackBis(Pokemon p, Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
-        if(tmp < p.getCrit()){
+        if(tmp <= p.getCrit()){
             if(b.getType()=="Dragon" || b.getType()=="Eau" || b.getType()=="Feu" || b.getType()=="Roche"){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
@@ -36,7 +48,7 @@ public class AttaqueFeu extends Attaque{
             }
         }
     }
-        
+
     @Override
     public String getType() {
         return "Feu";
