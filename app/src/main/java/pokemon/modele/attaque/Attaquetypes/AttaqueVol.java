@@ -1,5 +1,7 @@
 package pokemon.modele.attaque.Attaquetypes;
 
+import javax.swing.plaf.ColorUIResource;
+
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 
@@ -53,5 +55,9 @@ public class AttaqueVol extends Attaque{
     @Override
     public String getType() {
         return "Vol";
+    }
+
+    public ColorUIResource getColorLabelType(){
+        return new ColorUIResource(169, 143, 243);
     }
 }

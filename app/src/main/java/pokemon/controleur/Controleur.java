@@ -285,10 +285,6 @@ public class Controleur {
         vue.setVisibleBoutonFin(b, jeux.getJoueurActuel());
     }
 
-    public void enleverAttaqueInfos(String attaque, boolean joueur1){
-        vue.enleverAttaqueInfos(attaque,joueur1);
-    }
-
     public Map<Pokemon, Case> getPokemonCaseJoueur1() {
         return jeux.getPokemonCaseJoueur1();
     }
@@ -332,6 +328,10 @@ public class Controleur {
 
     public void hit(){
         vue.hit();
+    }
+
+    public void setInvisibleInfosAttaque(boolean joueur1) {
+        vue.setInvisibleInfosAttaque(joueur1);
     }
 }
 

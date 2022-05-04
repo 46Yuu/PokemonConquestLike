@@ -220,7 +220,7 @@ public class Jeux {
         attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
         controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y),joueur1);
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
-        controleur.enleverAttaqueInfos(nomAttaque,joueur1);
+        controleur.setInvisibleInfosAttaque(joueur1);
         controleur.deselectTile(getCoordonneesPokemonActuel());
         if(pokemonKo(x, y)){
             enleverKo(x,y);

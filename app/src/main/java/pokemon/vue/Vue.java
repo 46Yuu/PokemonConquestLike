@@ -253,13 +253,6 @@ public class Vue extends JFrame{
 		getPanelBoutons(joueur1).getBoutonFin().setVisible(b);
 	}
 
-	public void enleverAttaqueInfos(String attaque,boolean joueur1) {
-		if(joueur1)
-			ecranJeuxJ1.enleverAttaqueInfos(attaque);
-		else
-			ecranJeuxJ2.enleverAttaqueInfos(attaque);
-    }
-
 	public int getXPrec(boolean joueur1){
 		if(joueur1)
 			return ecranJeuxJ1.getXPrec();
@@ -298,4 +291,11 @@ public class Vue extends JFrame{
 	public void hit(){
 		ecranJeuxJ1.hit();
 	}
+
+    public void setInvisibleInfosAttaque(boolean joueur1) {
+		if(joueur1)
+			ecranJeuxJ1.setInvisibleInfosAttaque();
+		else
+			ecranJeuxJ2.setInvisibleInfosAttaque();
+    }
 }

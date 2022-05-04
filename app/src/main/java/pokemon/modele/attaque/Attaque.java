@@ -1,5 +1,7 @@
 package pokemon.modele.attaque;
 
+import javax.swing.plaf.ColorUIResource;
+
 import pokemon.audio.Audio;
 import pokemon.modele.pokemon.Pokemon;
 
@@ -48,4 +50,5 @@ public abstract class Attaque {
     }
 
     public abstract String getType();
+    public abstract ColorUIResource getColorLabelType();
 }

@@ -89,12 +89,9 @@ public class EcranJeux extends JFrame{
 				tmp.addActionListener(e ->{
 					controleur.colorerCasesAAttaquer(nom);
 				});
-				addActionListenerBouton(nom,tmp);
+				addActionListenerBouton(nom,listeAttaques.get(nom),tmp);
 				panelBoutons.add(tmp);
 				tmp.setVisible(true);
-				panelBoutons.addAttaqueInfos(nom,listeAttaques.get(nom));
-				JPanel tmp2 = panelBoutons.getAttaqueInfos(nom);
-				panelBoutons.add(tmp2);
 			}
 			panelBoutons.repaint();
 		});
@@ -158,15 +155,12 @@ public class EcranJeux extends JFrame{
 			for(String nom : listeAttaques.keySet()){
 				panelBoutons.addListeBouton(nom);
 				JButton tmp = panelBoutons.getBoutonDeListe(nom);
-				tmp.addActionListener(e ->{
-					controleur.colorerCasesAAttaquer(nom);
-				});
-				addActionListenerBouton(nom,tmp);
+				//tmp.addActionListener(e ->{
+				//	controleur.colorerCasesAAttaquer(nom);
+				//});
+				addActionListenerBouton(nom,listeAttaques.get(nom),tmp);
 				panelBoutons.add(tmp);
 				tmp.setVisible(true);
-				panelBoutons.addAttaqueInfos(nom,listeAttaques.get(nom));
-				JPanel tmp2 = panelBoutons.getAttaqueInfos(nom);
-				panelBoutons.add(tmp2);
 			}
 			panelBoutons.repaint();
 		});
@@ -193,18 +187,18 @@ public class EcranJeux extends JFrame{
 		arrayTile[x][y].enleverFleche();
 	}
 
-	public void addActionListenerBouton(String nom,JButton b){
+	public void addActionListenerBouton(String nom,Attaque atk,JButton b){
 		b.addMouseListener(new java.awt.event.MouseAdapter() {
 			boolean clicked = false;
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				controleur.colorerCasesAAttaquer(nom);
-				panelBoutons.getAttaqueInfos(nom).setVisible(true);
+				panelBoutons.setVisibleInfosAttaque(nom,atk);
 			}
 		
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				if(!clicked){
 					controleur.decolorerCasesAAttaquer();
-					panelBoutons.getAttaqueInfos(nom).setVisible(false);
+					panelBoutons.setInvisibleInfosAttaque();
 				}
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -399,10 +393,6 @@ public class EcranJeux extends JFrame{
 		this.panelBoutons.getBoutonAnnulerD().setVisible(true);
 	}
 
-	public void enleverAttaqueInfos(String attaque) {
-		panelBoutons.enleverAttaqueInfos(attaque);
-	}
-
 	public void setXPrec(int x){
 		this.xPrec=x;
 	}
@@ -442,4 +432,8 @@ public class EcranJeux extends JFrame{
 		panelBoutons.getBoutonRetour().setVisible(false);
 		controleur.getJeux().selectPokemon();
 	}
+
+    public void setInvisibleInfosAttaque() {
+		panelBoutons.setInvisibleInfosAttaque();
+    }
 }
