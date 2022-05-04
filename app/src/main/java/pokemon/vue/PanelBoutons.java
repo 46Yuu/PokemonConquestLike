@@ -3,6 +3,12 @@ package pokemon.vue;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.text.Document;
+import javax.swing.text.*;
+import javax.swing.text.Style;
+import javax.swing.text.AttributeSet.ColorAttribute;
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.*;
@@ -26,6 +32,8 @@ public class PanelBoutons extends JPanel{
   private JLabel labelRange=new JLabel();
   private JPanel infosAttaque=new JPanel();
   private JLabel labelNomAttaque=new JLabel();
+  private JScrollPane panelDescription;
+  private JTextPane description=new JTextPane();
   
   public PanelBoutons(Controleur controleur, JButton buttonRecommencer){
     this.controleur=controleur;
@@ -46,6 +54,7 @@ public class PanelBoutons extends JPanel{
 			boutonAttaquer.setVisible(true);
       boutonAnnulerD.setVisible(true);
       boutonRetour.setVisible(false);
+      infosAttaque.setVisible(false);
       for(JButton b : listeBoutonsAttaques.values()){
         b.setVisible(false);
       }
@@ -67,7 +76,9 @@ public class PanelBoutons extends JPanel{
     labelNomAttaque.setForeground(Color.WHITE);
     infosAttaque.add(labelType);
     infosAttaque.add(labelRange);
-
+    panelDescription=new JScrollPane(description,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    infosAttaque.add(panelDescription);
+    description.setBackground(Color.DARK_GRAY);
   }
 
   public void addListeBouton(String nom){
@@ -84,6 +95,15 @@ public class PanelBoutons extends JPanel{
     labelType.setForeground(atk.getColorLabelType());
     labelRange.setText("Range : "+atk.getDistanceMaxAttaque());
     labelRange.setForeground(Color.WHITE);
+    Style defaut=description.getStyle("default");
+    StyleConstants.setForeground(defaut, Color.red);
+    Document doc=description.getDocument();
+    try{
+      doc.remove(0,doc.getLength());
+      doc.insertString(0,atk.getInfos(), defaut);
+    }catch(BadLocationException e){
+      System.out.println(e.getMessage());
+    } 
   }
 
   public void setInvisibleInfosAttaque(){
@@ -137,10 +157,11 @@ public class PanelBoutons extends JPanel{
       }
     }
     if(infosAttaque!=null){
-      infosAttaque.setBounds(0,4*height/5,width/4,height/5);
-      labelNomAttaque.setBounds(0,0,width/4,(height/5)/3);
-      labelType.setBounds(0,(height/5)/3,width/4,(height/5)/3);
-      labelRange.setBounds(0,2*(height/5)/3,width/4,(height/5)/3);
+      infosAttaque.setBounds(0,4*height/5,width,height/5);
+      labelNomAttaque.setBounds(5,0,width/3-5,(height/5)/3);
+      labelType.setBounds(5,(height/5)/3,width/3-5,(height/5)/3);
+      labelRange.setBounds(5,2*(height/5)/3,width/3-5,(height/5)/3);
+      panelDescription.setBounds(width/3,0,(2*width)/3,height/5);
     }
     if(buttonRecommencer!=null)
       buttonRecommencer.setBounds(0,5*height/6,width,height/6);

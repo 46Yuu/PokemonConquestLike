@@ -10,7 +10,7 @@ public class flammeche extends AttaqueFeu{
     }
 
     public String getInfo(){
-        return "L'ennemi est attaqué par une faible flamme. Peut aussi le brûler. (10%)";
+        return "L'ennemi est attaqué par une faible flamme. Peut aussi le brûler. \n(10%. Brulure = -1pv après chaque action.)";
     }
 
     public void effet(Pokemon b){
