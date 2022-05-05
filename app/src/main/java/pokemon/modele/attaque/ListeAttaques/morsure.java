@@ -16,7 +16,7 @@ public class morsure extends AttaqueTenebres{
     public void effet(Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp <= 30){
-            b.setEffet("Peur");
+            b.setPeur(true);
         }
     }
 

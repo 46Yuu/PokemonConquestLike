@@ -253,6 +253,12 @@ public class Pokemon {
 	}
 
 	public int getCapaciteDeplacement(){
+		if(this.effet=="Paralyse"){
+			return capaciteDeplacement-1;
+		}
+		if(this.effet=="Gele"){
+			return 0;
+		}
 		return capaciteDeplacement;
 	}
 	public void setCapaciteDeplacement(int cap){

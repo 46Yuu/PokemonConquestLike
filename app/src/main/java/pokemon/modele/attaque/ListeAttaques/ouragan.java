@@ -16,7 +16,7 @@ public class ouragan extends AttaqueDragon{
     public void effet(Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp <= 20){
-            b.setEffet("Peur");
+            b.setPeur(true);
         }
     }
 
