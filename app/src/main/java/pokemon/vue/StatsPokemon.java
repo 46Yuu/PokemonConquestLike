@@ -34,7 +34,6 @@ public class StatsPokemon extends JPanel{
   private JLabel labelAtk;
   private String nomPokemon;
   private JLabel labelNomPokemon;
-  private JLabel labelEffet;
   /**
    * dessiner un cadre vert sur le panel si cible=true,
    * ne pas dessiner sinon
@@ -58,8 +57,9 @@ public class StatsPokemon extends JPanel{
    */
   private int largeur=PanelJoueurs.largeurStats;
 
-  private JLabel labelPeur=new JLabel();
-  private JLabel labelConfus=new JLabel();
+  private JPanelPeur panelPeur=new JPanelPeur();
+  private JPanelConfus panelConfus=new JPanelConfus();
+  private JPanelEffet panelEffet=new JPanelEffet();
 
   
 
@@ -86,9 +86,8 @@ public class StatsPokemon extends JPanel{
     labelNomPokemon.setBounds(5,2,(largeur/2)-5,15);
 
     //ajouter et positionner le label de l'etat(effet/status) du pokémon
-    labelEffet=new JLabel("");
-    add(labelEffet);
-    labelEffet.setBounds((largeur-10)/2,38,(largeur-10)/2,15);
+    add(panelEffet);
+    panelEffet.setBounds((largeur-10)/2,38,(largeur-10)/2,15);
 
     //ajouter et positionner le label Atk
     labelAtk=new JLabel("ATK: "+atk);
@@ -114,12 +113,12 @@ public class StatsPokemon extends JPanel{
     labelPdv.setForeground(Color.WHITE);
 
     //ajouter et positionner le label de peur du pokémon
-    add(labelPeur);
-    labelPeur.setBounds(5,55,largeur/2,15);
+    add(panelPeur);
+    panelPeur.setBounds(5,55,largeur/2,15);
 
     //ajouter et positionner le label de confusion du pokémon
-    add(labelConfus);
-    labelConfus.setBounds(largeur/2,55,largeur/2,15);
+    add(panelConfus);
+    panelConfus.setBounds(largeur/2,55,largeur/2,15);
 
     //ajouter et positionner le label du type du pokémon
     labelType=new JLabel(type);
@@ -184,7 +183,7 @@ public class StatsPokemon extends JPanel{
     else{
       labelPdv.setText("KO");
       pdv=0;//pour ne pas avoir de valeurs négatives
-      labelEffet.setVisible(false);
+      panelEffet.setVisible(false);
     }
     largeurBDV=(largeurPdvInitiale*pdv)/pdvTotal;
     barreDeVie.setBounds(largeur/2,5,(int)largeurBDV,5);
@@ -202,28 +201,20 @@ public class StatsPokemon extends JPanel{
   public void setEffet(String effet){
     switch(effet){
       case "Brule":
-        labelEffet.setText("BRN");
-        labelEffet.setForeground(new ColorUIResource(238, 129, 48));
+        panelEffet.setBRN(true);
         break;
       case "Paralyse":
-        labelEffet.setText("PAR");
-        labelEffet.setForeground(new ColorUIResource(247, 208, 44));
+        panelEffet.setPAR(true);
         break;
     }
   }
 
   public void setConfus(boolean b, int confusTour) {
-    if(b)
-      labelConfus.setText("confus : "+confusTour);
-    else
-      labelConfus.setText("");
+    panelConfus.setConfus(b,confusTour);
   }
 
   public void setPeur(boolean b) {
-    if(b)
-      labelPeur.setText("peur");
-    else
-      labelPeur.setText("");
+    panelPeur.setPeur(b);
   }
 
   @Override
@@ -257,19 +248,115 @@ public class StatsPokemon extends JPanel{
     repaint();
   }
 
-  public String descPeur(){
-    return "Peur : Ne peut rien faire pendant 1 tour.";
+  public JPanelPeur getJPanelPeur(){
+    return panelPeur;
+  }
+  public JPanelConfus getJpanelConfus(){
+    return panelConfus;
+  }
+  public JPanelEffet getJPanelEffet(){
+    return panelEffet;
   }
 
-  public String descBrule(){
-    return "Brulure : -1 pv après chaque action.";
+  public class JPanelConfus extends JPanel{
+    private boolean isConfus=false;
+    private int confusTour;
+    private BufferedImage imageConfus;
+    private JLabel labelConfusTour=new JLabel();
+
+    public JPanelConfus(){
+      try{
+      imageConfus=ImageIO.read(new File("src/main/resources/.png"));
+      }catch(IOException e){
+        e.printStackTrace();
+      }
+    }
+
+    public void setConfus(boolean b, int confusTour) {
+      isConfus=b;
+      this.confusTour=confusTour;
+      if(b)
+        labelConfusTour.setText(""+confusTour);
+      else
+        labelConfusTour.setText("");
+      repaint();
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+      super.paintComponent(g);
+      if(isConfus){
+        g.drawImage(imageConfus,0,0,getWidth()-30,getHeight(),this);
+        labelConfusTour.setBounds(getWidth()-30,0,30,getHeight());
+      }
+    }
+  }
+  public class JPanelPeur extends JPanel{
+    private boolean aPeur=false;
+    private BufferedImage imagePeur;
+
+    public JPanelPeur(){
+      try{
+        imagePeur=ImageIO.read(new File("src/main/resources/.png"));
+      }catch(IOException e){
+        e.printStackTrace();
+      }
+    }
+
+    public void setPeur(boolean b) {
+      aPeur=b;
+      repaint();
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+      super.paintComponent(g);
+      if(aPeur){
+        g.drawImage(imagePeur,0,0,getWidth(),getHeight(),this);
+      }
+    }
   }
 
-  public String descConfus(){
-    return "Confus : 33% de rater son attaque et se blesser , disparait entre 1 et 2 tour.";
+  public class JPanelEffet extends JPanel{
+    private boolean estPAR=false;
+    private boolean estBRN=false;
+    private BufferedImage imagePAR;
+    private BufferedImage imageBRN;
+
+    public JPanelEffet(){
+      try{
+        imagePAR=ImageIO.read(new File("src/main/resources/.png"));
+        imageBRN=ImageIO.read(new File("src/main/resources/.png"));
+      }catch(IOException e){
+        e.printStackTrace();
+      }
+    }
+
+    public void setPAR(boolean b) {
+      estPAR=b;
+    }
+
+    public void setBRN(boolean b) {
+      estBRN=b;
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+      super.paintComponent(g);
+      if(estPAR){
+        g.drawImage(imagePAR,0,0,getWidth(),getHeight(),this);
+      }
+      if(estBRN){
+        g.drawImage(imageBRN,0,0,getWidth(),getHeight(),this);
+      }
+    }
+
   }
 
-  public String descParalyse(){
-    return "Paralyse : 25% de rater son attaque et avance de 1 case de moins.";
+  public boolean estBRN(){
+    return panelEffet.estBRN;
+  }
+  public boolean estPAR(){
+    return panelEffet.estPAR;
   }
 }

@@ -6,6 +6,12 @@ import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
@@ -46,6 +52,10 @@ public class PanelJoueurs extends JPanel{
 	 */
 	protected static final int largeurStats=164;
 
+	JTextPane description=new JTextPane();
+	JScrollPane panelDescription;
+	
+
     public PanelJoueurs(Controleur controleur) {
 		panelJ1=new JPanel();
 		panelJ2=new JPanel();
@@ -71,6 +81,7 @@ public class PanelJoueurs extends JPanel{
 		panelStatsJ1.add(j1);
 		for(Pokemon p: pokemonsJ1.keySet()){//créer les statsPokemon pour chaque pokémon du joueur 1, et les ajouter au panelStatsJ1
 			StatsPokemon tmp=new StatsPokemon(p.getNom(),p.getType(),p.getPdv(),p.getAtk());
+			addActionListenerAuxJPanels(tmp);
 			panelStatsJ1.add(tmp);
 			statsPokemonsJ1.put(p,tmp);
 		}
@@ -80,10 +91,16 @@ public class PanelJoueurs extends JPanel{
 	    panelStatsJ2.add(j2);
 		for(Pokemon p: pokemonsJ2.keySet()){//créer les statsPokemon pour chaque pokémon du joueur 2, et les ajouter au panelStatsJ2
 			StatsPokemon tmp=new StatsPokemon(p.getNom(),p.getType(),p.getPdv(),p.getAtk());
+			addActionListenerAuxJPanels(tmp);
 			panelStatsJ2.add(tmp);
 			statsPokemonsJ2.put(p,tmp);
 		}
-    }
+
+		panelDescription=new JScrollPane(description,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    	description.setBackground(Color.DARK_GRAY);
+    	description.setEditable(false);
+		panelDescription.setVisible(false);
+	}
 
 	/**
 	 * selectionne les stats du pokémon p si b=true, en vert si pokAllieOuEnnemi=true, en rouge sinon.
@@ -127,10 +144,12 @@ public class PanelJoueurs extends JPanel{
         int width=getSize().width;
 		if(jScrollPaneJ1!=null && jScrollPaneJ2!=null){
 			//partager le panelJoueurs entre les deux jScrollPane
-			jScrollPaneJ1.setBounds(0,20,width/2,height-20);
-			jScrollPaneJ2.setBounds(width/2,20,width/2,height-20);
+			jScrollPaneJ1.setBounds(0,40,width/2,height-40);
+			jScrollPaneJ2.setBounds(width/2,40,width/2,height-40);
 			revalidate();
 		}
+		if(panelDescription!=null)
+			panelDescription.setBounds(0,0,width,40);
 		if(j1!=null && j2!=null){
 			j1.setBounds(0,0,largeurStats,15);
 			j2.setBounds(0,0,largeurStats,15);
@@ -173,5 +192,93 @@ public class PanelJoueurs extends JPanel{
 		}
 
     }
+
+	public String descPeur(){
+		return "Peur : Ne peut rien faire pendant 1 tour.";
+	}
+	
+	public String descBrule(){
+		return "Brulure : -1 pv après chaque action.";
+	}
+	
+	public String descConfus(){
+		return "Confus : 33% de rater son attaque et se blesser , disparait entre 1 et 2 tour.";
+	}
+	
+	public String descParalyse(){
+		return "Paralyse : 25% de rater son attaque et avance de 1 case de moins.";
+	}
     
+	private void addActionListenerAuxJPanels(StatsPokemon tmp) {
+		tmp.getJPanelEffet().addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				if(tmp.estBRN())
+					ecrireDescripion(descBrule());
+				else if(tmp.estPAR())
+					ecrireDescripion(descParalyse());
+				panelDescription.setVisible(true);
+			}
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				panelDescription.setVisible(false);
+			}
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				if(panelDescription.isVisible())
+					panelDescription.setVisible(false);
+				else{
+					if(tmp.estBRN())
+						ecrireDescripion(descBrule());
+					else if(tmp.estPAR())
+						ecrireDescripion(descParalyse());
+				}
+			}
+		});
+
+		tmp.getJPanelPeur().addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				ecrireDescripion(descPeur());
+				panelDescription.setVisible(true);
+			}
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				panelDescription.setVisible(false);
+			}
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				if(panelDescription.isVisible())
+					panelDescription.setVisible(false);
+				else{
+					ecrireDescripion(descPeur());
+					panelDescription.setVisible(true);
+				}
+			}
+		});
+
+		tmp.getJpanelConfus().addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				ecrireDescripion(descConfus());
+				panelDescription.setVisible(true);
+			}
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				panelDescription.setVisible(false);
+			}
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				if(panelDescription.isVisible())
+					panelDescription.setVisible(false);
+				else{
+					ecrireDescripion(descConfus());
+					panelDescription.setVisible(true);
+				}
+			}
+		});
+	}
+
+	public void ecrireDescripion(String s){
+		Style defaut=description.getStyle("default");
+		StyleConstants.setForeground(defaut, Color.red);
+		Document doc=description.getDocument();
+		try{
+			  doc.remove(0,doc.getLength());
+			  doc.insertString(0,s, defaut);
+		}catch(BadLocationException e){
+			  System.out.println(e.getMessage());
+		} 
+	}
 }
