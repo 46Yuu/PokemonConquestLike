@@ -85,7 +85,7 @@ public class StatsPokemon extends JPanel{
     //ajouter et positionner le label de l'etat(effet/status) du pokémon
     labelEffet=new JLabel("");
     add(labelEffet);
-    labelEffet.setBounds((largeur-30),38,(largeur-10)/2,15);
+    labelEffet.setBounds((largeur-10)/2,38,(largeur-10)/2,15);
 
     //ajouter et positionner le label Atk
     labelAtk=new JLabel("ATK: "+atk);

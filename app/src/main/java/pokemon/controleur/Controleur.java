@@ -32,6 +32,7 @@ public class Controleur {
      * dernières cases sélectionnées 
      */
     private HashSet<Pair> listCasesPossibles;
+    private Pokemon dernierPokCible;
 
     public Controleur(Vue vue){
         this.vue=vue;
@@ -269,7 +270,12 @@ public class Controleur {
 
     public void cibleVisible(int x, int y) {
         Pokemon p=getPokeDansCase(x, y);
+        dernierPokCible = p;
         vue.cibleVisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));
+    }
+
+    public void cibleInvisibleDernierPok(){
+        vue.cibleInvisible(dernierPokCible, jeux.getJoueurActuel(), jeux.appartienAJoueur1(dernierPokCible));
     }
 
     public void cibleInvisible(int x, int y) {

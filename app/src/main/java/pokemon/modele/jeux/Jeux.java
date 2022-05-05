@@ -243,10 +243,13 @@ public class Jeux {
         controleur.setInvisibleInfosAttaque(joueur1);
         controleur.deselectTile(getCoordonneesPokemonActuel());
         if(pokemonKo(x, y)){
-            enleverKo(x,y);
-            
+            enleverKo(x,y);           
             finDePartie();
         }
+        if(pokemonsDeplaces.size()==pokemonCaseJoueur1.keySet().size())
+            controleur.cibleInvisibleDernierPok();
+        else if(!joueur1 && pokemonsDeplaces.size()==pokemonCaseJoueur2.keySet().size())
+            controleur.cibleInvisibleDernierPok();
     }
 
     public void testEffet(){
