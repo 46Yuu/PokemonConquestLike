@@ -65,16 +65,30 @@ public class EcranJeux extends JFrame{
 		add(panelInfos);
 		add(panelTerrain);
 		panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
-		for(int i=0; i<controleur.getHeight(); i++){
-			for(int j=0;j<controleur.getWidth();j++){
-				String path = controleur.getPathImageTile(i, j);
-				String pathSelect = controleur.getPathImageSelectTile(i, j);
-				String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
-				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur, joueur);
-				panelTerrain.add(tile);
-				arrayTile[i][j]=tile;
+		if(joueur=="Joueur 2"){
+			for(int i=0; i<controleur.getHeight(); i++){
+				for(int j=0;j<controleur.getWidth();j++){
+					String path = controleur.getPathImageTile(i, j);
+					String pathSelect = controleur.getPathImageSelectTile(i, j);
+					String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
+					Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur, joueur);
+					panelTerrain.add(tile);
+					arrayTile[i][j]=tile;
+				}
 			}
 		}
+		else{
+			for(int i=controleur.getHeight()-1; i>=0; i--){
+				for(int j=controleur.getWidth()-1;j>=0;j--){
+					String path = controleur.getPathImageTile(i, j);
+					String pathSelect = controleur.getPathImageSelectTile(i, j);
+					String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
+					Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur, joueur);
+					panelTerrain.add(tile);
+					arrayTile[i][j]=tile;
+				}
+			}
+		}	
 
         panelBoutons.getBoutonAttaque().addActionListener(event ->{
 			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
