@@ -8,7 +8,6 @@ import javax.swing.JTextPane;
 import javax.swing.text.Document;
 import javax.swing.text.*;
 import javax.swing.text.Style;
-import javax.swing.text.AttributeSet.ColorAttribute;
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.*;
@@ -34,6 +33,10 @@ public class PanelBoutons extends JPanel{
   private JLabel labelNomAttaque=new JLabel();
   private JScrollPane panelDescription;
   private JTextPane description=new JTextPane();
+
+  private JScrollPane panelHistorique;
+  private JTextPane historique=new JTextPane();
+  private int posEcriture;
   
   public PanelBoutons(Controleur controleur, JButton buttonRecommencer){
     this.controleur=controleur;
@@ -79,6 +82,10 @@ public class PanelBoutons extends JPanel{
     panelDescription=new JScrollPane(description,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     infosAttaque.add(panelDescription);
     description.setBackground(Color.DARK_GRAY);
+
+    panelHistorique=new JScrollPane(historique,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    historique.setBackground(Color.BLACK);
+    add(panelHistorique);
   }
 
   public void addListeBouton(String nom){
@@ -107,6 +114,18 @@ public class PanelBoutons extends JPanel{
     }catch(BadLocationException e){
       System.out.println(e.getMessage());
     } 
+  }
+
+  public void ecrireHistorique(String s){
+    Style defaut=historique.getStyle("default");
+    StyleConstants.setForeground(defaut, Color.white);
+    Document doc=historique.getDocument();
+    try{
+      doc.insertString(posEcriture,s, defaut);
+    }catch(BadLocationException e){
+      System.out.println(e.getMessage());
+    } 
+    posEcriture+=s.length();
   }
 
   public void setInvisibleInfosAttaque(){
@@ -145,17 +164,17 @@ public class PanelBoutons extends JPanel{
     int width=getSize().width;
     int height=getSize().height;
     if(boutonAttaquer!=null)
-      boutonAttaquer.setBounds(0,0,width/4,height/7);
+      boutonAttaquer.setBounds(0,0,width/3-2,height/7);
     if(boutonFin!=null)
-      boutonFin.setBounds(width/4+2,0,width/4,height/7);
+      boutonFin.setBounds(width/3,0,width/3-2,height/7);
     if(boutonRetour!=null)
-      boutonRetour.setBounds(2*(width/4)+2,0,width/4,height/7);
+      boutonRetour.setBounds(2*(width/3),0,width/3-2,height/7);
     if(boutonAnnulerD!=null)
-      boutonAnnulerD.setBounds(0,height/7,width/4,height/7);
+      boutonAnnulerD.setBounds(0,height/7,width/3-2,height/7);
     int i=0;
     if(listeBoutonsAttaques!=null){
       for(String s : listeBoutonsAttaques.keySet()){
-        listeBoutonsAttaques.get(s).setBounds(0, i*(height/5), width/4, height/5);
+        listeBoutonsAttaques.get(s).setBounds(0, i*(height/5), width/3, height/5);
         i++;
       }
     }
@@ -166,10 +185,12 @@ public class PanelBoutons extends JPanel{
       labelRange.setBounds(5,2*(height/5)/3,width/3-5,(height/5)/3);
       panelDescription.setBounds(width/3,0,(2*width)/3,height/5);
     }
+    if(panelHistorique!=null)
+      panelHistorique.setBounds(width/3,height/7,2*width/3,(4*height/5)-(height/7));
     if(buttonRecommencer!=null)
       buttonRecommencer.setBounds(0,5*height/6,width,height/6);
     if(panelFinPartie!=null)
-      panelFinPartie.setBounds(0,0, width, 5*height/6);
+      panelFinPartie.setBounds(0,0, width, 5*height/6); 
   }
 
   public void afficherFinPartie(BufferedImage imageFinPartie){
