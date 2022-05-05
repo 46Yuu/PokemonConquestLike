@@ -208,47 +208,11 @@ public class Pokemon {
 		else if (nom == "Souplesse"){
 			this.listeAttaques.put(nom, new souplesse());
 		}
-		else if (type == "Eau"){
-			this.listeAttaques.put(nom, new AttaqueEau());
+		else if (nom == "Forte-Paume"){
+			this.listeAttaques.put(nom, new fortePaume());
 		}
-		else if (type == "Electrique"){
-			this.listeAttaques.put(nom, new AttaqueElectrique());
-		}
-		else if (type == "Feu"){
-			this.listeAttaques.put(nom, new AttaqueFeu());
-		}
-		else if (type == "Normal"){
-			this.listeAttaques.put(nom, new AttaqueNormal());
-		}
-		else if (type == "Plante"){
-			this.listeAttaques.put(nom, new AttaquePlante());
-		}
-		else if (type == "Vol"){
-			this.listeAttaques.put(nom, new AttaqueVol());
-		}
-		else if (type == "Combat"){
-			this.listeAttaques.put(nom, new AttaqueCombat());
-		}
-		else if (type == "Psy"){
-			this.listeAttaques.put(nom, new AttaquePsy());
-		}
-		else if (type == "Tenebres"){
-			this.listeAttaques.put(nom, new AttaqueTenebres());
-		}
-		else if (type == "Insecte"){
-			this.listeAttaques.put(nom, new AttaqueInsecte());
-		}
-		else if (type == "Dragon"){
-			this.listeAttaques.put(nom, new AttaqueDragon());
-		}
-		else if (type == "Roche"){
-			this.listeAttaques.put(nom, new AttaqueRoche());
-		}
-		else if (type == "Glace"){
-			this.listeAttaques.put(nom, new AttaqueGlace());
-		}
-		else if (type == "Poison"){
-			this.listeAttaques.put(nom, new AttaquePoison());
+		else if (nom == "Puredpois"){
+			this.listeAttaques.put(nom, new puredpois());
 		}
 	}
 
