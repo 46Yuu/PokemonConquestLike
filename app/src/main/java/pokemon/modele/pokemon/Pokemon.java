@@ -3,12 +3,11 @@ package pokemon.modele.pokemon;
 import pokemon.modele.attaque.*;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.attaque.ListeAttaques.*;
-import pokemon.modele.mouvement.Mouvement;
 import pokemon.modele.terrain.Case.TypeCase;
 
 import java.util.*;
 
-public class Pokemon implements Mouvement{
+public class Pokemon {
     
 	String nom;
 	private int crit;
@@ -314,11 +313,7 @@ public class Pokemon implements Mouvement{
         }
 	}
 
-	@Override
-	public void Deplacement() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	public boolean peutAllerA(TypeCase typeCase){
 		if(typeCase==TypeCase.Water){
 			if(type!="Eau" && type!="Glace")
