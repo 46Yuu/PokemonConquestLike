@@ -206,7 +206,23 @@ public class StatsPokemon extends JPanel{
       case "Paralyse":
         panelEffet.setPAR(true);
         break;
+      case "Gele":
+        labelEffet.setText("FRZ");
+        labelEffet.setForeground(new ColorUIResource(150, 217, 214));
+        break;
+      case "Poison":
+        labelEffet.setText("PSN");
+        labelEffet.setForeground(new ColorUIResource(163, 62, 161));
+        break;
     }
+  }
+
+  public void afficherEffet(){
+    this.labelEffet.setVisible(true);
+  }
+
+  public void cacherEffet(){
+    this.labelEffet.setVisible(false);
   }
 
   public void setConfus(boolean b, int confusTour) {

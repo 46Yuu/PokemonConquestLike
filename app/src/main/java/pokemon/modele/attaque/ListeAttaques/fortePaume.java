@@ -3,20 +3,20 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class dracoCharge extends AttaqueDragon{
+public class fortePaume extends AttaqueCombat{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;
     }
 
     public String getInfo(){
-        return "Le lanceur frappe l’ennemi en prenant un air menaçant. Peut aussi l’apeurer. \n(20%. Peur = ne peut rien faire pendant 1 tour";
+        return "Une onde de choc frappe l'ennemi. Peut aussi paralyser la cible. \n(30%. Paralysie = 25% de rater son attaque et avance de 1 case de moins.";
     }
 
     public void effet(Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
-        if(tmp <= 20){
-            b.setPeur(true);
+        if(tmp <= 30){
+            b.setEffet("Paralyse");
         }
     }
 

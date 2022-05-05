@@ -173,6 +173,10 @@ public class EcranJeux extends JFrame{
 		tmp.setPdv(p.getPdv());
 		if(p.getEffet()!=null){
 			tmp.setEffet(p.getEffet());
+			tmp.afficherEffet();
+		}
+		else {
+			tmp.cacherEffet();
 		}
 		if(p.getConfus())
 			tmp.setConfus(true,p.getConfusTour());
@@ -369,11 +373,11 @@ public class EcranJeux extends JFrame{
         }
 	}
 
-
 	public void finTour(){
 		int x=controleur.getCoordonneesPokemonActuel().getFirst();
 		int y=controleur.getCoordonneesPokemonActuel().getSecond();
 		controleur.testEffet();
+		controleur.miseAJourInfosPokemons(controleur.getPokeDansCase(x, y),!controleur.getJoueurActuel());
 		deselectTile(x, y);
 		enleverFleche(x, y);
 		panelBoutons.getBoutonFin().setVisible(false);

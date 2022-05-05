@@ -8,7 +8,27 @@ import pokemon.modele.pokemon.Pokemon;
 
 public abstract class Attaque {
     public void Attack(Pokemon p,Pokemon b){
-        b.setPdv(b.getPdv() - p.getAtk()) ;
+        if(p.getConfus() == true){
+            if (p.getConfusTour()>0){
+                int nonConfus = (int)(Math.random()*100)+1;
+                p.setConfusTour(p.getConfusTour()-1);
+                if(nonConfus<=33){
+                    paralyse(p, b);
+                } 
+                else {
+                    p.setPdv(p.getPdv()-1);
+                    hit();
+                }
+            }
+            else {
+                p.setConfusTour(2);
+                p.setConfus(false);
+                paralyse(p, b);
+            }
+        }
+        else{
+            paralyse(p, b);
+        }
     }
 
     public int getDistanceMaxAttaque(){
@@ -67,6 +87,10 @@ public abstract class Attaque {
             int tmp = (int)(Math.random()*100)+1;
             if(tmp>=25){
                 attackBis(p,b);
+            } 
+            int tmp2 = (int)(Math.random()*100)+1;
+            if(tmp2<=20){
+                p.setEffet(null);
             } 
         }
         else {
