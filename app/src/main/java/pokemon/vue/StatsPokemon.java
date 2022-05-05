@@ -58,6 +58,9 @@ public class StatsPokemon extends JPanel{
    */
   private int largeur=PanelJoueurs.largeurStats;
 
+  private JLabel labelPeur=new JLabel();
+  private JLabel labelConfus=new JLabel();
+
   
 
   public StatsPokemon(String nom,String t,int p,int a){
@@ -109,6 +112,14 @@ public class StatsPokemon extends JPanel{
     add(labelPdv);
     labelPdv.setBounds(largeur/2,20,(largeur)/2-5,15);
     labelPdv.setForeground(Color.WHITE);
+
+    //ajouter et positionner le label de peur du pokémon
+    add(labelPeur);
+    labelPeur.setBounds(5,55,largeur/2,15);
+
+    //ajouter et positionner le label de confusion du pokémon
+    add(labelConfus);
+    labelConfus.setBounds(largeur/2,55,largeur/2,15);
 
     //ajouter et positionner le label du type du pokémon
     labelType=new JLabel(type);
@@ -201,6 +212,20 @@ public class StatsPokemon extends JPanel{
     }
   }
 
+  public void setConfus(boolean b, int confusTour) {
+    if(b)
+      labelConfus.setText("confus : "+confusTour);
+    else
+      labelConfus.setText("");
+  }
+
+  public void setPeur(boolean b) {
+    if(b)
+      labelPeur.setText("peur");
+    else
+      labelPeur.setText("");
+  }
+
   @Override
   protected void paintComponent(Graphics g) {
       int height=getSize().height;
@@ -231,5 +256,4 @@ public class StatsPokemon extends JPanel{
       cibleEnnemi=afficherOuPas;
     repaint();
   }
-
 }

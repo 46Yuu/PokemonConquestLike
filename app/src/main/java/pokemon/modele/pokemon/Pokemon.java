@@ -18,7 +18,7 @@ public class Pokemon {
 	private String effet=null;
 	private boolean confus = false;
 	private int confusTour = 2;
-	private boolean peur = false;
+	private boolean peur =false;
 	Map<String,Attaque> listeAttaques = new TreeMap<String,Attaque>();
 	/**
 	 * le nombre de cases maximal qu'on peut déplacer le pokémon
@@ -119,47 +119,7 @@ public class Pokemon {
 	}
 
 	public void setType(String type) {
-		if (type == "Eau"){
-			this.type = type;
-		}
-		else if (type == "Electrique"){
-			this.type = type;
-		}
-		else if (type == "Feu"){
-			this.type = type;
-		}
-		else if (type == "Normal"){
-			this.type = type;
-		}
-		else if (type == "Plante"){
-			this.type = type;
-		}
-		else if (type  == "Vol"){
-			this.type = type;
-		}
-		else if (type  == "Poison"){
-			this.type = type;
-		}
-		else if (type  == "Combat"){
-			this.type = type;
-		}
-		else if (type  == "Psy"){
-			this.type = type;
-		}
-		else if (type  == "Tenebres"){
-			this.type = type;
-		}
-		else if (type  == "Insecte"){
-			this.type = type;
-		}
-		else if (type  == "Dragon"){
-			this.type = type;
-		}
-		else if (type  == "Roche"){
-			this.type = type;
-		}else if (type  == "Glace"){
-			this.type = type;
-		}
+		this.type = type;
 	}
 
 	public Map<String,Attaque> getListeAttaque(){

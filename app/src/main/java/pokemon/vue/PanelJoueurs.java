@@ -139,7 +139,7 @@ public class PanelJoueurs extends JPanel{
 		if(panelJ1!=null && panelJ2!=null){
 			//determiner la hauteur de chacun des panel en fonction du nombre des stats
 			//chaque panel stats a une hauteur de 55 plus 10 entre chaque deux panels 
-			int countJ1=15+(statsPokemonsJ1.values().size()*(55+10))+10,countJ2=15+(statsPokemonsJ2.values().size()*(55+10))+10;
+			int countJ1=15+(statsPokemonsJ1.values().size()*(72+10))+10,countJ2=15+(statsPokemonsJ2.values().size()*(72+10))+10;
 			if(jScrollPaneJ1.getSize().width<=largeurStats){//si le jScrollPanelJ1 a une largeur inférieure à largeurStats, la largeur de panelJ1 et panelStatsJ1 est largeurStats
 				panelJ1.setPreferredSize(new Dimension(largeurStats,countJ1));
 				panelStatsJ1.setBounds(0, 0, largeurStats, countJ1);
@@ -162,12 +162,12 @@ public class PanelJoueurs extends JPanel{
 			int i=0;
 			//positionner les statsPokemonsJ1 sur panelStatsJ1
 			for(StatsPokemon s : statsPokemonsJ1.values()){
-				s.setBounds(0, i*(55+10)+25, largeurStats, 55);
+				s.setBounds(0, i*(72+10)+25, largeurStats, 72);
 				i++;
 			}
 			i=0;//positionner les statsPokemonsJ2 sur panelStatsJ2
 			for(StatsPokemon s : statsPokemonsJ2.values()){
-				s.setBounds(0, i*(55+10)+25, largeurStats, 55);
+				s.setBounds(0, i*(72+10)+25, largeurStats, 72);
 				i++;
 			}
 		}

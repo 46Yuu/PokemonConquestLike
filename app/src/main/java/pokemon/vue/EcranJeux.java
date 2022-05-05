@@ -174,6 +174,14 @@ public class EcranJeux extends JFrame{
 		if(p.getEffet()!=null){
 			tmp.setEffet(p.getEffet());
 		}
+		if(p.getConfus())
+			tmp.setConfus(true,p.getConfusTour());
+		else
+			tmp.setConfus(false,p.getConfusTour());
+		if(p.getPeur())
+			tmp.setPeur(true);
+		else
+			tmp.setPeur(false);
 	}
 
 	/**
