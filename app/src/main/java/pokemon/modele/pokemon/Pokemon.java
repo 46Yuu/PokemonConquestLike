@@ -5,6 +5,8 @@ import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.attaque.ListeAttaques.eclair;
 import pokemon.modele.attaque.ListeAttaques.flammeche;
 import pokemon.modele.mouvement.Mouvement;
+import pokemon.modele.terrain.Case.TypeCase;
+
 import java.util.*;
 
 public class Pokemon implements Mouvement{
@@ -208,5 +210,17 @@ public class Pokemon implements Mouvement{
 	public void Deplacement() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean peutAllerA(TypeCase typeCase){
+		if(typeCase==TypeCase.Water){
+			if(type!="Eau" && type!="Glace")
+				return false;
+		}
+		if(typeCase==TypeCase.Lava){
+            if(type!="Eau" && type!="Vol" && type!="Feu")
+                return false;
+        } 
+		return true;
 	}
 }

@@ -3,6 +3,7 @@ package pokemon.modele.jeux;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 
 import pokemon.controleur.Controleur;
 import pokemon.modele.attaque.Attaque;
@@ -56,31 +57,40 @@ public class Jeux {
 
     /**
      * met les pokémons des joueurs 1 et 2 dans le terrain
+     * aléatoirement
      */
     public void poserPokemons() {
-        int x=0, y=0;
+        int x,y;
         for(Pokemon p : pokemonCaseJoueur1.keySet()){
-            if(y>=terrain.getWidth()){
-                x+=2;
-                y=0;
+            Random rand=new Random();
+            x=rand.nextInt((terrain.getHeight()-1)/2);
+            y=rand.nextInt(terrain.getWidth());
+            while(terrain.getPokemon(x, y)!=null || !p.peutAllerA(terrain.getCase(x, y).getType())){
+                x=rand.nextInt(terrain.getHeight()/2-1);
+                y=rand.nextInt(terrain.getWidth());
             }
             pokemonCaseJoueur1.put(p, terrain.getCase(x,y));
-            terrain.getCase(x,y).setPokemon(p);
+            terrain.setPokemon(x,y,p);
             controleur.placerPokemon(p,x,y);
-            y+=4;
         }
 
-        x=terrain.getHeight()-1;
-        y=0;
         for(Pokemon p : pokemonCaseJoueur2.keySet()){
-            if(y>=terrain.getWidth()){
-                x-=2;
-                y=0;
+            Random rand=new Random();
+            if(terrain.getHeight()%2==1)
+                x=rand.nextInt((terrain.getHeight()-1)/2)+(terrain.getHeight()-1)/2+1;
+            else
+                x=rand.nextInt((terrain.getHeight()-1)/2)+(terrain.getHeight()-1)/2+2;
+            y=rand.nextInt(terrain.getWidth());
+            while(terrain.getPokemon(x, y)!=null || !p.peutAllerA(terrain.getCase(x, y).getType())){
+                if(terrain.getHeight()%2==1)
+                    x=rand.nextInt((terrain.getHeight()-1)/2)+(terrain.getHeight()-1)/2+1;
+                else
+                    x=rand.nextInt((terrain.getHeight()-1)/2)+(terrain.getHeight()-1)/2+2;
+                y=rand.nextInt(terrain.getWidth());
             }
             pokemonCaseJoueur2.put(p, terrain.getCase(x,y));
-            terrain.getCase(x,y).setPokemon(p);
+            terrain.setPokemon(x,y,p);
             controleur.placerPokemon(p,x,y);
-            y+=4;
         }     
     }
 

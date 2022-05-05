@@ -100,7 +100,7 @@ public class Terrain{
     
     // Function to check if a cell
     // is be visited or not
-    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon, boolean pokemonAuJoueur1,HashMap<Pokemon,Case> pokemonCaseJoueur1, HashSet<Pair> pairsASupprimer )
+    private boolean isValid(Boolean vis[][],int rowPokemon, int colPokemon, int row, int col,int distance, int capaciteDeplacement, String TypePokemon, boolean pokemonAuJoueur1,HashMap<Pokemon,Case> pokemonCaseJoueur1, HashSet<Pair> pairsASupprimer, Pokemon p )
     {
         // If cell lies out of bounds
         if (row < 0 || col < 0 || row >= vis.length || col >= vis[0].length)
@@ -114,15 +114,8 @@ public class Terrain{
         if(distance>capaciteDeplacement)
             return false;
 
-        //vérifier si le pokémon peut se déplacer dans la case
-        if(tab[row][col].getType()==TypeCase.Water){
-            if(!TypePokemon.equals("Eau"))
-                return false;
-        } 
-        if(tab[row][col].getType()==TypeCase.Lava){
-            if( !(TypePokemon.equals("Eau") || TypePokemon.equals("Vol") || TypePokemon.equals("Feu") ) )
-                return false;
-        } 
+        if(!p.peutAllerA(tab[row][col].getType()))
+            return false; 
 
         //vérifier si il y a un pokémon ennemi sur la case
         Pokemon pokemonSurLACase=tab[row][col].getPokemon();
@@ -186,7 +179,7 @@ public class Terrain{
                 int adjx = x + dRow[i];
                 int adjy = y + dCol[i];
                 
-                if (isValid(vis, row, col, adjx, adjy,distance+1, capaciteDeplacement, typePokemon,pokemonAuJouer1,pokemonCaseJoueur1,pairsASupprimer)){
+                if (isValid(vis, row, col, adjx, adjy,distance+1, capaciteDeplacement, typePokemon,pokemonAuJouer1,pokemonCaseJoueur1,pairsASupprimer,p)){
                     q.add(new Pair(adjx, adjy,distance+1));
                     vis[adjx][adjy] = true;
 					res.add(new Pair(adjx,adjy,distance+1));
