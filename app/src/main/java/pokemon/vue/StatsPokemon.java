@@ -232,4 +232,19 @@ public class StatsPokemon extends JPanel{
     repaint();
   }
 
+  public String descPeur(){
+    return "Peur : Ne peut rien faire pendant 1 tour.";
+  }
+
+  public String descBrule(){
+    return "Brulure : -1 pv après chaque action.";
+  }
+
+  public String descConfus(){
+    return "Confus : 33% de rater son attaque et se blesser , disparait entre 1 et 2 tour.";
+  }
+
+  public String descParalyse(){
+    return "Paralyse : 25% de rater son attaque et avance de 1 case de moins.";
+  }
 }
