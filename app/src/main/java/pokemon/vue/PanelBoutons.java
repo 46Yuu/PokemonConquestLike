@@ -93,7 +93,10 @@ public class PanelBoutons extends JPanel{
     labelNomAttaque.setText(nom);
     labelType.setText("Type : "+atk.getType());
     labelType.setForeground(atk.getColorLabelType());
-    labelRange.setText("Range : "+atk.getDistanceMaxAttaque());
+    if(atk.jusquADistanceMax() &&  atk.getDistanceMaxAttaque()!=1)
+      labelRange.setText("Range : 1-"+atk.getDistanceMaxAttaque());
+    else
+      labelRange.setText("Range : "+atk.getDistanceMaxAttaque());
     labelRange.setForeground(Color.WHITE);
     Style defaut=description.getStyle("default");
     StyleConstants.setForeground(defaut, Color.red);

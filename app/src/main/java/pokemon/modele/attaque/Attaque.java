@@ -81,6 +81,16 @@ public abstract class Attaque {
     public boolean passeObstacle(){
         return false;
     }
+
+    /**
+     * renvoie true si l'attaque peut attaquer toutes les cases jusqu'à distance max
+     * sinon false si l'attaque peut attaquer qu'une case loin de exactement distance max
+     * @return rue si l'attaque peut attaquer toutes les cases jusqu'à distance max
+     * sinon false si l'attaque peut attaquer qu'une case loin de exactement distance max
+     */
+    public boolean jusquADistanceMax(){
+        return true;
+    }
     public abstract String getInfo();
     public abstract String getType();
     public abstract ColorUIResource getColorLabelType();

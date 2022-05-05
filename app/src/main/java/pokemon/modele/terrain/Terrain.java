@@ -280,31 +280,54 @@ public class Terrain{
     public HashSet<Pair> casesAAttaquer(int x,int y, Attaque attaque, boolean joueur1, HashMap<Pokemon, Case> pokemonCaseJoueur1) {
         HashSet<Pair> res=new HashSet<>();
         boolean haut=false,bas=false,droite=false,gauche=false;
-        for(int i=1; i<=attaque.getDistanceMaxAttaque(); i++){
-            if(x-i>=0 && getPokemon(x-i,y)!=null && appartientAuJoueur(getPokemon(x-i,y),!joueur1,pokemonCaseJoueur1) && (!gauche || attaque.passeObstacle())){
+        if(attaque.jusquADistanceMax()){//on peut attaquer toutes les cases jusqu'à distance max
+            for(int i=1; i<=attaque.getDistanceMaxAttaque(); i++){
+                if(x-i>=0 && getPokemon(x-i,y)!=null && appartientAuJoueur(getPokemon(x-i,y),!joueur1,pokemonCaseJoueur1) && (!gauche || attaque.passeObstacle())){
+                    res.add(new Pair(x-i,y,0));
+                    gauche=true;
+                }
+                if(x-i>=0 && getPokemon(x-i,y)!=null)
+                    gauche=true;
+                if(x+i<getHeight() && getPokemon(x+i,y)!=null && appartientAuJoueur(getPokemon(x+i,y),!joueur1,pokemonCaseJoueur1) && (!droite || attaque.passeObstacle())){
+                    res.add(new Pair(x+i,y,0));
+                    droite=true;
+                }
+                if(x+i<getHeight() && getPokemon(x+i,y)!=null)
+                    droite=true;
+                if(y+i<getWidth() && getPokemon(x,y+i)!=null && appartientAuJoueur(getPokemon(x,y+i),!joueur1,pokemonCaseJoueur1) && (!haut || attaque.passeObstacle())){
+                    res.add(new Pair(x,y+i,0));
+                    haut=true;
+                }
+                if(y+i<getWidth() && getPokemon(x,y+i)!=null)
+                    haut=true;
+                if(y-i>=0 && getPokemon(x,y-i)!=null && appartientAuJoueur(getPokemon(x,y-i),!joueur1,pokemonCaseJoueur1) && (!bas || attaque.passeObstacle())){
+                    res.add(new Pair(x,y-i,0));
+                    bas=true;
+                }
+                if(y-i>=0 && getPokemon(x,y-i)!=null)
+                    bas=true;
+            }
+        }
+        else{//on peut attaquer les cases plus loin de exactement distance max
+            for(int i=1; i<attaque.getDistanceMaxAttaque(); i++){
+                if(x-i>=0 && getPokemon(x-i,y)!=null && !gauche)
+                    gauche=true;
+                if(x+i<getHeight() && getPokemon(x+i,y)!=null && !droite)
+                    droite=true;
+                if(y+i<getWidth() && getPokemon(x,y+i)!=null && !haut)
+                    haut=true;
+                if(y-i>=0 && getPokemon(x,y-i)!=null && !bas)
+                    bas=true;
+            }
+            int i=attaque.getDistanceMaxAttaque();
+            if(x-i>=0 && getPokemon(x-i,y)!=null && appartientAuJoueur(getPokemon(x-i,y),!joueur1,pokemonCaseJoueur1) && (!gauche || attaque.passeObstacle()))
                 res.add(new Pair(x-i,y,0));
-                gauche=true;
-            }
-            if(x-i>=0 && getPokemon(x-i,y)!=null)
-                gauche=true;
-            if(x+i<getHeight() && getPokemon(x+i,y)!=null && appartientAuJoueur(getPokemon(x+i,y),!joueur1,pokemonCaseJoueur1) && (!droite || attaque.passeObstacle())){
+            if(x+i<getHeight() && getPokemon(x+i,y)!=null && appartientAuJoueur(getPokemon(x+i,y),!joueur1,pokemonCaseJoueur1) && (!droite || attaque.passeObstacle()))
                 res.add(new Pair(x+i,y,0));
-                droite=true;
-            }
-            if(x+i<getHeight() && getPokemon(x+i,y)!=null)
-                droite=true;
-            if(y+i<getWidth() && getPokemon(x,y+i)!=null && appartientAuJoueur(getPokemon(x,y+i),!joueur1,pokemonCaseJoueur1) && (!haut || attaque.passeObstacle())){
+            if(y+i<getWidth() && getPokemon(x,y+i)!=null && appartientAuJoueur(getPokemon(x,y+i),!joueur1,pokemonCaseJoueur1) && (!haut || attaque.passeObstacle()))
                 res.add(new Pair(x,y+i,0));
-                haut=true;
-            }
-            if(y+i<getWidth() && getPokemon(x,y+i)!=null)
-                haut=true;
-            if(y-i>=0 && getPokemon(x,y-i)!=null && appartientAuJoueur(getPokemon(x,y-i),!joueur1,pokemonCaseJoueur1) && (!bas || attaque.passeObstacle())){
+            if(y-i>=0 && getPokemon(x,y-i)!=null && appartientAuJoueur(getPokemon(x,y-i),!joueur1,pokemonCaseJoueur1) && (!bas || attaque.passeObstacle()))
                 res.add(new Pair(x,y-i,0));
-                bas=true;
-            }
-            if(y-i>=0 && getPokemon(x,y-i)!=null)
-                bas=true;
         }
         return res;
     }

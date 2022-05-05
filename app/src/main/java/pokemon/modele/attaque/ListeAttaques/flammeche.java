@@ -9,6 +9,11 @@ public class flammeche extends AttaqueFeu{
         return 2;
     }
 
+    @Override 
+    public boolean jusquADistanceMax(){
+        return false;
+    }
+
     public String getInfo(){
         return "L'ennemi est attaqué par une faible flamme. Peut aussi le brûler. \n(10%. Brulure = -1pv après chaque action.)";
     }
