@@ -57,7 +57,6 @@ public class Jeux {
 
     /**
      * met les pokémons des joueurs 1 et 2 dans le terrain
-     * aléatoirement
      */
     public void poserPokemons() {
         int x,y;
@@ -94,6 +93,7 @@ public class Jeux {
         }     
     }
 
+
     /**
      * sélectionne les pokémons qui peuvent être déplacer
      *  pour joueur 1 si c'est le tour de joueur1, pour joueur2 sinon
@@ -115,14 +115,24 @@ public class Jeux {
         
         if(joueur1){
             for(Pokemon p : pokemonCaseJoueur1.keySet()){
-                if( !(pokemonsDeplaces.contains(p)) )
-                    casesASelectionner.add(new Pair(pokemonCaseJoueur1.get(p).getPosI(),pokemonCaseJoueur1.get(p).getPosJ(),0)); 
+                if (p.getPeur()){
+                    pokemonsDeplaces.add(p);
+                    p.setPeur(false);
+                }
+                if( !pokemonsDeplaces.contains(p)){
+                    casesASelectionner.add(new Pair(pokemonCaseJoueur1.get(p).getPosI(),pokemonCaseJoueur1.get(p).getPosJ(),0));
+                }         
             }
         }
         else{
             for(Pokemon p : pokemonCaseJoueur2.keySet()){
-                if( !(pokemonsDeplaces.contains(p)) )
-                casesASelectionner.add(new Pair(pokemonCaseJoueur2.get(p).getPosI(),pokemonCaseJoueur2.get(p).getPosJ(),0)); 
+                if (p.getPeur()){
+                    pokemonsDeplaces.add(p);
+                    p.setPeur(false);
+                }
+                if( !pokemonsDeplaces.contains(p)){
+                    casesASelectionner.add(new Pair(pokemonCaseJoueur2.get(p).getPosI(),pokemonCaseJoueur2.get(p).getPosJ(),0)); 
+                }
             }
         }
         controleur.selectTiles(casesASelectionner, joueur1);
@@ -234,6 +244,7 @@ public class Jeux {
         controleur.deselectTile(getCoordonneesPokemonActuel());
         if(pokemonKo(x, y)){
             enleverKo(x,y);
+            
             finDePartie();
         }
     }
@@ -241,10 +252,11 @@ public class Jeux {
     public void testEffet(){
         if(pokemonActuel.getEffet()!=null){
             pokemonActuel.testEffet();
-            if(pokemonActuel.getEffet()=="Brule"){
+            if(pokemonActuel.getEffet()=="Brule" || pokemonActuel.getEffet() == "Poison"){
                 controleur.miseAJourInfosPokemons(pokemonActuel, !joueur1);
                 controleur.hit();
             }
+
         }
     }
 
@@ -276,11 +288,13 @@ public class Jeux {
         if(joueur1){
             caseDepart=pokemonCaseJoueur2.get(terrain.getPokemon(x, y));
             pokemonCaseJoueur2.remove(terrain.getPokemon(x, y)); 
+            terrain.getPokemon(x, y).setEffet(null);
             caseDepart.setPokemon(null);
         }
         else {
             caseDepart=pokemonCaseJoueur1.get(terrain.getPokemon(x, y));
             pokemonCaseJoueur1.remove(terrain.getPokemon(x, y)); 
+            terrain.getPokemon(x, y).setEffet(null);
             caseDepart.setPokemon(null);
         }
         controleur.enleverPokemon(x, y);

@@ -173,6 +173,7 @@ public class StatsPokemon extends JPanel{
     else{
       labelPdv.setText("KO");
       pdv=0;//pour ne pas avoir de valeurs négatives
+      labelEffet.setVisible(false);
     }
     largeurBDV=(largeurPdvInitiale*pdv)/pdvTotal;
     barreDeVie.setBounds(largeur/2,5,(int)largeurBDV,5);
