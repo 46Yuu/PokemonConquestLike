@@ -100,7 +100,7 @@ public class PanelBoutons extends JPanel{
     Document doc=description.getDocument();
     try{
       doc.remove(0,doc.getLength());
-      doc.insertString(0,atk.getInfos(), defaut);
+      doc.insertString(0,atk.getInfo(), defaut);
     }catch(BadLocationException e){
       System.out.println(e.getMessage());
     } 

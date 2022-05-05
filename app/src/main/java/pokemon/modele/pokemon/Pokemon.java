@@ -2,8 +2,7 @@ package pokemon.modele.pokemon;
 
 import pokemon.modele.attaque.*;
 import pokemon.modele.attaque.Attaquetypes.*;
-import pokemon.modele.attaque.ListeAttaques.eclair;
-import pokemon.modele.attaque.ListeAttaques.flammeche;
+import pokemon.modele.attaque.ListeAttaques.*;
 import pokemon.modele.mouvement.Mouvement;
 import pokemon.modele.terrain.Case.TypeCase;
 
@@ -18,6 +17,9 @@ public class Pokemon implements Mouvement{
 	private String type;
 	private String cheminImage;
 	private String effet=null;
+	private boolean confus = false;
+	private int confusTour = 2;
+	private boolean peur = false;
 	Map<String,Attaque> listeAttaques = new TreeMap<String,Attaque>();
 	/**
 	 * le nombre de cases maximal qu'on peut déplacer le pokémon
@@ -84,6 +86,37 @@ public class Pokemon implements Mouvement{
 		if(this.effet=="Brule"){
 			this.setPdv(pdv-1);
 		}
+		if(this.effet=="Poison"){
+			this.setPdv(pdv-1);
+		}
+	}
+
+	public void setCrit(int n){
+		this.crit = n;
+	}
+
+	public boolean getConfus(){
+		return this.confus;
+	}
+
+	public void setConfus(boolean confus){
+		this.confus = confus;
+	}
+
+	public int getConfusTour(){
+		return this.confusTour;
+	}
+	
+	public void setConfusTour(int n){
+		this.confusTour = n;
+	}
+
+	public boolean getPeur(){
+		return this.peur;
+	}
+
+	public void setPeur(boolean peur){
+		this.peur = peur;
 	}
 
 	public void setType(String type) {
@@ -140,6 +173,81 @@ public class Pokemon implements Mouvement{
 		}
 		else if (nom == "Eclair"){
 			this.listeAttaques.put(nom, new eclair());
+		}
+		else if (nom == "Acide"){
+			this.listeAttaques.put(nom, new acide());
+		}
+		else if (nom == "Ball'Ombre"){
+			this.listeAttaques.put(nom, new ballOmbre());
+		}
+		else if (nom == "Belier"){
+			this.listeAttaques.put(nom, new belier());
+		}
+		else if (nom == "Charge"){
+			this.listeAttaques.put(nom, new charge());
+		}
+		else if (nom == "Choc Psy"){
+			this.listeAttaques.put(nom, new chocPsy());
+		}
+		else if (nom == "Dard-Venin"){
+			this.listeAttaques.put(nom, new dardVenin());
+		}
+		else if (nom == "Fouet Lianes"){
+			this.listeAttaques.put(nom, new fouetLianes());
+		}
+		else if (nom == "Griffe"){
+			this.listeAttaques.put(nom, new griffe());
+		}
+		else if (nom == "Morsure"){
+			this.listeAttaques.put(nom, new morsure());
+		}
+		else if (nom == "Pistolet a O"){
+			this.listeAttaques.put(nom, new pistoletAO());
+		}
+		else if (nom == "Tranch'Herbe"){
+			this.listeAttaques.put(nom, new tranchHerbe());
+		}
+		else if (nom == "Vibraqua"){
+			this.listeAttaques.put(nom, new vibraqua());
+		}
+		else if (nom == "Vive-Attaque"){
+			this.listeAttaques.put(nom, new viveAttaque());
+		}
+		else if (nom == "Crocs Feu"){
+			this.listeAttaques.put(nom, new crocsFeu());
+		}
+		else if (nom == "Coud'Boue"){
+			this.listeAttaques.put(nom, new coudBoue());
+		}
+		else if (nom == "Double Pied"){
+			this.listeAttaques.put(nom, new doublePied());
+		}
+		else if (nom == "Draco Charge"){
+			this.listeAttaques.put(nom, new dracoCharge());
+		}
+		else if (nom == "Eclats Glace"){
+			this.listeAttaques.put(nom, new eclatsGlace());
+		}
+		else if (nom == "Etonnement"){
+			this.listeAttaques.put(nom, new etonnement());
+		}
+		else if (nom == "Lame de Roc"){
+			this.listeAttaques.put(nom, new lameDeRoc());
+		}
+		else if (nom == "Meteores"){
+			this.listeAttaques.put(nom, new meteores());
+		}
+		else if (nom == "Ouragan"){
+			this.listeAttaques.put(nom, new ouragan());
+		}
+		else if (nom == "Piqure"){
+			this.listeAttaques.put(nom, new piqure());
+		}
+		else if (nom == "Poudreuse"){
+			this.listeAttaques.put(nom, new poudreuse());
+		}
+		else if (nom == "Souplesse"){
+			this.listeAttaques.put(nom, new souplesse());
 		}
 		else if (type == "Eau"){
 			this.listeAttaques.put(nom, new AttaqueEau());
@@ -211,14 +319,13 @@ public class Pokemon implements Mouvement{
 		// TODO Auto-generated method stub
 		
 	}
-
 	public boolean peutAllerA(TypeCase typeCase){
 		if(typeCase==TypeCase.Water){
 			if(type!="Eau" && type!="Glace")
 				return false;
 		}
 		if(typeCase==TypeCase.Lava){
-            if(type!="Eau" && type!="Vol" && type!="Feu")
+            if(type!="Vol" && type!="Feu")
                 return false;
         } 
 		return true;

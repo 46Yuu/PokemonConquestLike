@@ -352,7 +352,7 @@ public class EcranJeux extends JFrame{
 	}
 	public void hit(){
 		try{
-            Audio audioPlayer =new Audio("src/main/resources/IMHIT.wav",5f,false);
+            Audio audioPlayer =new Audio("src/main/resources/Hit.wav",5f,false);
             audioPlayer.play();
         } 
         catch (Exception ex){
