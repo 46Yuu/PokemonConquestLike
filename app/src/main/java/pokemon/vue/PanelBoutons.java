@@ -82,10 +82,12 @@ public class PanelBoutons extends JPanel{
     panelDescription=new JScrollPane(description,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     infosAttaque.add(panelDescription);
     description.setBackground(Color.DARK_GRAY);
+    description.setEditable(false);//pour que le joueur ne puisse pas écrire sur le JTextPane
 
     panelHistorique=new JScrollPane(historique,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     historique.setBackground(Color.BLACK);
     add(panelHistorique);
+    historique.setEditable(false);//pour que le joueur ne puisse pas écrire sur le JTextPane
   }
 
   public void addListeBouton(String nom){

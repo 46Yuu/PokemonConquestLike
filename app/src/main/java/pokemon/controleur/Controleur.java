@@ -55,7 +55,7 @@ public class Controleur {
         listePokemons.add(new Riolu(10, 2, "Combat"));
         listePokemons.add(new Smogo(10, 2, "Poison"));
         listePokemons.add(new Pikachu(10, 2, "Electrique"));
-        
+        /*
         Random rand=new Random();
         int nbAlea=rand.nextInt(listePokemons.size());
 		pokemonsJ1.put(listePokemons.get(nbAlea),null);
@@ -81,6 +81,9 @@ public class Controleur {
         nbAlea=rand.nextInt(listePokemons.size());
         pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
+        */
+        pokemonsJ1.put((new Nodulithe(10, 2, "Roche")),null);
+        pokemonsJ2.put(new Abra(10, 2, "Psy"),null);
 
 		terrain=new Terrain(10,8);
 		jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);

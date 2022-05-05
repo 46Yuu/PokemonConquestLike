@@ -64,10 +64,14 @@ public class Vue extends JFrame{
 		buttonRecommencer.addActionListener( event-> {
 			Controleur controleur=new Controleur(this);
 			controleur.setVue(this);
+			EcranJeux tmp=ecranJeuxJ1;
 			ecranJeuxJ1=new EcranJeux(controleur, buttonRecommencerJ1, "Joueur 1");
+			tmp.dispose();
 			ecranJeuxJ1.pack();
 			ecranJeuxJ1.setVisible(true);
+			tmp=ecranJeuxJ2;
 			ecranJeuxJ2=new EcranJeux(controleur, buttonRecommencerJ2, "Joueur 2");
+			tmp.dispose();
 			ecranJeuxJ2.pack();
 			ecranJeuxJ2.setVisible(true);
 			controleur.commencer();
