@@ -55,4 +55,12 @@ public abstract class Attaque {
     public String getInfos(){
         return "L'ennemi est attaqué par une faible flamme. Peut aussi le brûler. \n(10%. Brulure = -1pv après chaque action.)";
     }
+
+    /**
+     * renvoie true si l'ataque ne peut pas être bloqué par un pokémon
+     * @return true si l'ataque ne peut pas être bloqué par un pokémon
+     */
+    public boolean passeObstacle(){
+        return false;
+    }
 }

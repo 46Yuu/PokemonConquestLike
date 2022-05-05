@@ -100,9 +100,6 @@ public class EcranJeux extends JFrame{
 			for(String nom : listeAttaques.keySet()){
 				panelBoutons.addListeBouton(nom);
 				JButton tmp = panelBoutons.getBoutonDeListe(nom);
-				tmp.addActionListener(e ->{
-					controleur.colorerCasesAAttaquer(nom);
-				});
 				addActionListenerBouton(nom,listeAttaques.get(nom),tmp);
 				panelBoutons.add(tmp);
 				tmp.setVisible(true);
@@ -122,74 +119,6 @@ public class EcranJeux extends JFrame{
 		});
 
 		this.buttonRecommencer=buttonRecommencer;
-	}
-
-	/**
-	 * réinitialise le plateau de jeux
-	 * @param c le nouveau controleur
-	 */
-	public void initialiser(Controleur c) {
-		controleur=c;
-		panelInfos.removeAll();
-		panelTerrain.removeAll();
-		panelJoueurs.removeAll();
-		panelBoutons.removeAll();
-        panelBoutons=new PanelBoutons(controleur, buttonRecommencer);
-		arrayTile=new Tile[controleur.getHeight()][controleur.getWidth()];
-		
-		panelJoueurs=new PanelJoueurs(controleur);
-		panelJoueurs.setBackground(Color.DARK_GRAY);
-		panelJoueurs.setLayout(null);
-			
-		panelInfos.add(panelJoueurs);
-		panelInfos.add(panelBoutons);
-		panelJoueurs.add(labelJoueur);
-		labelJoueur.setBounds(0,0,300,15);
-		labelJoueur.setForeground(Color.white);
-
-		panelTerrain.setLayout(new GridLayout(controleur.getHeight(),controleur.getWidth(),1,1));
-		for(int i=0; i<controleur.getHeight(); i++){
-			for(int j=0;j<controleur.getWidth();j++){
-				String path = controleur.getPathImageTile(i, j);
-				String pathSelect = controleur.getPathImageSelectTile(i, j);
-				String pathAttaque = controleur.getPathImageAttaqueTile(i, j);
-				Tile tile=new Tile(path,pathSelect,pathAttaque,i,j,controleur, joueur);
-				panelTerrain.add(tile);
-				arrayTile[i][j]=tile;
-			}
-		}
-
-        panelBoutons.getBoutonAttaque().addActionListener(event ->{
-			Map<String,Attaque> listeAttaques=controleur.getListeAttaquesPokemon();
-			panelBoutons.getBoutonAttaque().setVisible(false);
-			panelBoutons.getBoutonFin().setVisible(false);
-			panelBoutons.getBoutonAnnulerD().setVisible(false);
-			panelBoutons.getBoutonRetour().setVisible(true);
-			panelBoutons.getListeBoutonAttaque().clear();
-			for(String nom : listeAttaques.keySet()){
-				panelBoutons.addListeBouton(nom);
-				JButton tmp = panelBoutons.getBoutonDeListe(nom);
-				//tmp.addActionListener(e ->{
-				//	controleur.colorerCasesAAttaquer(nom);
-				//});
-				addActionListenerBouton(nom,listeAttaques.get(nom),tmp);
-				panelBoutons.add(tmp);
-				tmp.setVisible(true);
-			}
-			panelBoutons.repaint();
-		});
-		
-		panelBoutons.getBoutonFin().addActionListener(event ->{
-			int x=controleur.getCoordonneesPokemonActuel().getFirst();
-			int y=controleur.getCoordonneesPokemonActuel().getSecond();
-			//controleur.testEffet(x,y);
-			deselectTile(x, y);
-			enleverFleche(x, y);
-			panelBoutons.getBoutonFin().setVisible(false);
-			panelBoutons.getBoutonAttaque().setVisible(false);
-			controleur.getJeux().selectPokemon();
-		});
-		revalidate();
 	}
 
 	/**
@@ -221,7 +150,6 @@ public class EcranJeux extends JFrame{
 					panelBoutons.getBoutonDeListe(key).setVisible(false);
 				}
 				clicked = true;
-				//panelBoutons.getBoutonRetour().setVisible(false);
 				controleur.colorerCasesAAttaquer(nom);
 			}
 		});

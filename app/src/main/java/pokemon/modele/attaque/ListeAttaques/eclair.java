@@ -25,4 +25,9 @@ public class eclair extends AttaqueElectrique{
         super.Attack(p,b);
         effet(b);
     }
+
+    @Override
+    public boolean passeObstacle(){
+        return true;
+    }
 }

@@ -42,7 +42,6 @@ public class Vue extends JFrame{
 					ecranJeuxJ1=new EcranJeux(controleur, buttonRecommencerJ1, "Joueur 1");
 					ecranJeuxJ1.pack();
 					ecranJeuxJ1.setVisible(true);
-					ecranJeuxJ1.repaint();
 				}
 			};
 			threadJ2=new Thread(){
@@ -50,7 +49,6 @@ public class Vue extends JFrame{
 					ecranJeuxJ2=new EcranJeux(controleur, buttonRecommencerJ2, "Joueur 2");
 					ecranJeuxJ2.pack();
 					ecranJeuxJ2.setVisible(true);
-					ecranJeuxJ2.repaint();
 				}
 			};
 			threadJ1.run();
@@ -66,8 +64,12 @@ public class Vue extends JFrame{
 		buttonRecommencer.addActionListener( event-> {
 			Controleur controleur=new Controleur(this);
 			controleur.setVue(this);
-			ecranJeuxJ1.initialiser(controleur);
-			ecranJeuxJ2.initialiser(controleur);
+			ecranJeuxJ1=new EcranJeux(controleur, buttonRecommencerJ1, "Joueur 1");
+			ecranJeuxJ1.pack();
+			ecranJeuxJ1.setVisible(true);
+			ecranJeuxJ2=new EcranJeux(controleur, buttonRecommencerJ2, "Joueur 2");
+			ecranJeuxJ2.pack();
+			ecranJeuxJ2.setVisible(true);
 			controleur.commencer();
 		});
 	}
