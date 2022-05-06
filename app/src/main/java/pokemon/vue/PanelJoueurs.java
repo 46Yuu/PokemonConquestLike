@@ -199,15 +199,23 @@ public class PanelJoueurs extends JPanel{
 	}
 	
 	public String descBrule(){
-		return "Brulure : -1 pv après chaque action.";
+		return "Brulure : -1 pv après chaque action. 25% de disparaitre apres chaque action.";
 	}
 	
 	public String descConfus(){
-		return "Confus : 33% de rater son attaque et se blesser , disparait entre 1 et 2 tour.";
+		return "Confus : 33% de rater son attaque et se blesser , disparait entre 1 et 3 tour.";
 	}
 	
 	public String descParalyse(){
-		return "Paralyse : 25% de rater son attaque et avance de 1 case de moins.";
+		return "Paralyse : 25% de rater son attaque et avance de 1 case de moins. 25% de disparaitre apres chaque action.";
+	}
+
+	public String descGele(){
+		return "Gele : Ne peut plus se deplacer. 25% de disparaitre apres chaque action.";
+	}
+
+	public String descPoison(){
+		return "Poison : -1 pv après chaque action. 25% de disparaitre apres chaque action.";
 	}
     
 	private void addActionListenerAuxJPanels(StatsPokemon tmp) {
@@ -250,12 +258,12 @@ public class PanelJoueurs extends JPanel{
 					}
 					//TODO
 					else if(tmp.estPSN()){
-						ecrireDescripion(descParalyse());
+						ecrireDescripion(descPoison());
 						panelDescription.setVisible(true);
 					}
 					//TODO
 					else if(tmp.estFRZ()){
-						ecrireDescripion(descParalyse());
+						ecrireDescripion(descGele());
 						panelDescription.setVisible(true);
 					}
 				}

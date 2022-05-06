@@ -7,9 +7,15 @@ import pokemon.modele.pokemon.Pokemon;
 
 
 public abstract class Attaque {
+    /**
+	 * Fait tout les test necessaire pour les differents types d'attaque sur le type du pokemon et 
+     * s'occupe aussi des effets de confusion , paralysie et coup critiques par rapport au pokemon attaquant.
+	 * @param p Pokemon attaquant
+	 * @param b Pokemon qui recoit l'attaque
+	 */
     public void Attack(Pokemon p,Pokemon b){
         if(p.getConfus() == true){
-            if (p.getConfusTour()>0){
+            if (p.getConfusTour()>1){
                 int nonConfus = (int)(Math.random()*100)+1;
                 p.setConfusTour(p.getConfusTour()-1);
                 if(nonConfus<=33){
@@ -21,7 +27,7 @@ public abstract class Attaque {
                 }
             }
             else {
-                p.setConfusTour(2);
+                p.setConfusTour(3);
                 p.setConfus(false);
                 paralyse(p, b);
             }
@@ -31,10 +37,17 @@ public abstract class Attaque {
         }
     }
 
+    /**
+	 * renvoie la distance d'attaque du pokemon
+	 * @return la distance d'attaque du pokemon
+	 */
     public int getDistanceMaxAttaque(){
         return 1;
     }
 
+    /**
+	 * Lance l'effet sonore "hit" 
+	 */
     public void hit(){
         try{
             Audio audioPlayer =new Audio("src/main/resources/Hit.wav",5f,false);
@@ -46,6 +59,9 @@ public abstract class Attaque {
         }
     }
 
+    /**
+	 * Lance l'effet sonore "coup critique" 
+	 */
     public void crit(){
         try{
             Audio audioPlayer =new Audio("src/main/resources/IMHIT.wav",5f,false);
@@ -57,6 +73,9 @@ public abstract class Attaque {
         }
     }
 
+    /**
+	 * Lance l'effet sonore "super efficace" 
+	 */
     public void supEff(){
         try{
             Audio audioPlayer =new Audio("src/main/resources/IMHITSUPER.wav",5f,false);
@@ -68,6 +87,9 @@ public abstract class Attaque {
         }
     }
 
+    /**
+	 * Lance l'effet sonore "pas tres efficace" 
+	 */
     public void pasEff(){
         try{
             Audio audioPlayer =new Audio("src/main/resources/IMHITWEAK.wav",5f,false);
@@ -80,8 +102,18 @@ public abstract class Attaque {
         }
     }
 
+    /**
+	 * Partie de fonction appelle par la fonction Attack , qui s'occupe de la partie de l'attaque si le pokemon attaquant n'a aucun effet de status
+     * @param p Pokemon attaquant
+	 * @param b Pokemon qui recoit l'attaque
+	 */
     public abstract void attackBis(Pokemon p,Pokemon b);
 
+    /**
+	 * Partie de fonction appelle par la fonction Attack , qui s'occupe de la partie de la paralysie du pokemon attaquant
+     * @param p Pokemon attaquant
+	 * @param b Pokemon qui recoit l'attaque
+	 */
     public void paralyse(Pokemon p, Pokemon b){
         if(p.getEffet()=="Paralyse"){
             int tmp = (int)(Math.random()*100)+1;

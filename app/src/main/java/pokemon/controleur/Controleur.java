@@ -3,21 +3,7 @@ import java.util.*;
 
 import pokemon.modele.attaque.Attaque;
 import pokemon.modele.jeux.Jeux;
-import pokemon.modele.pokemon.Abo;
-import pokemon.modele.pokemon.Abra;
-import pokemon.modele.pokemon.Absol;
-import pokemon.modele.pokemon.Bulbizarre;
-import pokemon.modele.pokemon.Carapuce;
-import pokemon.modele.pokemon.Chenipan;
-import pokemon.modele.pokemon.Evoli;
-import pokemon.modele.pokemon.Minidraco;
-import pokemon.modele.pokemon.Nodulithe;
-import pokemon.modele.pokemon.Oniglali;
-import pokemon.modele.pokemon.Pikachu;
-import pokemon.modele.pokemon.Pokemon;
-import pokemon.modele.pokemon.Riolu;
-import pokemon.modele.pokemon.Salameche;
-import pokemon.modele.pokemon.Smogo;
+import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
@@ -38,33 +24,125 @@ public class Controleur {
         this.vue=vue;
         HashMap<Pokemon,Case> pokemonsJ1=new HashMap<>();
         HashMap<Pokemon,Case> pokemonsJ2=new HashMap<>();
-
-        LinkedList<Pokemon> listePokemons=new LinkedList<>();
-
-        listePokemons.add(new Salameche(10, 2, "Feu"));
-        listePokemons.add(new Evoli(10, 2, "Normal"));
-        listePokemons.add(new Abo(10, 2, "Poison"));
-        listePokemons.add(new Abra(10, 2, "Psy"));
-        listePokemons.add(new Absol(10, 2, "Tenebres"));
-        listePokemons.add(new Bulbizarre(10, 2, "Plante"));
-        listePokemons.add(new Carapuce(10, 2, "Eau"));
-        listePokemons.add(new Chenipan(10, 2, "Insecte"));
-        listePokemons.add(new Minidraco(10, 2, "Dragon"));
-        listePokemons.add(new Nodulithe(10, 2, "Roche"));
-        listePokemons.add(new Oniglali(10, 2, "Glace"));
-        listePokemons.add(new Riolu(10, 2, "Combat"));
-        listePokemons.add(new Smogo(10, 2, "Poison"));
-        listePokemons.add(new Pikachu(10, 2, "Electrique"));
         
+        LinkedList<Pokemon> listePokemons=new LinkedList<>();
+        LinkedList<String> listePokemonsCommun=new LinkedList<>();
+        LinkedList<String> listePokemonsPeuCommun=new LinkedList<>();
+        LinkedList<String> listePokemonsRare=new LinkedList<>();
+
+        listePokemonsCommun.add("Abo");
+        listePokemonsCommun.add("Abra");
+        listePokemonsCommun.add("Chenipan");
+        listePokemonsCommun.add("Smogo");
+        listePokemonsCommun.add("Evoli");
+        listePokemonsCommun.add("Ratata");
+        listePokemonsCommun.add("Nidoran♀");
+        listePokemonsCommun.add("Nidoran♂");
+        listePokemonsCommun.add("Melofee");
+        listePokemonsCommun.add("Voltorbe");
+        listePokemonsPeuCommun.add("Salameche"); 
+        listePokemonsPeuCommun.add("Bulbizarre");
+        listePokemonsPeuCommun.add("Carapuce");
+        listePokemonsPeuCommun.add("Pikachu");
+        listePokemonsPeuCommun.add("Riolu");
+        listePokemonsPeuCommun.add("Minidraco");
+        listePokemonsPeuCommun.add("Nodulithe");
+        listePokemonsRare.add("Absol");
+        listePokemonsRare.add("Oniglali");
+        listePokemonsRare.add("Ronflex");
+        listePokemonsRare.add("Milobellus");
+
         Random rand=new Random();
+        for (int i = 0;i<8;i++){
+            int rarete = (int)(Math.random()*100)+1; 
+            if(rarete<=20){
+                int aleaListe = rand.nextInt(listePokemonsRare.size());
+                String pokemon = listePokemonsRare.get(aleaListe);
+                switch(pokemon){
+                    case "Absol":
+                        listePokemons.add(new Absol());
+                        break;
+                    case "Oniglali":
+                        listePokemons.add(new Oniglali());
+                        break;
+                    case "Ronflex":
+                        listePokemons.add(new ronflex());
+                        break;
+                    case "Milobellus":
+                        listePokemons.add(new milobellus());
+                        break;
+                }
+            }
+            else if (rarete>20 && rarete <=55){
+                int aleaListe = rand.nextInt(listePokemonsPeuCommun.size());
+                String pokemon = listePokemonsPeuCommun.get(aleaListe);
+                switch(pokemon){
+                    case "Salameche":
+                        listePokemons.add(new Salameche());
+                        break;
+                    case "Bulbizarre":
+                        listePokemons.add(new Bulbizarre());
+                        break;
+                    case "Carapuce":
+                        listePokemons.add(new Carapuce());
+                        break;
+                    case "Pikachu":
+                        listePokemons.add(new Pikachu());
+                        break;
+                    case "Riolu":
+                        listePokemons.add(new Riolu());
+                        break;
+                    case "Minidraco":
+                        listePokemons.add(new Minidraco());
+                        break;
+                    case "Nodulithe":
+                        listePokemons.add(new Nodulithe());
+                        break;
+                }
+            }
+            else {
+                int aleaListe = rand.nextInt(listePokemonsCommun.size());
+                String pokemon = listePokemonsCommun.get(aleaListe);
+                switch(pokemon){
+                    case "Abo":
+                        listePokemons.add(new Abo());
+                        break;
+                    case "Abra":
+                        listePokemons.add(new Abra());
+                        break;
+                    case "Chenipan":
+                        listePokemons.add(new Chenipan());
+                        break;
+                    case "Smogo":
+                        listePokemons.add(new Smogo());
+                        break;
+                    case "Evoli":
+                        listePokemons.add(new Evoli());
+                        break;
+                    case "Ratata":
+                        listePokemons.add(new ratata());
+                        break;
+                    case "Nidoran♀":
+                        listePokemons.add(new nidoranF());
+                        break;
+                    case "Nidoran♂":
+                        listePokemons.add(new nidoranM());
+                        break;
+                    case "Melofee":
+                        listePokemons.add(new melofee());
+                        break;
+                    case "Voltorbe":
+                        listePokemons.add(new voltorbe());
+                        break;
+                }
+            }
+        }
+
         int nbAlea=rand.nextInt(listePokemons.size());
 		pokemonsJ1.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
-        pokemonsJ1.put(listePokemons.get(nbAlea),null);
-        listePokemons.remove(nbAlea);
-        nbAlea=rand.nextInt(listePokemons.size());
-        pokemonsJ1.put(listePokemons.get(nbAlea),null);
+        pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
         pokemonsJ1.put(listePokemons.get(nbAlea),null);
@@ -73,10 +151,13 @@ public class Controleur {
         pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
+        pokemonsJ1.put(listePokemons.get(nbAlea),null);
+        listePokemons.remove(nbAlea);
+        nbAlea=rand.nextInt(listePokemons.size());
         pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
-		pokemonsJ2.put(listePokemons.get(nbAlea),null);
+		pokemonsJ1.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         nbAlea=rand.nextInt(listePokemons.size());
         pokemonsJ2.put(listePokemons.get(nbAlea),null);
@@ -328,8 +409,8 @@ public class Controleur {
         //miseAJourInfosPokemons(terrain.getPokemon(x, y),jeux.getJoueurActuel());
     }
 
-    public void finTour(){
-        vue.finTour(jeux.getJoueurActuel());
+    public void finTour(boolean pokemon){
+        vue.finTour(jeux.getJoueurActuel(),pokemon);
     }
 
     public void hit(){

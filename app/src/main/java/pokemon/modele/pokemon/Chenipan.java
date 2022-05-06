@@ -1,8 +1,12 @@
 package pokemon.modele.pokemon;
 
 public class Chenipan extends Pokemon {
-    public Chenipan(int p, int a, String t) {
-        super("Chenipan",3,p, a, t, "src/main/resources/chenipan.png");
+    public Chenipan() {
+        super("Chenipan",3,"Insecte", "src/main/resources/chenipan.png");
+        int randPDV = (int)(Math.random()*(152-105))+105; 
+        int randATK = (int)(Math.random()*(16-9))+9; 
+        this.setPdv(randPDV);
+        this.setAtk(randATK);
         this.addAttaqueListe("Charge", "Normal");
         this.addAttaqueListe("Piqure", "Insecte");
     }

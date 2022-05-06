@@ -15,10 +15,10 @@ public class Pokemon {
 	private int atk;
 	private String type;
 	private String cheminImage;
-	private String effet=null;
-	private boolean confus = false;
-	private int confusTour = 2;
-	private boolean peur =false;
+	private String effet;
+	private boolean confus;
+	private int confusTour;
+	private boolean peur;
 	Map<String,Attaque> listeAttaques = new TreeMap<String,Attaque>();
 	/**
 	 * le nombre de cases maximal qu'on peut déplacer le pokémon
@@ -26,12 +26,16 @@ public class Pokemon {
 	private int capaciteDeplacement;
 	
 
-	public Pokemon(String nom,int capaciteDeplacement, int pdv,int atk, String type, String chemin) {
+	public Pokemon(String nom,int capaciteDeplacement,String type, String chemin) {
 		this.nom = nom;
-		this.pdv = pdv;
+		this.pdv = 1;
 		this.crit = 15;
-		this.setAtk(atk);
+		this.setAtk(1);
 		this.setType(type);
+		this.effet=null;
+		this.confus=false;
+		this.confusTour=3;
+		this.peur=false;
 		cheminImage=chemin;
 		this.capaciteDeplacement=capaciteDeplacement;
 	}
@@ -213,6 +217,18 @@ public class Pokemon {
 		}
 		else if (nom == "Puredpois"){
 			this.listeAttaques.put(nom, new puredpois());
+		}
+		else if (nom == "Picpic"){
+			this.listeAttaques.put(nom, new picpic());
+		}
+		else if (nom == "Voix Enjoleuse"){
+			this.listeAttaques.put(nom, new voixEnjoleuse());
+		}
+		else if (nom == "Vent Feerique"){
+			this.listeAttaques.put(nom, new ventFeerique());
+		}
+		else if (nom == "Lechouille"){
+			this.listeAttaques.put(nom, new lechouille());
 		}
 	}
 

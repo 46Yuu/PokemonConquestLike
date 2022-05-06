@@ -287,11 +287,11 @@ public class Vue extends JFrame{
 			ecranJeuxJ2.setYPrec(y);
 	}
 
-	public void finTour(boolean joueur1){
+	public void finTour(boolean joueur1,boolean pokemon){
 		if(joueur1)
-			ecranJeuxJ1.finTour();
+			ecranJeuxJ1.finTour(pokemon);
 		else
-			ecranJeuxJ2.finTour();
+			ecranJeuxJ2.finTour(pokemon);
 	}
 
 	public void hit(){

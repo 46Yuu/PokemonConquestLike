@@ -108,7 +108,7 @@ public class EcranJeux extends JFrame{
 		});
 		
 		panelBoutons.getBoutonFin().addActionListener(event ->{
-			finTour();
+			finTour(true);
 		});
 		
 		panelBoutons.getBoutonAnnulerD().addActionListener(event ->{
@@ -372,13 +372,15 @@ public class EcranJeux extends JFrame{
         }
 	}
 
-	public void finTour(){
-		int x=controleur.getCoordonneesPokemonActuel().getFirst();
-		int y=controleur.getCoordonneesPokemonActuel().getSecond();
-		controleur.testEffet();
-		controleur.miseAJourInfosPokemons(controleur.getPokeDansCase(x, y),!controleur.getJoueurActuel());
-		deselectTile(x, y);
-		enleverFleche(x, y);
+	public void finTour(boolean pokemon){
+		if (pokemon){
+			int x=controleur.getCoordonneesPokemonActuel().getFirst();
+			int y=controleur.getCoordonneesPokemonActuel().getSecond();
+			controleur.testEffet();
+			controleur.miseAJourInfosPokemons(controleur.getPokeDansCase(x, y),!controleur.getJoueurActuel());
+			deselectTile(x, y);
+			enleverFleche(x, y);
+		}
 		panelBoutons.getBoutonFin().setVisible(false);
 		panelBoutons.getBoutonAttaque().setVisible(false);
 		panelBoutons.getBoutonAnnulerD().setVisible(false);

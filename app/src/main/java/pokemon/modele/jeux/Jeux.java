@@ -115,9 +115,11 @@ public class Jeux {
         
         if(joueur1){
             for(Pokemon p : pokemonCaseJoueur1.keySet()){
+                //enleve le pokemon de la liste des pokemons que le joueur peut deplacer ce tour , enleve sa peur et met a jour l'interface d'information.
                 if (p.getPeur()){
                     pokemonsDeplaces.add(p);
                     p.setPeur(false);
+                    controleur.miseAJourInfosPokemons(p, !joueur1);
                 }
                 if( !pokemonsDeplaces.contains(p)){
                     casesASelectionner.add(new Pair(pokemonCaseJoueur1.get(p).getPosI(),pokemonCaseJoueur1.get(p).getPosJ(),0));
@@ -129,13 +131,19 @@ public class Jeux {
                 if (p.getPeur()){
                     pokemonsDeplaces.add(p);
                     p.setPeur(false);
+                    controleur.miseAJourInfosPokemons(p, !joueur1);
                 }
                 if( !pokemonsDeplaces.contains(p)){
                     casesASelectionner.add(new Pair(pokemonCaseJoueur2.get(p).getPosI(),pokemonCaseJoueur2.get(p).getPosJ(),0)); 
                 }
             }
         }
-        controleur.selectTiles(casesASelectionner, joueur1);
+        if(!casesASelectionner.isEmpty()){
+            controleur.selectTiles(casesASelectionner, joueur1);
+        }
+        else {
+            controleur.finTour(false);
+        }
     }
 
     /**
@@ -230,7 +238,7 @@ public class Jeux {
 
     /**
      * le pokémon actuel attque le pokémon qui se trouve sur la case (x,y)
-     * met à jour les informations du pokémon attaqué dans vue
+     * met à jour les informations du pokémon attaqué et du pokemon actuel dans vue
      * déselectionne le tile où se trouve le pokémon actuel
      * enlève le pokémon s'il est KO après être attaqué et vérifie si la partie est terminée 
      * @param x coordonnée x du pokémon attaqué
@@ -253,6 +261,10 @@ public class Jeux {
             controleur.cibleInvisibleDernierPok();
     }
 
+    /**
+     * Teste l'effet du pokemon actuel et donne une chance de 25% d'enlever cet effet aleatoirement
+     * puis met a jour la vue si necessaire
+     */
     public void testEffet(){
         if(pokemonActuel.getEffet()!=null){
             pokemonActuel.testEffet();
@@ -266,11 +278,11 @@ public class Jeux {
             }
         }
         if (pokemonActuel.getConfus()){
-            if (pokemonActuel.getConfusTour()>0){
+            if (pokemonActuel.getConfusTour()>1){
                 pokemonActuel.setConfusTour(pokemonActuel.getConfusTour()-1);
             }
             else {
-                pokemonActuel.setConfusTour(2);
+                pokemonActuel.setConfusTour(3);
                 pokemonActuel.setConfus(false);
             }
             controleur.miseAJourInfosPokemons(pokemonActuel, !joueur1);

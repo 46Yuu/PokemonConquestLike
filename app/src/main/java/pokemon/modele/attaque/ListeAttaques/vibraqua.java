@@ -10,7 +10,7 @@ public class vibraqua extends AttaqueEau{
     }
 
     public String getInfo(){
-        return "Le lanceur envoie un puissant jet d'eau sur l'ennemi. Peut le rendre confus. \n(20%. Confus = 33% de rater son attaque et se blesser , disparait entre 1 et 2 tour.";
+        return "Le lanceur envoie un puissant jet d'eau sur l'ennemi. Peut le rendre confus. \n(20%. Confus = 33% de rater son attaque et se blesser , disparait entre 1 et 3 tour.";
     }
 
     public void effet(Pokemon b){

@@ -347,10 +347,10 @@ public class StatsPokemon extends JPanel{
 
     public JPanelEffet(){
       try{
-        imagePAR=ImageIO.read(new File("src/main/resources/paralysie.png"));
-        imageBRN=ImageIO.read(new File("src/main/resources/brulure.png"));
-        imagePSN=ImageIO.read(new File("src/main/resources/poison.png"));
-        imageFRZ=ImageIO.read(new File("src/main/resources/gele.png"));
+        imagePAR=ImageIO.read(new File("src/main/resources/Paralysis.png"));
+        imageBRN=ImageIO.read(new File("src/main/resources/Burned.png"));
+        imagePSN=ImageIO.read(new File("src/main/resources/Poisoned.png"));
+        imageFRZ=ImageIO.read(new File("src/main/resources/Frozen.png"));
       }catch(IOException e){
         e.printStackTrace();
       }
