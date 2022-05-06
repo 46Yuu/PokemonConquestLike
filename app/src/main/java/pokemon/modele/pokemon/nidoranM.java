@@ -2,7 +2,7 @@ package pokemon.modele.pokemon;
 
 public class nidoranM extends Pokemon {
     public nidoranM() {
-        super("Nidoran♂",3,"Poison", "src/main/resources/nidoranM.png");
+        super("NidoranM",3,"Poison", "src/main/resources/nidoranM.png");
         int randPDV = (int)(Math.random()*(153-106))+106; 
         int randATK = (int)(Math.random()*(17-8))+8; 
         this.setPdv(randPDV);

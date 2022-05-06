@@ -36,8 +36,8 @@ public class Controleur {
         listePokemonsCommun.add("Smogo");
         listePokemonsCommun.add("Evoli");
         listePokemonsCommun.add("Ratata");
-        listePokemonsCommun.add("Nidoran♀");
-        listePokemonsCommun.add("Nidoran♂");
+        listePokemonsCommun.add("NidoranF");
+        listePokemonsCommun.add("NidoranM");
         listePokemonsCommun.add("Melofee");
         listePokemonsCommun.add("Voltorbe");
         listePokemonsPeuCommun.add("Salameche"); 
@@ -122,10 +122,10 @@ public class Controleur {
                     case "Ratata":
                         listePokemons.add(new ratata());
                         break;
-                    case "Nidoran♀":
+                    case "NidoranF":
                         listePokemons.add(new nidoranF());
                         break;
-                    case "Nidoran♂":
+                    case "NidoranM":
                         listePokemons.add(new nidoranM());
                         break;
                     case "Melofee":
