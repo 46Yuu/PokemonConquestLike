@@ -10,13 +10,16 @@ public class belier extends AttaqueNormal{
     }
 
     public String getInfo(){
-        return "Une charge violente qui blesse aussi légèrement le lanceur. (-1 pv)";
+        return "Une charge violente qui blesse aussi légèrement le lanceur. (-1/16 des pdv actuel)";
     }
 
     @Override
     public void Attack(Pokemon p, Pokemon b){
+        int tmp = p.getAtk();
+        p.setAtk(tmp+5);
         super.Attack(p,b);
-        p.setPdv(p.getPdv()-1);
+        p.setAtk(tmp);
+        p.setPdv(p.getPdv()-(p.getPdv()/16));
         hit();
     }
 }

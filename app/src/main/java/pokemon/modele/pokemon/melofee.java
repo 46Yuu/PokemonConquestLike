@@ -2,11 +2,12 @@ package pokemon.modele.pokemon;
 
 public class melofee extends Pokemon{
     public melofee() {
-        super("Melofee",2,"Fee", "src/main/resources/melofee.png");
+        super("Melofee",2,"Fee");
         int randPDV = (int)(Math.random()*(177-130))+130; 
         int randATK = (int)(Math.random()*(15-6))+6; 
         this.setPdv(randPDV);
         this.setAtk(randATK);
+        randShiny("src/main/resources/melofee_shiny.png", "src/main/resources/melofee.png");
         this.addAttaqueListe("Charge", "Normal");
         this.addAttaqueListe("Voix Enjoleuse", "Fee");
         this.addAttaqueListe("Vent Feerique", "Fee");

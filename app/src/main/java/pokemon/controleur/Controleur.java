@@ -35,7 +35,7 @@ public class Controleur {
         listePokemonsCommun.add("Chenipan");
         listePokemonsCommun.add("Smogo");
         listePokemonsCommun.add("Evoli");
-        listePokemonsCommun.add("Ratata");
+        listePokemonsCommun.add("Rattata");
         listePokemonsCommun.add("NidoranF");
         listePokemonsCommun.add("NidoranM");
         listePokemonsCommun.add("Melofee");
@@ -55,7 +55,7 @@ public class Controleur {
         Random rand=new Random();
         for (int i = 0;i<8;i++){
             int rarete = (int)(Math.random()*100)+1; 
-            if(rarete<=20){
+            if(rarete<=10){
                 int aleaListe = rand.nextInt(listePokemonsRare.size());
                 String pokemon = listePokemonsRare.get(aleaListe);
                 switch(pokemon){
@@ -73,7 +73,7 @@ public class Controleur {
                         break;
                 }
             }
-            else if (rarete>20 && rarete <=55){
+            else if (rarete>10 && rarete <=45){
                 int aleaListe = rand.nextInt(listePokemonsPeuCommun.size());
                 String pokemon = listePokemonsPeuCommun.get(aleaListe);
                 switch(pokemon){
@@ -119,8 +119,8 @@ public class Controleur {
                     case "Evoli":
                         listePokemons.add(new Evoli());
                         break;
-                    case "Ratata":
-                        listePokemons.add(new ratata());
+                    case "Rattata":
+                        listePokemons.add(new rattata());
                         break;
                     case "NidoranF":
                         listePokemons.add(new nidoranF());

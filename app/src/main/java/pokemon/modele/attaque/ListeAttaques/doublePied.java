@@ -16,7 +16,7 @@ public class doublePied extends AttaqueCombat{
     @Override
     public void Attack(Pokemon p, Pokemon b){
         int tmp = p.getAtk();
-        p.setAtk((p.getAtk()/5)*3);
+        p.setAtk((tmp/5)*3);
         super.Attack(p,b);
         super.Attack(p,b);
         p.setAtk(tmp);

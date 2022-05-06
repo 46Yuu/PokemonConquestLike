@@ -26,7 +26,7 @@ public class Pokemon {
 	private int capaciteDeplacement;
 	
 
-	public Pokemon(String nom,int capaciteDeplacement,String type, String chemin) {
+	public Pokemon(String nom,int capaciteDeplacement,String type) {
 		this.nom = nom;
 		this.pdv = 1;
 		this.crit = 15;
@@ -36,7 +36,7 @@ public class Pokemon {
 		this.confus=false;
 		this.confusTour=3;
 		this.peur=false;
-		cheminImage=chemin;
+		cheminImage=null;
 		this.capaciteDeplacement=capaciteDeplacement;
 	}
 
@@ -47,6 +47,10 @@ public class Pokemon {
     public String getCheminImage(){
         return cheminImage;
     }
+
+	public void setCheminImage(String chemin){
+		this.cheminImage=chemin;
+	}
 
 
 	public int getPdv() {
@@ -87,10 +91,10 @@ public class Pokemon {
 	
 	public void testEffet(){
 		if(this.effet=="Brule"){
-			this.setPdv(pdv-1);
+			this.setPdv(pdv-(pdv/16));
 		}
 		if(this.effet=="Poison"){
-			this.setPdv(pdv-1);
+			this.setPdv(pdv-(pdv/16));
 		}
 	}
 
@@ -270,5 +274,17 @@ public class Pokemon {
                 return false;
         } 
 		return true;
+	}
+
+	public void randShiny(String cheminShiny , String chemin){
+		int randShiny = (int)(Math.random()*100)+1; 
+        if(randShiny <=5){
+            this.setCheminImage(cheminShiny);
+            this.setPdv(this.getPdv()+30);
+            this.setAtk(this.getAtk()+5);
+        }
+        else {
+            this.setCheminImage(chemin);
+        }
 	}
 }

@@ -10,7 +10,7 @@ public class dardVenin extends AttaquePoison{
     }
 
     public String getInfo(){
-        return "Un dard toxique qui transperce l'ennemi. Peut aussi l'empoisonner. \n(30%. Poison = -1 pv après chaque action.)";
+        return "Un dard toxique qui transperce l'ennemi. Peut aussi l'empoisonner. \n(30%. Poison = 1/16 des pdv actuel après chaque action.)";
     }
 
     public void effet(Pokemon b){

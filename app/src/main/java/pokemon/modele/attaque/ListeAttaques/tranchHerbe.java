@@ -10,7 +10,7 @@ public class tranchHerbe extends AttaquePlante{
     }
 
     public String getInfo(){
-        return "Des feuilles aiguisées comme des rasoirs entaillent l’ennemi. Taux de critiques élevé.";
+        return "Des feuilles aiguisées comme des rasoirs entaillent l’ennemi. Taux de critiques élevé. (2x)";
     }
 
     @Override

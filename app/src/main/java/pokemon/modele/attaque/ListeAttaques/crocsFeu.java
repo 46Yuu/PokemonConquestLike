@@ -10,7 +10,7 @@ public class crocsFeu extends AttaqueFeu{
     }
 
     public String getInfo(){
-        return "Le lanceur utilise une morsure enflammée. Peut aussi brûler ou apeurer l'ennemi.\n(10% / 10%. Brulure = -1 pv après chaque action. Peur = ne peut rien faire pendant un tour.)";
+        return "Le lanceur utilise une morsure enflammée. Peut aussi brûler ou apeurer l'ennemi.\n(10% / 10%. Brulure = 1/16 des pdv actuel après chaque action. Peur = ne peut rien faire pendant un tour.)";
     }
 
     public void effet(Pokemon b){

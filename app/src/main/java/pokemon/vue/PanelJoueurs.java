@@ -199,7 +199,7 @@ public class PanelJoueurs extends JPanel{
 	}
 	
 	public String descBrule(){
-		return "Brulure : -1 pv après chaque action. 25% de disparaitre apres chaque action.";
+		return "Brulure : -1/16 des pdv actuel après chaque action. 25% de disparaitre apres chaque action.";
 	}
 	
 	public String descConfus(){
@@ -215,7 +215,7 @@ public class PanelJoueurs extends JPanel{
 	}
 
 	public String descPoison(){
-		return "Poison : -1 pv après chaque action. 25% de disparaitre apres chaque action.";
+		return "Poison : -1/16 des pdv actuel après chaque action. 25% de disparaitre apres chaque action.";
 	}
     
 	private void addActionListenerAuxJPanels(StatsPokemon tmp) {
