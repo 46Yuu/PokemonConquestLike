@@ -173,7 +173,6 @@ public class EcranJeux extends JFrame{
 		tmp.setPdv(p.getPdv());
 		if(p.getEffet()!=null){
 			tmp.setEffet(p.getEffet());
-			tmp.afficherEffet();
 		}
 		else {
 			tmp.cacherEffet();

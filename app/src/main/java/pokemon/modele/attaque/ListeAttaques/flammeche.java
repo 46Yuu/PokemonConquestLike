@@ -20,7 +20,7 @@ public class flammeche extends AttaqueFeu{
 
     public void effet(Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
-        if(tmp <= 10){
+        if(tmp <= 100){
             b.setEffet("Brule");
         }
     }

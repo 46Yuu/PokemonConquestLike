@@ -100,6 +100,7 @@ public class PanelJoueurs extends JPanel{
     	description.setBackground(Color.DARK_GRAY);
     	description.setEditable(false);
 		panelDescription.setVisible(false);
+		add(panelDescription);
 	}
 
 	/**
@@ -212,39 +213,69 @@ public class PanelJoueurs extends JPanel{
 	private void addActionListenerAuxJPanels(StatsPokemon tmp) {
 		tmp.getJPanelEffet().addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				if(tmp.estBRN())
+				if(tmp.estBRN()){
 					ecrireDescripion(descBrule());
-				else if(tmp.estPAR())
+					panelDescription.setVisible(true);
+				}
+				else if(tmp.estPAR()){
 					ecrireDescripion(descParalyse());
-				panelDescription.setVisible(true);
+					panelDescription.setVisible(true);
+				}
+				//TODO
+				else if(tmp.estPSN()){
+					ecrireDescripion(descParalyse());
+					panelDescription.setVisible(true);
+				}
+				//TODO
+				else if(tmp.estFRZ()){
+					ecrireDescripion(descParalyse());
+					panelDescription.setVisible(true);
+				}
+				
 			}
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				panelDescription.setVisible(false);
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if(panelDescription.isVisible())
+				if(panelDescription.isVisible() && (tmp.estBRN() || tmp.estPAR() || tmp.estPSN() || tmp.estFRZ()))
 					panelDescription.setVisible(false);
 				else{
-					if(tmp.estBRN())
+					if(tmp.estBRN()){
 						ecrireDescripion(descBrule());
-					else if(tmp.estPAR())
+						panelDescription.setVisible(true);
+					}
+					else if(tmp.estPAR()){
 						ecrireDescripion(descParalyse());
+						panelDescription.setVisible(true);
+					}
+					//TODO
+					else if(tmp.estPSN()){
+						ecrireDescripion(descParalyse());
+						panelDescription.setVisible(true);
+					}
+					//TODO
+					else if(tmp.estFRZ()){
+						ecrireDescripion(descParalyse());
+						panelDescription.setVisible(true);
+					}
 				}
 			}
 		});
 
 		tmp.getJPanelPeur().addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				ecrireDescripion(descPeur());
-				panelDescription.setVisible(true);
+				if(tmp.aPeur()){
+					ecrireDescripion(descPeur());
+					panelDescription.setVisible(true);
+				}
 			}
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				panelDescription.setVisible(false);
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if(panelDescription.isVisible())
+				if(panelDescription.isVisible() && tmp.aPeur())
 					panelDescription.setVisible(false);
-				else{
+				else if(tmp.aPeur()){
 					ecrireDescripion(descPeur());
 					panelDescription.setVisible(true);
 				}
@@ -253,16 +284,18 @@ public class PanelJoueurs extends JPanel{
 
 		tmp.getJpanelConfus().addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				ecrireDescripion(descConfus());
-				panelDescription.setVisible(true);
+				if(tmp.estConfus()){
+					ecrireDescripion(descConfus());
+					panelDescription.setVisible(true);
+				}
 			}
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				panelDescription.setVisible(false);
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if(panelDescription.isVisible())
+				if(panelDescription.isVisible() && tmp.estConfus())
 					panelDescription.setVisible(false);
-				else{
+				else if(tmp.estConfus()){
 					ecrireDescripion(descConfus());
 					panelDescription.setVisible(true);
 				}

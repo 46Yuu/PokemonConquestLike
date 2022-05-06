@@ -85,10 +85,6 @@ public class StatsPokemon extends JPanel{
     add(labelNomPokemon);
     labelNomPokemon.setBounds(5,2,(largeur/2)-5,15);
 
-    //ajouter et positionner le label de l'etat(effet/status) du pokémon
-    add(panelEffet);
-    panelEffet.setBounds((largeur-10)/2,38,(largeur-10)/2,15);
-
     //ajouter et positionner le label Atk
     labelAtk=new JLabel("ATK: "+atk);
     add(labelAtk);
@@ -112,13 +108,20 @@ public class StatsPokemon extends JPanel{
     labelPdv.setBounds(largeur/2,20,(largeur)/2-5,15);
     labelPdv.setForeground(Color.WHITE);
 
-    //ajouter et positionner le label de peur du pokémon
-    add(panelPeur);
-    panelPeur.setBounds(5,55,largeur/2,15);
-
     //ajouter et positionner le label de confusion du pokémon
     add(panelConfus);
-    panelConfus.setBounds(largeur/2,55,largeur/2,15);
+    panelConfus.setBounds(5,55,(largeur-10)/3,15);
+    panelConfus.setBackground(Color.gray);
+
+    //ajouter et positionner le label de peur du pokémon
+    add(panelPeur);
+    panelPeur.setBounds(5+(largeur-10)/3,55,(largeur-10)/3,15);
+    panelPeur.setBackground(Color.gray);
+
+    //ajouter et positionner le label de l'etat(effet/status) du pokémon
+    add(panelEffet);
+    panelEffet.setBounds(5+2*((largeur-10)/3),55,(largeur-10)/3,15);
+    panelEffet.setBackground(Color.gray);
 
     //ajouter et positionner le label du type du pokémon
     labelType=new JLabel(type);
@@ -207,22 +210,20 @@ public class StatsPokemon extends JPanel{
         panelEffet.setPAR(true);
         break;
       case "Gele":
-        labelEffet.setText("FRZ");
-        labelEffet.setForeground(new ColorUIResource(150, 217, 214));
+        panelEffet.setFRZ(true);
         break;
       case "Poison":
-        labelEffet.setText("PSN");
-        labelEffet.setForeground(new ColorUIResource(163, 62, 161));
+        panelEffet.setPSN(true);
         break;
     }
-  }
-
-  public void afficherEffet(){
-    this.labelEffet.setVisible(true);
+    panelEffet.repaint();
   }
 
   public void cacherEffet(){
-    this.labelEffet.setVisible(false);
+    panelEffet.setBRN(false);
+    panelEffet.setFRZ(false);
+    panelEffet.setPAR(false);
+    panelEffet.setPSN(false);
   }
 
   public void setConfus(boolean b, int confusTour) {
@@ -275,21 +276,22 @@ public class StatsPokemon extends JPanel{
   }
 
   public class JPanelConfus extends JPanel{
-    private boolean isConfus=false;
+    private boolean estConfus=false;
     private int confusTour;
     private BufferedImage imageConfus;
     private JLabel labelConfusTour=new JLabel();
 
     public JPanelConfus(){
       try{
-      imageConfus=ImageIO.read(new File("src/main/resources/.png"));
+      imageConfus=ImageIO.read(new File("src/main/resources/Confus.png"));
       }catch(IOException e){
         e.printStackTrace();
       }
+      add(labelConfusTour);
     }
 
     public void setConfus(boolean b, int confusTour) {
-      isConfus=b;
+      estConfus=b;
       this.confusTour=confusTour;
       if(b)
         labelConfusTour.setText(""+confusTour);
@@ -301,9 +303,9 @@ public class StatsPokemon extends JPanel{
     @Override
     public void paintComponent(Graphics g){
       super.paintComponent(g);
-      if(isConfus){
+      if(estConfus){
         g.drawImage(imageConfus,0,0,getWidth()-30,getHeight(),this);
-        labelConfusTour.setBounds(getWidth()-30,0,30,getHeight());
+        labelConfusTour.setBounds(getWidth()-20,0,20,getHeight());
       }
     }
   }
@@ -313,7 +315,7 @@ public class StatsPokemon extends JPanel{
 
     public JPanelPeur(){
       try{
-        imagePeur=ImageIO.read(new File("src/main/resources/.png"));
+        imagePeur=ImageIO.read(new File("src/main/resources/Fear.png"));
       }catch(IOException e){
         e.printStackTrace();
       }
@@ -336,37 +338,56 @@ public class StatsPokemon extends JPanel{
   public class JPanelEffet extends JPanel{
     private boolean estPAR=false;
     private boolean estBRN=false;
+    private boolean estPSN=false;
+    private boolean estFRZ=false;
     private BufferedImage imagePAR;
     private BufferedImage imageBRN;
+    private BufferedImage imageFRZ;
+    private BufferedImage imagePSN;
 
     public JPanelEffet(){
       try{
-        imagePAR=ImageIO.read(new File("src/main/resources/.png"));
-        imageBRN=ImageIO.read(new File("src/main/resources/.png"));
+        imagePAR=ImageIO.read(new File("src/main/resources/Paralysis.png"));
+        imageBRN=ImageIO.read(new File("src/main/resources/Burned2.png"));
+        imagePSN=ImageIO.read(new File("src/main/resources/Poisoned.png"));
+        imageFRZ=ImageIO.read(new File("src/main/resources/Frozen2.jpeg"));
       }catch(IOException e){
         e.printStackTrace();
       }
     }
 
+    public void setPSN(boolean b) {
+      estPSN=b;
+      repaint();
+    }
+
+    public void setFRZ(boolean b) {
+      estFRZ=b;
+      repaint();
+    }
+
     public void setPAR(boolean b) {
       estPAR=b;
+      repaint();
     }
 
     public void setBRN(boolean b) {
       estBRN=b;
+      repaint();
     }
 
     @Override
     public void paintComponent(Graphics g){
       super.paintComponent(g);
-      if(estPAR){
+      if(estPAR)
         g.drawImage(imagePAR,0,0,getWidth(),getHeight(),this);
-      }
-      if(estBRN){
+      if(estBRN)
         g.drawImage(imageBRN,0,0,getWidth(),getHeight(),this);
-      }
+      if(estPSN)
+        g.drawImage(imagePSN,0,0,getWidth(),getHeight(),this);
+      if(estFRZ)
+        g.drawImage(imageFRZ,0,0,getWidth(),getHeight(),this);
     }
-
   }
 
   public boolean estBRN(){
@@ -375,4 +396,19 @@ public class StatsPokemon extends JPanel{
   public boolean estPAR(){
     return panelEffet.estPAR;
   }
+  public boolean estPSN(){
+    return panelEffet.estPSN;
+  }
+  public boolean estFRZ(){
+    return panelEffet.estFRZ;
+  }
+
+  public boolean aPeur() {
+    return panelPeur.aPeur;
+  }
+
+public boolean estConfus() {
+    return panelConfus.estConfus;
+}
+
 }
