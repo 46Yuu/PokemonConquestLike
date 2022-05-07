@@ -17,7 +17,6 @@ public abstract class Attaque {
         if(p.getConfus() == true){
             if (p.getConfusTour()>1){
                 int nonConfus = (int)(Math.random()*100)+1;
-                p.setConfusTour(p.getConfusTour()-1);
                 if(nonConfus<=33){
                     paralyse(p, b);
                 } 
