@@ -202,22 +202,22 @@ public class PanelBoutons extends JPanel{
 
   public void ecrireDeplacementPokemon(String joueur,String pokemon,int x,int y){
     ecrireHistorique("["+joueur+"]: Deplace "+pokemon+" sur la case ("+x+","+y+").\n");
-    ecrireHistorique("............................................................................\n");
+    //ecrireHistorique("............................................................................\n");
   }
 
   public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible,String pokemonAttaque,String pokemonCible){
     ecrireHistorique(pokemonAttaque+" ["+joueurAttaque+"] attaque "+pokemonCible+" ["+joueurCible+"].\n");
-    ecrireHistorique("............................................................................\n");
+    //ecrireHistorique("............................................................................\n");
   }
 
   public void ecrireEffetPokemon(String pokemon,String effet){
     ecrireHistorique(pokemon+" subit l'effet de "+effet+"(-1 PV).\n");
-    ecrireHistorique("............................................................................\n");
+    //ecrireHistorique("............................................................................\n");
   }
 
   public void ecrireInitEffetPokemon(String pokemon,String effet){
     ecrireHistorique(pokemon+" subit l'effet de "+effet+".\n");
-    ecrireHistorique("............................................................................\n");
+    //ecrireHistorique("............................................................................\n");
   }
 
 }

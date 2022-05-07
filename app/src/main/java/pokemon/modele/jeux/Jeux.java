@@ -276,11 +276,11 @@ public class Jeux {
                 controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireInitEffetPokemon(terrain.getPokemon(x, y).getNom(),terrain.getPokemon(x, y).getEffet());
                 controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireInitEffetPokemon(terrain.getPokemon(x, y).getNom(),terrain.getPokemon(x, y).getEffet());
         }else if(terrain.getPokemon(x, y).getConfus()){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y)+ "est confus !");
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y)+ "est confus !");
+                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ "est confus !");
+                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ "est confus !");
         }else if(terrain.getPokemon(x, y).getPeur()){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y)+ "a peur !");
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y)+ "a peur !");
+                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ "a peur !");
+                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ "a peur !");
         }
     }
 

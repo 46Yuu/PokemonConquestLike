@@ -407,8 +407,8 @@ public class StatsPokemon extends JPanel{
     return panelPeur.aPeur;
   }
 
-public boolean estConfus() {
-    return panelConfus.estConfus;
-}
+  public boolean estConfus() {
+      return panelConfus.estConfus;
+  }
 
 }
