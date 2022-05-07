@@ -298,10 +298,19 @@ public class Vue extends JFrame{
 		ecranJeuxJ1.hit();
 	}
 
-    public void setInvisibleInfosAttaque(boolean joueur1) {
+  public void setInvisibleInfosAttaque(boolean joueur1) {
 		if(joueur1)
 			ecranJeuxJ1.setInvisibleInfosAttaque();
 		else
 			ecranJeuxJ2.setInvisibleInfosAttaque();
-    }
+  }
+	
+	public EcranJeux getEcranJeuxJ1() {
+			return ecranJeuxJ1;
+		}
+	
+		public EcranJeux getEcranJeuxJ2() {
+			return ecranJeuxJ2;
+		}
+	
 }

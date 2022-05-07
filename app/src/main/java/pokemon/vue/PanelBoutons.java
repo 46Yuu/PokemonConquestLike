@@ -118,18 +118,6 @@ public class PanelBoutons extends JPanel{
     } 
   }
 
-  public void ecrireHistorique(String s){
-    Style defaut=historique.getStyle("default");
-    StyleConstants.setForeground(defaut, Color.white);
-    Document doc=historique.getDocument();
-    try{
-      doc.insertString(posEcriture,s, defaut);
-    }catch(BadLocationException e){
-      System.out.println(e.getMessage());
-    } 
-    posEcriture+=s.length();
-  }
-
   public void setInvisibleInfosAttaque(){
     infosAttaque.setVisible(false);
   }
@@ -200,4 +188,36 @@ public class PanelBoutons extends JPanel{
     add(panelFinPartie);
   }
   
+  public void ecrireHistorique(String s){
+    Style defaut=historique.getStyle("default");
+    StyleConstants.setForeground(defaut, Color.white);
+    Document doc=historique.getDocument();
+    try{
+      doc.insertString(posEcriture,s, defaut);
+    }catch(BadLocationException e){
+      System.out.println(e.getMessage());
+    } 
+    posEcriture+=s.length();
+  }
+
+  public void ecrireDeplacementPokemon(String joueur,String pokemon,int x,int y){
+    ecrireHistorique("["+joueur+"]: Deplace "+pokemon+" sur la case ("+x+","+y+").\n");
+    ecrireHistorique("............................................................................\n");
+  }
+
+  public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible,String pokemonAttaque,String pokemonCible){
+    ecrireHistorique(pokemonAttaque+" ["+joueurAttaque+"] attaque "+pokemonCible+" ["+joueurCible+"].\n");
+    ecrireHistorique("............................................................................\n");
+  }
+
+  public void ecrireEffetPokemon(String pokemon,String effet){
+    ecrireHistorique(pokemon+" subit l'effet de "+effet+"(-1 PV).\n");
+    ecrireHistorique("............................................................................\n");
+  }
+
+  public void ecrireInitEffetPokemon(String pokemon,String effet){
+    ecrireHistorique(pokemon+" subit l'effet de "+effet+".\n");
+    ecrireHistorique("............................................................................\n");
+  }
+
 }

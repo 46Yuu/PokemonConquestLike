@@ -420,5 +420,9 @@ public class Controleur {
     public void setInvisibleInfosAttaque(boolean joueur1) {
         vue.setInvisibleInfosAttaque(joueur1);
     }
+
+    public Vue getVue(){
+        return vue;
+    }
 }
 
