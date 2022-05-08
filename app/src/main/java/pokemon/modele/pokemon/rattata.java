@@ -8,9 +8,9 @@ public class rattata extends Pokemon{
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/rattata_shiny.png", "src/main/resources/rattata.png");
-        this.addAttaqueListe("Vive-Attaque", "Normal");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Morsure", "Tenebres");
+        this.addAttaqueListe("Vive-Attaque");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Morsure");
     }
 
 }

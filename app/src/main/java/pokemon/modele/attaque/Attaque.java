@@ -21,7 +21,7 @@ public abstract class Attaque {
                     paralyse(p, b);
                 } 
                 else {
-                    p.setPdv(p.getPdv()-1);
+                    p.setPdv(p.getPdv()-(p.getPdv()/16));
                     hit();
                 }
             }

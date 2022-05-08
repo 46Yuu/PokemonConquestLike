@@ -8,7 +8,7 @@ public class voltorbe extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/voltorbe_shiny.png", "src/main/resources/voltorbe.png");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Eclair", "Electrique");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Eclair");
     }
 }

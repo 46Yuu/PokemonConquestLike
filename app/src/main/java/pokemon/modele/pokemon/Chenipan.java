@@ -8,7 +8,7 @@ public class Chenipan extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/chenipan_shiny.png", "src/main/resources/chenipan.png");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Piqure", "Insecte");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Piqure");
     }
 }

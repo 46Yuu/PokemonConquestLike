@@ -8,8 +8,8 @@ public class Nodulithe extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/nodulithe_shiny.png", "src/main/resources/nodulithe.png");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Lame de Roc", "Roche");
-        this.addAttaqueListe("Coud'Boue", "Sol");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Lame de Roc");
+        this.addAttaqueListe("Coud'Boue");
     }
 }

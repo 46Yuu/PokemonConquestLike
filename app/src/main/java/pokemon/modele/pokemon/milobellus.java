@@ -8,9 +8,9 @@ public class milobellus extends Pokemon{
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/milobellus_shiny.png", "src/main/resources/milobellus.png");
-        this.addAttaqueListe("Ouragan", "Dragon");
-        this.addAttaqueListe("Voix Enjoleuse", "Fee");
-        this.addAttaqueListe("Vibraqua", "Eau");
+        this.addAttaqueListe("Ouragan");
+        this.addAttaqueListe("Voix Enjoleuse");
+        this.addAttaqueListe("Vibraqua");
     }
 
 }

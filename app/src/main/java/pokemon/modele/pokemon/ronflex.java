@@ -8,9 +8,9 @@ public class ronflex extends Pokemon{
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/ronflex_shiny.png", "src/main/resources/ronflex.png");
-        this.addAttaqueListe("Lechouille", "Spectre");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Morsure", "Tenebres");
+        this.addAttaqueListe("Lechouille");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Morsure");
     }
 
 }

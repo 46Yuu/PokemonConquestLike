@@ -8,8 +8,8 @@ public class Pikachu extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/pikachu_shiny.png", "src/main/resources/pikachu.png");
-        this.addAttaqueListe("Eclair", "Electrique");
-        this.addAttaqueListe("Vive-Attaque", "Normal");
-        this.addAttaqueListe("Double Pied", "Combat");
+        this.addAttaqueListe("Eclair");
+        this.addAttaqueListe("Vive-Attaque");
+        this.addAttaqueListe("Double Pied");
     }
 }

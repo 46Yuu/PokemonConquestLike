@@ -8,7 +8,7 @@ public class Smogo extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/smogo_shiny.png", "src/main/resources/smogo.png");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Puredpois", "Poison");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Puredpois");
     }
 }

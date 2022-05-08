@@ -8,8 +8,8 @@ public class Salameche extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/salameche_shiny.png", "src/main/resources/salameche.png");
-        this.addAttaqueListe("Griffe", "Normal");
-        this.addAttaqueListe("Flammeche", "Feu");
-        this.addAttaqueListe("Crocs Feu", "Feu");
+        this.addAttaqueListe("Griffe");
+        this.addAttaqueListe("Flammeche");
+        this.addAttaqueListe("Crocs Feu");
     }
 }

@@ -8,8 +8,8 @@ public class Oniglali extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/oniglali_shiny.png", "src/main/resources/oniglali.png");
-        this.addAttaqueListe("Eclats Glace", "Glace");
-        this.addAttaqueListe("Etonnement", "Spectre");
-        this.addAttaqueListe("Poudreuse", "Glace");
+        this.addAttaqueListe("Eclats Glace");
+        this.addAttaqueListe("Etonnement");
+        this.addAttaqueListe("Poudreuse");
     }
 }

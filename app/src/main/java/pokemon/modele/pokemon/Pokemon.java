@@ -4,6 +4,7 @@ import pokemon.modele.attaque.*;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.attaque.ListeAttaques.*;
 import pokemon.modele.terrain.Case.TypeCase;
+import pokemon.vue.Vue;
 
 import java.util.*;
 
@@ -89,6 +90,9 @@ public class Pokemon {
 		return this.effet;
 	}
 	
+	/**
+	 * Verifie si le pokemon a l'effet "Brule" ou "Poison" et si c'est true , enleve au pokemon 1/16 de ses pdv actuels.
+	 */
 	public void testEffet(){
 		if(this.effet=="Brule"){
 			this.setPdv(pdv-(pdv/16));
@@ -134,7 +138,11 @@ public class Pokemon {
 		return this.listeAttaques;
 	}
 	
-	public void addAttaqueListe(String nom,String type){
+	/**
+	 * Ajoute a la map listeAttaques<String, Attaque> la nouvelle attaque du pokemon.
+	 * @param nom Nom de l'attaque
+	 */
+	public void addAttaqueListe(String nom){
 		if(nom == "Flammeche"){
 			this.listeAttaques.put(nom, new flammeche());
 		}
@@ -236,6 +244,10 @@ public class Pokemon {
 		}
 	}
 
+	/**
+	 * Fait les test necessaires pour retourner la bonne valeur de la distance de deplacement maximale du pokemon.
+	 * @return la distance de deplacement maximale du pokemon
+	 */
 	public int getCapaciteDeplacement(){
 		if(this.effet=="Paralyse"){
 			return capaciteDeplacement-1;
@@ -245,11 +257,20 @@ public class Pokemon {
 		}
 		return capaciteDeplacement;
 	}
+
+	/**
+	 * Setter pour la capacite de deplacement du pokemon.
+	 * @param int valeur de la capacite de deplacement du pokemon
+	 */
 	public void setCapaciteDeplacement(int cap){
 		this.capaciteDeplacement=cap;
 	}
 
-
+	/**
+	 * Cherche dans la liste d'attaque du pokemon attaquant l'attaque puis attaque le pokemon en parametre avec celle-ci. 
+	 * @param Pokemon pokemon recevant l'attaque
+	 * @param String nom de l'attaque
+	 */
 	public void Attack(Pokemon p, String nomAttack){
 		if(listeAttaques.containsKey(nomAttack)){
 			Attaque tmp = listeAttaques.get(nomAttack);
@@ -263,7 +284,10 @@ public class Pokemon {
         }
 	}
 
-
+	/**
+	 * Verifie le type de la case cible par rapport a celle du pokemon pour savoir si le pokemon est apte a aller sur cette case.
+	 * @param TypeCase type de la case cible
+	 */
 	public boolean peutAllerA(TypeCase typeCase){
 		if(typeCase==TypeCase.Water){
 			if(type!="Eau" && type!="Glace")
@@ -276,6 +300,12 @@ public class Pokemon {
 		return true;
 	}
 
+	/**
+	 * Fait un tirage aleatoire qui transforme le pokemon en shiny si elle tombe en dessous de 5% et si c'est le cas,
+	 * donne a ce pokemon 30 pdv et 5 point d'attaque en plus que la normale.
+	 * @param String chemin vers le fichier png du pokemon shiny
+	 * @param String chemin vers le fichier png du pokemon normal
+	 */
 	public void randShiny(String cheminShiny , String chemin){
 		int randShiny = (int)(Math.random()*100)+1; 
         if(randShiny <=5){

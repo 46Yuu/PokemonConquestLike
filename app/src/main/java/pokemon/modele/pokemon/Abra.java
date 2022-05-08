@@ -8,8 +8,8 @@ public class Abra extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/abra_shiny.png", "src/main/resources/abra.png");
-        this.addAttaqueListe("Ball'Ombre", "Spectre");
-        this.addAttaqueListe("Belier", "Normal");
-        this.addAttaqueListe("Choc Psy", "Psy");
+        this.addAttaqueListe("Ball'Ombre");
+        this.addAttaqueListe("Belier");
+        this.addAttaqueListe("Choc Psy");
     }
 }

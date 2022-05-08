@@ -8,8 +8,8 @@ public class Minidraco extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/minidraco_shiny.png", "src/main/resources/minidraco.png");
-        this.addAttaqueListe("Ouragan", "Dragon");
-        this.addAttaqueListe("Draco-Charge", "Dragon");
-        this.addAttaqueListe("Souplesse", "Normal");
+        this.addAttaqueListe("Ouragan");
+        this.addAttaqueListe("Draco-Charge");
+        this.addAttaqueListe("Souplesse");
     }
 }

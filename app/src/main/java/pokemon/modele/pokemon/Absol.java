@@ -8,7 +8,7 @@ public class Absol extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/absol_shiny.png", "src/main/resources/absol.png");
-        this.addAttaqueListe("Vive-Attaque", "Normal");
-        this.addAttaqueListe("Morsure", "Tenebres");
+        this.addAttaqueListe("Vive-Attaque");
+        this.addAttaqueListe("Morsure");
     }
 }
