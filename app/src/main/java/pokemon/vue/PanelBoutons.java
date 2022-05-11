@@ -97,6 +97,11 @@ public class PanelBoutons extends JPanel{
     
   }
 
+  /**
+   * affiche un jpanel avec les information de l'attaque
+   * @param nom nom de l'attaque
+   * @param atk l'attaque
+   */
   public void setVisibleInfosAttaque(String nom,Attaque atk){
     infosAttaque.setVisible(true);
     labelNomAttaque.setText(nom);
