@@ -8,9 +8,9 @@ public class melofee extends Pokemon{
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/melofee_shiny.png", "src/main/resources/melofee.png");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Voix Enjoleuse", "Fee");
-        this.addAttaqueListe("Vent Feerique", "Fee");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Voix Enjoleuse");
+        this.addAttaqueListe("Vent Feerique");
     }
 
 }

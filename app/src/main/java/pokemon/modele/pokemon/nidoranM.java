@@ -8,8 +8,8 @@ public class nidoranM extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/nidoranM_shiny.png", "src/main/resources/nidoranM.png");
-        this.addAttaqueListe("Picpic", "Vol");
-        this.addAttaqueListe("Dard-Venin", "Poison");
-        this.addAttaqueListe("Double Pied", "Poison");
+        this.addAttaqueListe("Picpic");
+        this.addAttaqueListe("Dard-Venin");
+        this.addAttaqueListe("Double Pied");
     }
 }

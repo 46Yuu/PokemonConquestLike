@@ -8,9 +8,9 @@ public class Evoli extends Pokemon{
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/evoli_shiny.png", "src/main/resources/evoli.png");
-        this.addAttaqueListe("Vive-Attaque", "Normal");
-        this.addAttaqueListe("Double Pied", "Combat");
-        this.addAttaqueListe("Meteores", "Normal");
+        this.addAttaqueListe("Vive-Attaque");
+        this.addAttaqueListe("Double Pied");
+        this.addAttaqueListe("Meteores");
     }
 
 }

@@ -8,8 +8,8 @@ public class Bulbizarre extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/bulbizarre_shiny.png", "src/main/resources/bulbizarre.png");
-        this.addAttaqueListe("Charge", "Normal");
-        this.addAttaqueListe("Fouet Lianes", "Plante");
-        this.addAttaqueListe("Tranch'Herbe", "Plante");
+        this.addAttaqueListe("Charge");
+        this.addAttaqueListe("Fouet Lianes");
+        this.addAttaqueListe("Tranch'Herbe");
     }
 }

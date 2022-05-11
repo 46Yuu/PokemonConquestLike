@@ -8,8 +8,8 @@ public class Carapuce extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/carapuce_shiny.png", "src/main/resources/carapuce.png");
-        this.addAttaqueListe("Pistolet a O", "Eau");
-        this.addAttaqueListe("Morsure", "Tenebres");
-        this.addAttaqueListe("Vibraqua", "Eau");
+        this.addAttaqueListe("Pistolet a O");
+        this.addAttaqueListe("Morsure");
+        this.addAttaqueListe("Vibraqua");
     }
 }

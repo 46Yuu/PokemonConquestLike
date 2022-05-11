@@ -8,8 +8,8 @@ public class Abo extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/abo_shiny.png", "src/main/resources/abo.png");
-        this.addAttaqueListe("Morsure", "Tenebres");
-        this.addAttaqueListe("Dard-Venin", "Poison");
-        this.addAttaqueListe("Acide", "Poison");
+        this.addAttaqueListe("Morsure");
+        this.addAttaqueListe("Dard-Venin");
+        this.addAttaqueListe("Acide");
     }
 }

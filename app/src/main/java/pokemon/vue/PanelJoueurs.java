@@ -203,7 +203,7 @@ public class PanelJoueurs extends JPanel{
 	}
 	
 	public String descConfus(){
-		return "Confus : 33% de rater son attaque et se blesser , disparait entre 1 et 3 tour.";
+		return "Confus : 33% de rater son attaque et se blesser de 1/16 de ses pdv actuel , disparait entre 1 et 3 tour.";
 	}
 	
 	public String descParalyse(){

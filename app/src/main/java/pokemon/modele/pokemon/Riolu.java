@@ -8,7 +8,7 @@ public class Riolu extends Pokemon {
         this.setPdv(randPDV);
         this.setAtk(randATK);
         randShiny("src/main/resources/riolu_shiny.png", "src/main/resources/riolu.png");
-        this.addAttaqueListe("Vive-Attaque", "Normal");
-        this.addAttaqueListe("Forte-Paume", "Combat");
+        this.addAttaqueListe("Vive-Attaque");
+        this.addAttaqueListe("Forte-Paume");
     }
 }
