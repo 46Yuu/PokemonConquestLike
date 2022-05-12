@@ -144,103 +144,106 @@ public class Pokemon {
 	 */
 	public void addAttaqueListe(String nom){
 		if(nom == "Flammeche"){
-			this.listeAttaques.put(nom, new flammeche());
+			this.listeAttaques.put(nom, new Flammeche());
 		}
 		else if (nom == "Eclair"){
-			this.listeAttaques.put(nom, new eclair());
+			this.listeAttaques.put(nom, new Eclair());
 		}
 		else if (nom == "Acide"){
-			this.listeAttaques.put(nom, new acide());
+			this.listeAttaques.put(nom, new Acide());
 		}
 		else if (nom == "Ball'Ombre"){
-			this.listeAttaques.put(nom, new ballOmbre());
+			this.listeAttaques.put(nom, new BallOmbre());
 		}
 		else if (nom == "Belier"){
-			this.listeAttaques.put(nom, new belier());
+			this.listeAttaques.put(nom, new Belier());
 		}
 		else if (nom == "Charge"){
-			this.listeAttaques.put(nom, new charge());
+			this.listeAttaques.put(nom, new Charge());
 		}
 		else if (nom == "Choc Psy"){
-			this.listeAttaques.put(nom, new chocPsy());
+			this.listeAttaques.put(nom, new ChocPsy());
 		}
 		else if (nom == "Dard-Venin"){
-			this.listeAttaques.put(nom, new dardVenin());
+			this.listeAttaques.put(nom, new DardVenin());
 		}
 		else if (nom == "Fouet Lianes"){
-			this.listeAttaques.put(nom, new fouetLianes());
+			this.listeAttaques.put(nom, new FouetLianes());
 		}
 		else if (nom == "Griffe"){
-			this.listeAttaques.put(nom, new griffe());
+			this.listeAttaques.put(nom, new Griffe());
 		}
 		else if (nom == "Morsure"){
-			this.listeAttaques.put(nom, new morsure());
+			this.listeAttaques.put(nom, new Morsure());
 		}
 		else if (nom == "Pistolet a O"){
-			this.listeAttaques.put(nom, new pistoletAO());
+			this.listeAttaques.put(nom, new PistoletAO());
 		}
 		else if (nom == "Tranch'Herbe"){
-			this.listeAttaques.put(nom, new tranchHerbe());
+			this.listeAttaques.put(nom, new TranchHerbe());
 		}
 		else if (nom == "Vibraqua"){
-			this.listeAttaques.put(nom, new vibraqua());
+			this.listeAttaques.put(nom, new Vibraqua());
 		}
 		else if (nom == "Vive-Attaque"){
-			this.listeAttaques.put(nom, new viveAttaque());
+			this.listeAttaques.put(nom, new ViveAttaque());
 		}
 		else if (nom == "Crocs Feu"){
-			this.listeAttaques.put(nom, new crocsFeu());
+			this.listeAttaques.put(nom, new CrocsFeu());
 		}
 		else if (nom == "Coud'Boue"){
-			this.listeAttaques.put(nom, new coudBoue());
+			this.listeAttaques.put(nom, new CoudBoue());
 		}
 		else if (nom == "Double Pied"){
-			this.listeAttaques.put(nom, new doublePied());
+			this.listeAttaques.put(nom, new DoublePied());
 		}
 		else if (nom == "Draco Charge"){
-			this.listeAttaques.put(nom, new dracoCharge());
+			this.listeAttaques.put(nom, new DracoCharge());
 		}
 		else if (nom == "Eclats Glace"){
-			this.listeAttaques.put(nom, new eclatsGlace());
+			this.listeAttaques.put(nom, new EclatsGlace());
 		}
 		else if (nom == "Etonnement"){
-			this.listeAttaques.put(nom, new etonnement());
+			this.listeAttaques.put(nom, new Etonnement());
 		}
 		else if (nom == "Lame de Roc"){
-			this.listeAttaques.put(nom, new lameDeRoc());
+			this.listeAttaques.put(nom, new LameDeRoc());
 		}
 		else if (nom == "Meteores"){
-			this.listeAttaques.put(nom, new meteores());
+			this.listeAttaques.put(nom, new Meteores());
 		}
 		else if (nom == "Ouragan"){
-			this.listeAttaques.put(nom, new ouragan());
+			this.listeAttaques.put(nom, new Ouragan());
 		}
 		else if (nom == "Piqure"){
-			this.listeAttaques.put(nom, new piqure());
+			this.listeAttaques.put(nom, new Piqure());
 		}
 		else if (nom == "Poudreuse"){
-			this.listeAttaques.put(nom, new poudreuse());
+			this.listeAttaques.put(nom, new Poudreuse());
 		}
 		else if (nom == "Souplesse"){
-			this.listeAttaques.put(nom, new souplesse());
+			this.listeAttaques.put(nom, new Souplesse());
 		}
 		else if (nom == "Forte-Paume"){
-			this.listeAttaques.put(nom, new fortePaume());
+			this.listeAttaques.put(nom, new FortePaume());
 		}
 		else if (nom == "Puredpois"){
-			this.listeAttaques.put(nom, new puredpois());
+			this.listeAttaques.put(nom, new Puredpois());
 		}
 		else if (nom == "Picpic"){
-			this.listeAttaques.put(nom, new picpic());
+			this.listeAttaques.put(nom, new Picpic());
 		}
 		else if (nom == "Voix Enjoleuse"){
-			this.listeAttaques.put(nom, new voixEnjoleuse());
+			this.listeAttaques.put(nom, new VoixEnjoleuse());
 		}
 		else if (nom == "Vent Feerique"){
-			this.listeAttaques.put(nom, new ventFeerique());
+			this.listeAttaques.put(nom, new TentFeerique());
 		}
 		else if (nom == "Lechouille"){
-			this.listeAttaques.put(nom, new lechouille());
+			this.listeAttaques.put(nom, new Lechouille());
+		}
+		else if (nom == "Queue De Fer"){
+			this.listeAttaques.put(nom, new QueueDeFer());
 		}
 	}
 

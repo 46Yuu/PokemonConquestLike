@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class BallOmbre extends AttaqueTenebres{
+public class eclatsGlace extends AttaqueGlace{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;
     }
 
     public String getInfo(){
-        return "Projette une grande ombre sur l'ennemi";
+        return "Le lanceur crée des éclats de glace qu’il envoie sur l’ennemi.";
     }
 
     @Override

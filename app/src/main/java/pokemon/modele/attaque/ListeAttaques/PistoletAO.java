@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class BallOmbre extends AttaqueTenebres{
+public class pistoletAO extends AttaqueEau{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;
     }
 
     public String getInfo(){
-        return "Projette une grande ombre sur l'ennemi";
+        return "De l'eau est projetée avec force sur l'ennemi.";
     }
 
     @Override

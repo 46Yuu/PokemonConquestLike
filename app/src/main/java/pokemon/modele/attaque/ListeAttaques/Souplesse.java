@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class BallOmbre extends AttaqueTenebres{
+public class souplesse extends AttaqueNormal{
     @Override
     public int getDistanceMaxAttaque(){
-        return 2;
+        return 1;
     }
 
     public String getInfo(){
-        return "Projette une grande ombre sur l'ennemi";
+        return "Fouette l’ennemi avec la queue ou une liane, par exemple, pour infliger des dégâts.";
     }
 
     @Override

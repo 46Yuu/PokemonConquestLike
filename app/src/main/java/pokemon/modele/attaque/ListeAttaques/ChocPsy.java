@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class BallOmbre extends AttaqueTenebres{
+public class chocPsy extends AttaquePsy{
     @Override
     public int getDistanceMaxAttaque(){
-        return 2;
+        return 3;
     }
 
     public String getInfo(){
-        return "Projette une grande ombre sur l'ennemi";
+        return "Le lanceur matérialise des ondes mystérieuses qu’il projette sur l’ennemi. Inflige des dégâts physiques.";
     }
 
     @Override

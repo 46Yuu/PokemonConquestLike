@@ -11,5 +11,6 @@ public class Pikachu extends Pokemon {
         this.addAttaqueListe("Eclair");
         this.addAttaqueListe("Vive-Attaque");
         this.addAttaqueListe("Double Pied");
+        this.addAttaqueListe("Queue De Fer");
     }
 }

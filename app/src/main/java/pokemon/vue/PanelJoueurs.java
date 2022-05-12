@@ -231,11 +231,11 @@ public class PanelJoueurs extends JPanel{
 					panelDescription.setVisible(true);
 				}
 				else if(tmp.estPSN()){
-					ecrireDescripion(descParalyse());
+					ecrireDescripion(descPoison());
 					panelDescription.setVisible(true);
 				}
 				else if(tmp.estFRZ()){
-					ecrireDescripion(descParalyse());
+					ecrireDescripion(descGele());
 					panelDescription.setVisible(true);
 				}
 				

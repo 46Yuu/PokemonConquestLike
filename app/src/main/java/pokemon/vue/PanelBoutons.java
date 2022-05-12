@@ -216,7 +216,7 @@ public class PanelBoutons extends JPanel{
   }
 
   public void ecrireEffetPokemon(String pokemon,String effet){
-    ecrireHistorique(pokemon+" subit l'effet de "+effet+"(-1 PV).\n");
+    ecrireHistorique(pokemon+" prend des degats a cause l'effet de "+effet+"(-1/16 des pdv actuel).\n");
     //ecrireHistorique("............................................................................\n");
   }
 

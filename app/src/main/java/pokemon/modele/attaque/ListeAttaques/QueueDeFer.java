@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class BallOmbre extends AttaqueTenebres{
+public class QueueDeFer extends AttaqueAcier{
     @Override
     public int getDistanceMaxAttaque(){
-        return 2;
+        return 1;
     }
 
     public String getInfo(){
-        return "Projette une grande ombre sur l'ennemi";
+        return "Attaque l'ennemi avec une queue de fer.";
     }
 
     @Override

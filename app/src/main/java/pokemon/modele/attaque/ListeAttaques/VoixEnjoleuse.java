@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class BallOmbre extends AttaqueTenebres{
+public class voixEnjoleuse extends AttaqueFee{
     @Override
     public int getDistanceMaxAttaque(){
-        return 2;
+        return 1;
     }
 
     public String getInfo(){
-        return "Projette une grande ombre sur l'ennemi";
+        return "Laisse s'échapper une voix enchanteresse qui inflige des dégâts psychiques à l'ennemi.";
     }
 
     @Override
