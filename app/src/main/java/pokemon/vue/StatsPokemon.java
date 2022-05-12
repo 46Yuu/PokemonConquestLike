@@ -21,6 +21,7 @@ public class StatsPokemon extends JPanel{
    * le nombre de points de vie
    */
   private int pdv;
+  private int ExPdv;
   private JLabel labelPdv;
   private double largeurBDV;
   private double largeurPdvInitiale;
@@ -180,6 +181,7 @@ public class StatsPokemon extends JPanel{
    * @param newPdv le nouveau nombre de points de vie
    */
   public void setPdv(int newPdv) {
+    ExPdv=pdv;
     pdv=newPdv;
     if(pdv>0)
       labelPdv.setText(pdv+"/"+pdvTotal);
@@ -411,4 +413,8 @@ public class StatsPokemon extends JPanel{
       return panelConfus.estConfus;
   }
 
+  public int getExPdv() {
+    return ExPdv;
+  }
+  
 }

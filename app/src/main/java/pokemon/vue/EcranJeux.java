@@ -388,7 +388,12 @@ public class EcranJeux extends JFrame{
 		controleur.getJeux().selectPokemon();
 	}
 
-    public void setInvisibleInfosAttaque() {
+  public void setInvisibleInfosAttaque() {
 		panelBoutons.setInvisibleInfosAttaque();
-    }
+  }
+
+	public PanelJoueurs getPanelJoueurs() {
+		return panelJoueurs;
+	}
+
 }

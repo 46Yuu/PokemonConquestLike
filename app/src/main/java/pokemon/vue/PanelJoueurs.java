@@ -338,4 +338,9 @@ public class PanelJoueurs extends JPanel{
 			  System.out.println(e.getMessage());
 		} 
 	}
+
+	public StatsPokemon getStatsPokemonFromStatsPokemonJ1(Pokemon p){
+		return statsPokemonsJ1.get(p);
+	}
+	
 }

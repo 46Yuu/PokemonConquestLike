@@ -267,11 +267,11 @@ public class Jeux {
         else if(!joueur1 && pokemonsDeplaces.size()==pokemonCaseJoueur2.keySet().size())
             controleur.cibleInvisibleDernierPok();
         if(joueur1){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom());
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom());
+                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDV(terrain.getPokemon(x, y))-getPDV(terrain.getPokemon(x, y)));
+                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDV(terrain.getPokemon(x, y))-getPDV(terrain.getPokemon(x, y)));
         }else{
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom());
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom());
+                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDV(terrain.getPokemon(x, y))-getPDV(terrain.getPokemon(x, y)));
+                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDV(terrain.getPokemon(x, y))-getPDV(terrain.getPokemon(x, y)));
         }if(terrain.getPokemon(x, y).getEffet()!=null){
                 controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireInitEffetPokemon(terrain.getPokemon(x, y).getNom(),terrain.getPokemon(x, y).getEffet());
                 controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireInitEffetPokemon(terrain.getPokemon(x, y).getNom(),terrain.getPokemon(x, y).getEffet());
@@ -449,5 +449,13 @@ public class Jeux {
         controleur.deplacerPokemonDansVue(new Pair(caseDepart.getPosI(),caseDepart.getPosJ(),0), new Pair(x,y,0), pokemonActuel.getCheminImage());
         //sélectionner le pokémon suivant à déplacer  
         selectPokemon();
+    }
+
+    public int getPDV(Pokemon p){
+        return controleur.getVue().getEcranJeuxJ1().getPanelJoueurs().getStatsPokemonFromStatsPokemonJ1(p).getPdv();
+    }
+
+    public int getExPDV(Pokemon p){
+        return controleur.getVue().getEcranJeuxJ1().getPanelJoueurs().getStatsPokemonFromStatsPokemonJ1(p).getExPdv();
     }
 }

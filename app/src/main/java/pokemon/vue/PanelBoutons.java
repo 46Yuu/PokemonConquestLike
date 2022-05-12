@@ -210,8 +210,8 @@ public class PanelBoutons extends JPanel{
     //ecrireHistorique("............................................................................\n");
   }
 
-  public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible,String pokemonAttaque,String pokemonCible){
-    ecrireHistorique(pokemonAttaque+" ["+joueurAttaque+"] attaque "+pokemonCible+" ["+joueurCible+"].\n");
+  public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible,String pokemonAttaque,String pokemonCible,int degats){
+    ecrireHistorique(pokemonAttaque+" ["+joueurAttaque+"] attaque "+pokemonCible+" ["+joueurCible+"]. [-"+degats+"]\n");
     //ecrireHistorique("............................................................................\n");
   }
 
@@ -224,5 +224,7 @@ public class PanelBoutons extends JPanel{
     ecrireHistorique(pokemon+" subit l'effet de "+effet+".\n");
     //ecrireHistorique("............................................................................\n");
   }
+
+
 
 }
