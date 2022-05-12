@@ -342,5 +342,9 @@ public class PanelJoueurs extends JPanel{
 	public StatsPokemon getStatsPokemonFromStatsPokemonJ1(Pokemon p){
 		return statsPokemonsJ1.get(p);
 	}
+
+	public StatsPokemon getStatsPokemonFromStatsPokemonJ2(Pokemon p){
+		return statsPokemonsJ2.get(p);
+	}
 	
 }

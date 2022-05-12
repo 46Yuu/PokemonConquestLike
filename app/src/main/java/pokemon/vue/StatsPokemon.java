@@ -21,7 +21,7 @@ public class StatsPokemon extends JPanel{
    * le nombre de points de vie
    */
   private int pdv;
-  private int ExPdv;
+  private int ExPdv=pdv;
   private JLabel labelPdv;
   private double largeurBDV;
   private double largeurPdvInitiale;
