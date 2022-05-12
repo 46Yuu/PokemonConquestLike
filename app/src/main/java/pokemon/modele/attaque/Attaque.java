@@ -122,6 +122,9 @@ public abstract class Attaque {
             if(tmp>=25){
                 info = attackBis(p,b);
             } 
+            else {
+                info = p.getNom()+" est paralyse , il ne peut pas attaquer .";
+            }
             int tmp2 = (int)(Math.random()*100)+1;
             if(tmp2<=20){
                 p.setEffet(null);
