@@ -355,6 +355,10 @@ public class Controleur {
         vue.cibleVisible(p, jeux.getJoueurActuel(), jeux.appartienAJoueur1(p));
     }
 
+    public boolean pokInCaseAppartientAJoueur1(int x, int y){
+        return jeux.appartienAJoueur1(terrain.getPokemon(x, y));
+    }
+
     public void cibleInvisibleDernierPok(){
         vue.cibleInvisible(dernierPokCible, jeux.getJoueurActuel(), jeux.appartienAJoueur1(dernierPokCible));
     }

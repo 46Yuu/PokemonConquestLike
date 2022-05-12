@@ -33,6 +33,10 @@ public class Tile extends JPanel{
      */
     private BufferedImage imageFleche;
     /**
+     * cadre pour les pokémons du joueur 
+     */
+    private BufferedImage cadreVert;
+    /**
      * coordonnée x de la case sur le terrain
      */
     private int x;
@@ -75,6 +79,7 @@ public class Tile extends JPanel{
             imageSelect=ImageIO.read(new File(pathSelect));
             imageAttaque=ImageIO.read(new File(pathAttaque));
             imageFleche=ImageIO.read(new File("src/main/resources/fleche_actuel.png"));
+            cadreVert=ImageIO.read(new File("src/main/resources/selection_stat_vert.png"));
         }catch(IOException e){
             System.out.println("File not found!");
         }
@@ -161,8 +166,11 @@ public class Tile extends JPanel{
             g.drawImage(imageAttaque, 0, 0, width, height, this);
         else//sinon dessine image normale du tile
             g.drawImage(image, 0, 0, width, height, this);
-        if(pokemonPresent)//s'il y a un pokemon sur cette case, on le dessine 
+        if(pokemonPresent){//s'il y a un pokemon sur cette case, on le dessine 
             g.drawImage(imagePokemon, 0, 0, width, height, this);
+            if(joueur==controleur.pokInCaseAppartientAJoueur1(x, y))
+                g.drawImage(cadreVert, 0, 0, width, height, this);
+        }
         if(fleche){//si c'est au tour du pokémon d'attaquer
             g.drawImage(imageFleche, 0, 0, width, height, this);
         }
