@@ -21,8 +21,10 @@ public class DracoCharge extends AttaqueDragon{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Draco Charge !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }

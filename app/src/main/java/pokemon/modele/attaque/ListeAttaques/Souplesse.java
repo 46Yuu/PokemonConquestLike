@@ -10,11 +10,12 @@ public class Souplesse extends AttaqueNormal{
     }
 
     public String getInfo(){
-        return "Fouette l’ennemi avec la queue ou une liane, par exemple, pour infliger des dégâts.";
+        return "Fouette l’ennemi avec la queue ou une liane, par exemple, pour infliger des degats.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Souplesse !\n";
+        return info+super.Attack(p,b);
     }
 }

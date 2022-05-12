@@ -10,16 +10,20 @@ public class Belier extends AttaqueNormal{
     }
 
     public String getInfo(){
-        return "Une charge violente qui blesse aussi légèrement le lanceur. (-1/16 des pdv actuel)";
+        return "Une charge violente qui blesse aussi legerement le lanceur. (-1/16 des pdv actuel)";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Belier !\n";
         int tmp = p.getAtk();
+        int degats =p.getPdv()/16;
         p.setAtk(tmp+5);
-        super.Attack(p,b);
+        info += super.Attack(p,b);
         p.setAtk(tmp);
-        p.setPdv(p.getPdv()-(p.getPdv()/16));
+        p.setPdv(p.getPdv()-degats);
         hit();
+        info += p.getNom()+" se blesse a cause du contrecoup ! [-"+degats+" pdv]\n";
+        return info;
     }
 }

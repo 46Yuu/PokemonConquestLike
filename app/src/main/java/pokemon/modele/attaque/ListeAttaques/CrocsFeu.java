@@ -10,7 +10,7 @@ public class CrocsFeu extends AttaqueFeu{
     }
 
     public String getInfo(){
-        return "Le lanceur utilise une morsure enflammée. Peut aussi brûler ou apeurer l'ennemi.\n(10% / 10%. Brulure = 1/16 des pdv actuel après chaque action. Peur = ne peut rien faire pendant un tour.)";
+        return "Le lanceur utilise une morsure enflammee. Peut aussi bruler ou apeurer l'ennemi.\n(10% / 10%. Brulure = 1/16 des pdv actuel après chaque action. Peur = ne peut rien faire pendant un tour.)";
     }
 
     public void effet(Pokemon b){
@@ -25,8 +25,10 @@ public class CrocsFeu extends AttaqueFeu{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Crocs Feu !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }

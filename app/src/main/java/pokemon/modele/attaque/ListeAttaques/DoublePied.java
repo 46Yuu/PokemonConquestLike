@@ -10,15 +10,17 @@ public class DoublePied extends AttaqueCombat{
     }
 
     public String getInfo(){
-        return "Deux coups de pied qui frappent l'ennemi deux fois d'affilée.";
+        return "Deux coups de pied qui frappent l'ennemi deux fois d'affilee.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Double Pied !\n";
         int tmp = p.getAtk();
         p.setAtk((tmp/5)*3);
-        super.Attack(p,b);
-        super.Attack(p,b);
+        info += "Coup 1 : "+super.Attack(p,b);
+        info += "Coup 2 : "+super.Attack(p,b);
         p.setAtk(tmp);
+        return info;
     }
 }

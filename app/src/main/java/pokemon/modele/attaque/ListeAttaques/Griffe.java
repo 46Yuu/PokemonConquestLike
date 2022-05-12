@@ -10,11 +10,12 @@ public class Griffe extends AttaqueNormal{
     }
 
     public String getInfo(){
-        return "Lacère l'ennemi avec des griffes acérées pour lui infliger des dégâts.";
+        return "Lacere l'ennemi avec des griffes acerees pour lui infliger des degats.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Griffe !\n";
+        return info+super.Attack(p,b);
     }
 }

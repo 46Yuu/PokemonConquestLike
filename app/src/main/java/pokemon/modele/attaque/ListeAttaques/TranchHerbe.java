@@ -10,13 +10,15 @@ public class TranchHerbe extends AttaquePlante{
     }
 
     public String getInfo(){
-        return "Des feuilles aiguisées comme des rasoirs entaillent l’ennemi. Taux de critiques élevé. (2x)";
+        return "Des feuilles aiguisees comme des rasoirs entaillent l’ennemi. Taux de critiques eleve. (2x)";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Tranch'Herbe !\n";
         p.setCrit(p.getCrit()*2);
-        super.Attack(p,b);
+        info += super.Attack(p,b);
         p.setCrit(p.getCrit()/2);
+        return info;
     }
 }

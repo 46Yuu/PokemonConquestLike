@@ -6,24 +6,35 @@ import pokemon.modele.attaque.Attaque;
 import pokemon.modele.pokemon.Pokemon;
 
 public class AttaqueDragon extends Attaque {   
-    public void attackBis(Pokemon p, Pokemon b){
+    String info ="";
+    String crit = "Coup Critique !";
+    String pEff = "L'attaque n'est pas tres efficace...\n";
+    String eff = "L'attaque est super efficace !\n";
+    String pasAff ="L'attaque n'affecte pas le pokemon enemi...\n";
+
+    public String attackBis(Pokemon p, Pokemon b){
         int tmp = (int)(Math.random()*100)+1; 
         if(tmp <= p.getCrit()){
+            info = crit;
             if(b.getType()=="Fee"){
                 b.setPdv(b.getPdv() - 0);
                 hit();
+                info += " "+pasAff;
             }
             else if(b.getType()=="Acier"){
                 b.setPdv(b.getPdv() - p.getAtk());
                 pasEff();
+                info += " "+pEff;
             }
             else{
                 if(b.getType()=="Dragon"){
                     b.setPdv(b.getPdv() - p.getAtk()*4);
                     supEff();
+                    info += " "+eff;
                 }
                 else {
                     b.setPdv(b.getPdv() - p.getAtk()*2);
+                    info += "\n";
                 }
                 crit();
             }
@@ -32,20 +43,24 @@ public class AttaqueDragon extends Attaque {
             if(b.getType()=="Dragon"){
                 b.setPdv(b.getPdv() - p.getAtk()*2);
                 supEff();
+                info =eff;
             }
             else if(b.getType()=="Acier"){
                 b.setPdv(b.getPdv() - p.getAtk()/2);
                 pasEff();
+                info = pEff;
             }
             else if(b.getType()=="Fee"){
                 b.setPdv(b.getPdv() - 0);
                 hit();
+                info = pasAff;
             }
             else {
                 b.setPdv(b.getPdv() - p.getAtk());
                 hit();
             }
         }
+        return info;
     }
 
     @Override

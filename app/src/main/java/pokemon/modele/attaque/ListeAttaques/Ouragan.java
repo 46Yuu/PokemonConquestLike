@@ -8,9 +8,13 @@ public class Ouragan extends AttaqueDragon{
     public int getDistanceMaxAttaque(){
         return 2;
     }
+    
+    public boolean jusquADistanceMax(){
+        return false;
+    }
 
     public String getInfo(){
-        return "Déclenche un terrible ouragan sur l'ennemi. Peut aussi l'apeurer. \n(20%. Peur = ne peut rien faire pendant 1 tour";
+        return "Declenche un terrible ouragan sur l'ennemi. Peut aussi l'apeurer. \n(20%. Peur = ne peut rien faire pendant 1 tour";
     }
 
     public void effet(Pokemon b){
@@ -21,8 +25,15 @@ public class Ouragan extends AttaqueDragon{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Ouragan !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
+    }
+
+    @Override
+    public boolean passeObstacle(){
+        return true;
     }
 }

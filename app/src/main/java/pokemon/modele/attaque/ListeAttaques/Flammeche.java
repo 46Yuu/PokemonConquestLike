@@ -9,13 +9,8 @@ public class Flammeche extends AttaqueFeu{
         return 2;
     }
 
-    @Override 
-    public boolean jusquADistanceMax(){
-        return false;
-    }
-
     public String getInfo(){
-        return "L'ennemi est attaqué par une faible flamme. Peut aussi le brûler. \n(10%. Brulure = -1/16 des pdv actuel après chaque action.)";
+        return "L'ennemi est attaque par une faible flamme. Peut aussi le bruler. \n(10%. Brulure = -1/16 des pdv actuel après chaque action.)";
     }
 
     public void effet(Pokemon b){
@@ -26,8 +21,10 @@ public class Flammeche extends AttaqueFeu{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Flammeche !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }

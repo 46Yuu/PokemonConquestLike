@@ -10,11 +10,12 @@ public class EclatsGlace extends AttaqueGlace{
     }
 
     public String getInfo(){
-        return "Le lanceur crée des éclats de glace qu’il envoie sur l’ennemi.";
+        return "Le lanceur cree des eclats de glace qu’il envoie sur l’ennemi.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Eclats Glace !\n";
+        return info+super.Attack(p,b);
     }
 }

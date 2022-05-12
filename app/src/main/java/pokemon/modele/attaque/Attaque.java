@@ -13,26 +13,28 @@ public abstract class Attaque {
 	 * @param p Pokemon attaquant
 	 * @param b Pokemon qui recoit l'attaque
 	 */
-    public void Attack(Pokemon p,Pokemon b){
+    public String Attack(Pokemon p,Pokemon b){
         if(p.getConfus() == true){
             if (p.getConfusTour()>1){
                 int nonConfus = (int)(Math.random()*100)+1;
                 if(nonConfus<=33){
-                    paralyse(p, b);
+                    return paralyse(p, b);
                 } 
                 else {
-                    p.setPdv(p.getPdv()-(p.getPdv()/16));
+                    int tmp=p.getPdv()/16;
+                    p.setPdv(p.getPdv()-tmp);
                     hit();
+                    return p.getNom()+" est confus , il se blesse dans sa confusion. [-"+tmp+" pdv]";
                 }
             }
             else {
                 p.setConfusTour(3);
                 p.setConfus(false);
-                paralyse(p, b);
+                return paralyse(p, b);
             }
         }
         else{
-            paralyse(p, b);
+            return paralyse(p, b);
         }
     }
 
@@ -106,26 +108,29 @@ public abstract class Attaque {
      * @param p Pokemon attaquant
 	 * @param b Pokemon qui recoit l'attaque
 	 */
-    public abstract void attackBis(Pokemon p,Pokemon b);
+    public abstract String attackBis(Pokemon p,Pokemon b);
 
     /**
 	 * Partie de fonction appelle par la fonction Attack , qui s'occupe de la partie de la paralysie du pokemon attaquant
      * @param p Pokemon attaquant
 	 * @param b Pokemon qui recoit l'attaque
 	 */
-    public void paralyse(Pokemon p, Pokemon b){
+    public String paralyse(Pokemon p, Pokemon b){
+        String info="";
         if(p.getEffet()=="Paralyse"){
             int tmp = (int)(Math.random()*100)+1;
             if(tmp>=25){
-                attackBis(p,b);
+                info = attackBis(p,b);
             } 
             int tmp2 = (int)(Math.random()*100)+1;
             if(tmp2<=20){
                 p.setEffet(null);
+                info += "\n "+p.getNom()+" n'est plus Paralyse !";
             } 
+            return info;
         }
         else {
-            attackBis(p, b);
+            return attackBis(p, b);
         }
     }
 

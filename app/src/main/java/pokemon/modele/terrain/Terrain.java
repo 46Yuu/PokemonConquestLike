@@ -25,29 +25,29 @@ public class Terrain{
     };
 
     private TypeCase[][] terrainVolcan = {
-		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
-		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
-		{TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
-		{TypeCase.Lava, TypeCase.Lava , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
-		{TypeCase.Rock, TypeCase.Lava, TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
-		{TypeCase.Rock, TypeCase.Lava , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
-        {TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Lava,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Lava},
-        {TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
-        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
-        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Lava},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Lava, TypeCase.Lava , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Lava,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
+		{TypeCase.Lava, TypeCase.Lava, TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Lava,TypeCase.Lava, TypeCase.Lava,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Lava, TypeCase.Lava , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Lava,TypeCase.Lava, TypeCase.Lava,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Lava, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Lava, TypeCase.Lava,TypeCase.Lava,TypeCase.Rock},
     };
 
     private TypeCase[][] terrainMontagne = {
-		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Water},
-		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Water},
-		{TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-		{TypeCase.Water, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-		{TypeCase.Rock, TypeCase.Water, TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-		{TypeCase.Rock, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Water},
-        {TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Water,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
-        {TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Water,TypeCase.Water},
+		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Water},
+		{TypeCase.Water, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Rock,TypeCase.Water},
+		{TypeCase.Water, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Rock,TypeCase.Water},
+		{TypeCase.Water, TypeCase.Water, TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Rock,TypeCase.Rock},
+		{TypeCase.Water, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Water, TypeCase.Water , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Water, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Water, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
+        {TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
     };
 
     private TypeCase[][] terrainVillage = {
@@ -55,12 +55,12 @@ public class Terrain{
 		{TypeCase.Grass, TypeCase.Grass , TypeCase.Roof, TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
 		{TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
 		{TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
-		{TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-		{TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
-        {TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock, TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
-        {TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass , TypeCase.Grass, TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-        {TypeCase.Grass, TypeCase.Grass, TypeCase.Roof,TypeCase.Roof, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock, TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
-        {TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+		{TypeCase.Grass, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+        {TypeCase.Roof, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock, TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
+        {TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock, TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
     };
 
 	public Case [][] tab;

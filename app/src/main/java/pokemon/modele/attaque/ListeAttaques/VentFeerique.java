@@ -9,12 +9,17 @@ public class VentFeerique extends AttaqueFee{
         return 2;
     }
 
+    public boolean jusquADistanceMax(){
+        return false;
+    }
+
     public String getInfo(){
-        return "Déchaîne un vent magique qui cingle l'ennemi.";
+        return "Dechaine un vent magique qui cingle l'ennemi.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Vent Feerique !\n";
+        return info+super.Attack(p,b);
     }
 }

@@ -10,7 +10,7 @@ public class Puredpois extends AttaquePoison{
     }
 
     public String getInfo(){
-        return "Le lanceur attaque à l'aide d'une éruption de gaz répugnants. Peut aussi empoisonner l'ennemi. \n(40%. Poison = -1 pv après chaque action.)";
+        return "Le lanceur attaque a l'aide d'une eruption de gaz repugnants. Peut aussi empoisonner l'ennemi. \n(40%. Poison = -1 pv après chaque action.)";
     }
 
     public void effet(Pokemon b){
@@ -21,8 +21,10 @@ public class Puredpois extends AttaquePoison{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Puredpois !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }

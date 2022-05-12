@@ -14,7 +14,8 @@ public class BallOmbre extends AttaqueTenebres{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Ball'Ombre !\n";
+        return info+super.Attack(p,b);
     }
 }

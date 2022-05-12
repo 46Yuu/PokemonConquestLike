@@ -10,11 +10,12 @@ public class CoudBoue extends AttaqueSol{
     }
 
     public String getInfo(){
-        return "Le lanceur envoie de la boue au visage de l'ennemi pour infliger des dégâts.";
+        return "Le lanceur envoie de la boue au visage de l'ennemi pour infliger des degats.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque CoudBoue !\n";
+        return info+super.Attack(p,b);
     }
 }

@@ -163,7 +163,7 @@ public class Controleur {
         pokemonsJ2.put(listePokemons.get(nbAlea),null);
         listePokemons.remove(nbAlea);
         
-		terrain=new Terrain(10,8);
+		terrain=new Terrain(10,10);
 		jeux= new Jeux(pokemonsJ1,pokemonsJ2,terrain);
 		jeux.setControleur(this);
     }

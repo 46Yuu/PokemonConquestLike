@@ -10,13 +10,15 @@ public class LameDeRoc extends AttaqueRoche{
     }
 
     public String getInfo(){
-        return "Fait surgir des pierres aiguisées sous l'ennemi. Taux de critiques élevé. (2x)";
+        return "Fait surgir des pierres aiguisees sous l'ennemi. Taux de critiques eleve. (2x)";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Lame De Roc !\n";
         p.setCrit(p.getCrit()*2);
-        super.Attack(p,b);
+        info += super.Attack(p,b);
         p.setCrit(p.getCrit()/2);
+        return info;
     }
 }

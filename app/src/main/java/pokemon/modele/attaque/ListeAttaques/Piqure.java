@@ -14,7 +14,8 @@ public class Piqure extends AttaqueInsecte{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Piqure !\n";
+        return info+super.Attack(p,b);
     }
 }

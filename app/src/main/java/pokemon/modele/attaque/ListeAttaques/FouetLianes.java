@@ -10,11 +10,12 @@ public class FouetLianes extends AttaquePlante{
     }
 
     public String getInfo(){
-        return "Fouette l'ennemi avec de fines lianes pour infliger des dégâts.";
+        return "Fouette l'ennemi avec de fines lianes pour infliger des degats.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Fouet Lianes !\n";
+        return info+super.Attack(p,b);
     }
 }

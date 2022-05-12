@@ -10,11 +10,12 @@ public class ViveAttaque extends AttaqueNormal{
     }
 
     public String getInfo(){
-        return "Le lanceur fonce sur l'ennemi si rapidement qu'on parvient à peine à le discerner.";
+        return "Le lanceur fonce sur l'ennemi si rapidement qu'on parvient a peine a le discerner.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Vive-Attaque !\n";
+        return info+super.Attack(p,b);
     }
 }

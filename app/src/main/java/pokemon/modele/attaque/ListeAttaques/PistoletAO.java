@@ -10,11 +10,12 @@ public class PistoletAO extends AttaqueEau{
     }
 
     public String getInfo(){
-        return "De l'eau est projetée avec force sur l'ennemi.";
+        return "De l'eau est projetee avec force sur l'ennemi.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Pistolet a O !\n";
+        return info+super.Attack(p,b);
     }
 }

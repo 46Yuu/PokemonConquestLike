@@ -10,11 +10,12 @@ public class VoixEnjoleuse extends AttaqueFee{
     }
 
     public String getInfo(){
-        return "Laisse s'échapper une voix enchanteresse qui inflige des dégâts psychiques à l'ennemi.";
+        return "Laisse s'échapper une voix enchanteresse qui inflige des degats psychiques à l'ennemi.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Voix Enjoleuse !\n";
+        return info+super.Attack(p,b);
     }
 }

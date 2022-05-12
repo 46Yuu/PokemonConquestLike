@@ -10,11 +10,12 @@ public class Meteores extends AttaqueNormal{
     }
 
     public String getInfo(){
-        return "Le lanceur envoie des rayons d'étoiles.";
+        return "Le lanceur envoie des rayons d'etoiles.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Meteores !\n";
+        return info+super.Attack(p,b);
     }
 }

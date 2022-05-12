@@ -10,7 +10,7 @@ public class DardVenin extends AttaquePoison{
     }
 
     public String getInfo(){
-        return "Un dard toxique qui transperce l'ennemi. Peut aussi l'empoisonner. \n(30%. Poison = 1/16 des pdv actuel après chaque action.)";
+        return "Un dard toxique qui transperce l'ennemi. Peut aussi l'empoisonner. \n(30%. Poison = 1/16 des pdv actuel apres chaque action.)";
     }
 
     public void effet(Pokemon b){
@@ -21,8 +21,10 @@ public class DardVenin extends AttaquePoison{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Dard-Venin !";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }

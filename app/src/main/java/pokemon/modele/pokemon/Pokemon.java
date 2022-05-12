@@ -293,13 +293,17 @@ public class Pokemon {
 	 */
 	public boolean peutAllerA(TypeCase typeCase){
 		if(typeCase==TypeCase.Water){
-			if(type!="Eau" && type!="Glace")
+			if(type!="Eau" && type!="Glace" && type!="Vol")
 				return false;
 		}
 		if(typeCase==TypeCase.Lava){
             if(type!="Vol" && type!="Feu")
                 return false;
-        } 
+        }
+		if(typeCase==TypeCase.Roof){
+            if(type!="Vol")
+                return false;
+        }  
 		return true;
 	}
 

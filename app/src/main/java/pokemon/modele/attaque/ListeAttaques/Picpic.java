@@ -10,11 +10,12 @@ public class Picpic extends AttaqueVol{
     }
 
     public String getInfo(){
-        return "Frappe l'ennemi d'un bec pointu ou d'une corne pour infliger des dégâts.";
+        return "Frappe l'ennemi d'un bec pointu ou d'une corne pour infliger des degats.";
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Picpic !\n";
+        return info+super.Attack(p,b);
     }
 }

@@ -10,7 +10,7 @@ public class Lechouille extends AttaqueSpectre{
     }
 
     public String getInfo(){
-        return "Un grand coup de langue qui inflige des dégâts à l'ennemi. Peut aussi le paralyser. \n(30%. Paralysie = 25% de rater son attaque et avance de 1 case de moins.)";
+        return "Un grand coup de langue qui inflige des degats a l'ennemi. Peut aussi le paralyser. \n(30%. Paralysie = 25% de rater son attaque et avance de 1 case de moins.)";
     }
 
     public void effet(Pokemon b){
@@ -21,8 +21,10 @@ public class Lechouille extends AttaqueSpectre{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Lechouille !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }

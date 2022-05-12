@@ -21,8 +21,10 @@ public class Etonnement extends AttaqueSpectre{
     }
 
     @Override
-    public void Attack(Pokemon p, Pokemon b){
-        super.Attack(p,b);
+    public String Attack(Pokemon p, Pokemon b){
+        String info = p.getNom()+" utilise l'attaque Etonnement !\n";
+        info += super.Attack(p,b);
         effet(b);
+        return info;
     }
 }
