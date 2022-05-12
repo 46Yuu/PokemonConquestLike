@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class vibraqua extends AttaqueEau{
+public class Vibraqua extends AttaqueEau{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;

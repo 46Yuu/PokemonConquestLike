@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class doublePied extends AttaqueCombat{
+public class DoublePied extends AttaqueCombat{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

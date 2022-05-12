@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class picpic extends AttaqueVol{
+public class Picpic extends AttaqueVol{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

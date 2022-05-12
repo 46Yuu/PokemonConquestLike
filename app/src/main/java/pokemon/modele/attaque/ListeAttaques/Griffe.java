@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class griffe extends AttaqueNormal{
+public class Griffe extends AttaqueNormal{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

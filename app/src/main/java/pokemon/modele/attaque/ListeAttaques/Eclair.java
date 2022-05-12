@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class eclair extends AttaqueElectrique{
+public class Eclair extends AttaqueElectrique{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;

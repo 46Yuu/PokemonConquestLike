@@ -1,7 +1,7 @@
 package pokemon.modele.pokemon;
 
-public class ronflex extends Pokemon{
-    public ronflex() {
+public class Ronflex extends Pokemon{
+    public Ronflex() {
         super("Ronflex",2,"Normal");
         int randPDV = (int)(Math.random()*(217-170))+170; 
         int randATK = (int)(Math.random()*(31-17))+17; 

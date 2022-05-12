@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class pistoletAO extends AttaqueEau{
+public class PistoletAO extends AttaqueEau{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;

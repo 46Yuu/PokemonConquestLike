@@ -66,10 +66,10 @@ public class Controleur {
                         listePokemons.add(new Oniglali());
                         break;
                     case "Ronflex":
-                        listePokemons.add(new ronflex());
+                        listePokemons.add(new Ronflex());
                         break;
                     case "Milobellus":
-                        listePokemons.add(new milobellus());
+                        listePokemons.add(new Milobellus());
                         break;
                 }
             }
@@ -120,19 +120,19 @@ public class Controleur {
                         listePokemons.add(new Evoli());
                         break;
                     case "Rattata":
-                        listePokemons.add(new rattata());
+                        listePokemons.add(new Rattata());
                         break;
                     case "NidoranF":
-                        listePokemons.add(new nidoranF());
+                        listePokemons.add(new NidoranF());
                         break;
                     case "NidoranM":
-                        listePokemons.add(new nidoranM());
+                        listePokemons.add(new NidoranM());
                         break;
                     case "Melofee":
-                        listePokemons.add(new melofee());
+                        listePokemons.add(new Melofee());
                         break;
                     case "Voltorbe":
-                        listePokemons.add(new voltorbe());
+                        listePokemons.add(new Voltorbe());
                         break;
                 }
             }

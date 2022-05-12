@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class piqure extends AttaqueInsecte{
+public class Piqure extends AttaqueInsecte{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

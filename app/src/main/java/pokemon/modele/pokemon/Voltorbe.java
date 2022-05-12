@@ -1,7 +1,7 @@
 package pokemon.modele.pokemon;
 
-public class voltorbe extends Pokemon {
-    public voltorbe() {
+public class Voltorbe extends Pokemon {
+    public Voltorbe() {
         super("Voltorbe",3,"Electrique");
         int randPDV = (int)(Math.random()*(147-100))+100; 
         int randATK = (int)(Math.random()*(14-6))+6; 

@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class dracoCharge extends AttaqueDragon{
+public class DracoCharge extends AttaqueDragon{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

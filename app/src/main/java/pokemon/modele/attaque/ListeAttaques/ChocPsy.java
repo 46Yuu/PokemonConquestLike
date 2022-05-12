@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class chocPsy extends AttaquePsy{
+public class ChocPsy extends AttaquePsy{
     @Override
     public int getDistanceMaxAttaque(){
         return 3;

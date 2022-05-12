@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class dardVenin extends AttaquePoison{
+public class DardVenin extends AttaquePoison{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

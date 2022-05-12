@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class viveAttaque extends AttaqueNormal{
+public class ViveAttaque extends AttaqueNormal{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

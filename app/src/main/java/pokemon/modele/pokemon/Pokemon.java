@@ -237,7 +237,7 @@ public class Pokemon {
 			this.listeAttaques.put(nom, new VoixEnjoleuse());
 		}
 		else if (nom == "Vent Feerique"){
-			this.listeAttaques.put(nom, new TentFeerique());
+			this.listeAttaques.put(nom, new VentFeerique());
 		}
 		else if (nom == "Lechouille"){
 			this.listeAttaques.put(nom, new Lechouille());

@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class eclatsGlace extends AttaqueGlace{
+public class EclatsGlace extends AttaqueGlace{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;

@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class etonnement extends AttaqueSpectre{
+public class Etonnement extends AttaqueSpectre{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

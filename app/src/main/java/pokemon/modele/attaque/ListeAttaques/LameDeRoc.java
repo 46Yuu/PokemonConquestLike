@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class lameDeRoc extends AttaqueRoche{
+public class LameDeRoc extends AttaqueRoche{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

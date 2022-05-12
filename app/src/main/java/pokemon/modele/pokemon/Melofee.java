@@ -1,7 +1,7 @@
 package pokemon.modele.pokemon;
 
-public class melofee extends Pokemon{
-    public melofee() {
+public class Melofee extends Pokemon{
+    public Melofee() {
         super("Melofee",2,"Fee");
         int randPDV = (int)(Math.random()*(177-130))+130; 
         int randATK = (int)(Math.random()*(15-6))+6; 

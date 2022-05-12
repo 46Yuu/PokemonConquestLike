@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class morsure extends AttaqueTenebres{
+public class Morsure extends AttaqueTenebres{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

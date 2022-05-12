@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class ouragan extends AttaqueDragon{
+public class Ouragan extends AttaqueDragon{
     @Override
     public int getDistanceMaxAttaque(){
         return 2;

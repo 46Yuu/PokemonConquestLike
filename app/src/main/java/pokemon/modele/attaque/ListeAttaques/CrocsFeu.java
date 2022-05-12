@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class crocsFeu extends AttaqueFeu{
+public class CrocsFeu extends AttaqueFeu{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

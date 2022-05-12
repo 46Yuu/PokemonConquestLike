@@ -3,7 +3,7 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class lechouille extends AttaqueSpectre{
+public class Lechouille extends AttaqueSpectre{
     @Override
     public int getDistanceMaxAttaque(){
         return 1;

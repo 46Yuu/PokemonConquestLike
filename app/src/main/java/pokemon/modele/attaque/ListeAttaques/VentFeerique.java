@@ -3,14 +3,14 @@ package pokemon.modele.attaque.ListeAttaques;
 import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.pokemon.Pokemon;
 
-public class viveAttaque extends AttaqueNormal{
+public class VentFeerique extends AttaqueFee{
     @Override
     public int getDistanceMaxAttaque(){
-        return 1;
+        return 2;
     }
 
     public String getInfo(){
-        return "Le lanceur fonce sur l'ennemi si rapidement qu'on parvient à peine à le discerner.";
+        return "Déchaîne un vent magique qui cingle l'ennemi.";
     }
 
     @Override
