@@ -288,15 +288,14 @@ public class Jeux {
     public void testEffet(){
         if(pokemonActuel.getEffet()!=null){
             pokemonActuel.testEffet();
+            controleur.miseAJourInfosPokemons(pokemonActuel, !joueur1);
             if(joueur1)
                 controleur.ecrireEffetPokemon(pokemonActuel.getNom(), pokemonActuel.getEffet(), getExPDVJ1(pokemonActuel)-getPDVJ1(pokemonActuel));
             else
                 controleur.ecrireEffetPokemon(pokemonActuel.getNom(), pokemonActuel.getEffet(), getExPDVJ2(pokemonActuel)-getPDVJ2(pokemonActuel));
-
             int tmp = (int)(Math.random()*100)+1;
             if(tmp<=25){
                 pokemonActuel.setEffet(null);
-                controleur.ecrireHistorique(pokemonActuel.getNom()+ " est gueri de son Effet !\n");
                 controleur.ecrireHistorique(pokemonActuel.getNom()+ " est gueri de son Effet !\n");
             } 
             controleur.miseAJourInfosPokemons(pokemonActuel, !joueur1);

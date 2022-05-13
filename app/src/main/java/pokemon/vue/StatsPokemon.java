@@ -279,7 +279,6 @@ public class StatsPokemon extends JPanel{
 
   public class JPanelConfus extends JPanel{
     private boolean estConfus=false;
-    private int confusTour;
     private BufferedImage imageConfus;
     private JLabel labelConfusTour=new JLabel();
 
@@ -294,7 +293,6 @@ public class StatsPokemon extends JPanel{
 
     public void setConfus(boolean b, int confusTour) {
       estConfus=b;
-      this.confusTour=confusTour;
       if(b)
         labelConfusTour.setText(""+confusTour);
       else
