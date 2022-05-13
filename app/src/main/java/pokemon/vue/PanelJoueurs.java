@@ -54,6 +54,19 @@ public class PanelJoueurs extends JPanel{
 
 	JTextPane description=new JTextPane();
 	JScrollPane panelDescription;
+
+	/**
+	 * true si le joueur a cliqué sur l'icone de l'effet
+	 */
+	private boolean clickedEffet=false;
+	/**
+	 * true si le joueur a cliqué sur l'icone de la peur
+	 */
+	private boolean clickedPeur=false;
+	/**
+	 * true si le joueur a cliqué sur l'icone de la confusion
+	 */
+	private boolean clickedConfus=false;
 	
 
     public PanelJoueurs(Controleur controleur) {
@@ -220,108 +233,130 @@ public class PanelJoueurs extends JPanel{
     
 	private void addActionListenerAuxJPanels(StatsPokemon tmp) {
 		tmp.getJPanelEffet().addMouseListener(new java.awt.event.MouseAdapter() {
-			boolean clicked=false;
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				if(tmp.estBRN()){
 					ecrireDescripion(descBrule());
 					panelDescription.setVisible(true);
+					clickedPeur=false;
+					clickedConfus=false;
 				}
 				else if(tmp.estPAR()){
 					ecrireDescripion(descParalyse());
 					panelDescription.setVisible(true);
+					clickedPeur=false;
+					clickedConfus=false;
 				}
 				else if(tmp.estPSN()){
 					ecrireDescripion(descPoison());
 					panelDescription.setVisible(true);
+					clickedPeur=false;
+					clickedConfus=false;
 				}
 				else if(tmp.estFRZ()){
 					ecrireDescripion(descGele());
 					panelDescription.setVisible(true);
+					clickedPeur=false;
+					clickedConfus=false;
 				}
 				
 			}
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				if(!clicked)
+				if(!clickedEffet && (tmp.estBRN() || tmp.estPAR() || tmp.estPSN() || tmp.estFRZ()))
 					panelDescription.setVisible(false);
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if(clicked && panelDescription.isVisible() && (tmp.estBRN() || tmp.estPAR() || tmp.estPSN() || tmp.estFRZ())){
+				if(clickedEffet && panelDescription.isVisible() && (tmp.estBRN() || tmp.estPAR() || tmp.estPSN() || tmp.estFRZ())){
 					panelDescription.setVisible(false);
-					clicked=false;
+					clickedEffet=false;
 				}
 				else{
 					if(tmp.estBRN()){
 						ecrireDescripion(descBrule());
 						panelDescription.setVisible(true);
-						clicked=true;
+						clickedEffet=true;
+						clickedPeur=false;
+						clickedConfus=false;
 					}
 					else if(tmp.estPAR()){
 						ecrireDescripion(descParalyse());
 						panelDescription.setVisible(true);
-						clicked=true;
+						clickedEffet=true;
+						clickedPeur=false;
+						clickedConfus=false;
 					}
 	
 					else if(tmp.estPSN()){
 						ecrireDescripion(descPoison());
 						panelDescription.setVisible(true);
-						clicked=true;
+						clickedEffet=true;
+						clickedPeur=false;
+						clickedConfus=false;
 					}
 
 					else if(tmp.estFRZ()){
 						ecrireDescripion(descGele());
 						panelDescription.setVisible(true);
-						clicked=true;
+						clickedEffet=true;
+						clickedPeur=false;
+						clickedConfus=false;
 					}
 				}
 			}
 		});
 
 		tmp.getJPanelPeur().addMouseListener(new java.awt.event.MouseAdapter() {
-			boolean clicked=false;
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				if(tmp.aPeur()){
 					ecrireDescripion(descPeur());
 					panelDescription.setVisible(true);
+					clickedEffet=false;
+					clickedConfus=false;
 				}
 			}
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				if(!clicked)
+				if(!clickedPeur && tmp.aPeur())
 					panelDescription.setVisible(false);
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if(clicked && panelDescription.isVisible() && tmp.aPeur()){
+				if(clickedPeur && panelDescription.isVisible() && tmp.aPeur()){
 					panelDescription.setVisible(false);
-					clicked=false;
+					clickedPeur=false;
 				}
 				else if(tmp.aPeur()){
 					ecrireDescripion(descPeur());
 					panelDescription.setVisible(true);
-					clicked=true;
+					clickedPeur=true;
+					clickedEffet=false;
+					clickedConfus=false;
 				}
 			}
 		});
 
 		tmp.getJpanelConfus().addMouseListener(new java.awt.event.MouseAdapter() {
-			boolean clicked;
+			
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				if(tmp.estConfus()){
 					ecrireDescripion(descConfus());
 					panelDescription.setVisible(true);
+					clickedEffet=false;
+					clickedPeur=false;
 				}
 			}
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				if(!clicked)
+				if(!clickedConfus && tmp.estConfus())
 					panelDescription.setVisible(false);
 			}
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if(clicked && panelDescription.isVisible() && tmp.estConfus()){
+				if(clickedConfus && panelDescription.isVisible() && tmp.estConfus()){
 					panelDescription.setVisible(false);
-					clicked=false;
+					clickedConfus=false;
 				}
 				else if(tmp.estConfus()){
 					ecrireDescripion(descConfus());
 					panelDescription.setVisible(true);
-					clicked=true;
+					clickedConfus=true;
+					clickedEffet=false;
+					clickedPeur=false;
 				}
 			}
 		});

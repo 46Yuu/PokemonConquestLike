@@ -428,5 +428,21 @@ public class Controleur {
     public Vue getVue(){
         return vue;
     }
+
+    public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible,String pokemonAttaque,String pokemonCible,int degats) {
+        vue.ecrireAttaquePokemon(joueurAttaque, joueurCible, pokemonAttaque, pokemonCible, degats);
+    }
+
+    public void ecrireInitEffetPokemon(String pokemon,String effet) {
+        vue.ecrireInitEffetPokemon(pokemon,effet);
+    }
+
+    public void ecrireHistorique(String historique) {
+        vue.ecrireHistorique(historique);
+    }
+
+    public void ecrireEffetPokemon(String pokemon,String effet,int degats) {
+        vue.ecrireEffetPokemon(pokemon,effet,degats);
+    }
 }
 

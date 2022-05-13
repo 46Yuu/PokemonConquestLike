@@ -148,7 +148,7 @@ public abstract class Attaque {
     /**
      * renvoie true si l'attaque peut attaquer toutes les cases jusqu'à distance max
      * sinon false si l'attaque peut attaquer qu'une case loin de exactement distance max
-     * @return rue si l'attaque peut attaquer toutes les cases jusqu'à distance max
+     * @return true si l'attaque peut attaquer toutes les cases jusqu'à distance max
      * sinon false si l'attaque peut attaquer qu'une case loin de exactement distance max
      */
     public boolean jusquADistanceMax(){

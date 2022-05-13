@@ -11,8 +11,6 @@ import pokemon.modele.pokemon.Pokemon;
 import pokemon.modele.terrain.Case;
 import pokemon.modele.terrain.Pair;
 import pokemon.modele.terrain.Terrain;
-import pokemon.vue.EcranJeux;
-import pokemon.vue.Vue;
 
 
 public class Jeux {
@@ -254,9 +252,10 @@ public class Jeux {
      * @param y coordonnée y du pokémon attaqué
      */
     public void attaquer(int x, int y) {
-        String info = attaqueChoisie.Attack(pokemonActuel, terrain.getPokemon(x, y));
+        Pokemon pokemonCible=terrain.getPokemon(x, y);
+        String info = attaqueChoisie.Attack(pokemonActuel, pokemonCible);
         controleur.miseAJourInfosPokemons(pokemonActuel,!joueur1);
-        controleur.miseAJourInfosPokemons(terrain.getPokemon(x, y),joueur1);
+        controleur.miseAJourInfosPokemons(pokemonCible,joueur1);
         controleur.decolorerCasesAAttaquer(listCasesAAttaquer);
         controleur.setInvisibleInfosAttaque(joueur1);
         controleur.deselectTile(getCoordonneesPokemonActuel());
@@ -264,28 +263,22 @@ public class Jeux {
             enleverKo(x,y);           
             finDePartie();
         }
-        if(pokemonsDeplaces.size()==pokemonCaseJoueur1.keySet().size())
+        if(joueur1 && pokemonsDeplaces.size()==pokemonCaseJoueur1.keySet().size())
             controleur.cibleInvisibleDernierPok();
         else if(!joueur1 && pokemonsDeplaces.size()==pokemonCaseJoueur2.keySet().size())
             controleur.cibleInvisibleDernierPok();
-        controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(info);
-        controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(info);
-        if(joueur1){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDVJ2(terrain.getPokemon(x, y))-getPDVJ2(terrain.getPokemon(x, y)));
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDVJ2(terrain.getPokemon(x, y))-getPDVJ2(terrain.getPokemon(x, y)));
-        }else{
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDVJ1(terrain.getPokemon(x, y))-getPDVJ1(terrain.getPokemon(x, y)));
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), terrain.getPokemon(x, y).getNom(),getExPDVJ1(terrain.getPokemon(x, y))-getPDVJ1(terrain.getPokemon(x, y)));
-        }if(terrain.getPokemon(x, y).getEffet()!=null){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireInitEffetPokemon(terrain.getPokemon(x, y).getNom(),terrain.getPokemon(x, y).getEffet());
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireInitEffetPokemon(terrain.getPokemon(x, y).getNom(),terrain.getPokemon(x, y).getEffet());
-        }else if(terrain.getPokemon(x, y).getConfus()){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ " est confus !\n");
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ " est confus !\n");
-        }else if(terrain.getPokemon(x, y).getPeur()){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ " a peur !\n");
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(terrain.getPokemon(x, y).getNom()+ " a peur !\n");
-        }
+        controleur.ecrireHistorique(info);
+        controleur.ecrireHistorique(info);
+        if(joueur1)
+            controleur.ecrireAttaquePokemon("J1","J2",pokemonActuel.getNom(), pokemonCible.getNom(), getExPDVJ2(pokemonCible)-getPDVJ2(pokemonCible));
+        else
+            controleur.ecrireAttaquePokemon("J2","J1",pokemonActuel.getNom(), pokemonCible.getNom(), getExPDVJ1(pokemonCible)-getPDVJ1(pokemonCible));
+        if(pokemonCible.getEffet()!=null)
+                controleur.ecrireInitEffetPokemon(pokemonCible.getNom(),pokemonCible.getEffet());
+        else if(pokemonCible.getConfus())
+                controleur.ecrireHistorique(pokemonCible.getNom()+ " est confus !\n");
+        else if(pokemonCible.getPeur())
+                controleur.ecrireHistorique(pokemonCible.getNom()+ " a peur !\n");
     }
 
     /**
@@ -295,19 +288,16 @@ public class Jeux {
     public void testEffet(){
         if(pokemonActuel.getEffet()!=null){
             pokemonActuel.testEffet();
-            if(joueur1){
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireEffetPokemon(pokemonActuel.getNom(),pokemonActuel.getEffet(),getExPDVJ1(pokemonActuel)-getPDVJ1(pokemonActuel));
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireEffetPokemon(pokemonActuel.getNom(),pokemonActuel.getEffet(),getExPDVJ1(pokemonActuel)-getPDVJ1(pokemonActuel));
-            }
-            else {
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireEffetPokemon(pokemonActuel.getNom(),pokemonActuel.getEffet(),getExPDVJ2(pokemonActuel)-getPDVJ2(pokemonActuel));
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireEffetPokemon(pokemonActuel.getNom(),pokemonActuel.getEffet(),getExPDVJ2(pokemonActuel)-getPDVJ2(pokemonActuel));
-            }
+            if(joueur1)
+                controleur.ecrireEffetPokemon(pokemonActuel.getNom(), pokemonActuel.getEffet(), getExPDVJ1(pokemonActuel)-getPDVJ1(pokemonActuel));
+            else
+                controleur.ecrireEffetPokemon(pokemonActuel.getNom(), pokemonActuel.getEffet(), getExPDVJ2(pokemonActuel)-getPDVJ2(pokemonActuel));
+
             int tmp = (int)(Math.random()*100)+1;
             if(tmp<=25){
                 pokemonActuel.setEffet(null);
-                controleur.getVue().getEcranJeuxJ1().getPanelBoutons().ecrireHistorique(pokemonActuel+ " est gueri de son Effet !\n");
-                controleur.getVue().getEcranJeuxJ2().getPanelBoutons().ecrireHistorique(pokemonActuel+ " est gueri de son Effet !\n");
+                controleur.ecrireHistorique(pokemonActuel.getNom()+ " est gueri de son Effet !\n");
+                controleur.ecrireHistorique(pokemonActuel.getNom()+ " est gueri de son Effet !\n");
             } 
             controleur.miseAJourInfosPokemons(pokemonActuel, !joueur1);
             if(pokemonActuel.getEffet()=="Brule" || pokemonActuel.getEffet() == "Poison" ){
@@ -315,9 +305,8 @@ public class Jeux {
             }
         }
         if (pokemonActuel.getConfus()){
-            if (pokemonActuel.getConfusTour()>1){
+            if (pokemonActuel.getConfusTour()>1)
                 pokemonActuel.setConfusTour(pokemonActuel.getConfusTour()-1);
-            }
             else {
                 pokemonActuel.setConfusTour(3);
                 pokemonActuel.setConfus(false);
@@ -363,18 +352,15 @@ public class Jeux {
      */
     public void enleverKo(int x,int y){
         controleur.cibleInvisible(x, y);
-        Case caseDepart;
         if(joueur1){
-            caseDepart=pokemonCaseJoueur2.get(terrain.getPokemon(x, y));
             pokemonCaseJoueur2.remove(terrain.getPokemon(x, y)); 
             terrain.getPokemon(x, y).setEffet(null);
-            caseDepart.setPokemon(null);
+            terrain.setPokemon(x, y, null);
         }
         else {
-            caseDepart=pokemonCaseJoueur1.get(terrain.getPokemon(x, y));
             pokemonCaseJoueur1.remove(terrain.getPokemon(x, y)); 
             terrain.getPokemon(x, y).setEffet(null);
-            caseDepart.setPokemon(null);
+            terrain.setPokemon(x, y, null);
         }
         controleur.enleverPokemon(x, y);
     }

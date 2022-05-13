@@ -11,19 +11,6 @@ import pokemon.modele.terrain.Case.TypeCase;
 
 public class Terrain{
 
-	private TypeCase[][] typeCase = {
-		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
-		{TypeCase.Rock, TypeCase.Grass , TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Grass,TypeCase.Grass, TypeCase.Lava},
-		{TypeCase.Roof, TypeCase.Roof , TypeCase.Grass,TypeCase.Grass, TypeCase.Lava , TypeCase.Lava,TypeCase.Rock,TypeCase.Water,TypeCase.Grass, TypeCase.Grass},
-		{TypeCase.Roof, TypeCase.Water , TypeCase.Grass,TypeCase.Grass, TypeCase.Lava , TypeCase.Lava,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
-		{TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
-		{TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
-        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
-        {TypeCase.Rock, TypeCase.Grass , TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Rock,TypeCase.Rock,TypeCase.Grass,TypeCase.Grass, TypeCase.Lava},
-        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
-        {TypeCase.Roof, TypeCase.Water , TypeCase.Water,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock,TypeCase.Roof, TypeCase.Water , TypeCase.Water},
-    };
-
     private TypeCase[][] terrainVolcan = {
 		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Lava},
 		{TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock , TypeCase.Rock,TypeCase.Rock, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
@@ -60,7 +47,7 @@ public class Terrain{
         {TypeCase.Roof, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass , TypeCase.Rock, TypeCase.Water, TypeCase.Water,TypeCase.Water,TypeCase.Water},
         {TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Rock, TypeCase.Water,TypeCase.Water,TypeCase.Rock},
         {TypeCase.Roof, TypeCase.Grass, TypeCase.Grass,TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock, TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
-        {TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock,TypeCase.Water,TypeCase.Rock},
+        {TypeCase.Grass, TypeCase.Grass , TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Grass, TypeCase.Rock,TypeCase.Rock,TypeCase.Rock},
     };
 
 	public Case [][] tab;

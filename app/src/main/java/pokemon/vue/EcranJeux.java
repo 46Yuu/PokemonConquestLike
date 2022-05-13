@@ -396,4 +396,20 @@ public class EcranJeux extends JFrame{
 		return panelJoueurs;
 	}
 
+	public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible, String pokemonAttaque, String pokemonCible, int degats) {
+		panelBoutons.ecrireAttaquePokemon(joueurAttaque, joueurCible, pokemonAttaque, pokemonCible, degats);
+	}
+
+	public void ecrireInitEffetPokemon(String pokemon, String effet) {
+		panelBoutons.ecrireInitEffetPokemon(pokemon, effet);
+	}
+
+	public void ecrireHistorique(String historique) {
+		panelBoutons.ecrireHistorique(historique);
+	}
+
+	public void ecrireEffetPokemon(String pokemon, String effet, int degats) {
+		panelBoutons.ecrireEffetPokemon(pokemon, effet, degats);
+	}
+
 }

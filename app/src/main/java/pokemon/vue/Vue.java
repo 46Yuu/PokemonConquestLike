@@ -1,14 +1,11 @@
 package pokemon.vue;
 
-import javax.sound.sampled.FloatControl;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
 import pokemon.audio.Audio;
 import pokemon.controleur.Controleur;
 import pokemon.modele.pokemon.*;
 import pokemon.modele.terrain.*;
-
 import java.util.HashSet;
 
 public class Vue extends JFrame{
@@ -311,6 +308,26 @@ public class Vue extends JFrame{
 	
 		public EcranJeux getEcranJeuxJ2() {
 			return ecranJeuxJ2;
+		}
+
+		public void ecrireAttaquePokemon(String joueurAttaque, String joueurCible, String pokemonAttaque,String pokemonCible, int degats) {
+			ecranJeuxJ1.ecrireAttaquePokemon(joueurAttaque, joueurCible, pokemonAttaque, pokemonCible, degats);
+			ecranJeuxJ2.ecrireAttaquePokemon(joueurAttaque, joueurCible, pokemonAttaque, pokemonCible, degats);
+		}
+
+		public void ecrireInitEffetPokemon(String pokemon, String effet) {
+			ecranJeuxJ1.ecrireInitEffetPokemon(pokemon,effet);
+			ecranJeuxJ2.ecrireInitEffetPokemon(pokemon,effet);
+		}
+
+		public void ecrireHistorique(String historique) {
+			ecranJeuxJ1.ecrireHistorique(historique);
+			ecranJeuxJ2.ecrireHistorique(historique);
+		}
+
+		public void ecrireEffetPokemon(String pokemon, String effet, int degats) {
+			ecranJeuxJ1.ecrireEffetPokemon(pokemon, effet, degats);
+			ecranJeuxJ2.ecrireEffetPokemon(pokemon, effet, degats);
 		}
 	
 }

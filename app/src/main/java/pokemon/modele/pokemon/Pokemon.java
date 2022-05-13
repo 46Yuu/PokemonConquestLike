@@ -1,10 +1,8 @@
 package pokemon.modele.pokemon;
 
 import pokemon.modele.attaque.*;
-import pokemon.modele.attaque.Attaquetypes.*;
 import pokemon.modele.attaque.ListeAttaques.*;
 import pokemon.modele.terrain.Case.TypeCase;
-import pokemon.vue.Vue;
 
 import java.util.*;
 
