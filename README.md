@@ -2,6 +2,14 @@
 
 Notre Projet est une adaptation sur ordinateur en langage JAVA du jeu Pokémon Conquest, inspiré de la célèbre série de jeux vidéo Fire Emblem.
 
+# Images
+![Image 1](path/to/image1.png){: width="50%"}
+![Image 2](path/to/image2.png){: width="50%"}
+![Image 3](path/to/image3.png){: width="50%"}
+![Image 4](path/to/image4.png){: width="50%"}
+![Image 5](path/to/image5.png){: width="50%"}
+
+
 # Auteurs
 - Adrien LE NINIVEN 
 - Wissam GHANEM 
